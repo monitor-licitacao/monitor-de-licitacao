@@ -365,15 +365,39 @@ async function startServer() {
   // ==========================================
 
   // Health check
+  // Regra 6 (Resiliência): este endpoint NUNCA pode ficar pendurado à espera do
+  // banco — se o Neon estiver indisponível/lento, o processo Node continua vivo
+  // e o container deve ser reportado "healthy" (com database: "error"), em vez
+  // de deixar a checagem do Docker expirar sem resposta e o deploy travar em
+  // "starting" indefinidamente.
   app.get('/api/health', async (req: Request, res: Response) => {
-    const sourcesCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.sources);
-    const editaisCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.editais);
-    res.json({
-      status: 'ok',
+    let dbStatus: 'ok' | 'error' = 'ok';
+    let sourcesCount: number | null = null;
+    let editaisCount: number | null = null;
+    try {
+      const sourcesCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.sources);
+      const editaisCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.editais);
+      sourcesCount = sourcesCountResult[0].count;
+      editaisCount = editaisCountResult[0].count;
+    } catch (e) {
+      dbStatus = 'error';
+      console.error('[Health Check] Erro ao consultar banco de dados:', e);
+    }
+    // HTTP 200 sempre (é isso que o healthcheck do Docker avalia — o processo
+    // está de pé); "status" reflete o estado real para quem observa o corpo
+    // (dashboards/monitoramento), sem derrubar o container por uma falha
+    // transitória do Neon. Intencional: devolver 503 aqui faria o Docker
+    // reiniciar o container em loop sempre que o Neon oscilar, sem nenhum
+    // benefício (reiniciar o Node não conserta uma indisponibilidade externa)
+    // — voltaríamos ao mesmo bug que este fix resolve (deploy nunca fica
+    // "healthy").
+    res.status(200).json({
+      status: dbStatus === 'ok' ? 'ok' : 'degraded',
+      database: dbStatus,
       timestamp: new Date().toISOString(),
       version: '1.2-neon-db',
-      sourcesCount: sourcesCountResult[0].count,
-      editaisCount: editaisCountResult[0].count
+      sourcesCount,
+      editaisCount
     });
   });
 

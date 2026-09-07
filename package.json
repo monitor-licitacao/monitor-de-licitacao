@@ -27,6 +27,7 @@
     "@google/genai": "^2.4.0",
     "@neon/env": "^1.2.0",
     "@neondatabase/serverless": "^1.1.0",
+    "@notionhq/client": "^5.26.0",
     "@supabase/supabase-js": "^2.115.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",

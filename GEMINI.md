@@ -59,6 +59,15 @@ Este documento define os princípios inegociáveis arquiteturais, de segurança 
 ## 8. Higiene de Git e Fluxo de Encerramento (Zero Debt)
 * **A Regra**: É proibido encerrar uma sessão de trabalho ou abrir um PR com "Worktree Suja" (arquivos modificados não commitados) ou mensagens de commit genéricas.
 * **Por quê?**: Para evitar a perda de progresso em caso de falhas locais e garantir que a IA (e outros desenvolvedores) entenda o histórico real do que foi implementado.
+* **Guia operacional completo**: Consulte [docs/GIT_WORKFLOW.md](./docs/GIT_WORKFLOW.md) para o passo a passo detalhado de branches, commits e PRs, incluindo o checklist obrigatório antes de cada commit.
+
+### 8.0. Estratégia Anti-Incidente (nunca commitar em `main` por acidente)
+> Origem: incidente real em que `npm run auto-ship` commitou 78 arquivos misturados (refactor + worker Cloudflare + lixo de build/IDE) diretamente em `main`, via `git add .` sem revisão.
+- **`main` é somente leitura localmente**: nunca rode `git commit` estando na branch `main`. Toda tarefa começa com `git checkout -b <tipo>/<descricao>` antes de editar qualquer arquivo.
+- **Proibido `git add .` às cegas**: sempre `git status --short` e `git diff --stat` antes de adicionar; prefira `git add -p` ou listar arquivos explicitamente. Só use `git add .` se o status já mostrar exatamente o esperado.
+- **Um checkout/worktree = uma tarefa**: não acumule trabalho de tarefas não relacionadas no mesmo diretório sem branches separadas desde o início.
+- **`.gitignore` revisado**: artefatos de build/IDE (`.wrangler/`, `.claude/`, `*.sqlite*`, `.env`, `node_modules/`, `dist/`) nunca devem aparecer como candidatos a commit; se aparecerem como `??` no `git status`, adicione ao `.gitignore` imediatamente em um commit `chore:` isolado.
+- **Camadas de proteção**: hook local (`check-health.sh`/Husky) bloqueando commit em `main` e avisando sobre número anormal de arquivos staged + proteção de branch no GitHub (require PR, require status checks, aplicar também a admins).
 
 ### 8.1. Commits Atômicos e Semânticos
 - **Padrão**: Use [Conventional Commits](https://www.conventionalcommits.org/).

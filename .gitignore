@@ -8,3 +8,6 @@ coverage/
 !.env.example
 .neon
 scratch/
+
+.wrangler/
+.claude/

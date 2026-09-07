@@ -39,7 +39,7 @@ function getProcessCodigoFromPath(): string | null {
 
 export default function App() {
   const initialCodigo = getProcessCodigoFromPath();
-  const [activeTab, setActiveTab] = useState(initialCodigo ? 'editais' : 'editais');
+  const [activeTab, setActiveTab] = useState(initialCodigo ? 'processos' : 'editais');
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
   
   // App Domain State

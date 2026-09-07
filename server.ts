@@ -14,7 +14,10 @@ declare global {
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { analyzeEditalTextWithAI, analyzeTechnicalSpecificationRestrictedAI } from './server/gemini';
+import { analyzeEditalMultiAgent } from './server/lib/ai.js';
+import { createAuditPage } from './server/lib/notion.js';
 import { WhatsAppNotification, RetificationDiff, SchedulerState } from './src/types';
+
 import { db } from './server/db/index.js';
 import * as schema from './server/db/schema.js';
 import { eq, ilike, or, desc, sql } from 'drizzle-orm';
@@ -159,9 +162,18 @@ async function startServer() {
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'"], // Vite dev necessita unsafe-inline
+        // 'unsafe-inline' pro Vite dev; cdn.amplitude.com carrega o módulo de
+        // Engagement que o initAll() da @amplitude/unified sobe junto.
+        scriptSrc: ["'self'", "'unsafe-inline'", 'https://cdn.amplitude.com'],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", 'data:', 'https:'],
+        // Amplitude Analytics + Session Replay fazem fetch/XHR direto do browser
+        // para os domínios da Amplitude (ingestão de eventos, config remota do
+        // Session Replay). Sem isso, defaultSrc bloqueia tudo e a SDK carrega
+        // mas nenhum evento sai (CSP silenciosamente derruba a requisição).
+        connectSrc: ["'self'", 'https://*.amplitude.com'],
+        // A SDK despacha um Web Worker (blob:) pra compressão/batching de eventos.
+        workerSrc: ["'self'", 'blob:'],
       },
     },
     frameguard: { action: 'deny' }, // Previne clickjacking (X-Frame-Options: DENY)
@@ -216,6 +228,16 @@ async function startServer() {
     windowMs: 15 * 60 * 1000,
     max: 30,
     message: 'Limite de requisições de IA atingido. Tente novamente em alguns minutos.',
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  // Rate limiting: Source testing (HTTP probe — prevents resource exhaustion from parallel fetches)
+  // 10 requests / 15 min / IP — prevents abuse of 15s timeouts blocking server
+  const sourceTestLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    message: 'Muitas tentativas de teste de fonte. Tente novamente em alguns minutos.',
     standardHeaders: true,
     legacyHeaders: false,
   });
@@ -521,7 +543,7 @@ async function startServer() {
   });
 
   // Test Source Connection (API or Scraper Probe) - Real HTTP probe (No fake 200 mock façade)
-  app.post('/api/sources/test', async (req: Request, res: Response) => {
+  app.post('/api/sources/test', sourceTestLimiter, async (req: Request, res: Response) => {
     const { sourceId, endpointOrUrl, type, selectorOrParams } = req.body;
 
     if (!endpointOrUrl || typeof endpointOrUrl !== 'string') {
@@ -1653,8 +1675,41 @@ async function startServer() {
   });
 
   // ==========================================
+  // Teste: Grok Multi-Agent + Notion Audit
+  // ==========================================
+  app.post('/api/test-multi-agent', async (req: Request, res: Response) => {
+    try {
+      const { prompt, editalContent, databaseId } = req.body;
+      if (!prompt || !editalContent || !databaseId) {
+        return res.status(400).json({ error: 'Faltam parâmetros: prompt, editalContent ou databaseId.' });
+      }
+
+      console.log('[Multi-Agent Test] Iniciando análise...');
+      const analysis = await analyzeEditalMultiAgent(prompt, editalContent);
+      
+      console.log('[Multi-Agent Test] Análise concluída. Criando página no Notion...');
+      const notionPageId = await createAuditPage(databaseId, {
+        title: `Auditoria Edital: ${new Date().toISOString()}`,
+        finalSummary: analysis.finalSummary,
+        legalAnalysis: analysis.reasoning, // Mapeado do raciocínio bruto do Multi-Agent
+        warnings: analysis.warnings
+      });
+
+      res.json({
+        success: true,
+        notionPageId,
+        analysis
+      });
+    } catch (e: any) {
+      console.error('[Multi-Agent Test Error]:', e);
+      res.status(500).json({ error: e.message || 'Erro ao executar teste Multi-Agent.' });
+    }
+  });
+
+  // ==========================================
   // Vite Integration
   // ==========================================
+
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: { middlewareMode: true },

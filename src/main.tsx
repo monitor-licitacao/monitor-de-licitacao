@@ -20,26 +20,25 @@ window.fetch = async (...args) => {
   let [resource, config] = args;
   if (typeof resource === 'string' && resource.startsWith('/api')) {
     config = config || {};
-    const headers = new Headers(config.headers || {});
+    config.headers = config.headers || {};
+    const headers = config.headers as Record<string, string>;
 
     // Injeta Bearer JWT se existir no storage
     const token =
       localStorage.getItem('auth_token') ||
       sessionStorage.getItem('auth_token') ||
       (window as any).__AUTH_TOKEN__;
-    if (token && !headers.has('Authorization')) {
-      headers.set('Authorization', `Bearer ${token}`);
+    if (token && !headers['Authorization']) {
+      headers['Authorization'] = `Bearer ${token}`;
     }
 
     // Local DEV ONLY: injeta x-api-key apenas com chave explícita em import.meta.env
     if (import.meta.env?.DEV && import.meta.env?.VITE_MONITOR_API_KEY) {
       const explicitDevKey = import.meta.env.VITE_MONITOR_API_KEY.trim();
-      if (explicitDevKey && !headers.has('x-api-key')) {
-        headers.set('x-api-key', explicitDevKey);
+      if (explicitDevKey && !headers['x-api-key']) {
+        headers['x-api-key'] = explicitDevKey;
       }
     }
-
-    config.headers = headers;
   }
   return originalFetch(resource, config);
 };

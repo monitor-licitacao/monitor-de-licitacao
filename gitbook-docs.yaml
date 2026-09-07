@@ -1,0 +1,17 @@
+version: 1
+site:
+  title: Monitor de Licitacao
+  structure:
+    - type: space
+      key: space-root
+      title: Root
+      path: root
+      default: true
+      content:
+        directory: ./
+    - type: space
+      key: space-docs
+      title: Documentation
+      path: docs
+      content:
+        directory: ./docs

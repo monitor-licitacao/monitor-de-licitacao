@@ -1,0 +1,36 @@
+{
+  "name": "licitacoes-edge",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "traces": {
+      "enabled": true,
+      "destinations": ["grafana-traces"],
+      "head_sampling_rate": 1,
+      "persist": true
+    },
+    "logs": {
+      "enabled": true,
+      "destinations": ["grafana-logs"],
+      "head_sampling_rate": 1,
+      "persist": true
+    }
+  },
+  // Custom Domain creates DNS + cert automatically for getgymsite.com.br.
+  // IMPORTANT: before first deploy with custom_domain, delete the existing
+  // Tunnel CNAME on licitacoes.getgymsite.com.br (Worker cannot share that name).
+  // Keep Tunnel CNAME on licitacoes-origin.getgymsite.com.br (ORIGIN_URL).
+  "routes": [
+    {
+      "pattern": "licitacoes.getgymsite.com.br",
+      "custom_domain": true
+    }
+  ],
+  "vars": {
+    "ORIGIN_URL": "https://licitacoes-origin.getgymsite.com.br",
+    "CORS_ORIGINS": "https://licitacoes.getgymsite.com.br"
+  }
+}

@@ -25,6 +25,7 @@ import {
 import { StatusBadge } from './StatusBadge';
 import { HonestField } from './HonestField';
 import { apiClient, assertOk } from '../../apiClient';
+import { replaceById } from '../../utils/collectionUtils';
 
 export const StatusCatalogView: React.FC = () => {
   const [activeFamily, setActiveFamily] = useState<StatusFamily>('PregaoEletronico');
@@ -169,7 +170,7 @@ export const StatusCatalogView: React.FC = () => {
       }
 
       const updated: StatusCatalogItem = await res.json();
-      setItems((prev) => prev.map((item) => (item.id === updated.id ? updated : item)));
+      setItems((prev) => replaceById(prev, updated.id, updated));
       setEditingItem(null);
       showToast('Status atualizado com sucesso!');
       fetchCounts();
@@ -247,7 +248,7 @@ export const StatusCatalogView: React.FC = () => {
       const result = await res.json();
       const updatedItem = result.item || { ...deactivatingItem, active: false };
 
-      setItems((prev) => prev.map((item) => (item.id === deactivatingItem.id ? updatedItem : item)));
+      setItems((prev) => replaceById(prev, deactivatingItem.id, updatedItem));
       setDeactivatingItem(null);
       showToast('Status desativado com sucesso!');
       fetchCounts();
@@ -275,7 +276,7 @@ export const StatusCatalogView: React.FC = () => {
       });
       if (res.ok) {
         const updated = await res.json();
-        setItems((prev) => prev.map((it) => (it.id === item.id ? updated : it)));
+        setItems((prev) => replaceById(prev, item.id, updated));
         showToast('Status reativado com sucesso!');
         fetchCounts();
       }

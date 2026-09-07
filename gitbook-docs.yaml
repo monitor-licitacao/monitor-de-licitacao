@@ -1,4 +1,4 @@
-version: 1
+$schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
   title: Monitor de Licitacao
   structure:
@@ -8,10 +8,11 @@ site:
       path: root
       default: true
       content:
-        directory: ./
+        directory: ./docs
     - type: space
       key: space-docs
       title: Documentation
       path: docs
+      hidden: true
       content:
         directory: ./docs

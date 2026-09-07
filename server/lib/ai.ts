@@ -57,3 +57,28 @@ export async function generateTextWithFallback({ system, prompt, maxOutputTokens
     }
   }
 }
+
+export async function analyzeEditalMultiAgent(prompt: string, editalContent: string) {
+  const result = await generateTextWithFallback({
+    system: "Você é um agente analisador de editais. Responda em JSON.",
+    prompt: `Contexto do Edital:\n${editalContent}\n\nInstrução:\n${prompt}\n\nResponda em formato JSON com as chaves: "finalSummary" (string), "reasoning" (string), "warnings" (array of strings).`,
+    maxOutputTokens: 2000,
+  });
+
+  try {
+    // Tenta extrair JSON se o modelo respondeu com marcação markdown ou texto bruto
+    const text = result.text.replace(/```json/g, '').replace(/```/g, '').trim();
+    const parsed = JSON.parse(text);
+    return {
+      finalSummary: parsed.finalSummary || "Resumo não gerado",
+      reasoning: parsed.reasoning || "{}",
+      warnings: parsed.warnings || []
+    };
+  } catch (e) {
+    return {
+      finalSummary: result.text,
+      reasoning: "[]",
+      warnings: ["Falha ao processar JSON da IA"]
+    };
+  }
+}

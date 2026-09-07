@@ -63,7 +63,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
 
   const fetchPncpConfig = async () => {
     try {
-      const res = await fetch('/api/config/tenant/pncp?tenantId=1');
+      const res = await fetch('/api/config/tenant/pncp');
       if (res.ok) {
         const data = await res.json();
         setPncpCertificatePath(data.certificatePath || '');
@@ -82,7 +82,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tenantId: 1,
           certificatePath: pncpCertificatePath,
           certificatePassword: pncpCertificatePassword,
           isActive: pncpIsActive

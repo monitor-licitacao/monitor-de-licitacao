@@ -51,6 +51,15 @@ import {
   registerMuralProcess,
   GOLDEN_PROCESS_76
 } from './server/lib/muralData.js';
+import {
+  getAuthenticatedTenantId,
+  requireAdminRole,
+  validateTenantAccess
+} from './server/lib/tenantAuth.js';
+import {
+  handleGetPncpConfig,
+  handlePutPncpConfig
+} from './server/lib/pncpConfig.js';
 
 // Conexão com o banco via Drizzle
 let notifications: WhatsAppNotification[] = [];
@@ -266,11 +275,15 @@ async function startServer() {
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
 
+      // Security decision: role must NOT fail-open to admin.
+      // Missing or null dbUser.role defaults strictly to non-admin 'user'.
+      const role = dbUser.role === 'admin' ? 'admin' : (dbUser.role || 'user');
       const user = {
         id: dbUser.id,
         name: dbUser.name,
         email: dbUser.email,
-        tenantId: dbUser.tenantId
+        tenantId: dbUser.tenantId,
+        role,
       };
 
       const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '12h' });
@@ -323,7 +336,7 @@ async function startServer() {
       }
     }
 
-    // Fail-closed API key (workers / CRM webhook) — default tenant 1 for service calls
+    // Fail-closed API key (workers / CRM webhook)
     if (
       !serverKey ||
       serverKey.length === 0 ||
@@ -336,7 +349,11 @@ async function startServer() {
         message: 'Regra 3: API protegida. Forneça o header Authorization Bearer ou x-api-key válido.'
       });
     }
-    req.user = { tenantId: 1 };
+
+    // Security decision (reviewed for Nightly): API key authentication is scoped as a non-admin
+    // service principal (tenantId: 1, role: 'service'). It does NOT grant tenant admin privileges.
+    // Administrative mutation endpoints require explicit user authentication with role: 'admin'.
+    req.user = { tenantId: 1, role: 'service' };
     next();
   });
 
@@ -914,58 +931,12 @@ async function startServer() {
 
   // GET PNCP Certificate Config (A1)
   // Regra 3: a senha do certificado nunca é devolvida ao cliente, mesmo criptografada.
-  app.get('/api/config/tenant/pncp', async (req: Request, res: Response) => {
-    try {
-      const tenantId = parseInt((req.query.tenantId as string) || '1');
-      const configs = await db.select().from(schema.tenantConfigs).where(eq(schema.tenantConfigs.tenantId, tenantId));
-      if (configs.length === 0) return res.json({});
-      const pncpConfig = configs[0].pncpConfig || {};
-      res.json({
-        certificatePath: pncpConfig.certificatePath || '',
-        isActive: pncpConfig.isActive || false,
-        hasPassword: !!pncpConfig.certificatePassword
-      });
-    } catch (e) {
-      res.status(500).json({ error: 'Erro ao buscar configuração do PNCP.' });
-    }
-  });
+  // IDOR Protection: Always uses req.user.tenantId, ignores/rejects client-supplied tenantId, fail-closed if tenant missing.
+  app.get('/api/config/tenant/pncp', handleGetPncpConfig);
 
   // PUT PNCP Certificate Config (A1)
-  app.put('/api/config/tenant/pncp', async (req: Request, res: Response) => {
-    try {
-      const tenantId = parseInt((req.body.tenantId as string) || '1');
-      const { certificatePath, certificatePassword, isActive } = req.body;
-
-      const existingConfigs = await db.select().from(schema.tenantConfigs).where(eq(schema.tenantConfigs.tenantId, tenantId));
-      const existingPncpConfig = existingConfigs[0]?.pncpConfig;
-
-      // Campo de senha vazio significa "não alterar" quando já existe uma senha salva.
-      const encryptedPassword = certificatePassword
-        ? encryptSecret(certificatePassword)
-        : (existingPncpConfig?.certificatePassword || '');
-
-      const pncpConfig = {
-        certificatePath: certificatePath || '',
-        certificatePassword: encryptedPassword,
-        isActive: isActive !== undefined ? isActive : false
-      };
-
-      if (existingConfigs.length > 0) {
-        await db.update(schema.tenantConfigs).set({ pncpConfig }).where(eq(schema.tenantConfigs.tenantId, tenantId));
-      } else {
-        await db.insert(schema.tenantConfigs).values({ tenantId, pncpConfig });
-      }
-
-      res.json({
-        certificatePath: pncpConfig.certificatePath,
-        isActive: pncpConfig.isActive,
-        hasPassword: !!pncpConfig.certificatePassword
-      });
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({ error: 'Erro ao salvar configuração do PNCP.' });
-    }
-  });
+  // IDOR Protection: Always uses req.user.tenantId, ignores/rejects client-supplied tenantId, fail-closed if tenant missing.
+  app.put('/api/config/tenant/pncp', handlePutPncpConfig);
 
   // POST Add new lexical term
   app.post('/api/config/ncm/terms', (req: Request, res: Response) => {
@@ -1567,8 +1538,8 @@ async function startServer() {
     }
   });
 
-  // Criar novo status no catálogo (valida família permitida)
-  app.post('/api/status-catalog', async (req: Request, res: Response) => {
+  // Criar novo status no catálogo (admin-only)
+  app.post('/api/status-catalog', requireAdminRole, async (req: Request, res: Response) => {
     try {
       const { family, code, label, description, active } = req.body;
 
@@ -1604,8 +1575,8 @@ async function startServer() {
     }
   });
 
-  // Atualizar label, description ou active de um status existente
-  app.put('/api/status-catalog/:id', async (req: Request, res: Response) => {
+  // Atualizar label, description ou active de um status existente (admin-only)
+  app.put('/api/status-catalog/:id', requireAdminRole, async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
@@ -1630,8 +1601,8 @@ async function startServer() {
     }
   });
 
-  // Desativar status (soft delete / deactivate)
-  app.delete('/api/status-catalog/:id', async (req: Request, res: Response) => {
+  // Desativar status (soft delete / deactivate) (admin-only)
+  app.delete('/api/status-catalog/:id', requireAdminRole, async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {

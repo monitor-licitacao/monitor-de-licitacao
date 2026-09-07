@@ -30,6 +30,7 @@ import {
   INITIAL_NOTIFICATIONS, 
   INITIAL_SCHEDULER 
 } from './data/initialData';
+import { replaceById } from './utils/collectionUtils';
 
 function getProcessCodigoFromPath(): string | null {
   if (typeof window === 'undefined') return null;
@@ -197,26 +198,23 @@ export default function App() {
       });
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         if (selectedEdital?.id === editalId) setSelectedEdital(updated);
         showToast(`Correção manual do OCR salva na página ${pageNumber}!`);
         return;
       }
     } catch (e) {
-      setEditais(prev => prev.map(e => {
-        if (e.id === editalId) {
-          const newOcrPages = [...(e.ocrPages || [])];
-          const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
-          if (pageIndex >= 0) {
-            newOcrPages[pageIndex] = { ...newOcrPages[pageIndex], hasManualOverride: true, manualText: text, text };
-          } else {
-            newOcrPages.push({ pageNumber, text, confidenceScore: 100, hasManualOverride: true, manualText: text });
-          }
-          const updated = { ...e, ocrPages: newOcrPages, ocrStatus: 'MANUAL_OVERRIDE' as const };
-          if (selectedEdital?.id === editalId) setSelectedEdital(updated);
-          return updated;
+      setEditais(prev => replaceById(prev, editalId, (current) => {
+        const newOcrPages = [...(current.ocrPages || [])];
+        const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
+        if (pageIndex >= 0) {
+          newOcrPages[pageIndex] = { ...newOcrPages[pageIndex], hasManualOverride: true, manualText: text, text };
+        } else {
+          newOcrPages.push({ pageNumber, text, confidenceScore: 100, hasManualOverride: true, manualText: text });
         }
-        return e;
+        const updated = { ...current, ocrPages: newOcrPages, ocrStatus: 'MANUAL_OVERRIDE' as const };
+        if (selectedEdital?.id === editalId) setSelectedEdital(updated);
+        return updated;
       }));
       showToast(`Correção manual do OCR salva localmente na página ${pageNumber}!`);
     }
@@ -228,7 +226,7 @@ export default function App() {
       const res = await fetch(`/api/editais/${editalId}/analyze`, { method: 'POST' });
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         if (selectedEdital?.id === editalId) setSelectedEdital(updated);
         showToast('Análise de IA concluída com sucesso!');
         return;
@@ -254,7 +252,7 @@ export default function App() {
 
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         showToast('Revisão concluída e Deal encaminhado para o CRM!');
         setSelectedEditalForReview(null);
         setActiveTab('editais');
@@ -262,12 +260,11 @@ export default function App() {
       }
     } catch (e) {
       showToast('Revisão registrada localmente.', 'info');
-      setEditais(prev => prev.map(e => {
-        if (e.id === editalId) {
-          return { ...e, humanReviewStatus: 'APPROVED', reviewNotes: notes };
-        }
-        return e;
-      }));
+      setEditais(prev => replaceById(prev, editalId, (current) => ({
+        ...current,
+        humanReviewStatus: 'APPROVED',
+        reviewNotes: notes
+      })));
       setSelectedEditalForReview(null);
       setActiveTab('editais');
     }

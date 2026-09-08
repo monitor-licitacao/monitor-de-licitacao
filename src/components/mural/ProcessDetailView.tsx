@@ -191,7 +191,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 min-h-[44px] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 min-h-11 transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Voltar ao mural</span>
@@ -217,7 +217,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
           <button
             type="button"
             onClick={fetchDetail}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 min-h-[44px] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 min-h-11 transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Tentar novamente</span>
@@ -225,7 +225,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 min-h-[44px] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 min-h-11 transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Voltar ao mural</span>
@@ -260,7 +260,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
                 type="button"
                 onClick={onBack}
                 aria-label="Voltar para a listagem do mural de licitações"
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg min-h-[44px] min-w-[44px] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg min-h-11 min-w-11 transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <ArrowLeft className="w-4 h-4 shrink-0" />
                 <span>Voltar</span>
@@ -406,7 +406,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
                     type="button"
                     onClick={() => setIsObjetoExpanded(!isObjetoExpanded)}
                     aria-expanded={isObjetoExpanded}
-                    className="mt-2 text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 min-h-[44px]"
+                    className="mt-2 text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 min-h-11"
                   >
                     <span>{isObjetoExpanded ? 'Ver menos' : 'Ver mais'}</span>
                     {isObjetoExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -432,7 +432,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
               aria-controls="panel-itens"
               tabIndex={activeTab === 'itens' ? 0 : -1}
               onClick={() => setActiveTab('itens')}
-              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-[44px] ${
+              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-11 ${
                 activeTab === 'itens'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -454,7 +454,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
               aria-controls="panel-anexos"
               tabIndex={activeTab === 'anexos' ? 0 : -1}
               onClick={() => setActiveTab('anexos')}
-              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-[44px] ${
+              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-11 ${
                 activeTab === 'anexos'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -476,7 +476,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
               aria-controls="panel-historico"
               tabIndex={activeTab === 'historico' ? 0 : -1}
               onClick={() => setActiveTab('historico')}
-              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-[44px] ${
+              className={`py-3.5 px-4 font-semibold text-xs border-b-2 transition-colors flex items-center gap-2 min-h-11 ${
                 activeTab === 'historico'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -592,7 +592,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
                                       onClick={() => toggleItemRanking(item.numero_item)}
                                       aria-expanded={isExpanded}
                                       aria-label={`Ver ranking de propostas do item ${item.numero_item}`}
-                                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-semibold text-blue-600 hover:bg-blue-50 border border-blue-200 transition-colors min-h-[36px]"
+                                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-semibold text-blue-600 hover:bg-blue-50 border border-blue-200 transition-colors min-h-9"
                                     >
                                       <span>{item.ranking.length}</span>
                                       {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -731,7 +731,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
                             <button
                               type="button"
                               onClick={() => handleDownloadAnexo(anexo)}
-                              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 min-h-[44px] transition-colors shrink-0"
+                              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 min-h-11 transition-colors shrink-0"
                               aria-label={`Baixar anexo ${anexo.nome}`}
                             >
                               <Download className="w-3.5 h-3.5" />
@@ -763,7 +763,7 @@ export const ProcessDetailView: React.FC<ProcessDetailViewProps> = ({
                     {detail.historico.map((hist, index) => (
                       <div key={index} className="relative group">
                         {/* Dot on timeline */}
-                        <div className="absolute -left-[31px] top-0.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-blue-600 group-hover:scale-110 transition-transform" />
+                        <div className="absolute -left-7.75 top-0.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-blue-600 group-hover:scale-110 transition-transform" />
 
                         <div>
                           <div className="flex items-center gap-2 text-[11px] text-slate-400 font-medium">

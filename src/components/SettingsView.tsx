@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { LexicalTerm, NCMConfig, NCMClassificationResult } from '../types';
 import { StatusCatalogView } from './mural/StatusCatalogView';
+import { replaceById } from '../utils/collectionUtils';
 
 interface SettingsViewProps {
   initialTab?: 'status-catalog' | 'ncm' | 'pncp';
@@ -172,7 +173,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
       const res = await fetch(`/api/config/ncm/terms/${id}/toggle`, { method: 'PATCH' });
       if (res.ok) {
         const updatedTerm: LexicalTerm = await res.json();
-        setTerms(prev => prev.map(t => t.id === id ? updatedTerm : t));
+        setTerms(prev => replaceById(prev, id, updatedTerm));
       }
     } catch (err) {
       console.error('Error toggling term:', err);

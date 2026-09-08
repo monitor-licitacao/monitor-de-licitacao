@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { apiClient, assertOk } from './apiClient';
+import { apiClient, assertOk, getAuthToken } from './apiClient';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
+import { LoginView } from './components/LoginView';
 import { DashboardView } from './components/DashboardView';
 import { CRMView } from './components/CRMView';
 import { SourcesView } from './components/SourcesView';
@@ -30,6 +31,7 @@ import {
   INITIAL_NOTIFICATIONS, 
   INITIAL_SCHEDULER 
 } from './data/initialData';
+import { replaceById } from './utils/collectionUtils';
 
 function getProcessCodigoFromPath(): string | null {
   if (typeof window === 'undefined') return null;
@@ -38,25 +40,38 @@ function getProcessCodigoFromPath(): string | null {
 }
 
 export default function App() {
+  // Auth Guard
+  const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
+
+  // Check authentication on mount
+  useEffect(() => {
+    const token = getAuthToken();
+    setIsAuthenticated(!!token);
+  }, []);
+
   const initialCodigo = getProcessCodigoFromPath();
   const [activeTab, setActiveTab] = useState(initialCodigo ? 'processos' : 'editais');
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
-  
+
   // App Domain State
   const [sources, setSources] = useState<Source[]>(INITIAL_SOURCES);
   const [editais, setEditais] = useState<Edital[]>(INITIAL_EDITAIS);
   const [diffs, setDiffs] = useState<RetificationDiff[]>(INITIAL_DIFFS);
   const [notifications, setNotifications] = useState<WhatsAppNotification[]>(INITIAL_NOTIFICATIONS);
   const [scheduler, setScheduler] = useState<SchedulerState>(INITIAL_SCHEDULER);
-  
+
   // Selection State
   const [selectedEdital, setSelectedEdital] = useState<Edital | null>(null);
   const [selectedEditalForReview, setSelectedEditalForReview] = useState<Edital | null>(null);
   const [activeSpecClause, setActiveSpecClause] = useState<string | undefined>(undefined);
-  
+
   // Loading & Action State
   const [isTriggering, setIsTriggering] = useState(false);
   const [toastMessage, setToastMessage] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
 
   const showToast = (text: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToastMessage({ text, type });
@@ -197,26 +212,23 @@ export default function App() {
       });
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         if (selectedEdital?.id === editalId) setSelectedEdital(updated);
         showToast(`Correção manual do OCR salva na página ${pageNumber}!`);
         return;
       }
     } catch (e) {
-      setEditais(prev => prev.map(e => {
-        if (e.id === editalId) {
-          const newOcrPages = [...(e.ocrPages || [])];
-          const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
-          if (pageIndex >= 0) {
-            newOcrPages[pageIndex] = { ...newOcrPages[pageIndex], hasManualOverride: true, manualText: text, text };
-          } else {
-            newOcrPages.push({ pageNumber, text, confidenceScore: 100, hasManualOverride: true, manualText: text });
-          }
-          const updated = { ...e, ocrPages: newOcrPages, ocrStatus: 'MANUAL_OVERRIDE' as const };
-          if (selectedEdital?.id === editalId) setSelectedEdital(updated);
-          return updated;
+      setEditais(prev => replaceById(prev, editalId, (current) => {
+        const newOcrPages = [...(current.ocrPages || [])];
+        const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
+        if (pageIndex >= 0) {
+          newOcrPages[pageIndex] = { ...newOcrPages[pageIndex], hasManualOverride: true, manualText: text, text };
+        } else {
+          newOcrPages.push({ pageNumber, text, confidenceScore: 100, hasManualOverride: true, manualText: text });
         }
-        return e;
+        const updated = { ...current, ocrPages: newOcrPages, ocrStatus: 'MANUAL_OVERRIDE' as const };
+        if (selectedEdital?.id === editalId) setSelectedEdital(updated);
+        return updated;
       }));
       showToast(`Correção manual do OCR salva localmente na página ${pageNumber}!`);
     }
@@ -228,7 +240,7 @@ export default function App() {
       const res = await fetch(`/api/editais/${editalId}/analyze`, { method: 'POST' });
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         if (selectedEdital?.id === editalId) setSelectedEdital(updated);
         showToast('Análise de IA concluída com sucesso!');
         return;
@@ -254,7 +266,7 @@ export default function App() {
 
       if (res.ok) {
         const updated = await res.json();
-        setEditais(prev => prev.map(e => e.id === editalId ? updated : e));
+        setEditais(prev => replaceById(prev, editalId, updated));
         showToast('Revisão concluída e Deal encaminhado para o CRM!');
         setSelectedEditalForReview(null);
         setActiveTab('editais');
@@ -262,12 +274,11 @@ export default function App() {
       }
     } catch (e) {
       showToast('Revisão registrada localmente.', 'info');
-      setEditais(prev => prev.map(e => {
-        if (e.id === editalId) {
-          return { ...e, humanReviewStatus: 'APPROVED', reviewNotes: notes };
-        }
-        return e;
-      }));
+      setEditais(prev => replaceById(prev, editalId, (current) => ({
+        ...current,
+        humanReviewStatus: 'APPROVED',
+        reviewNotes: notes
+      })));
       setSelectedEditalForReview(null);
       setActiveTab('editais');
     }
@@ -348,6 +359,10 @@ export default function App() {
   };
 
   const pendingReviewCount = editais.filter(e => e.humanReviewStatus === 'PENDING').length;
+
+  if (!isAuthenticated) {
+    return <LoginView onLoginSuccess={handleLoginSuccess} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col font-sans selection:bg-blue-500 selection:text-white text-[13px]">

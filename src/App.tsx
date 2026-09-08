@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { apiClient, assertOk } from './apiClient';
+import { apiClient, assertOk, getAuthToken } from './apiClient';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
+import { LoginView } from './components/LoginView';
 import { DashboardView } from './components/DashboardView';
 import { CRMView } from './components/CRMView';
 import { SourcesView } from './components/SourcesView';
@@ -38,25 +39,38 @@ function getProcessCodigoFromPath(): string | null {
 }
 
 export default function App() {
+  // Auth Guard
+  const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
+
+  // Check authentication on mount
+  useEffect(() => {
+    const token = getAuthToken();
+    setIsAuthenticated(!!token);
+  }, []);
+
   const initialCodigo = getProcessCodigoFromPath();
   const [activeTab, setActiveTab] = useState(initialCodigo ? 'processos' : 'editais');
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
-  
+
   // App Domain State
   const [sources, setSources] = useState<Source[]>(INITIAL_SOURCES);
   const [editais, setEditais] = useState<Edital[]>(INITIAL_EDITAIS);
   const [diffs, setDiffs] = useState<RetificationDiff[]>(INITIAL_DIFFS);
   const [notifications, setNotifications] = useState<WhatsAppNotification[]>(INITIAL_NOTIFICATIONS);
   const [scheduler, setScheduler] = useState<SchedulerState>(INITIAL_SCHEDULER);
-  
+
   // Selection State
   const [selectedEdital, setSelectedEdital] = useState<Edital | null>(null);
   const [selectedEditalForReview, setSelectedEditalForReview] = useState<Edital | null>(null);
   const [activeSpecClause, setActiveSpecClause] = useState<string | undefined>(undefined);
-  
+
   // Loading & Action State
   const [isTriggering, setIsTriggering] = useState(false);
   const [toastMessage, setToastMessage] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
 
   const showToast = (text: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToastMessage({ text, type });
@@ -348,6 +362,10 @@ export default function App() {
   };
 
   const pendingReviewCount = editais.filter(e => e.humanReviewStatus === 'PENDING').length;
+
+  if (!isAuthenticated) {
+    return <LoginView onLoginSuccess={handleLoginSuccess} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col font-sans selection:bg-blue-500 selection:text-white text-[13px]">

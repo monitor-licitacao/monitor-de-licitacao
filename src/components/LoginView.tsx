@@ -32,6 +32,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
           errorMsg = `HTTP ${res.status}`;
         }
         setError(errorMsg);
+        setIsLoading(false);
         return;
       }
 

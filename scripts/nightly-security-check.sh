@@ -10,9 +10,20 @@ API_URL="${API_URL:-http://localhost:3001}"
 # Dynamically acquire a fresh test token if not explicitly provided
 TEST_TOKEN="${TEST_TOKEN:-}"
 if [ -z "$TEST_TOKEN" ]; then
+  TEST_EMAIL="${TEST_EMAIL:-}"
+  TEST_PASSWORD="${TEST_PASSWORD:-}"
+  if [ -z "$TEST_EMAIL" ] && [[ "$API_URL" == http://localhost:* || "$API_URL" == http://127.0.0.1:* ]]; then
+    TEST_EMAIL="test@example.com"
+    TEST_PASSWORD="password123"
+  fi
+  if [ -z "$TEST_EMAIL" ] || [ -z "$TEST_PASSWORD" ]; then
+    echo "✗ FAIL: Set TEST_TOKEN or both TEST_EMAIL and TEST_PASSWORD for $API_URL." >&2
+    exit 1
+  fi
+  LOGIN_PAYLOAD=$(TEST_EMAIL="$TEST_EMAIL" TEST_PASSWORD="$TEST_PASSWORD" python3 -c 'import json,os; print(json.dumps({"email": os.environ["TEST_EMAIL"], "password": os.environ["TEST_PASSWORD"]}))')
   LOGIN_RESP=$(curl -s -X POST \
     -H "Content-Type: application/json" \
-    -d '{"email":"test@example.com","password":"password123"}' \
+    -d "$LOGIN_PAYLOAD" \
     "$API_URL/api/auth/login" 2>/dev/null || true)
   DYNAMIC_TOKEN=$(python3 -c 'import json,sys
 try:
@@ -43,7 +54,7 @@ fi
 # Test 2: Auth guard — invalid token = 401
 echo "✓ Test 2: Invalid token → 401"
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-  -H "Authorization: Bearer invalid_token_xyz" \
+  -H "Authorization: invalid-token" \
   "$API_URL/api/sources")
 if [ "$STATUS" = "401" ]; then
   echo "  ✓ PASS: Invalid token rejected (401)"

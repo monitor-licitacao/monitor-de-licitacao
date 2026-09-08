@@ -93,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {onLogout && (
-            <button type="button"
+            <button type="button"
               onClick={onLogout}
               title="Sair do sistema (Logout)"
               data-testid="header-logout-button"

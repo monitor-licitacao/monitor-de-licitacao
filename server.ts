@@ -392,8 +392,15 @@ async function startServer() {
     let sourcesCount: number | null = null;
     let editaisCount: number | null = null;
     try {
-      const sourcesCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.sources);
-      const editaisCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.editais);
+      const [sourcesCountResult, editaisCountResult] = await Promise.race([
+        Promise.all([
+          db.select({ count: sql<number>`count(*)` }).from(schema.sources),
+          db.select({ count: sql<number>`count(*)` }).from(schema.editais),
+        ]),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('database health check timed out')), 2000),
+        ),
+      ]);
       sourcesCount = sourcesCountResult[0].count;
       editaisCount = editaisCountResult[0].count;
     } catch (e) {

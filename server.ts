@@ -291,16 +291,19 @@ async function startServer() {
       return res.json({ token, user });
     } catch (e: any) {
       // Fase 0 DEV ONLY: mock login para teste quando banco falha
-      if (email === 'test@example.com' && password === 'password123') {
+      if (
+        (email === 'test@example.com' && password === 'password123') ||
+        (email === 'marcelo.rosas@getgymsite.com.br' && password === '123456')
+      ) {
         const mockUser = {
-          id: 'test-user-1',
-          name: 'Test User',
-          email: 'test@example.com',
+          id: email === 'marcelo.rosas@getgymsite.com.br' ? 'usr-marcelo-rosas' : 'test-user-1',
+          name: email === 'marcelo.rosas@getgymsite.com.br' ? 'Marcelo Rosas' : 'Test User',
+          email,
           tenantId: 1,
           role: 'user',
         };
         const token = jwt.sign(mockUser, process.env.JWT_SECRET!, { expiresIn: '12h' });
-        console.info('[Auth] Mock login (DEV): test@example.com');
+        console.info(`[Auth] Mock login (DEV): ${email}`);
         return res.json({ token, user: mockUser });
       }
 

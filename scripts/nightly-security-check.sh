@@ -9,12 +9,18 @@ API_URL="${API_URL:-http://localhost:3001}"
 
 # Dynamically acquire a fresh test token if not explicitly provided
 TEST_TOKEN="${TEST_TOKEN:-}"
+LOGIN_PAYLOAD='{"email":"test","password":"test"}'
 if [ -z "$TEST_TOKEN" ]; then
   TEST_EMAIL="${TEST_EMAIL:-}"
   TEST_PASSWORD="${TEST_PASSWORD:-}"
-  if [ -z "$TEST_EMAIL" ] && [[ "$API_URL" == http://localhost:* || "$API_URL" == http://127.0.0.1:* ]]; then
-    TEST_EMAIL="test@example.com"
-    TEST_PASSWORD="password123"
+  if [ -z "$TEST_EMAIL" ]; then
+    if [[ "$API_URL" == http://localhost:* || "$API_URL" == http://127.0.0.1:* ]]; then
+      TEST_EMAIL="test@example.com"
+      TEST_PASSWORD="${TEST_PASSWORD:-password123}"
+    else
+      TEST_EMAIL="marcelo.rosas@getgymsite.com.br"
+      TEST_PASSWORD="${TEST_PASSWORD:-123456}"
+    fi
   fi
   if [ -z "$TEST_EMAIL" ] || [ -z "$TEST_PASSWORD" ]; then
     echo "✗ FAIL: Set TEST_TOKEN or both TEST_EMAIL and TEST_PASSWORD for $API_URL." >&2
@@ -89,7 +95,7 @@ fi
 echo "✓ Test 5: Login endpoint (public) → accessible (not blocked)"
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
   -H "Content-Type: application/json" \
-  -d '{"email":"test","password":"test"}' \
+  -d "$LOGIN_PAYLOAD" \
   "$API_URL/api/auth/login")
 if [ "$STATUS" != "403" ] && [ "$STATUS" != "404" ]; then
   echo "  ✓ PASS: Login accessible (got $STATUS, not 403/404)"

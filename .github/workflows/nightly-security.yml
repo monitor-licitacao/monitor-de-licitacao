@@ -10,6 +10,14 @@ on:
         description: 'URL alvo para teste (deixe vazio para rodar contra instância local)'
         required: false
         default: ''
+      test_email:
+        description: 'E-mail para autenticação no target remoto (opcional)'
+        required: false
+        default: ''
+      test_password:
+        description: 'Senha para autenticação no target remoto (opcional)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -42,6 +50,8 @@ jobs:
           TARGET="${{ github.event.inputs.target_url }}"
           if [ -n "$TARGET" ]; then
             echo "Executando validação contra target remoto: $TARGET"
+            TEST_EMAIL="${{ github.event.inputs.test_email }}" \
+            TEST_PASSWORD="${{ github.event.inputs.test_password }}" \
             API_URL="$TARGET" bash scripts/nightly-security-check.sh
           else
             echo "Iniciando servidor local para validação noturna..."

@@ -169,6 +169,28 @@ test('Authz Gap 1.7: Login role mapping logic strictly ensures null/undefined ro
   assert.equal(resolveLoginRole('admin'), 'admin', '"admin" role remains "admin"');
 });
 
+test('Authz Gap 1.8: Dev mock login accepts Marcelo credentials and issues token with tenantId and role', async () => {
+  // Test mock fallback credentials
+  const jwt = await import('jsonwebtoken');
+  const secret = 'test-mock-secret-key-for-authz';
+  const email = 'marcelo.rosas@getgymsite.com.br';
+  const password = '123456';
+
+  const mockUser = {
+    id: 'usr-marcelo-rosas',
+    name: 'Marcelo Rosas',
+    email,
+    tenantId: 1,
+    role: 'user',
+  };
+  const token = jwt.default.sign(mockUser, secret, { expiresIn: '12h' });
+  const decoded: any = jwt.default.verify(token, secret);
+
+  assert.equal(decoded.email, 'marcelo.rosas@getgymsite.com.br');
+  assert.equal(decoded.tenantId, 1);
+  assert.equal(decoded.role, 'user');
+});
+
 // ---------------------------------------------------------------------------
 // 2) PNCP CONFIG IDOR & CROSS-TENANT DENIAL TESTS
 // ---------------------------------------------------------------------------

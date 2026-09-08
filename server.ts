@@ -299,7 +299,8 @@ async function startServer() {
           tenantId: 1,
           role: 'user',
         };
-        const token = jwt.sign(mockUser, process.env.JWT_SECRET!, { expiresIn: '12h' });
+        const secret = process.env.JWT_SECRET || 'dev-fallback-secret-for-testing';
+        const token = jwt.sign(mockUser, secret, { expiresIn: '12h' });
         console.info('[Auth] Mock login (DEV): test@example.com');
         return res.json({ token, user: mockUser });
       }
@@ -330,13 +331,14 @@ async function startServer() {
     // JWT first — tenantId comes from verified claims
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const token = authHeader.split(' ')[1];
-      if (!jwtSecret || jwtSecret.length === 0) {
+      const effectiveSecret = jwtSecret || (process.env.NODE_ENV !== 'production' ? 'dev-fallback-secret-for-testing' : '');
+      if (!effectiveSecret || effectiveSecret.length === 0) {
         return res.status(401).json({
           error: 'Unauthorized: Token JWT Inválido ou Expirado.',
         });
       }
       try {
-        const decoded = jwt.verify(token, jwtSecret) as any;
+        const decoded = jwt.verify(token, effectiveSecret) as any;
         if (decoded == null || typeof decoded.tenantId !== 'number') {
           return res.status(401).json({
             error: 'Unauthorized: Token JWT Inválido ou Expirado.',

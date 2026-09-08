@@ -1,4 +1,5 @@
 import React from 'react';
+import { logout } from '../apiClient';
 import { 
   Building2, 
   Activity, 
@@ -88,6 +89,13 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="w-7 h-7 bg-slate-700 rounded-full border border-slate-600 flex items-center justify-center text-xs font-bold text-slate-200 shadow-xs" title="Dra. Camila Vargas (OAB/RS 88.412)">
             JD
           </div>
+          <button
+            onClick={() => logout()}
+            className="text-[11px] px-2 py-1 bg-slate-800 hover:bg-rose-900/60 border border-slate-700 hover:border-rose-700 text-slate-300 hover:text-rose-200 rounded transition cursor-pointer"
+            title="Sair do sistema"
+          >
+            Sair
+          </button>
         </div>
       </div>
 

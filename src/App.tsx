@@ -218,7 +218,7 @@ export default function App() {
         return;
       }
     } catch (e) {
-      setEditais(prev => replaceById(prev, editalId, (current) => {
+      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => {
         const newOcrPages = [...(current.ocrPages || [])];
         const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
         if (pageIndex >= 0) {

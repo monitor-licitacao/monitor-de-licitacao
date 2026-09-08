@@ -156,7 +156,7 @@ test('Logout Gap 5: apiClient() injeta o header Authorization quando há token',
 
     await apiClient('/api/some-endpoint');
 
-  assert.ok(capturedHeaders, 'fetch deve receber headers');
+    assert.ok(capturedHeaders, 'fetch deve receber headers');
     assert.equal(capturedHeaders!.get('Authorization'), 'Bearer my-jwt-token');
   } finally {
     (globalThis as any).fetch = originalFetch;

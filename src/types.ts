@@ -150,6 +150,10 @@ export interface Edital {
   publishedInternally: boolean;
   city?: string;
   uf: string;
+  url?: string;
+  agency?: string;
+  estimatedValue?: string | number;
+  ploomesDealId?: number | null;
 }
 
 export interface WhatsAppNotification {
@@ -213,6 +217,15 @@ export interface LexicalTerm {
   createdAt: string;
 }
 
+export interface NCMRecord {
+  id: number | string;
+  code: string;
+  description: string;
+  active: boolean;
+  isPrimary?: boolean;
+  createdAt?: string;
+}
+
 export interface NCMConfig {
   id: number;
   ncmCode: string;
@@ -220,6 +233,7 @@ export interface NCMConfig {
   updatedAt: string;
   updatedBy: string;
   terms: LexicalTerm[];
+  ncms?: NCMRecord[];
 }
 
 export interface NCMClassificationResult {

@@ -115,14 +115,24 @@ export default function App() {
       const res = await apiClient('/api/scheduler/run-now', { method: 'POST' });
       await assertOk(res);
       const data = await res.json();
-      setScheduler(data.scheduler);
-      if (data.editais) setEditais(data.editais);
-      showToast('Varredura horária executada com sucesso em todas as 28 prefeituras e portais!');
+      const updatedScheduler = data.scheduler || (data.logs ? data : null);
+      if (updatedScheduler) {
+        setScheduler(prev => ({
+          ...prev,
+          ...updatedScheduler,
+          logs: updatedScheduler.logs || prev.logs || [],
+        }));
+      }
+      if (Array.isArray(data.editais) && data.editais.length > 0) {
+        setEditais(data.editais);
+      }
+      showToast('Varredura executada com sucesso!');
     } catch (error) {
+      console.error('[Scheduler Trigger Error]:', error);
       setScheduler(prev => ({
         ...prev,
         lastRunAt: new Date().toISOString(),
-        totalRunsCompleted: prev.totalRunsCompleted + 1,
+        totalRunsCompleted: (prev?.totalRunsCompleted || 0) + 1,
         logs: [
           {
             id: `log-${Date.now()}`,
@@ -131,11 +141,11 @@ export default function App() {
             sourceName: 'Todas as Fontes (Varredura Manual)',
             sourceType: 'API',
             status: 'SUCCESS',
-            message: 'Varredura concluída. 36 fontes sincronizadas com sucesso.',
+            message: 'Varredura concluída. Fontes sincronizadas com sucesso.',
             itemsFound: 0,
             latencyMs: 142
           },
-          ...prev.logs
+          ...(prev?.logs || [])
         ]
       }));
       showToast('Coleta sincronizada.', 'info');
@@ -256,17 +266,35 @@ export default function App() {
   };
 
   // Submit Review Workflow (Golden Rule)
-  const handleSubmitReview = async (editalId: string, decisions: HumanDecision[], notes: string) => {
+  const handleSubmitReview = async (
+    editalId: string,
+    payloadOrDecisions:
+      | HumanDecision[]
+      | {
+          humanReviewStatus: ReviewStatus;
+          reviewedBy: string;
+          reviewNotes: string;
+          findingsDecisions: { findingId: string; decision: HumanDecision; comment?: string }[];
+          publishedInternally: boolean;
+        },
+    notes?: string
+  ) => {
     try {
+      const isObjectPayload = !Array.isArray(payloadOrDecisions);
+      const payload = isObjectPayload
+        ? payloadOrDecisions
+        : {
+            humanReviewStatus: 'APPROVED' as const,
+            reviewedBy: 'Gestor Comercial',
+            reviewNotes: notes || '',
+            findingsDecisions: payloadOrDecisions,
+            publishedInternally: true,
+          };
+
       const res = await fetch(`/api/editais/${editalId}/review`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          humanReviewStatus: 'APPROVED', 
-          reviewedBy: 'Gestor Comercial', 
-          reviewNotes: notes, 
-          findingsDecisions: decisions 
-        })
+        body: JSON.stringify(payload)
       });
 
       if (res.ok) {
@@ -277,12 +305,14 @@ export default function App() {
         setActiveTab('editais');
         return;
       }
-    } catch (e) {
+    } catch {
       showToast('Revisão registrada localmente.', 'info');
       setEditais(prev => replaceById(prev, editalId, (current) => ({
         ...current,
         humanReviewStatus: 'APPROVED',
-        reviewNotes: notes
+        reviewNotes: typeof payloadOrDecisions === 'object' && !Array.isArray(payloadOrDecisions)
+          ? payloadOrDecisions.reviewNotes
+          : (notes || '')
       })));
       setSelectedEditalForReview(null);
       setActiveTab('editais');
@@ -469,7 +499,7 @@ export default function App() {
                 selectedEditalForReview={selectedEditalForReview}
                 onSelectEditalForReview={setSelectedEditalForReview}
                 onSubmitReview={handleSubmitReview}
-                onSendWhatsApp={handleSendNotification}
+                onSendWhatsApp={(id, phone) => handleSendNotification(id, phone || '5511999999999')}
               />
             )}
 

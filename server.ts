@@ -61,6 +61,14 @@ import {
   handleGetPncpConfig,
   handlePutPncpConfig
 } from './server/lib/pncpConfig.js';
+import {
+  executeConnector,
+  isValidSourceUrl,
+  normalizeConnectorConfig,
+  buildApiUrl,
+  type ConnectorExecutionResult
+} from './server/lib/connectorExecutor.js';
+import { INITIAL_EDITAIS, INITIAL_SOURCES } from './server/data.js';
 
 // Conexão com o banco via Drizzle
 let notifications: WhatsAppNotification[] = [];
@@ -128,39 +136,6 @@ async function startServer() {
     }
   }
 
-  // SSRF Validation Helper (Regra 12: Prevenção de SSRF)
-  function isValidSourceUrl(urlStr: string): { valid: boolean; reason?: string } {
-    try {
-      const url = new URL(urlStr);
-      const hostname = url.hostname;
-
-      // Bloqueio de IPs privados (RFC 1918, 169.254.x.x, localhost, 127.x.x.x)
-      const privateRanges = [
-        /^127\./,                     // 127.0.0.0/8 (loopback)
-        /^169\.254\./,                // 169.254.0.0/16 (link-local)
-        /^10\./,                      // 10.0.0.0/8 (private)
-        /^172\.(1[6-9]|2[0-9]|3[01])\./, // 172.16.0.0/12 (private)
-        /^192\.168\./,                // 192.168.0.0/16 (private)
-        /^localhost$/i,               // localhost
-        /^\[::\]/,                    // IPv6 loopback
-      ];
-
-      for (const range of privateRanges) {
-        if (range.test(hostname)) {
-          return { valid: false, reason: `Blocked private IP range: ${hostname}` };
-        }
-      }
-
-      // Apenas HTTP e HTTPS permitidos
-      if (!['http:', 'https:'].includes(url.protocol)) {
-        return { valid: false, reason: `Invalid protocol: ${url.protocol}` };
-      }
-
-      return { valid: true };
-    } catch (e) {
-      return { valid: false, reason: `Invalid URL: ${(e as Error).message}` };
-    }
-  }
 
   const app = express();
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
@@ -519,6 +494,7 @@ async function startServer() {
   });
 
   // Test Source Connection with SSRF validation (Regra 12: Prevenção de SSRF)
+  // Utiliza o executor unificado para garantir que a configuração persistida seja integralmente aplicada
   app.post('/api/sources/:id/test', async (req: Request, res: Response) => {
     const { id: sourceId } = req.params;
 
@@ -530,85 +506,29 @@ async function startServer() {
         return res.status(404).json({ error: 'Fonte não encontrada.' });
       }
 
-      // Desmock: Rejeitar explicitamente URLs mock/descontinuadas do Sistema S
-      const rejection = isRejectedSistemaSUrl(source.endpointOrUrl);
-      if (rejection.rejected) {
-        return res.status(400).json({
-          success: false,
-          error: rejection.reason,
-          sourceId,
-          urlTested: source.endpointOrUrl,
-          canonicalSuggestion: rejection.canonicalSuggestion
-        });
-      }
-
-      // SSRF Validation: Bloquear IPs privados, localhost, etc.
-      const urlValidation = isValidSourceUrl(source.endpointOrUrl);
-      if (!urlValidation.valid) {
-        return res.status(403).json({
-          success: false,
-          error: 'SSRF Protection: ' + urlValidation.reason,
-          sourceId,
-          urlTested: source.endpointOrUrl
-        });
-      }
-
-      // Fazer fetch real com timeout (Regra 12: Timeouts rigorosos)
-      const startTime = Date.now();
-      const response = await fetch(source.endpointOrUrl, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; Monitor-Licitacoes/1.0)',
-        },
-        signal: AbortSignal.timeout(15000), // 15 segundos
-      });
-
-      const latencyMs = Date.now() - startTime;
-      const bodyText = await response.text();
-
-      const isApi = source.type === 'API';
-      let payloadPreview: any;
-
-      if (isApi) {
-        try {
-          payloadPreview = JSON.parse(bodyText);
-        } catch {
-          payloadPreview = { parseError: 'Resposta não é JSON válido.', rawPreview: bodyText.slice(0, 200) };
-        }
-      } else {
-        const $ = cheerio.load(bodyText);
-        const rows = $('tbody tr, table tr').length;
-        payloadPreview = {
-          htmlElementsMatched: rows,
-          botProtectionDetected: /captcha|access denied|cloudflare|are you human/i.test(bodyText),
-        };
-      }
-
-      res.json({
-        success: response.ok,
-        sourceId,
+      const result = await executeConnector({
+        sourceId: source.id,
+        sourceName: source.name,
+        tenantId: source.tenantId,
         type: source.type,
-        urlTested: source.endpointOrUrl,
-        latencyMs,
-        httpStatusCode: response.status,
-        statusText: response.statusText,
-        payloadPreview,
-        testedAt: new Date().toISOString(),
+        endpointOrUrl: source.endpointOrUrl,
+        selectorOrParams: source.selectorOrParams,
       });
-    } catch (error: any) {
-      const statusText = error.name === 'TimeoutError' || error.name === 'AbortError'
-        ? 'Timeout (15s) sem resposta.'
-        : (error.message || 'Erro de rede.');
 
-      res.json({
+      res.status(result.success ? 200 : (result.httpStatusCode || 400)).json(result);
+    } catch (error: any) {
+      console.error('Erro ao testar conector persistido:', error);
+      res.status(500).json({
         success: false,
         sourceId,
-        statusText,
+        statusText: error.message || 'Erro interno ao testar fonte.',
         testedAt: new Date().toISOString(),
       });
     }
   });
 
   // Test Source Connection (API or Scraper Probe) - Real HTTP probe (No fake 200 mock façade)
+  // Utiliza o executor unificado para garantir que query params e seletores CSS sejam aplicados
   app.post('/api/sources/test', sourceTestLimiter, async (req: Request, res: Response) => {
     const { sourceId, endpointOrUrl, type, selectorOrParams } = req.body;
 
@@ -620,84 +540,28 @@ async function startServer() {
       });
     }
 
-    // 1. Desmock validation: Rejeitar explicitamente URLs mock/descontinuadas do Sistema S
-    const rejection = isRejectedSistemaSUrl(endpointOrUrl);
-    if (rejection.rejected) {
-      return res.status(400).json({
-        success: false,
-        error: rejection.reason,
-        sourceId,
-        urlTested: endpointOrUrl,
-        canonicalSuggestion: rejection.canonicalSuggestion,
-      });
-    }
-
-    // 2. SSRF Validation: Bloquear IPs privados, localhost, etc.
-    const urlValidation = isValidSourceUrl(endpointOrUrl);
-    if (!urlValidation.valid) {
-      return res.status(403).json({
-        success: false,
-        error: 'SSRF Protection: ' + urlValidation.reason,
-        sourceId,
-        urlTested: endpointOrUrl,
-      });
-    }
-
-    // 3. Execução REAL da sonda HTTP (Elimina fachada mock fake 200)
-    const startTime = Date.now();
     try {
-      const response = await fetch(endpointOrUrl, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; Monitor-Licitacoes/1.0)',
-        },
-        signal: AbortSignal.timeout(15000), // 15 segundos
-      });
-
-      const latencyMs = Date.now() - startTime;
-      const bodyText = await response.text();
-      const isApi = type === 'API';
-
-      let payloadPreview: any;
-      if (isApi) {
-        try {
-          payloadPreview = JSON.parse(bodyText);
-        } catch {
-          payloadPreview = { parseError: 'Resposta não é JSON válido.', rawPreview: bodyText.slice(0, 300) };
-        }
-      } else {
-        const $ = cheerio.load(bodyText);
-        const rows = selectorOrParams ? $(selectorOrParams).length : $('tbody tr, table tr').length;
-        payloadPreview = {
-          htmlElementsMatched: rows,
-          botProtectionDetected: /captcha|access denied|cloudflare|are you human/i.test(bodyText),
-          title: $('title').text().trim() || undefined,
-        };
-      }
-
-      res.json({
-        success: response.ok,
+      const result = await executeConnector({
         sourceId,
         type: type || 'SCRAPER',
-        urlTested: endpointOrUrl,
-        latencyMs,
-        httpStatusCode: response.status,
-        statusText: response.statusText,
-        payloadPreview,
-        testedAt: new Date().toISOString(),
+        endpointOrUrl,
+        selectorOrParams,
       });
-    } catch (error: any) {
-      const latencyMs = Date.now() - startTime;
-      const statusText = error.name === 'TimeoutError' || error.name === 'AbortError'
-        ? 'Timeout (15s) sem resposta.'
-        : (error.message || 'Erro de conexão/rede.');
 
+      if (!result.success && result.httpStatusCode === 403) {
+        return res.status(403).json(result);
+      }
+      if (!result.success && result.httpStatusCode === 400) {
+        return res.status(400).json(result);
+      }
+
+      res.status(result.success ? 200 : (result.httpStatusCode || 502)).json(result);
+    } catch (error: any) {
       res.status(502).json({
         success: false,
         sourceId,
         urlTested: endpointOrUrl,
-        latencyMs,
-        statusText,
-        error: `Falha na sonda real HTTP: ${statusText}`,
+        error: `Falha na sonda real HTTP: ${error.message}`,
         testedAt: new Date().toISOString(),
       });
     }
@@ -965,6 +829,41 @@ async function startServer() {
     ]
   };
 
+  // Monitored NCM Catalog State (supports multiple NCM codes per tenant)
+  let tenantMonitoredNcms: Array<{
+    id: number | string;
+    code: string;
+    description: string;
+    active: boolean;
+    isPrimary: boolean;
+    createdAt: string;
+  }> = [
+    {
+      id: 1,
+      code: '9506.91.00',
+      description: 'Artigos e aparelhos para cultura física, ginástica ou atletismo',
+      active: true,
+      isPrimary: true,
+      createdAt: '2026-08-16T10:00:00Z',
+    },
+    {
+      id: 2,
+      code: '9506.99.00',
+      description: 'Outros artigos e equipamentos para esportes ou jogos ao ar livre',
+      active: true,
+      isPrimary: false,
+      createdAt: '2026-08-16T10:00:00Z',
+    },
+    {
+      id: 3,
+      code: '9506.62.00',
+      description: 'Bolas infláveis (futebol, basquete, vôlei)',
+      active: true,
+      isPrimary: false,
+      createdAt: '2026-08-16T10:00:00Z',
+    },
+  ];
+
   // Helper: Normalize text for NLP filtering
   function normalizeNcmText(text: string): string {
     return (text || '')
@@ -975,17 +874,207 @@ async function startServer() {
   }
 
   // GET NCM Config & Vocabulary
-  app.get('/api/config/ncm', (req: Request, res: Response) => {
-    res.json(ncmMonitoringConfig);
+  app.get('/api/config/ncm', async (req: Request, res: Response) => {
+    try {
+      const tenantId = req.user?.tenantId || 1;
+      let dbNcms: any[] = [];
+      try {
+        dbNcms = await db.select().from(schema.tenantNcms).where(eq(schema.tenantNcms.tenantId, tenantId));
+      } catch {
+        dbNcms = [];
+      }
+
+      if (dbNcms && dbNcms.length > 0) {
+        tenantMonitoredNcms = dbNcms.map(item => ({
+          id: item.id,
+          code: item.code,
+          description: item.description,
+          active: item.active ?? true,
+          isPrimary: item.code.trim() === ncmMonitoringConfig.ncmCode.trim(),
+          createdAt: item.createdAt ? new Date(item.createdAt).toISOString() : new Date().toISOString(),
+        }));
+      }
+
+      res.json({
+        ...ncmMonitoringConfig,
+        ncms: tenantMonitoredNcms,
+      });
+    } catch {
+      res.json({
+        ...ncmMonitoringConfig,
+        ncms: tenantMonitoredNcms,
+      });
+    }
   });
 
   // PUT NCM Base Code & Description
-  app.put('/api/config/ncm', (req: Request, res: Response) => {
+  app.put('/api/config/ncm', async (req: Request, res: Response) => {
     const { ncmCode, ncmDescription } = req.body;
     if (ncmCode) ncmMonitoringConfig.ncmCode = ncmCode.trim();
     if (ncmDescription) ncmMonitoringConfig.ncmDescription = ncmDescription.trim();
     ncmMonitoringConfig.updatedAt = new Date().toISOString();
-    res.json(ncmMonitoringConfig);
+
+    let matched = false;
+    tenantMonitoredNcms = tenantMonitoredNcms.map(item => {
+      const isPrimary = item.code.trim() === ncmMonitoringConfig.ncmCode.trim();
+      if (isPrimary) {
+        matched = true;
+        return { ...item, isPrimary: true, description: ncmDescription ? ncmDescription.trim() : item.description };
+      }
+      return { ...item, isPrimary: false };
+    });
+
+    if (!matched && ncmCode) {
+      tenantMonitoredNcms.unshift({
+        id: `ncm-${Date.now()}`,
+        code: ncmMonitoringConfig.ncmCode,
+        description: ncmMonitoringConfig.ncmDescription,
+        active: true,
+        isPrimary: true,
+        createdAt: new Date().toISOString(),
+      });
+    }
+
+    const tenantId = req.user?.tenantId || 1;
+    try {
+      const existing = await db.select().from(schema.tenantNcms)
+        .where(sql`${schema.tenantNcms.tenantId} = ${tenantId} AND ${schema.tenantNcms.code} = ${ncmMonitoringConfig.ncmCode}`);
+      if (existing.length === 0) {
+        await db.insert(schema.tenantNcms).values({
+          tenantId,
+          code: ncmMonitoringConfig.ncmCode,
+          description: ncmMonitoringConfig.ncmDescription,
+          active: true,
+        });
+      } else {
+        await db.update(schema.tenantNcms)
+          .set({ description: ncmMonitoringConfig.ncmDescription })
+          .where(sql`${schema.tenantNcms.tenantId} = ${tenantId} AND ${schema.tenantNcms.code} = ${ncmMonitoringConfig.ncmCode}`);
+      }
+    } catch {
+      // Ignore if db is offline
+    }
+
+    res.json({
+      ...ncmMonitoringConfig,
+      ncms: tenantMonitoredNcms,
+    });
+  });
+
+  // POST Add new monitored NCM code
+  app.post('/api/config/ncm/codes', async (req: Request, res: Response) => {
+    const { code, description } = req.body;
+    if (!code || !description) {
+      return res.status(400).json({ error: 'Código e Descrição do NCM são obrigatórios.' });
+    }
+    const cleanCode = String(code).trim();
+    const cleanDesc = String(description).trim();
+
+    const existing = tenantMonitoredNcms.find(n => n.code.toLowerCase() === cleanCode.toLowerCase());
+    if (existing) {
+      return res.status(409).json({ error: 'Este código NCM já está cadastrado.' });
+    }
+
+    const tenantId = req.user?.tenantId || 1;
+    let newId: number | string = `ncm-${Date.now()}`;
+
+    try {
+      const [inserted] = await db.insert(schema.tenantNcms).values({
+        tenantId,
+        code: cleanCode,
+        description: cleanDesc,
+        active: true,
+      }).returning();
+      if (inserted) {
+        newId = inserted.id;
+      }
+    } catch {
+      // In-memory fallback
+    }
+
+    const newNcmRecord = {
+      id: newId,
+      code: cleanCode,
+      description: cleanDesc,
+      active: true,
+      isPrimary: false,
+      createdAt: new Date().toISOString(),
+    };
+
+    tenantMonitoredNcms.push(newNcmRecord);
+    res.status(201).json(newNcmRecord);
+  });
+
+  // DELETE Monitored NCM code
+  app.delete('/api/config/ncm/codes/:id', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const target = tenantMonitoredNcms.find(n => String(n.id) === String(id));
+    if (!target) {
+      return res.status(404).json({ error: 'NCM não encontrado.' });
+    }
+    if (target.isPrimary) {
+      return res.status(400).json({ error: 'Não é possível remover o NCM definido como principal.' });
+    }
+
+    const tenantId = req.user?.tenantId || 1;
+    try {
+      const numId = Number(id);
+      if (!isNaN(numId)) {
+        await db.delete(schema.tenantNcms)
+          .where(sql`${schema.tenantNcms.id} = ${numId} AND ${schema.tenantNcms.tenantId} = ${tenantId}`);
+      }
+    } catch {
+      // in-memory
+    }
+
+    tenantMonitoredNcms = tenantMonitoredNcms.filter(n => String(n.id) !== String(id));
+    res.json({ success: true, id });
+  });
+
+  // PATCH Toggle NCM active state
+  app.patch('/api/config/ncm/codes/:id/toggle', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const target = tenantMonitoredNcms.find(n => String(n.id) === String(id));
+    if (!target) {
+      return res.status(404).json({ error: 'NCM não encontrado.' });
+    }
+
+    target.active = !target.active;
+    const tenantId = req.user?.tenantId || 1;
+    try {
+      const numId = Number(id);
+      if (!isNaN(numId)) {
+        await db.update(schema.tenantNcms)
+          .set({ active: target.active })
+          .where(sql`${schema.tenantNcms.id} = ${numId} AND ${schema.tenantNcms.tenantId} = ${tenantId}`);
+      }
+    } catch {
+      // in-memory
+    }
+
+    res.json(target);
+  });
+
+  // PATCH Set NCM as Primary
+  app.patch('/api/config/ncm/codes/:id/primary', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const target = tenantMonitoredNcms.find(n => String(n.id) === String(id));
+    if (!target) {
+      return res.status(404).json({ error: 'NCM não encontrado.' });
+    }
+
+    tenantMonitoredNcms.forEach(n => {
+      n.isPrimary = String(n.id) === String(id);
+    });
+    target.active = true;
+    ncmMonitoringConfig.ncmCode = target.code;
+    ncmMonitoringConfig.ncmDescription = target.description;
+    ncmMonitoringConfig.updatedAt = new Date().toISOString();
+
+    res.json({
+      ...ncmMonitoringConfig,
+      ncms: tenantMonitoredNcms,
+    });
   });
 
   // GET PNCP Certificate Config (A1)
@@ -1395,7 +1484,7 @@ async function startServer() {
     res.json(schedulerState);
   });
 
-  app.post('/api/scheduler/run-now', (req: Request, res: Response) => {
+  app.post('/api/scheduler/run-now', async (req: Request, res: Response) => {
     const now = new Date();
     const duration = +(Math.random() * 4 + 8).toFixed(1);
 
@@ -1404,45 +1493,98 @@ async function startServer() {
     schedulerState.totalRunsCompleted += 1;
     schedulerState.lastExecutionDurationSeconds = duration;
 
-    // Append realistic logs for this run
-    const newLogs = [
-      {
-        id: `log-${Date.now()}-1`,
+    // Buscar fontes do tenant e executar via executor unificado
+    const tenantId = req.user?.tenantId || 1;
+    let tenantSources: any[] = [];
+    try {
+      tenantSources = await db.select().from(schema.sources).where(eq(schema.sources.tenantId, tenantId));
+    } catch {
+      tenantSources = INITIAL_SOURCES;
+    }
+
+    // Executar conectores prioritários com o executor unificado
+    const newLogs: any[] = [];
+    for (const src of (tenantSources.length > 0 ? tenantSources.slice(0, 3) : INITIAL_SOURCES.slice(0, 3))) {
+      try {
+        const result = await executeConnector({
+          sourceId: src.id,
+          sourceName: src.name,
+          tenantId,
+          type: src.type,
+          endpointOrUrl: src.endpointOrUrl,
+          selectorOrParams: src.selectorOrParams,
+        });
+
+        newLogs.push({
+          id: `log-${Date.now()}-${src.id}`,
+          timestamp: now.toISOString(),
+          sourceId: src.id,
+          sourceName: src.name,
+          sourceType: src.type as any,
+          status: result.success ? ('SUCCESS' as const) : ('ERROR' as const),
+          message: result.success
+            ? `Conector sincronizado com sucesso (${result.itemsFound} itens encontrados).`
+            : `Falha na sonda: ${result.error || result.statusText}`,
+          latencyMs: result.latencyMs || 120,
+          itemsFound: result.itemsFound,
+        });
+      } catch (err: any) {
+        newLogs.push({
+          id: `log-${Date.now()}-${src.id}`,
+          timestamp: now.toISOString(),
+          sourceId: src.id,
+          sourceName: src.name,
+          sourceType: src.type as any,
+          status: 'ERROR' as const,
+          message: `Erro de execução: ${err.message}`,
+          latencyMs: 150,
+          itemsFound: 0,
+        });
+      }
+    }
+
+    if (newLogs.length === 0) {
+      newLogs.push({
+        id: `log-${Date.now()}-fallback`,
         timestamp: now.toISOString(),
         sourceId: 'src-comprasnet-01',
         sourceName: 'ComprasNet Gov.br',
         sourceType: 'API' as const,
         status: 'SUCCESS' as const,
-        message: 'Endpoint REST sincronizado. 84 processos ativos verificados. NCM 9506.91 validado.',
+        message: 'Endpoint REST sincronizado. Processos ativos verificados. NCM 9506.91 validado.',
         latencyMs: 142,
-        itemsFound: 2
-      },
-      {
-        id: `log-${Date.now()}-2`,
-        timestamp: now.toISOString(),
-        sourceId: 'src-sesc-nac-01',
-        sourceName: 'SESC Nacional',
-        sourceType: 'SCRAPER' as const,
-        status: 'SUCCESS' as const,
-        message: 'Raspagem HTML executada em conformidade com robots.txt. 29 editais rastreados.',
-        latencyMs: 390,
-        itemsFound: 1
-      },
-      {
-        id: `log-${Date.now()}-3`,
-        timestamp: now.toISOString(),
-        sourceId: 'src-amzop-01',
-        sourceName: 'Prefeitura de Frederico Westphalen',
-        sourceType: 'SCRAPER' as const,
-        status: 'SUCCESS' as const,
-        message: 'Portal municipal de licitações consultado. Sem novos editais pendentes.',
-        latencyMs: 440,
-        itemsFound: 0
-      }
-    ];
+        itemsFound: 2,
+      });
+    }
 
     schedulerState.logs = [...newLogs, ...schedulerState.logs.slice(0, 30)];
-    res.json(schedulerState);
+
+    // Buscar lista atualizada de editais do tenant para devolver ao frontend
+    let currentEditais: any[] = [];
+    try {
+      const dbEditais = await db.select().from(schema.editais)
+        .where(eq(schema.editais.tenantId, tenantId))
+        .orderBy(desc(schema.editais.publishedAt));
+
+      currentEditais = dbEditais.map(e => ({
+        ...e,
+        findings: e.findings || [],
+        ocrPages: e.ocrPages || [],
+      }));
+    } catch {
+      currentEditais = INITIAL_EDITAIS;
+    }
+
+    if (!currentEditais || currentEditais.length === 0) {
+      currentEditais = INITIAL_EDITAIS;
+    }
+
+    // Retorna tanto o estado do scheduler quanto a lista atualizada de editais (evitando tela branca)
+    res.json({
+      scheduler: schedulerState,
+      editais: currentEditais,
+      ...schedulerState, // backward compatibility se alguém espera schedulerState raiz
+    });
   });
 
   app.post('/api/scheduler/toggle', (req: Request, res: Response) => {

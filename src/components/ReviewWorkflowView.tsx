@@ -26,7 +26,7 @@ interface ReviewWorkflowViewProps {
       publishedInternally: boolean;
     }
   ) => Promise<void>;
-  onSendWhatsApp: (editalId: string) => Promise<any>;
+  onSendWhatsApp?: (editalId: string, phone?: string) => Promise<any>;
 }
 
 export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({

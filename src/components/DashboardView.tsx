@@ -394,7 +394,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <div className="flex items-center gap-1.5 text-slate-700 font-bold text-xs uppercase tracking-wider">
                 <Clock className="w-4 h-4 text-blue-600" />
-                <span>Scheduler Logs ({scheduler.logs.length})</span>
+                <span>Scheduler Logs ({(scheduler?.logs || []).length})</span>
               </div>
               <button
                 onClick={onTriggerScheduler}
@@ -407,7 +407,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-0.5">
-              {scheduler.logs.map(log => (
+              {(scheduler?.logs || []).map(log => (
                 <div key={log.id} className="p-2 rounded bg-slate-50 border border-slate-100 text-[11px] space-y-0.5">
                   <div className="flex items-center justify-between text-slate-500 font-medium">
                     <span className="text-slate-800 font-semibold truncate max-w-[170px]">{log.sourceName}</span>

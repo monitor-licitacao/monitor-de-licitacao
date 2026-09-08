@@ -6,7 +6,20 @@
 set -e
 
 API_URL="${API_URL:-http://localhost:3001}"
-TEST_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtdXNlci0xIiwibmFtZSI6IlRlc3QgVXNlciIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsInRlbmFudElkIjoxLCJyb2xlIjoidXNlciIsImlhdCI6MTc4ODgzMDQ0NywiZXhwIjoxNzg4ODczNjQ3fQ.LdVNScK9EoHPaLmSZVBMAU0lIaV0JbV1SkE0fJq3TWw"
+
+# Dynamically acquire a fresh test token if not explicitly provided
+if [ -z "$TEST_TOKEN" ]; then
+  LOGIN_RESP=$(curl -s -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"email":"test@example.com","password":"password123"}' \
+    "$API_URL/api/auth/login" 2>/dev/null || true)
+  DYNAMIC_TOKEN=$(echo "$LOGIN_RESP" | grep -o '"token":"[^"]*' | cut -d'"' -f4 || true)
+  if [ -n "$DYNAMIC_TOKEN" ]; then
+    TEST_TOKEN="$DYNAMIC_TOKEN"
+  else
+    TEST_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtdXNlci0xIiwibmFtZSI6IlRlc3QgVXNlciIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsInRlbmFudElkIjoxLCJyb2xlIjoidXNlciIsImlhdCI6MTc4ODgzMDQ0NywiZXhwIjoxNzg4ODczNjQ3fQ.LdVNScK9EoHPaLmSZVBMAU0lIaV0JbV1SkE0fJq3TWw"
+  fi
+fi
 
 echo "🔐 Nightly Security Validation — $(date)"
 echo "────────────────────────────────────────"
@@ -56,7 +69,7 @@ else
 fi
 
 # Test 5: Login endpoint — public
-echo "✓ Test 5: Login endpoint (public) → 401/500 (not blocked)"
+echo "✓ Test 5: Login endpoint (public) → accessible (not blocked)"
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
   -H "Content-Type: application/json" \
   -d '{"email":"test","password":"test"}' \
@@ -65,6 +78,30 @@ if [ "$STATUS" != "403" ] && [ "$STATUS" != "404" ]; then
   echo "  ✓ PASS: Login accessible (got $STATUS, not 403/404)"
 else
   echo "  ✗ FAIL: Login blocked with $STATUS"
+  exit 1
+fi
+
+# Test 6: IDOR Protection — legitimate tenant access allowed
+echo "✓ Test 6: IDOR guard — legitimate tenant access"
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+  -H "Authorization: Bearer $TEST_TOKEN" \
+  "$API_URL/api/config/tenant/pncp")
+if [ "$STATUS" = "200" ]; then
+  echo "  ✓ PASS: Legitimate tenant access allowed (200)"
+else
+  echo "  ✗ FAIL: Expected 200, got $STATUS"
+  exit 1
+fi
+
+# Test 7: IDOR Protection — cross-tenant injection rejected (403)
+echo "✓ Test 7: IDOR guard — cross-tenant query injection rejected (403)"
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+  -H "Authorization: Bearer $TEST_TOKEN" \
+  "$API_URL/api/config/tenant/pncp?tenantId=999")
+if [ "$STATUS" = "403" ]; then
+  echo "  ✓ PASS: Cross-tenant access blocked with 403 Forbidden"
+else
+  echo "  ✗ FAIL: Expected 403 Forbidden, got $STATUS"
   exit 1
 fi
 

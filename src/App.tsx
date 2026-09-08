@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiClient, assertOk, getAuthToken } from './apiClient';
+import { apiClient, assertOk, getAuthToken, logout } from './apiClient';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { LoginView } from './components/LoginView';
@@ -71,6 +71,11 @@ export default function App() {
 
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsAuthenticated(false);
   };
 
   const showToast = (text: string, type: 'success' | 'error' | 'info' = 'success') => {
@@ -218,7 +223,7 @@ export default function App() {
         return;
       }
     } catch (e) {
-      setEditais(prev => replaceById(prev, editalId, (current) => {
+      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => {
         const newOcrPages = [...(current.ocrPages || [])];
         const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
         if (pageIndex >= 0) {
@@ -383,7 +388,12 @@ export default function App() {
 
       {/* Main App Layout */}
       <div className="flex flex-1 overflow-hidden h-screen">
-        <Sidebar activeTab={activeTab} setActiveTab={handleNavigateTab} pendingReviewCount={pendingReviewCount} />
+        <Sidebar 
+          activeTab={activeTab} 
+          setActiveTab={handleNavigateTab} 
+          pendingReviewCount={pendingReviewCount} 
+          onLogout={handleLogout}
+        />
         
         <div className="flex-1 flex flex-col overflow-hidden relative">
           <Header
@@ -393,6 +403,7 @@ export default function App() {
             onTriggerScheduler={handleTriggerScheduler}
             pendingReviewCount={pendingReviewCount}
             isTriggering={isTriggering}
+            onLogout={handleLogout}
           />
 
           {/* Main Content Area */}

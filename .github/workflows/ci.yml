@@ -21,5 +21,16 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Verificação de Tipos / Linter
+        run: npm run lint
+
       - name: Testes (authz, logout, mural, amplitude)
         run: npm test
+
+      - name: Validação de Segurança (IDOR + Auth)
+        run: |
+          JWT_SECRET="ci-test-jwt-secret-minimum-32-chars-long" PORT=3001 npm run dev &
+          SERVER_PID=$!
+          sleep 5
+          API_URL=http://localhost:3001 bash scripts/nightly-security-check.sh
+          kill $SERVER_PID || true

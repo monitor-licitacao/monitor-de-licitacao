@@ -27,6 +27,9 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Verificação de Tipos / Linter
+        run: npm run lint
+
       - name: Testes (authz, logout, mural, amplitude)
         run: npm test
 

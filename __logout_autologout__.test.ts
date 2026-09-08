@@ -1,11 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 import {
   getAuthToken,
   setAuthToken,
   logout,
   apiClient,
 } from './src/apiClient.js';
+import { Sidebar } from './src/components/Sidebar.js';
+import { Header } from './src/components/Header.js';
 
 /**
  * PHASE0-DECISION.md registra o "Teste 3: 401 Auto-Logout" como validado apenas
@@ -152,10 +156,50 @@ test('Logout Gap 5: apiClient() injeta o header Authorization quando há token',
 
     await apiClient('/api/some-endpoint');
 
-    assert.ok(capturedHeaders, 'fetch deve receber headers');
+  assert.ok(capturedHeaders, 'fetch deve receber headers');
     assert.equal(capturedHeaders!.get('Authorization'), 'Bearer my-jwt-token');
   } finally {
     (globalThis as any).fetch = originalFetch;
     uninstallBrowserGlobals();
   }
 });
+
+test('Logout Gap 6: Sidebar renderiza botão de logout quando onLogout é fornecido', () => {
+  let loggedOut = false;
+  const onLogout = () => { loggedOut = true; };
+  const html = renderToString(
+    React.createElement(Sidebar, {
+      activeTab: 'dashboard',
+      setActiveTab: () => {},
+      pendingReviewCount: 0,
+      onLogout,
+    })
+  );
+
+  assert.ok(html.includes('sidebar-logout-button'), 'Sidebar deve renderizar data-testid="sidebar-logout-button"');
+  assert.ok(html.includes('Sair'), 'Sidebar deve conter o texto "Sair"');
+  onLogout();
+  assert.equal(loggedOut, true, 'Callback onLogout deve ser invocável');
+});
+
+test('Logout Gap 7: Header renderiza botão de logout quando onLogout é fornecido', () => {
+  let loggedOut = false;
+  const onLogout = () => { loggedOut = true; };
+  const html = renderToString(
+    React.createElement(Header, {
+      activeTab: 'dashboard',
+      setActiveTab: () => {},
+      scheduler: { isRunning: true, lastRunAt: '', nextRunAt: '', totalRuns: 0 },
+      onTriggerScheduler: () => {},
+      pendingReviewCount: 0,
+      isTriggering: false,
+      onLogout,
+    })
+  );
+
+  assert.ok(html.includes('header-logout-button'), 'Header deve renderizar data-testid="header-logout-button"');
+  assert.ok(html.includes('Sair'), 'Header deve conter o texto "Sair"');
+  onLogout();
+  assert.equal(loggedOut, true, 'Callback onLogout deve ser invocável');
+});
+

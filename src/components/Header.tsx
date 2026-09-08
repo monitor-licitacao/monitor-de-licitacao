@@ -10,7 +10,8 @@ import {
   Play, 
   Clock, 
   Dumbbell,
-  Sparkles
+  Sparkles,
+  LogOut
 } from 'lucide-react';
 import { SchedulerState } from '../types';
 
@@ -21,6 +22,7 @@ interface HeaderProps {
   onTriggerScheduler: () => void;
   pendingReviewCount: number;
   isTriggering: boolean;
+  onLogout?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -29,7 +31,8 @@ export const Header: React.FC<HeaderProps> = ({
   scheduler,
   onTriggerScheduler,
   pendingReviewCount,
-  isTriggering
+  isTriggering,
+  onLogout
 }) => {
   const tabs = [
     { id: 'dashboard', label: 'Painel Geral', icon: Activity },
@@ -88,6 +91,18 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="w-7 h-7 bg-slate-700 rounded-full border border-slate-600 flex items-center justify-center text-xs font-bold text-slate-200 shadow-xs" title="Dra. Camila Vargas (OAB/RS 88.412)">
             JD
           </div>
+
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              title="Sair do sistema (Logout)"
+              data-testid="header-logout-button"
+              className="flex items-center gap-1 px-2 py-1 text-[11px] font-medium rounded text-slate-300 hover:text-rose-400 hover:bg-slate-800 border border-slate-700/60 transition-colors cursor-pointer"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Sair</span>
+            </button>
+          )}
         </div>
       </div>
 

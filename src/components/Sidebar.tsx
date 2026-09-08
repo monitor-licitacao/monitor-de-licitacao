@@ -12,16 +12,18 @@ import {
   Dumbbell,
   BarChart3,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  LogOut
 } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   pendingReviewCount: number;
+  onLogout?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, pendingReviewCount }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, pendingReviewCount, onLogout }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const tabs = [
@@ -88,18 +90,31 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, pendi
         })}
       </nav>
       
-      {!isCollapsed && (
-        <div className="p-4 border-t border-slate-800">
-           <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-2">Workspace</div>
-           <div className="flex items-center gap-3">
+      <div className="p-3 border-t border-slate-800 space-y-2">
+        {!isCollapsed && (
+          <div>
+            <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-2">Workspace</div>
+            <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded bg-linear-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-xs shadow-lg">T1</div>
               <div className="flex-1 truncate">
-                 <div className="text-sm font-bold text-slate-200 truncate">Vectra Cargo</div>
-                 <div className="text-[10px] text-slate-400">NCM 9506.91</div>
+                <div className="text-sm font-bold text-slate-200 truncate">Vectra Cargo</div>
+                <div className="text-[10px] text-slate-400">NCM 9506.91</div>
               </div>
-           </div>
-        </div>
-      )}
+            </div>
+          </div>
+        )}
+        {onLogout && (
+          <button type="button"
+            onClick={onLogout}
+            title="Sair do sistema"
+            data-testid="sidebar-logout-button"
+            className={`w-full flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 px-3 py-2 rounded-lg text-sm font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors cursor-pointer`}
+          >
+            <LogOut className="w-4 h-4 text-rose-400 shrink-0" />
+            {!isCollapsed && <span>Sair</span>}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

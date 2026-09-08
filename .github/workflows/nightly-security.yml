@@ -1,0 +1,74 @@
+name: Nightly Security Validation (IDOR + Auth)
+
+on:
+  schedule:
+    # Dispara diariamente às 03:00 UTC (00:00 BRT)
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'URL alvo para teste (deixe vazio para rodar contra instância local)'
+        required: false
+        default: ''
+      test_email:
+        description: 'E-mail para autenticação no target remoto (opcional)'
+        required: false
+        default: ''
+      test_password:
+        description: 'Senha para autenticação no target remoto (opcional)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  security-validation:
+    name: Validação Noturna de Segurança (IDOR + Auth)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Verificação de Tipos / Linter
+        run: npm run lint
+
+      - name: Suíte de testes unitários e de integração
+        run: npm test
+
+      - name: Executar Nightly Security Validation (IDOR + Auth)
+        run: |
+          TARGET="${{ github.event.inputs.target_url }}"
+          if [ -n "$TARGET" ]; then
+            echo "Executando validação contra target remoto: $TARGET"
+            TEST_EMAIL="${{ github.event.inputs.test_email }}" \
+            TEST_PASSWORD="${{ github.event.inputs.test_password }}" \
+            API_URL="$TARGET" bash scripts/nightly-security-check.sh
+          else
+            echo "Iniciando servidor local para validação noturna..."
+            JWT_SECRET="nightly-security-jwt-secret-min-32-chars" PORT=3001 npm run dev &
+            SERVER_PID=$!
+            trap "kill $SERVER_PID || true" EXIT
+            HEALTHY=false
+            for i in {1..30}; do
+              if [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3001/api/health || true)" = "200" ]; then
+                HEALTHY=true
+                break
+              fi
+              sleep 1
+            done
+            if [ "$HEALTHY" != "true" ]; then
+              echo "Server did not become healthy within 30 seconds." >&2
+              exit 1
+            fi
+            API_URL=http://localhost:3001 bash scripts/nightly-security-check.sh
+          fi

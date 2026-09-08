@@ -9,6 +9,19 @@ export const ai = new AmplitudeAI({
   config: new AIConfig({
     contentMode: 'full',
     redactPii: true,
+    // Regra de Ouro 6 (privacidade do "observer" hospedado): a maior parte
+    // do conteúdo rastreado (processNumber, título/órgão do edital) já é
+    // pública (vem de portais governamentais), mas os agentes de CRM também
+    // trafegam dados comerciais internos (winRate, pipeline) que podem
+    // referenciar CNPJ/valores monetários de fornecedores em notas. Como
+    // redactPii não cobre esses formatos específicos, aplicamos um padrão
+    // customizado extra antes de enviar à Amplitude.
+    customRedactionPatterns: [
+      // CNPJ: 99.999.999/9999-99 ou 14 dígitos seguidos
+      { pattern: '\\d{2}\\.?\\d{3}\\.?\\d{3}\\/?\\d{4}-?\\d{2}', replacement: '[CNPJ_REDACTED]' },
+      // Valores monetários em R$ (ex.: R$ 1.234.567,89)
+      { pattern: 'R\\$\\s?\\d{1,3}(\\.\\d{3})*(,\\d{2})?', replacement: '[VALOR_REDACTED]' },
+    ],
   }),
 });
 

@@ -47,7 +47,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-2xl p-8">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-slate-900">Monitor de Licitações</h1>

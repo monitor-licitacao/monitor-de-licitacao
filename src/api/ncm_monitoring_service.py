@@ -1,5 +1,11 @@
-from flask import Flask, jsonify, request
+# pyrefly: ignore [missing-import]
+from flask import Flask
+# pyrefly: ignore [missing-import]
+from flask import jsonify
+# pyrefly: ignore [missing-import]
+from flask import request
 import requests
+# pyrefly: ignore [missing-import]
 from bs4 import BeautifulSoup
 import re
 

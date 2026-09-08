@@ -22,14 +22,15 @@ import {
 } from 'lucide-react';
 import { LexicalTerm, NCMConfig, NCMClassificationResult } from '../types';
 import { StatusCatalogView } from './mural/StatusCatalogView';
+import { MuralTestRunner } from './mural/MuralTestRunner';
 import { replaceById } from '../utils/collectionUtils';
 
 interface SettingsViewProps {
-  initialTab?: 'status-catalog' | 'ncm' | 'pncp';
+  initialTab?: 'status-catalog' | 'ncm' | 'pncp' | 'mural-test';
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status-catalog' }) => {
-  const [activeTab, setActiveTab] = useState<'status-catalog' | 'ncm' | 'pncp'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'status-catalog' | 'ncm' | 'pncp' | 'mural-test'>(initialTab);
 
   // NCM State
   const [config, setConfig] = useState<NCMConfig | null>(null);
@@ -237,6 +238,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
           className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors min-h-[36px] ${activeTab === 'pncp' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
         >
           Integração PNCP (Certificados)
+        </button>
+        <button
+          onClick={() => setActiveTab('mural-test')}
+          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5 min-h-[36px] ${activeTab === 'mural-test' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+        >
+          <Play className="w-3.5 h-3.5" />
+          <span>Teste Mural</span>
         </button>
       </div>
 
@@ -726,6 +734,12 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {activeTab === 'mural-test' && (
+        <div className="animate-in fade-in duration-200">
+          <MuralTestRunner />
         </div>
       )}
     </div>

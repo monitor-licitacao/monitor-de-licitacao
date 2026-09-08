@@ -11,3 +11,5 @@ scratch/
 
 .wrangler/
 .claude/
+test-results/
+playwright-report/

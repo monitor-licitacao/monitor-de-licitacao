@@ -37,6 +37,14 @@ export function setAuthToken(token: string | null): void {
 }
 
 /**
+ * Realiza logout: limpa token e redireciona para login.
+ */
+export function logout(): void {
+  setAuthToken(null);
+  window.location.href = '/';
+}
+
+/**
  * Lança um erro se a resposta HTTP não for bem-sucedida (status 2xx).
  */
 export async function assertOk(res: Response): Promise<void> {
@@ -58,6 +66,7 @@ export async function assertOk(res: Response): Promise<void> {
  * 2. Em ambiente de desenvolvimento local (DEV only), se VITE_MONITOR_API_KEY estiver
  *    explicitamente configurado, pode enviá-lo como x-api-key. Caso contrário, nenhum
  *    cabeçalho x-api-key é injetado.
+ * 3. Se resposta for 401, faz logout automático.
  */
 export async function apiClient(url: string, options: RequestInit = {}): Promise<Response> {
   const headers = new Headers(options.headers || {});
@@ -77,8 +86,15 @@ export async function apiClient(url: string, options: RequestInit = {}): Promise
     }
   }
 
-  return fetch(url, {
+  const response = await fetch(url, {
     ...options,
     headers
   });
+
+  // 3. Se 401 (Unauthorized), logout automático
+  if (response.status === 401) {
+    logout();
+  }
+
+  return response;
 }

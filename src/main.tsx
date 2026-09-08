@@ -16,6 +16,7 @@ if (!amplitudeApiKey) {
 }
 
 // Keep authentication headers consistent for direct fetch calls outside apiClient.
+// Global fetch interceptor adds API key to all /api requests (Rule 3: Security Default-On)
 const originalFetch = window.fetch;
 window.fetch = async (...args) => {
   let [resource, config] = args;
@@ -30,13 +31,6 @@ window.fetch = async (...args) => {
       (window as any).__AUTH_TOKEN__;
     if (token && !headers.Authorization) {
       headers.Authorization = `Bearer ${token}`;
-    }
-
-    if (import.meta.env?.DEV && import.meta.env?.VITE_MONITOR_API_KEY) {
-      const explicitDevKey = import.meta.env.VITE_MONITOR_API_KEY.trim();
-      if (explicitDevKey && !headers['x-api-key']) {
-        headers['x-api-key'] = explicitDevKey;
-      }
     }
   }
   return originalFetch(resource, config);

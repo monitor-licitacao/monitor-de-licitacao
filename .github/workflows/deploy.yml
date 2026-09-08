@@ -69,6 +69,25 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  # Edge proxy (Cloudflare Worker) — independente da imagem Docker/VPS: não
+  # depende de build-and-push, só dos testes passarem. Roda em paralelo ao
+  # job "deploy" abaixo, então um merge em main atualiza VPS + Worker juntos.
+  deploy-edge-worker:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy Cloudflare Worker (workers/licitacoes-edge)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: workers/licitacoes-edge
+          command: deploy
+
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -114,8 +133,12 @@ jobs:
 
 # =============================================================================
 # Secrets necessários no GitHub (Settings → Secrets and variables → Actions):
-#   HETZNER_HOST      → 142.132.189.186
-#   HETZNER_USER      → root  (ou um usuário de deploy dedicado — recomendado)
-#   HETZNER_SSH_KEY   → chave PRIVADA dedicada para deploy (gere uma nova, não
-#                        reaproveite a que você usa manualmente). Ver DEPLOY_NOTES.md.
+#   HETZNER_HOST         → 142.132.189.186
+#   HETZNER_USER         → root  (ou um usuário de deploy dedicado — recomendado)
+#   HETZNER_SSH_KEY      → chave PRIVADA dedicada para deploy (gere uma nova, não
+#                          reaproveite a que você usa manualmente). Ver DEPLOY_NOTES.md.
+#   CLOUDFLARE_API_TOKEN → token com permissão "Edit Workers Scripts" na conta
+#                          (Cloudflare Dashboard → My Profile → API Tokens).
+#   CLOUDFLARE_ACCOUNT_ID → ID da conta Cloudflare (aparece na URL do dashboard
+#                           ou em `wrangler whoami`).
 # =============================================================================

@@ -1,5 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+
+process.env.CERT_ENCRYPTION_KEY = process.env.CERT_ENCRYPTION_KEY || 'test-cert-encryption-key-min-32-chars-long';
+
 import {
   getAuthenticatedTenantId,
   requireAdminRole,

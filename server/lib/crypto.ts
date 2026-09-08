@@ -4,7 +4,10 @@ const ALGORITHM = 'aes-256-gcm';
 const IV_LENGTH = 12;
 
 function getKey(): Buffer {
-  const secret = process.env.CERT_ENCRYPTION_KEY || 'monitor-dev-key';
+  const secret = process.env.CERT_ENCRYPTION_KEY;
+  if (!secret || secret === 'CHANGE_ME_IN_PRODUCTION') {
+    throw new Error('CERT_ENCRYPTION_KEY must be set to a strong secret (not the .env.example placeholder).');
+  }
   return crypto.createHash('sha256').update(secret).digest();
 }
 

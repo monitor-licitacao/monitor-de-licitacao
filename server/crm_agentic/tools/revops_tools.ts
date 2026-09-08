@@ -1,4 +1,4 @@
-import { db } from '../../db/db';
+import { db } from '../../db';
 import * as schema from '../../db/schema';
 import { eq, and, sql, gte, lte, or, desc } from 'drizzle-orm';
 

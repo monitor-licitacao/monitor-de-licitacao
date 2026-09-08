@@ -2,6 +2,16 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Edital, UrlValidationData } from '../types';
 
+/**
+ * Generate a PDF report for a given edital.
+ *
+ * This function creates a formatted PDF using `jspdf` and `jspdf-autotable`.
+ * It includes a header, validation status banners, executive summary,
+ * traceability section, human review seal, findings table, limitations, and a footer.
+ * The PDF is saved with a filename derived from the edital process number.
+ *
+ * @param {Edital} edital - The edital data containing metadata, OCR pages, findings, and URL validation.
+ */
 export function generateEditalPDFReport(edital: Edital): void {
   const doc = new jsPDF({
     orientation: 'portrait',
@@ -13,6 +23,7 @@ export function generateEditalPDFReport(edital: Edital): void {
   const pageHeight = doc.internal.pageSize.getHeight();
 
   // Determine URL validation status defaults if not explicitly populated
+  // Determine collection method, falling back to defaults if data is missing
   const method = edital.collectionMethod || edital.urlValidation?.collectionMethod || 'DIRECT_HTTPX';
   const urlVal: UrlValidationData = edital.urlValidation || {
     originalUrl: edital.rawUrl,
@@ -29,6 +40,7 @@ export function generateEditalPDFReport(edital: Edital): void {
     isUnavailable: false
   };
 
+  // Flags for various failure scenarios used to decide which banner to render
   const isDnsFailure = urlVal.validationStatus === 'REDIRECT_DESTINATION_DNS_FAILURE' || urlVal.dnsResolutionStatus === 'NXDOMAIN_ERROR';
   const isS3Cache = method === 'S3_CACHE_FALLBACK' || !!urlVal.cachedVersionDate;
   const isUnavailable = urlVal.isUnavailable || isDnsFailure || urlVal.validationStatus === 'UNAVAILABLE_4XX_5XX';
@@ -360,7 +372,7 @@ export function generateEditalPDFReport(edital: Edital): void {
   doc.text('• Documentos anexos (DOCX/XLSX/ZIP) foram catalogados. Links externos validados em ' + new Date(urlVal.validatedAt).toLocaleDateString('pt-BR') + '.', 18, currentY + 17);
   doc.text('• REGRA DE OURO: NENHUM ACHADO POSSUI EFICÁCIA EXTERNA SEM HOMOLOGAÇÃO HUMANA EXPRESSA.', 18, currentY + 20);
 
-  // 8. Rodapé de Auditoria Compacto
+  // Add a compact audit footer with technical metadata
   doc.setFillColor(241, 245, 249);
   doc.rect(0, pageHeight - 12, pageWidth, 12, 'F');
   doc.setFontSize(6.2);
@@ -376,6 +388,4 @@ export function generateEditalPDFReport(edital: Edital): void {
     14,
     pageHeight - 3.5
   );
-
-  doc.save(`Relatorio-Edital-${edital.processNumber.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
 }

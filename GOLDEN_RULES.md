@@ -41,3 +41,11 @@ Este documento define os princípios inegociáveis arquiteturais, de segurança 
   3. Fluxos principais do usuário.
   4. Resiliência (Timeout, tratamento de erro).
   5. Refinamento de UI/UX.
+
+## 6. Observador hospedado e privacidade
+* **A Regra**: Se o produto oferece um “observer” hospedado (exibição de dashboards ou histórico), ele deve ser configurado para NÃO enviar dados sensíveis a provedores externos sem consentimento explícito.
+* **Como aplicar**:
+  - Use marcadores `<private>` nos modelos de dados que contenham informações de edital, fornecedor ou valores.
+  - Quando o observer se conecta a um endpoint externo, inclua cabeçalho `Cache-Control: private, no-store` e garanta que o TLS esteja habilitado.
+  - Documente a política de privacidade no README e nos termos de uso.
+* **Motivo**: Licitações contêm informações estratégicas que não podem ser expostas inadvertidamente a terceiros, especialmente em ambientes de nuvem pública.

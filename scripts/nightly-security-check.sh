@@ -8,16 +8,22 @@ set -e
 API_URL="${API_URL:-http://localhost:3001}"
 
 # Dynamically acquire a fresh test token if not explicitly provided
+TEST_TOKEN="${TEST_TOKEN:-}"
 if [ -z "$TEST_TOKEN" ]; then
   LOGIN_RESP=$(curl -s -X POST \
     -H "Content-Type: application/json" \
     -d '{"email":"test@example.com","password":"password123"}' \
     "$API_URL/api/auth/login" 2>/dev/null || true)
-  DYNAMIC_TOKEN=$(echo "$LOGIN_RESP" | grep -o '"token":"[^"]*' | cut -d'"' -f4 || true)
+  DYNAMIC_TOKEN=$(python3 -c 'import json,sys
+try:
+  print(json.load(sys.stdin).get("token", ""))
+except Exception:
+  print("")' <<<"$LOGIN_RESP" 2>/dev/null || true)
   if [ -n "$DYNAMIC_TOKEN" ]; then
     TEST_TOKEN="$DYNAMIC_TOKEN"
   else
-    TEST_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QtdXNlci0xIiwibmFtZSI6IlRlc3QgVXNlciIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsInRlbmFudElkIjoxLCJyb2xlIjoidXNlciIsImlhdCI6MTc4ODgzMDQ0NywiZXhwIjoxNzg4ODczNjQ3fQ.LdVNScK9EoHPaLmSZVBMAU0lIaV0JbV1SkE0fJq3TWw"
+    echo "✗ FAIL: Could not acquire TEST_TOKEN from $API_URL/api/auth/login. Set TEST_TOKEN or ensure the server is running with JWT_SECRET." >&2
+    exit 1
   fi
 fi
 

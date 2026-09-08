@@ -1,9 +1,7 @@
 /**
  * HTTP Client centralizado para o Monitor de Licitações.
- * Suporta autenticação via Bearer JWT (localStorage / sessionStorage / window).
- * Em produção: apenas Authorization Bearer é enviado.
- * Em desenvolvimento local: injeta x-api-key somente se VITE_MONITOR_API_KEY
- * for explicitamente definido via env (sem qualquer fallback hardcoded).
+ * Autenticação via Bearer JWT (localStorage / sessionStorage / window).
+ * MONITOR_API_KEY fica só no servidor (Regra 3) — nunca prefixo VITE_.
  */
 
 const TOKEN_STORAGE_KEY = 'auth_token';
@@ -62,28 +60,15 @@ export async function assertOk(res: Response): Promise<void> {
 
 /**
  * Wrapper sobre fetch para chamadas à API.
- * 1. Injeta Bearer JWT para todas as chamadas autenticadas quando disponível no storage.
- * 2. Em ambiente de desenvolvimento local (DEV only), se VITE_MONITOR_API_KEY estiver
- *    explicitamente configurado, pode enviá-lo como x-api-key. Caso contrário, nenhum
- *    cabeçalho x-api-key é injetado.
- * 3. Se resposta for 401, faz logout automático.
+ * 1. Injeta Bearer JWT quando disponível.
+ * 2. Em 401, faz logout automático.
  */
 export async function apiClient(url: string, options: RequestInit = {}): Promise<Response> {
   const headers = new Headers(options.headers || {});
 
-  // 1. Injeta Bearer JWT se disponível (Regra 3 / login)
   const token = getAuthToken();
   if (token && !headers.has('Authorization')) {
     headers.set('Authorization', `Bearer ${token}`);
-  }
-
-  // 2. Local DEV ONLY: se VITE_MONITOR_API_KEY foi explicitamente setado em import.meta.env
-  // Sem qualquer string hardcoded ou fallback default.
-  if (import.meta.env?.DEV && import.meta.env?.VITE_MONITOR_API_KEY) {
-    const explicitDevKey = import.meta.env.VITE_MONITOR_API_KEY.trim();
-    if (explicitDevKey && !headers.has('x-api-key')) {
-      headers.set('x-api-key', explicitDevKey);
-    }
   }
 
   const response = await fetch(url, {
@@ -91,7 +76,6 @@ export async function apiClient(url: string, options: RequestInit = {}): Promise
     headers
   });
 
-  // 3. Se 401 (Unauthorized), logout automático
   if (response.status === 401) {
     logout();
   }

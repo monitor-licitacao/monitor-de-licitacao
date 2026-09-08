@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_MONITOR_API_KEY?: string;
+  /** Amplitude Analytics (client-side by design — not a gateway/auth secret). */
+  readonly VITE_AMPLITUDE_API_KEY?: string;
 }
 
 interface ImportMeta {

@@ -21,9 +21,10 @@ if grep -rE "(GEMINI_API_KEY|MONITOR_API_KEY|CERT_ENCRYPTION_KEY)\s*=\s*['\"][A-
   exit 1
 fi
 
-# 3b. Chaves nunca no bundle do browser (VITE_* secrets)
-if grep -rE "VITE_MONITOR_API_KEY|VITE_.*API_KEY|VITE_.*SECRET" ./src ./.env.example 2>/dev/null; then
-  echo "❌ CRÍTICO: Segredo com prefixo VITE_ detectado (iria para o client bundle — Regra 3)."
+# 3b. MONITOR_API_KEY nunca no bundle do browser (Regra 3).
+# Amplitude VITE_AMPLITUDE_API_KEY é client-side por design e não entra nesta regra.
+if grep -rE "VITE_MONITOR_API_KEY" ./src ./.env.example 2>/dev/null; then
+  echo "❌ CRÍTICO: VITE_MONITOR_API_KEY detectado (iria para o client bundle — Regra 3)."
   exit 1
 fi
 

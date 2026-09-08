@@ -23,6 +23,7 @@ import * as schema from './server/db/schema.js';
 import { eq, ilike, or, desc, sql } from 'drizzle-orm';
 import { crmRouter } from './server/routes/crm.js';
 import { encryptSecret } from './server/lib/crypto.js';
+import { checkOllamaHealth } from './server/lib/ai.js';
 import { verifyPassword } from './server/lib/password.js';
 import jwt from 'jsonwebtoken';
 import rateLimit from 'express-rate-limit';
@@ -411,7 +412,12 @@ async function startServer() {
       timestamp: new Date().toISOString(),
       version: '1.2-neon-db',
       sourcesCount,
-      editaisCount
+      editaisCount,
+      ollama: {
+        enabled: (process.env.OLLAMA_ENABLED || 'true').toLowerCase() === 'true',
+        model: process.env.OLLAMA_MODEL || 'hermes3:3b',
+        ...(await checkOllamaHealth()),
+      }
     });
   });
 

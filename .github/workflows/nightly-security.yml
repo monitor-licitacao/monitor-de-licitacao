@@ -11,6 +11,9 @@ on:
         required: false
         default: ''
 
+permissions:
+  contents: read
+
 jobs:
   security-validation:
     name: Validação Noturna de Segurança (IDOR + Auth)

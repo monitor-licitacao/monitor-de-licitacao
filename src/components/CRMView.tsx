@@ -5,6 +5,15 @@ interface CRMViewProps {
   tenantId?: string;
 }
 
+/**
+ * CRMView component renders the RevOps Command Center UI.
+ * It fetches insights from the `/api/crm/revops/insights` endpoint for a given tenant.
+ * Provides actions to mark stale deals as WON or LOST with optimistic UI updates.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} [props.tenantId='1'] - Identifier of the tenant (defaults to '1').
+ * @returns {JSX.Element} The rendered component.
+ */
 export const CRMView: React.FC<CRMViewProps> = ({ tenantId = '1' }) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);

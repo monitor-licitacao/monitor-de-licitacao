@@ -9,6 +9,7 @@ import * as schema from './server/db/schema.js';
 import { eq, ilike, or, desc, sql } from 'drizzle-orm';
 import { crmRouter } from './server/routes/crm.js';
 import { encryptSecret } from './server/lib/crypto.js';
+import { checkOllamaHealth } from './server/lib/ai.js';
 
 dotenv.config();
 
@@ -99,12 +100,18 @@ async function startServer() {
   app.get('/api/health', async (req: Request, res: Response) => {
     const sourcesCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.sources);
     const editaisCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.editais);
+    const ollama = await checkOllamaHealth();
     res.json({
       status: 'ok',
       timestamp: new Date().toISOString(),
       version: '1.2-neon-db',
       sourcesCount: sourcesCountResult[0].count,
-      editaisCount: editaisCountResult[0].count
+      editaisCount: editaisCountResult[0].count,
+      ollama: {
+        enabled: (process.env.OLLAMA_ENABLED || 'true').toLowerCase() === 'true',
+        model: process.env.OLLAMA_MODEL || 'hermes3:3b',
+        ...ollama,
+      },
     });
   });
 

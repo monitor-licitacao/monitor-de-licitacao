@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Interceptador global para injetar a chave de API em todas as chamadas /api (Regra 3: Segurança Default-On)
+// Global fetch interceptor adds API key to all /api requests (Rule 3: Security Default-On)
 const originalFetch = window.fetch;
 window.fetch = async (...args) => {
   let [resource, config] = args;

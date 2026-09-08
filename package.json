@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.63",
+    "@ai-sdk/openai": "^4.0.60",
     "@ai-sdk/xai": "^4.0.54",
     "@google/genai": "^2.4.0",
     "@neon/env": "^1.2.0",

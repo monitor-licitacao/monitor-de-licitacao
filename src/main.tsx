@@ -32,13 +32,6 @@ window.fetch = async (...args) => {
     if (token && !headers.Authorization) {
       headers.Authorization = `Bearer ${token}`;
     }
-
-    if (import.meta.env?.DEV && import.meta.env?.VITE_MONITOR_API_KEY) {
-      const explicitDevKey = import.meta.env.VITE_MONITOR_API_KEY.trim();
-      if (explicitDevKey && !headers['x-api-key']) {
-        headers['x-api-key'] = explicitDevKey;
-      }
-    }
   }
   return originalFetch(resource, config);
 };

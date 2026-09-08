@@ -799,9 +799,19 @@ async function startServer() {
       if (updateData.humanReviewStatus === 'APPROVED') {
         try {
           // Tentativa de Envio para Ploomes Externo
-          await fetch(`${req.protocol}://${req.get('host')}/api/crm/sync`, {
+          const host = req.get('host');
+          const origin = `${req.protocol}://${host}`;
+          const syncHeaders: Record<string, string> = {
+            'Content-Type': 'application/json',
+            Origin: origin,
+          };
+          const monitorKey = process.env.MONITOR_API_KEY;
+          if (monitorKey && monitorKey !== 'CHANGE_ME_IN_PRODUCTION' && monitorKey !== 'YOUR_MONITOR_API_KEY_HERE') {
+            syncHeaders['x-api-key'] = monitorKey;
+          }
+          await fetch(`${origin}/api/crm/sync`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-api-key': process.env.MONITOR_API_KEY! },
+            headers: syncHeaders,
             body: JSON.stringify({ editalId: id, tenantId: edital.tenantId })
           });
         } catch (crmErr) {

@@ -21,6 +21,17 @@ if grep -rE "(GEMINI_API_KEY|MONITOR_API_KEY|CERT_ENCRYPTION_KEY)\s*=\s*['\"][A-
   exit 1
 fi
 
+# 3b. Chaves nunca no bundle do browser (VITE_* secrets)
+if grep -rE "VITE_MONITOR_API_KEY|VITE_.*API_KEY|VITE_.*SECRET" ./src ./.env.example 2>/dev/null; then
+  echo "❌ CRÍTICO: Segredo com prefixo VITE_ detectado (iria para o client bundle — Regra 3)."
+  exit 1
+fi
+
+if grep -rn "monitor-dev-key" ./src ./server ./.env.example 2>/dev/null; then
+  echo "❌ CRÍTICO: Fallback público 'monitor-dev-key' ainda presente."
+  exit 1
+fi
+
 # 4. Build real (o commit anterior deste projeto já foi quebrado por um
 # build que ninguém rodou antes de comitar - Regra de Ouro: nunca de novo).
 echo "🔨 [4/4] Rodando build de produção (vite + esbuild)..."

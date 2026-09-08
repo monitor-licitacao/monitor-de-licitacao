@@ -104,7 +104,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, pendi
           </div>
         )}
         {onLogout && (
-          <button
+          <button type="button"
             onClick={onLogout}
             title="Sair do sistema"
             data-testid="sidebar-logout-button"

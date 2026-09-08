@@ -16,6 +16,7 @@ if (!amplitudeApiKey) {
 }
 
 // Keep authentication headers consistent for direct fetch calls outside apiClient.
+// Global fetch interceptor adds API key to all /api requests (Rule 3: Security Default-On)
 const originalFetch = window.fetch;
 window.fetch = async (...args) => {
   let [resource, config] = args;

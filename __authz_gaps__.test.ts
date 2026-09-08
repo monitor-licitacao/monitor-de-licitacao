@@ -169,6 +169,59 @@ test('Authz Gap 1.7: Login role mapping logic strictly ensures null/undefined ro
   assert.equal(resolveLoginRole('admin'), 'admin', '"admin" role remains "admin"');
 });
 
+test('Authz Gap 1.8: Authentication middleware fails closed (401) when JWT_SECRET is missing or empty', () => {
+  // Middleware JWT verification simulation:
+  // Fail closed: require JWT_SECRET and reject with 401 when missing
+  function authenticateJwt(authHeader: string | undefined, jwtSecret: string | undefined): { status: number; error?: string } {
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      if (!jwtSecret || jwtSecret.length === 0) {
+        return { status: 401, error: 'Unauthorized: Token JWT Inválido ou Expirado.' };
+      }
+      return { status: 200 };
+    }
+    return { status: 401, error: 'Unauthorized' };
+  }
+
+  const tokenHeader = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.t-IDcSemACt8x4iTMCda8Yhe3iZaWbvV5XKSTbuAn0M';
+
+  // 1. JWT_SECRET undefined -> fail closed (401)
+  const resUndefined = authenticateJwt(tokenHeader, undefined);
+  assert.equal(resUndefined.status, 401, 'Undefined JWT_SECRET must return 401');
+
+  // 2. JWT_SECRET empty string -> fail closed (401)
+  const resEmpty = authenticateJwt(tokenHeader, '');
+  assert.equal(resEmpty.status, 401, 'Empty JWT_SECRET must return 401');
+
+  // 3. JWT_SECRET present -> proceeds (200)
+  const resValid = authenticateJwt(tokenHeader, 'valid-secret');
+  assert.equal(resValid.status, 200, 'Valid JWT_SECRET proceeds to verification');
+});
+
+test('Authz Gap 1.9: Mock login is disabled outside development or when JWT_SECRET is not configured', () => {
+  function canActivateMockLogin(nodeEnv: string | undefined, jwtSecret: string | undefined, email: string, pass: string): boolean {
+    return (
+      nodeEnv !== 'production' &&
+      !!jwtSecret &&
+      email === 'test@example.com' &&
+      pass === 'password123'
+    );
+  }
+
+  // 1. In production -> strictly disabled even with correct credentials and secret
+  assert.equal(canActivateMockLogin('production', 'strong-secret', 'test@example.com', 'password123'), false);
+
+  // 2. Without JWT_SECRET in dev -> strictly disabled (fail-closed)
+  assert.equal(canActivateMockLogin('development', undefined, 'test@example.com', 'password123'), false);
+  assert.equal(canActivateMockLogin('development', '', 'test@example.com', 'password123'), false);
+
+  // 3. Invalid credentials in dev -> disabled
+  assert.equal(canActivateMockLogin('development', 'dev-secret', 'wrong@example.com', 'password123'), false);
+
+  // 4. In development with JWT_SECRET set and valid credentials -> enabled
+  assert.equal(canActivateMockLogin('development', 'dev-secret', 'test@example.com', 'password123'), true);
+});
+
 // ---------------------------------------------------------------------------
 // 2) PNCP CONFIG IDOR & CROSS-TENANT DENIAL TESTS
 // ---------------------------------------------------------------------------

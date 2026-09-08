@@ -1,4 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
+import 'dotenv/config';
+
+// Fail-closed: exige JWT_SECRET explicitamente configurado no ambiente ou .env.
+// Impede segredos estáticos versionados e mascara de falhas de configuração.
+if (!process.env.JWT_SECRET) {
+  throw new Error(
+    'JWT_SECRET não está definido. Configure JWT_SECRET via variável de ambiente ou arquivo .env para executar os testes E2E com segurança (fail-closed).'
+  );
+}
 
 export default defineConfig({
   testDir: './e2e',
@@ -32,8 +41,8 @@ export default defineConfig({
     reuseExistingServer: true,
     timeout: 60000,
     env: {
-      JWT_SECRET: process.env.JWT_SECRET || 'dev-e2e-jwt-secret-key-32charsmin',
       NODE_ENV: 'development',
+      JWT_SECRET: process.env.JWT_SECRET,
     },
   },
 });

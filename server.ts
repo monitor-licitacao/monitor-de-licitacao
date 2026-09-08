@@ -287,11 +287,22 @@ async function startServer() {
         role,
       };
 
-      const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '12h' });
+      if (!process.env.JWT_SECRET) {
+        console.error('[Auth Login Error]: JWT_SECRET não configurada no servidor.');
+        return res.status(500).json({ error: 'Erro ao autenticar.' });
+      }
+
+      const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '12h' });
       return res.json({ token, user });
     } catch (e: any) {
-      // Fase 0 DEV ONLY: mock login para teste quando banco falha
-      if (email === 'test@example.com' && password === 'password123') {
+      // Fase 0 DEV ONLY: mock login para teste quando banco falha.
+      // Estritamente restrito a ambiente de desenvolvimento e exige JWT_SECRET configurada (fail-closed).
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        process.env.JWT_SECRET &&
+        email === 'test@example.com' &&
+        password === 'password123'
+      ) {
         const mockUser = {
           id: 'test-user-1',
           name: 'Test User',
@@ -299,8 +310,7 @@ async function startServer() {
           tenantId: 1,
           role: 'user',
         };
-        const secret = process.env.JWT_SECRET || 'dev-fallback-secret-for-testing';
-        const token = jwt.sign(mockUser, secret, { expiresIn: '12h' });
+        const token = jwt.sign(mockUser, process.env.JWT_SECRET, { expiresIn: '12h' });
         console.info('[Auth] Mock login (DEV): test@example.com');
         return res.json({ token, user: mockUser });
       }
@@ -331,14 +341,13 @@ async function startServer() {
     // JWT first — tenantId comes from verified claims
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const token = authHeader.split(' ')[1];
-      const effectiveSecret = jwtSecret || (process.env.NODE_ENV !== 'production' ? 'dev-fallback-secret-for-testing' : '');
-      if (!effectiveSecret || effectiveSecret.length === 0) {
+      if (!jwtSecret || jwtSecret.length === 0) {
         return res.status(401).json({
           error: 'Unauthorized: Token JWT Inválido ou Expirado.',
         });
       }
       try {
-        const decoded = jwt.verify(token, effectiveSecret) as any;
+        const decoded = jwt.verify(token, jwtSecret) as any;
         if (decoded == null || typeof decoded.tenantId !== 'number') {
           return res.status(401).json({
             error: 'Unauthorized: Token JWT Inválido ou Expirado.',

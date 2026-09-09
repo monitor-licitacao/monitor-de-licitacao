@@ -82,6 +82,7 @@ historicalRouter.post('/start', async (req: Request, res: Response) => {
   // Executa em background de forma assíncrona
   executeHistoricalExtraction({
     tenantId,
+    jobId: initialJobId,
     startDate,
     endDate,
     ncmCode,

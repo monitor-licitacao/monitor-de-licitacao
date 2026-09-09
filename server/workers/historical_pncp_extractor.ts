@@ -26,6 +26,7 @@ import { decryptSecret } from '../lib/crypto.js';
 
 export interface HistoricalExtractionOptions {
   tenantId: number;
+  jobId?: string;
   startDate: string; // YYYY-MM-DD
   endDate: string; // YYYY-MM-DD
   ncmCode?: string; // padrão: '9506.91.00'
@@ -360,7 +361,7 @@ export async function executeHistoricalExtraction(
   options: HistoricalExtractionOptions,
   onProgress?: (progress: HistoricalExtractionProgress) => void
 ): Promise<HistoricalExtractionProgress> {
-  const jobId = `job-${options.tenantId}-${Date.now()}`;
+  const jobId = options.jobId || `job-${options.tenantId}-${Date.now()}`;
   const targetNcm = options.ncmCode || '9506.91.00';
   const modalidades = options.modalidades && options.modalidades.length > 0 ? options.modalidades : [6, 5, 4, 8];
   const chunkDays = options.chunkDays || 15;

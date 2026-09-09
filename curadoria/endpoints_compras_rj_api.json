@@ -1,0 +1,340 @@
+{
+  "portal": "Portal de Compras do Governo do Estado do Rio de Janeiro",
+  "dominio_base": "https://www.compras.rj.gov.br",
+  "id_pncp": 14,
+  "cnpj_gestor": "15.829.998/0001-09",
+  "tecnologia": "Java Struts2 (.action) + DataTables AJAX + Apache Solr + SIGA RJ",
+  "total_endpoints_mapeados": 11,
+  "endpoints": [
+    {
+      "id": "compras_rj_licitacoes_paginate",
+      "nome": "Pesquisa Paginada de Licitações (DataTables AJAX)",
+      "url": "https://www.compras.rj.gov.br/EditaisLicitacoes/paginate.action",
+      "metodo": "POST",
+      "content_type_request": "application/x-www-form-urlencoded",
+      "content_type_response": "application/json",
+      "descricao": "Endpoint principal de busca e paginação de editais, licitações e processos eletrônicos de dispensa.",
+      "parametros_chave": [
+        {
+          "nome": "start",
+          "tipo": "integer",
+          "descricao": "Offset inicial de paginação (0, 10, 20...)"
+        },
+        {
+          "nome": "length",
+          "tipo": "integer",
+          "descricao": "Quantidade de registros por página (10, 25, 50, 100)"
+        },
+        {
+          "nome": "idAndamento",
+          "tipo": "integer",
+          "descricao": "Status do andamento (ex: 2 para em andamento)"
+        },
+        {
+          "nome": "filtro.nuLic",
+          "tipo": "string",
+          "descricao": "Número da licitação / edital"
+        },
+        {
+          "nome": "filtro.objetoLic",
+          "tipo": "string",
+          "descricao": "Termo de busca no objeto da licitação"
+        },
+        {
+          "nome": "filtro.processoLic",
+          "tipo": "string",
+          "descricao": "Número do processo administrativo"
+        },
+        {
+          "nome": "filtro.idStatus",
+          "tipo": "integer",
+          "descricao": "ID do status (Publicado, Em Julgamento, Homologado)"
+        },
+        {
+          "nome": "filtro.idModalidade",
+          "tipo": "integer",
+          "descricao": "ID da modalidade (Pregão, Concorrência, Dispensa)"
+        },
+        {
+          "nome": "filtro.dtIniPublic",
+          "tipo": "string",
+          "descricao": "Data inicial de publicação (DD/MM/AAAA)"
+        },
+        {
+          "nome": "filtro.dtFimPublic",
+          "tipo": "string",
+          "descricao": "Data final de publicação (DD/MM/AAAA)"
+        },
+        {
+          "nome": "filtro.dtIniProp",
+          "tipo": "string",
+          "descricao": "Data inicial limite de propostas"
+        },
+        {
+          "nome": "filtro.dtFimProp",
+          "tipo": "string",
+          "descricao": "Data final limite de propostas"
+        }
+      ],
+      "resposta_exemplo_chaves": [
+        "data",
+        "recordsTotal",
+        "recordsFiltered",
+        "countResultadosEncontrados",
+        "draw"
+      ],
+      "origem_mapeamento": "Resultado_Pesquisa_Licitacoes.txt e COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTTP_API_REST (POST form-urlencoded) com paginação por offset/limit"
+    },
+    {
+      "id": "compras_rj_licitacao_detalhar",
+      "nome": "Detalhamento Completo da Licitação e Documentos",
+      "url": "https://www.compras.rj.gov.br/EditaisLicitacoes/detalhar.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "text/html",
+      "descricao": "Página que apresenta dados detalhados da licitação selecionada, cronograma, itens e links para download de edital e anexos.",
+      "parametros_chave": [
+        {
+          "nome": "idLic",
+          "tipo": "integer",
+          "obrigatorio": true,
+          "descricao": "ID único da licitação no sistema SIGA/Compras RJ (ex: 25159)"
+        },
+        {
+          "nome": "idAndamento",
+          "tipo": "integer",
+          "descricao": "Status do andamento"
+        }
+      ],
+      "campos_extraidos": [
+        "numero_licitacao",
+        "orgao_unidade",
+        "objeto_completo",
+        "modalidade",
+        "criterio_julgamento",
+        "data_publicacao",
+        "data_limite_propostas",
+        "data_abertura_sessao",
+        "valor_estimado_ou_homologado",
+        "arquivos_edital",
+        "arquivos_anexos",
+        "lotes_itens"
+      ],
+      "origem_mapeamento": "Edital_Dados_para_Script.txt e COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTML_SCRAPER (Playwright / Cheerio) ou extração de links diretos de anexos"
+    },
+    {
+      "id": "compras_rj_catalogo_paginate",
+      "nome": "Pesquisa de Itens e Materiais do Catálogo (DataTables AJAX)",
+      "url": "https://www.compras.rj.gov.br/Catalogo/paginate.action",
+      "metodo": "GET/POST",
+      "content_type_request": "application/x-www-form-urlencoded",
+      "content_type_response": "application/json",
+      "descricao": "Busca estruturada no catálogo de materiais e serviços do Estado do RJ com filtros taxonômicos.",
+      "parametros_chave": [
+        {
+          "nome": "idTipo",
+          "tipo": "integer",
+          "descricao": "1 para Material, 2 para Serviço"
+        },
+        {
+          "nome": "idFamilia",
+          "tipo": "integer",
+          "descricao": "ID da família de compras"
+        },
+        {
+          "nome": "idClasse",
+          "tipo": "integer",
+          "descricao": "ID da classe do catálogo"
+        },
+        {
+          "nome": "idArtigo",
+          "tipo": "integer",
+          "descricao": "ID do artigo"
+        },
+        {
+          "nome": "tipoPesquisa_1",
+          "tipo": "string",
+          "descricao": "Tipo de campo pesquisado (ex: item, artigo)"
+        },
+        {
+          "nome": "termoPesquisaItem_1",
+          "tipo": "string",
+          "descricao": "Termo de busca textual"
+        }
+      ],
+      "resposta_exemplo_chaves": [
+        "data",
+        "recordsTotal",
+        "recordsFiltered",
+        "countResultadosEncontrados"
+      ],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTTP_API_REST"
+    },
+    {
+      "id": "compras_rj_catalogo_carrega_familia",
+      "nome": "Carregamento Dinâmico de Famílias do Catálogo",
+      "url": "https://www.compras.rj.gov.br/Catalogo/carregaFamilia.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "application/json",
+      "descricao": "Retorna árvore taxonômica de famílias de compras para um tipo (Material/Serviço).",
+      "parametros_chave": [
+        {
+          "nome": "ramoAtividade.idTipo",
+          "tipo": "integer",
+          "obrigatorio": true,
+          "descricao": "1 para Material, 2 para Serviço"
+        }
+      ],
+      "resposta_exemplo_chaves": [
+        "countResultadosEncontrados",
+        "filtro",
+        "catalogoService"
+      ],
+      "origem_mapeamento": "HAR (entry 51) e COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTTP_API_REST (Cacheable)"
+    },
+    {
+      "id": "compras_rj_catalogo_carrega_classe",
+      "nome": "Carregamento Dinâmico de Classes do Catálogo",
+      "url": "https://www.compras.rj.gov.br/Catalogo/carregaClasse.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "application/json",
+      "descricao": "Retorna classes associadas a uma família selecionada no catálogo.",
+      "parametros_chave": [
+        {
+          "nome": "ramoAtividade.idTipo",
+          "tipo": "integer",
+          "obrigatorio": true
+        },
+        {
+          "nome": "ramoAtividade.idFamilia",
+          "tipo": "integer",
+          "obrigatorio": true
+        }
+      ],
+      "resposta_exemplo_chaves": [
+        "countResultadosEncontrados",
+        "classes"
+      ],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTTP_API_REST (Cacheable)"
+    },
+    {
+      "id": "compras_rj_catalogo_carrega_artigo",
+      "nome": "Carregamento Dinâmico de Artigos do Catálogo",
+      "url": "https://www.compras.rj.gov.br/Catalogo/carregaArtigo.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "application/json",
+      "descricao": "Retorna artigos associados à classe e família selecionadas no catálogo.",
+      "parametros_chave": [
+        {
+          "nome": "ramoAtividade.idTipo",
+          "tipo": "integer",
+          "obrigatorio": true
+        },
+        {
+          "nome": "ramoAtividade.idFamilia",
+          "tipo": "integer",
+          "obrigatorio": true
+        },
+        {
+          "nome": "ramoAtividade.idClasse",
+          "tipo": "integer",
+          "obrigatorio": true
+        }
+      ],
+      "resposta_exemplo_chaves": [
+        "countResultadosEncontrados",
+        "artigos"
+      ],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTTP_API_REST (Cacheable)"
+    },
+    {
+      "id": "compras_rj_catalogo_detalhar",
+      "nome": "Ficha Técnica e Histórico de Preços do Item",
+      "url": "https://www.compras.rj.gov.br/Catalogo/detalhar.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "text/html",
+      "descricao": "Exibe especificações completas, código do item SIGA e histórico de contratações do item.",
+      "parametros_chave": [
+        {
+          "nome": "idItem",
+          "tipo": "integer",
+          "obrigatorio": true,
+          "descricao": "ID único do item (ex: 200441, 165469)"
+        }
+      ],
+      "campos_extraidos": [
+        "codigo_siga",
+        "descricao_completa",
+        "unidade_fornecimento",
+        "sustentavel",
+        "banco_precos"
+      ],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTML_SCRAPER"
+    },
+    {
+      "id": "compras_rj_atas_registro_preco",
+      "nome": "Mural de Atas de Registro de Preço",
+      "url": "https://www.compras.rj.gov.br/AtaRegistroPreco/buscar.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "text/html",
+      "descricao": "Consulta pública de atas de registro de preços vigentes do Estado do RJ.",
+      "parametros_chave": [],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTML_SCRAPER / DataTables AJAX"
+    },
+    {
+      "id": "compras_rj_compra_direta",
+      "nome": "Mural de Compras Diretas",
+      "url": "https://www.compras.rj.gov.br/CompraDireta/buscar.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "text/html",
+      "descricao": "Consulta de compras diretas por dispensa de valor ou inexigibilidade.",
+      "parametros_chave": [],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTML_SCRAPER / DataTables AJAX"
+    },
+    {
+      "id": "compras_rj_dispensa_eletronica",
+      "nome": "Processos Eletrônicos de Dispensa de Licitação",
+      "url": "https://www.compras.rj.gov.br/ProcessoEletronicoDispensa/buscar.action",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "text/html",
+      "descricao": "Consulta pública de avisos de contratação direta e cotações eletrônicas.",
+      "parametros_chave": [],
+      "origem_mapeamento": "COMPRAS_RJ.txt",
+      "tipo_conector_recomendado": "HTML_SCRAPER / DataTables AJAX"
+    },
+    {
+      "id": "compras_rj_suporte_atendimento",
+      "nome": "Status de Suporte e Atendimento ao Fornecedor",
+      "url": "https://www.compras.rj.gov.br/Noticias/listarSuporteUsuario",
+      "metodo": "GET",
+      "content_type_request": "N/A",
+      "content_type_response": "application/json",
+      "descricao": "Endpoint de monitoramento operacional do canal de suporte do Compras RJ.",
+      "parametros_chave": [],
+      "resposta_exemplo_chaves": [
+        "diasSemana",
+        "email",
+        "horarioInicioAtendimento",
+        "horarioTerminoAtendimento"
+      ],
+      "origem_mapeamento": "HAR (entry 41)",
+      "tipo_conector_recomendado": "HTTP_API_REST (Healthcheck)"
+    }
+  ]
+}

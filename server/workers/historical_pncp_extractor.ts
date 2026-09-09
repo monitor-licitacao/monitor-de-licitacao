@@ -22,7 +22,6 @@ import postgres from 'postgres';
 import * as schema from '../db/schema.js';
 import { eq } from 'drizzle-orm';
 import fs from 'fs';
-import { Agent, fetch as undiciFetch } from 'undici';
 import { decryptSecret } from '../lib/crypto.js';
 
 export interface HistoricalExtractionOptions {
@@ -211,7 +210,7 @@ export async function fetchComprasDadosAbertosPncp(
   url.searchParams.set('pagina', String(page));
   url.searchParams.set('tamanhoPagina', String(pageSize));
 
-  const response = await undiciFetch(url.toString(), {
+  const response = await fetch(url.toString(), {
     headers: {
       Accept: 'application/json',
       'User-Agent': 'Monitor-Licitacao-Historical-Worker/1.0',
@@ -241,7 +240,7 @@ export async function fetchPncpDirect(
   modalidade: number,
   page: number = 1,
   pageSize: number = 50,
-  dispatcher?: Agent,
+  dispatcher?: any,
   timeoutMs: number = 6000
 ): Promise<{ items: any[]; total: number }> {
   const dataInicial = startDateIso.replace(/-/g, '');
@@ -254,12 +253,12 @@ export async function fetchPncpDirect(
   url.searchParams.set('pagina', String(page));
   url.searchParams.set('tamanhoPagina', String(pageSize));
 
-  const response = await undiciFetch(url.toString(), {
+  const response = await fetch(url.toString(), {
     headers: {
       Accept: 'application/json',
       'User-Agent': 'Monitor-Licitacao-Historical-Worker/1.0',
     },
-    dispatcher,
+    ...(dispatcher ? { dispatcher } : {}),
     signal: AbortSignal.timeout(timeoutMs),
   });
 
@@ -405,7 +404,7 @@ export async function executeHistoricalExtraction(
   }
 
   // Certificado mTLS se configurado no tenant
-  let dispatcher: Agent | undefined;
+  let dispatcher: any;
   if (db) {
     try {
       const tenantConfigs = await db
@@ -414,14 +413,19 @@ export async function executeHistoricalExtraction(
         .where(eq(schema.tenantConfigs.tenantId, options.tenantId));
       const pConfig = tenantConfigs[0]?.pncpConfig;
       if (pConfig?.isActive && pConfig?.certificatePath && fs.existsSync(pConfig.certificatePath)) {
-        const certData = fs.readFileSync(pConfig.certificatePath);
-        dispatcher = new Agent({
-          connect: {
-            pfx: certData,
-            passphrase: decryptSecret(pConfig.certificatePassword || ''),
-            rejectUnauthorized: true,
-          },
-        });
+        try {
+          const { Agent } = await import('undici');
+          const certData = fs.readFileSync(pConfig.certificatePath);
+          dispatcher = new Agent({
+            connect: {
+              pfx: certData,
+              passphrase: decryptSecret(pConfig.certificatePassword || ''),
+              rejectUnauthorized: true,
+            },
+          });
+        } catch (undiciErr: any) {
+          console.warn(`[Historical Worker] Undici indisponível para mTLS: ${undiciErr.message}`);
+        }
       }
     } catch (certErr: any) {
       console.warn(`[Historical Worker] Certificado mTLS não carregado: ${certErr.message}`);

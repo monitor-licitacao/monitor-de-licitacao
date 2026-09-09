@@ -31,12 +31,14 @@ async function injectRealisticTest() {
       sourceId: 'src-pncp-api-01',
       processNumber: 'PE 1234/2026',
       title: 'Aquisição de Aparelhos de Musculação',
-      sourceName: 'PNCP (Portal Nacional)',
+      sourceName: 'PNCP (Portal Nacional) [BETA/MOCK]',
       sourceCategory: 'Federal',
       ncmCode: '9506.91',
       objectDescription: 'Pregão Eletrônico para aquisição de equipamentos de academia (esteiras, bicicletas ergométricas e estações de musculação) para atendimento aos projetos sociais do município.',
-      url: 'https://pncp.gov.br/app/editais/1234',
-      rawUrl: 'https://pncp.gov.br/app/editais/1234',
+      // The fixture has no real PNCP contract identifier. Pointing it to a
+      // fabricated detail route would create a false 404 in the user flow.
+      url: 'https://pncp.gov.br/app/',
+      rawUrl: 'https://pncp.gov.br/app/',
       status: 'OPEN',
       agency: 'Prefeitura Municipal de Teste',
       estimatedValue: '350000.00',

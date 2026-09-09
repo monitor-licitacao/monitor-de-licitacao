@@ -164,6 +164,15 @@ async function startServer() {
 
   const app = express();
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
+  const configuredAppUrl = process.env.APP_URL?.trim();
+  let internalOrigin = `http://127.0.0.1:${PORT}`;
+  if (configuredAppUrl) {
+    const parsedAppUrl = new URL(configuredAppUrl);
+    if (!['http:', 'https:'].includes(parsedAppUrl.protocol)) {
+      throw new Error('APP_URL must use the HTTP or HTTPS protocol.');
+    }
+    internalOrigin = parsedAppUrl.origin;
+  }
 
   app.use(express.json({ limit: '15mb' }));
 
@@ -802,17 +811,15 @@ async function startServer() {
       if (updateData.humanReviewStatus === 'APPROVED') {
         try {
           // Tentativa de Envio para Ploomes Externo
-          const host = req.get('host');
-          const origin = `${req.protocol}://${host}`;
           const syncHeaders: Record<string, string> = {
             'Content-Type': 'application/json',
-            Origin: origin,
+            Origin: internalOrigin,
           };
           const monitorKey = process.env.MONITOR_API_KEY;
           if (monitorKey && monitorKey !== 'CHANGE_ME_IN_PRODUCTION' && monitorKey !== 'YOUR_MONITOR_API_KEY_HERE') {
             syncHeaders['x-api-key'] = monitorKey;
           }
-          await fetch(`${origin}/api/crm/sync`, {
+          await fetch(`${internalOrigin}/api/crm/sync`, {
             method: 'POST',
             headers: syncHeaders,
             body: JSON.stringify({ editalId: id, tenantId: edital.tenantId })

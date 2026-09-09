@@ -403,14 +403,26 @@ async function startServer() {
     let dbStatus: 'ok' | 'error' = 'ok';
     let sourcesCount: number | null = null;
     let editaisCount: number | null = null;
+    let dbHealthTimeout: ReturnType<typeof setTimeout> | undefined;
     try {
-      const sourcesCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.sources);
-      const editaisCountResult = await db.select({ count: sql<number>`count(*)` }).from(schema.editais);
+      const [sourcesCountResult, editaisCountResult] = await Promise.race([
+        Promise.all([
+          db.select({ count: sql<number>`count(*)` }).from(schema.sources),
+          db.select({ count: sql<number>`count(*)` }).from(schema.editais),
+        ]),
+        new Promise<never>((_, reject) => {
+          dbHealthTimeout = setTimeout(() => reject(new Error('database health check timed out')), 2000);
+        }),
+      ]);
       sourcesCount = sourcesCountResult[0].count;
       editaisCount = editaisCountResult[0].count;
     } catch (e) {
       dbStatus = 'error';
       console.error('[Health Check] Erro ao consultar banco de dados:', e);
+    } finally {
+      if (dbHealthTimeout) {
+        clearTimeout(dbHealthTimeout);
+      }
     }
     // HTTP 200 sempre (é isso que o healthcheck do Docker avalia — o processo
     // está de pé); "status" reflete o estado real para quem observa o corpo
@@ -430,7 +442,7 @@ async function startServer() {
       ollama: {
         enabled: (process.env.OLLAMA_ENABLED || 'true').toLowerCase() === 'true',
         model: process.env.OLLAMA_MODEL || 'hermes3:3b',
-        ...(await checkOllamaHealth()),
+        ...(await checkOllamaHealth(1500)),
       }
     });
   });

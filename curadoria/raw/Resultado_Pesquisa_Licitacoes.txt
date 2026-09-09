@@ -1,0 +1,2554 @@
+Resultado da Pesquisa de Licitações e Processos Eletrônicos de Dispensa
+
+https://www.compras.rj.gov.br/EditaisLicitacoes/listar.action?origemIndex=true
+
+URL da Solicitação
+https://www.compras.rj.gov.br/EditaisLicitacoes/paginate.action
+Método de Solicitação
+POST
+Código de Status
+200 OK
+Endereço Remoto
+187.62.129.55:443
+Política de referenciador
+strict-origin-when-cross-origin
+
+raw
+1
+columns[0][data]
+0
+columns[0][name]
+columns[0][searchable]
+true
+columns[0][orderable]
+true
+columns[0][search][value]
+columns[0][search][regex]
+false
+columns[1][data]
+1
+columns[1][name]
+columns[1][searchable]
+true
+columns[1][orderable]
+true
+columns[1][search][value]
+columns[1][search][regex]
+false
+columns[2][data]
+2
+columns[2][name]
+columns[2][searchable]
+true
+columns[2][orderable]
+true
+columns[2][search][value]
+columns[2][search][regex]
+false
+columns[3][data]
+3
+columns[3][name]
+columns[3][searchable]
+true
+columns[3][orderable]
+true
+columns[3][search][value]
+columns[3][search][regex]
+false
+columns[4][data]
+4
+columns[4][name]
+columns[4][searchable]
+true
+columns[4][orderable]
+true
+columns[4][search][value]
+columns[4][search][regex]
+false
+columns[5][data]
+5
+columns[5][name]
+columns[5][searchable]
+true
+columns[5][orderable]
+true
+columns[5][search][value]
+columns[5][search][regex]
+false
+columns[6][data]
+6
+columns[6][name]
+columns[6][searchable]
+true
+columns[6][orderable]
+true
+columns[6][search][value]
+columns[6][search][regex]
+false
+columns[7][data]
+7
+columns[7][name]
+columns[7][searchable]
+true
+columns[7][orderable]
+true
+columns[7][search][value]
+columns[7][search][regex]
+false
+columns[8][data]
+8
+columns[8][name]
+columns[8][searchable]
+true
+columns[8][orderable]
+true
+columns[8][search][value]
+columns[8][search][regex]
+false
+columns[9][data]
+9
+columns[9][name]
+columns[9][searchable]
+true
+columns[9][orderable]
+true
+columns[9][search][value]
+columns[9][search][regex]
+false
+order[0][column]
+0
+order[0][dir]
+asc
+start
+0
+length
+6
+search[value]
+search[regex]
+false
+orderColumn
+0
+orderDirection
+asc
+idLic
+nuLic
+objetoLic
+idStatus
+processoLic
+idModalidade
+idModoDisputa
+centroCusto
+idFormaLicitacao
+dtIniProp
+dtFimProp
+dtFimHomol
+dtIniHomol
+dtIniPublic
+dtFimPublic
+mpe
+srp
+idTipoRamoAtividade
+idFamilia
+idClasse
+idArtigo
+item
+inSustentavel
+false
+tipoPesquisa_1
+campoPesquisa_1
+termoPesquisaItem_1
+tipoPesquisa_2
+campoPesquisa_2
+termoPesquisaItem_2
+condicao_2
+tipoPesquisa_3
+campoPesquisa_3
+termoPesquisaItem_3
+condicao_3
+filtroLicitacao
+filtroUnidade
+filtroUrlPncp
+filtroValorHomolog
+filtroProcesso
+filtroObjeto
+filtroModalidade
+filtroStatus
+idAndamento
+2
+filtroDtPublicacao
+
+{andamento: null, arquivosAnexos: null, arquivosAvulsos: null, arquivosEdital: null,…}
+andamento
+: 
+null
+arquivosAnexos
+: 
+null
+arquivosAvulsos
+: 
+null
+arquivosEdital
+: 
+null
+arrayDataTableAvisos
+: 
+null
+artigo
+: 
+null
+campoPesquisa_1
+: 
+""
+campoPesquisa_2
+: 
+""
+campoPesquisa_3
+: 
+""
+centroCusto
+: 
+null
+centroCustoService
+: 
+{}
+classe
+: 
+null
+condicao_2
+: 
+""
+condicao_3
+: 
+""
+contentDisposition
+: 
+null
+contentType
+: 
+null
+countResultadosEncontrados
+: 
+0
+data
+: 
+[["CC 001/21", "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES", "SEI-100001/000892/2021",…],…]
+dataUltimaAtualizacaoSolr
+: 
+null
+dtAbertSessao
+: 
+null
+dtFimHomol
+: 
+null
+dtFimProp
+: 
+null
+dtFimPublic
+: 
+null
+dtIniHomol
+: 
+null
+dtIniProp
+: 
+null
+dtIniPublic
+: 
+null
+editaisEnconsolr
+: 
+null
+editaisLicitacaoesService
+: 
+{}
+editaisLicitacoesService
+: 
+{}
+errorSolr
+: 
+null
+familia
+: 
+null
+filtro
+: 
+{andamento: null, artigo: null, campoPesquisa_1: "", campoPesquisa_2: "", campoPesquisa_3: "",…}
+filtroDtPublicacao
+: 
+""
+filtroLicitacao
+: 
+""
+filtroModalidade
+: 
+""
+filtroObjeto
+: 
+""
+filtroStatus
+: 
+""
+filtroUnidade
+: 
+""
+formaLicitacao
+: 
+null
+idAndamento
+: 
+2
+idArtigo
+: 
+null
+idAta
+: 
+null
+idClasse
+: 
+null
+idFamilia
+: 
+null
+idFormaLicitacao
+: 
+null
+idLic
+: 
+null
+idModalidade
+: 
+null
+idStatus
+: 
+null
+idTermo
+: 
+null
+idTipoRamoAtividade
+: 
+null
+inSustentavel
+: 
+false
+inputStream
+: 
+null
+item
+: 
+""
+itens
+: 
+null
+length
+: 
+6
+lengthAtas
+: 
+0
+lengthAvisos
+: 
+0
+licitacao
+: 
+null
+listaArtigos
+: 
+null
+listaAtas
+: 
+null
+listaAvisos
+: 
+null
+listaChat
+: 
+null
+listaClasses
+: 
+null
+listaEditaisLicitacoes
+: 
+null
+listaFamilias
+: 
+null
+listaModalidadesLicitacoes
+: 
+null
+listaStatus
+: 
+null
+listaTipoClassificacao
+: 
+null
+listaTipoRamoAtividade
+: 
+null
+listaTipos
+: 
+null
+listaUnidades
+: 
+null
+lotes
+: 
+null
+modalidade
+: 
+null
+mpe
+: 
+""
+nuLic
+: 
+""
+objetoLic
+: 
+""
+objetoLicNorm
+: 
+null
+orderColumn
+: 
+0
+orderDirection
+: 
+"asc"
+pathAta
+: 
+null
+planta
+: 
+null
+pregaoEletronicoDTO
+: 
+null
+processoLic
+: 
+""
+ramoAtividade
+: 
+null
+ramoAtividadeService
+: 
+{}
+recordsFiltered
+: 
+468
+recordsTotal
+: 
+468
+srp
+: 
+""
+start
+: 
+0
+status
+: 
+null
+termoPesquisaItem_1
+: 
+""
+termoPesquisaItem_2
+: 
+""
+termoPesquisaItem_3
+: 
+""
+tipoPesquisa_1
+: 
+""
+tipoPesquisa_2
+: 
+""
+tipoPesquisa_3
+: 
+""
+tipoRamoAtividade
+: 
+null
+tituloAta
+: 
+null
+tokenRecaptcha
+: 
+null
+totalEditaisLicitacao
+: 
+468
+unidade
+: 
+null
+urlAnexo
+: 
+null
+urlOrigem
+: 
+null
+
+{
+    "andamento": null,
+    "arquivosAnexos": null,
+    "arquivosAvulsos": null,
+    "arquivosEdital": null,
+    "arrayDataTableAvisos": null,
+    "artigo": null,
+    "campoPesquisa_1": "",
+    "campoPesquisa_2": "",
+    "campoPesquisa_3": "",
+    "centroCusto": null,
+    "centroCustoService": {},
+    "classe": null,
+    "condicao_2": "",
+    "condicao_3": "",
+    "contentDisposition": null,
+    "contentType": null,
+    "countResultadosEncontrados": 0,
+    "data": [
+        [
+            "CC 001\/21",
+            "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+            "SEI-100001\/000892\/2021",
+            "MODELAGEM SPTA",
+            "CONCORRÊNCIA",
+            "21\/10\/2021",
+            "CREDENCIAMENTO",
+            "",
+            "",
+            "true",
+            "25159"
+        ],
+        [
+            "CC 001\/23",
+            "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+            "SEI-100001\/001406\/2023",
+            "ESTUDO DE VIABILIDADE (EVTJEA)",
+            "CONCORRÊNCIA",
+            "23\/10\/2023",
+            "AGUARDANDO ABERTURA DE SESSÃO",
+            "",
+            "",
+            "true",
+            "30654"
+        ],
+        [
+            "CC 002\/23",
+            "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+            "SEI-330022\/001191\/2022",
+            "DER-Obr Imp RJ-204 Ent RJ228 ent BR101",
+            "CONCORRÊNCIA",
+            "09\/02\/2023",
+            "EXAME DE CONFORMIDADE",
+            "",
+            "",
+            "true",
+            "28688"
+        ],
+        [
+            "CC 002\/23",
+            "ITERJ - INSTIT DE TERRAS E CARTOGRAFIA DO EST DO RJ",
+            "SEI-330020\/000675A\/2023, SEI-330020\/000675B\/2023",
+            "SRP - Asfalto",
+            "CONCORRÊNCIA",
+            "02\/08\/2023",
+            "HABILITAÇÃO DOS FORNECEDORES",
+            "",
+            "",
+            "true",
+            "29915"
+        ],
+        [
+            "CC 002\/23",
+            "RIOTRILHOS - COMP DE TRANSP SOBRE TRILHOS DO EST DO RJ",
+            "SEI-100002\/000990\/2\/2023",
+            "Permissão de Uso - Área Remanescente 501",
+            "CONCORRÊNCIA",
+            "12\/12\/2023",
+            "AGUARDANDO ABERTURA DE SESSÃO",
+            "",
+            "",
+            "true",
+            "31013"
+        ],
+        [
+            "CC 002\/23",
+            "FAETEC - CCF - FUND DE APOIO À ESCOLA TÉCNICA DO EST DO RJ",
+            "SEI-260005\/009942\/2023",
+            "Obra de construção da Unidade Bangu no C",
+            "CONCORRÊNCIA",
+            "15\/03\/2024",
+            "CREDENCIAMENTO",
+            "",
+            "",
+            "true",
+            "31196"
+        ]
+    ],
+    "dataUltimaAtualizacaoSolr": null,
+    "dtAbertSessao": null,
+    "dtFimHomol": null,
+    "dtFimProp": null,
+    "dtFimPublic": null,
+    "dtIniHomol": null,
+    "dtIniProp": null,
+    "dtIniPublic": null,
+    "editaisEnconsolr": null,
+    "editaisLicitacaoesService": {},
+    "editaisLicitacoesService": {},
+    "errorSolr": null,
+    "familia": null,
+    "filtro": {
+        "andamento": null,
+        "artigo": null,
+        "campoPesquisa_1": "",
+        "campoPesquisa_2": "",
+        "campoPesquisa_3": "",
+        "centroCusto": null,
+        "classe": null,
+        "condicao_2": "",
+        "condicao_3": "",
+        "dtAbertSessao": null,
+        "dtFimHomol": null,
+        "dtFimProp": null,
+        "dtFimPublic": null,
+        "dtIniHomol": null,
+        "dtIniProp": null,
+        "dtIniPublic": null,
+        "dtPublicacaoLicitacao": null,
+        "familia": null,
+        "filtroDtPublicacao": "",
+        "filtroLicitacao": "",
+        "filtroModalidade": "",
+        "filtroObjeto": "",
+        "filtroProcesso": "",
+        "filtroStatus": "",
+        "filtroUnidade": "",
+        "filtroUrlPncp": "",
+        "filtroValorHomolog": "",
+        "formaLicitacao": null,
+        "idAndamento": 2,
+        "idArtigo": null,
+        "idAta": null,
+        "idClasse": null,
+        "idFamilia": null,
+        "idFormaLicitacao": null,
+        "idLic": null,
+        "idModalidade": null,
+        "idModoDisputa": null,
+        "idStatus": null,
+        "idTipoRamoAtividade": null,
+        "inSustentavel": false,
+        "item": "",
+        "length": 6,
+        "lista": [
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 79,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2021-12-09T10:31:00",
+                "dtAbertSessaostr": "09\/12\/2021 10:31:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2021-12-09T10:30:00",
+                "dtFimPropstr": "09\/12\/2021 10:30:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2021-10-21T12:00:00",
+                "dtIniPropstr": "21\/10\/2021 14:00:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2021-10-21T16:56:26",
+                "dtPublicacaoLicitacao": "21\/10\/2021 16:56",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "[21]",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "[657]",
+                "idFamilia": null,
+                "idFamilias": "[39]",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 25159,
+                "idModalidade": 63,
+                "idStatus": 23,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 3,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "[2]",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-100001\/000892\/2021"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 001\/21",
+                "objetoLic": "MODELAGEM SPTA",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-100001\/000892\/2021",
+                "srp": "Não",
+                "status": "CREDENCIAMENTO",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "TÉCNICA E PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+                "urlPncp": null,
+                "vlHomolog": null
+            },
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 79,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2023-12-19T10:05:00",
+                "dtAbertSessaostr": "19\/12\/2023 10:05:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2023-12-19T10:00:00",
+                "dtFimPropstr": "19\/12\/2023 10:00:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2023-10-23T12:00:00",
+                "dtIniPropstr": "23\/10\/2023 15:52:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2023-10-23T18:43:28",
+                "dtPublicacaoLicitacao": "23\/10\/2023 18:43",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "[12]",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "[215]",
+                "idFamilia": null,
+                "idFamilias": "[51]",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 30654,
+                "idModalidade": 63,
+                "idStatus": 99,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 3,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "[2]",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-100001\/001406\/2023"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 001\/23",
+                "objetoLic": "ESTUDO DE VIABILIDADE (EVTJEA)",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-100001\/001406\/2023",
+                "srp": "Não",
+                "status": "AGUARDANDO ABERTURA DE SESSÃO",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "TÉCNICA E PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+                "urlPncp": null,
+                "vlHomolog": null
+            },
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 3,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2023-03-01T15:00:00",
+                "dtAbertSessaostr": "01\/03\/2023 15:00:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2023-03-01T14:59:00",
+                "dtFimPropstr": "01\/03\/2023 14:59:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2023-02-09T00:00:00",
+                "dtIniPropstr": "09\/02\/2023 11:15:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2023-01-25T16:12:20",
+                "dtPublicacaoLicitacao": "25\/01\/2023 16:12",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "null",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "null",
+                "idFamilia": null,
+                "idFamilias": "null",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 28688,
+                "idModalidade": 63,
+                "idStatus": 4,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 1,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "null",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-330022\/001191\/2022"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 002\/23",
+                "objetoLic": "DER-Obr Imp RJ-204 Ent RJ228 ent BR101",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-330022\/001191\/2022",
+                "srp": "Não",
+                "status": "EXAME DE CONFORMIDADE",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "MENOR PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+                "urlPncp": null,
+                "vlHomolog": null
+            },
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 35,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2023-09-01T16:00:00",
+                "dtAbertSessaostr": "01\/09\/2023 16:00:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2023-09-01T15:50:00",
+                "dtFimPropstr": "01\/09\/2023 15:50:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2023-08-02T12:00:00",
+                "dtIniPropstr": "02\/08\/2023 15:00:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2023-07-21T20:22:03",
+                "dtPublicacaoLicitacao": "21\/07\/2023 20:22",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "[10, 10, 10, 10, 10, 10]",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "[326, 326, 326, 326, 326, 326]",
+                "idFamilia": null,
+                "idFamilias": "[49, 49, 49, 49, 49, 49]",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 29915,
+                "idModalidade": 63,
+                "idStatus": 25,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 1,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "[2, 2, 2, 2, 2, 2]",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-330020\/000675A\/2023, SEI-330020\/000675B\/2023"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 002\/23",
+                "objetoLic": "SRP - Asfalto",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-330020\/000675A\/2023, SEI-330020\/000675B\/2023",
+                "srp": "Sim",
+                "status": "HABILITAÇÃO DOS FORNECEDORES",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "MENOR PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "ITERJ - INSTIT DE TERRAS E CARTOGRAFIA DO EST DO RJ",
+                "urlPncp": null,
+                "vlHomolog": null
+            },
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 83,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2024-01-17T10:00:00",
+                "dtAbertSessaostr": "17\/01\/2024 10:00:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2024-01-17T09:30:00",
+                "dtFimPropstr": "17\/01\/2024 09:30:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2023-12-12T12:00:00",
+                "dtIniPropstr": "12\/12\/2023 16:30:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2023-12-12T19:24:26",
+                "dtPublicacaoLicitacao": "12\/12\/2023 19:24",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "[2]",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "[794]",
+                "idFamilia": null,
+                "idFamilias": "[47]",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 31013,
+                "idModalidade": 63,
+                "idStatus": 99,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 1,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "[2]",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-100002\/000990\/2\/2023"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 002\/23",
+                "objetoLic": "Permissão de Uso - Área Remanescente 501",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-100002\/000990\/2\/2023",
+                "srp": "Não",
+                "status": "AGUARDANDO ABERTURA DE SESSÃO",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "MENOR PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "RIOTRILHOS - COMP DE TRANSP SOBRE TRILHOS DO EST DO RJ",
+                "urlPncp": null,
+                "vlHomolog": null
+            },
+            {
+                "andamento": null,
+                "anexo": null,
+                "artigo": null,
+                "centroCusto": 97,
+                "classe": null,
+                "descricao": null,
+                "dtAbertSessao": "2024-04-16T14:00:00",
+                "dtAbertSessaostr": "16\/04\/2024 14:00:00",
+                "dtAviso": null,
+                "dtFimDisputa": null,
+                "dtFimProp": "2024-04-16T13:59:00",
+                "dtFimPropstr": "16\/04\/2024 13:59:00",
+                "dtHomologacao": null,
+                "dtIniProp": "2024-03-15T00:00:00",
+                "dtIniPropstr": "15\/03\/2024 08:00:00",
+                "dtMensagem": null,
+                "dtPublicacaoLicita": "2023-12-28T18:36:01",
+                "dtPublicacaoLicitacao": "28\/12\/2023 18:36",
+                "emissor": null,
+                "familia": null,
+                "funcao": null,
+                "idAndamento": null,
+                "idAnexo": null,
+                "idArtigo": null,
+                "idArtigos": "null",
+                "idAta": null,
+                "idAviso": null,
+                "idClasse": null,
+                "idClasses": "null",
+                "idFamilia": null,
+                "idFamilias": "null",
+                "idForn": null,
+                "idGlobal": null,
+                "idLic": 31196,
+                "idModalidade": 63,
+                "idStatus": 23,
+                "idStatusAnt": null,
+                "idStatusAnterior": null,
+                "idTermo": null,
+                "idTipo": 1,
+                "idTipoRamoAtividade": null,
+                "idTiposRamoAtividade": "null",
+                "idUsuario": null,
+                "inSustentavel": false,
+                "item": null,
+                "listProcessos": [
+                    "SEI-260005\/009942\/2023"
+                ],
+                "mensagPregoeiro": null,
+                "mensagSistema": null,
+                "mensagem": "",
+                "modalidade": "CONCORRÊNCIA",
+                "mpe": "Não",
+                "nomeAnexo": null,
+                "nomeForn": null,
+                "nomeUsuario": null,
+                "nuLic": "CC 002\/23",
+                "objetoLic": "Obra de construção da Unidade Bangu no C",
+                "objetoLicNorm": null,
+                "pathAnexo": null,
+                "pathAta": null,
+                "planta": null,
+                "pregao": null,
+                "processo": "SEI-260005\/009942\/2023",
+                "srp": "Não",
+                "status": "CREDENCIAMENTO",
+                "statusAnt": null,
+                "temAnexos": true,
+                "tipo": "MENOR PREÇO",
+                "tipoAnexo": null,
+                "tipoRamoAtividade": null,
+                "titulo": null,
+                "tituloAta": null,
+                "total": null,
+                "tpDisputaLeilao": null,
+                "tpDisputaLeilaoDescricao": null,
+                "unidade": "FAETEC - CCF - FUND DE APOIO À ESCOLA TÉCNICA DO EST DO RJ",
+                "urlPncp": null,
+                "vlHomolog": null
+            }
+        ],
+        "modalidade": null,
+        "mpe": "",
+        "nuLic": "",
+        "objetoLic": "",
+        "objetoLicNorm": null,
+        "orderColumn": 0,
+        "orderDirection": "asc",
+        "planta": null,
+        "processoLic": "",
+        "sdf": null,
+        "sdf2": null,
+        "sdfUTC": null,
+        "srp": "",
+        "start": 0,
+        "status": null,
+        "temAnexos": null,
+        "termoPesquisaItem_1": "",
+        "termoPesquisaItem_2": "",
+        "termoPesquisaItem_3": "",
+        "tipoPesquisa_1": "",
+        "tipoPesquisa_2": "",
+        "tipoPesquisa_3": "",
+        "tipoRamoAtividade": null,
+        "tipoRelatorio": null,
+        "total": 468,
+        "totalRegistro": 0,
+        "unidade": null,
+        "urlPncp": null,
+        "vlHomolog": null
+    },
+    "filtroDtPublicacao": "",
+    "filtroLicitacao": "",
+    "filtroModalidade": "",
+    "filtroObjeto": "",
+    "filtroStatus": "",
+    "filtroUnidade": "",
+    "formaLicitacao": null,
+    "idAndamento": 2,
+    "idArtigo": null,
+    "idAta": null,
+    "idClasse": null,
+    "idFamilia": null,
+    "idFormaLicitacao": null,
+    "idLic": null,
+    "idModalidade": null,
+    "idStatus": null,
+    "idTermo": null,
+    "idTipoRamoAtividade": null,
+    "inSustentavel": false,
+    "inputStream": null,
+    "item": "",
+    "itens": null,
+    "length": 6,
+    "lengthAtas": 0,
+    "lengthAvisos": 0,
+    "licitacao": null,
+    "listaArtigos": null,
+    "listaAtas": null,
+    "listaAvisos": null,
+    "listaChat": null,
+    "listaClasses": null,
+    "listaEditaisLicitacoes": null,
+    "listaFamilias": null,
+    "listaModalidadesLicitacoes": null,
+    "listaStatus": null,
+    "listaTipoClassificacao": null,
+    "listaTipoRamoAtividade": null,
+    "listaTipos": null,
+    "listaUnidades": null,
+    "lotes": null,
+    "modalidade": null,
+    "mpe": "",
+    "nuLic": "",
+    "objetoLic": "",
+    "objetoLicNorm": null,
+    "orderColumn": 0,
+    "orderDirection": "asc",
+    "pathAta": null,
+    "planta": null,
+    "pregaoEletronicoDTO": null,
+    "processoLic": "",
+    "ramoAtividade": null,
+    "ramoAtividadeService": {},
+    "recordsFiltered": 468,
+    "recordsTotal": 468,
+    "srp": "",
+    "start": 0,
+    "status": null,
+    "termoPesquisaItem_1": "",
+    "termoPesquisaItem_2": "",
+    "termoPesquisaItem_3": "",
+    "tipoPesquisa_1": "",
+    "tipoPesquisa_2": "",
+    "tipoPesquisa_3": "",
+    "tipoRamoAtividade": null,
+    "tituloAta": null,
+    "tokenRecaptcha": null,
+    "totalEditaisLicitacao": 468,
+    "unidade": null,
+    "urlAnexo": null,
+    "urlOrigem": null
+}
+
+send	@	datatables.js:9676
+ajax	@	datatables.js:9227
+_fnBuildAjax	@	datatables.js:12954
+_fnAjaxUpdate	@	datatables.js:12974
+_fnDraw	@	datatables.js:12437
+_fnReDraw	@	datatables.js:12556
+_fnInitialise	@	datatables.js:13752
+(anônimo)	@	datatables.js:16961
+each	@	datatables.js:396
+each	@	datatables.js:148
+DataTable	@	datatables.js:16491
+(anônimo)	@	datatables.js:25333
+(anônimo)	@	listar.action?origemIndex=true:624
+fire	@	datatables.js:3160
+fireWith	@	datatables.js:3272
+ready	@	datatables.js:3484
+completed	@	datatables.js:3515
+
+
+URL da Solicitação
+https://www.google-analytics.com/g/collect?v=2&tid=G-869FDER0C1&gtm=45je6930v9104807067za20g&_p=1788967285391&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=EAAIAAQ&cid=2017873155.1788959188&frm=0&ir=1&ngs=1&pscdl=noapi&rcb=11&sr=1920x1080&uaa=x86&uab=64&uafvl=Chromium%3B152.0.7977.83%7CNot%253FA_Brand%3B24.0.0.0%7CMicrosoft%2520Edge%3B152.0.4191.66&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=pt-br&_s=1&tag_exp=115616985~115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153&sid=1788959188&sct=1&seg=1&dl=https%3A%2F%2Fwww.compras.rj.gov.br%2FEditaisLicitacoes%2Flistar.action%3ForigemIndex%3Dtrue&dr=https%3A%2F%2Fwww.compras.rj.gov.br%2F&dt=Listar%20Editais%20Licita%C3%A7%C3%B5es&en=page_view&tfd=5380
+Método de Solicitação
+POST
+Código de Status
+204 No Content
+Endereço Remoto
+[2800:3f0:4001:801::200e]:443
+Política de referenciador
+strict-origin-when-cross-origin
+
+
+v
+2
+tid
+G-869FDER0C1
+gtm
+45je6930v9104807067za20g
+_p
+1788967285391
+gcd
+13l3l3l3l1l1
+npa
+0
+dma
+0
+_eu
+EAAIAAQ
+cid
+2017873155.1788959188
+frm
+0
+ir
+1
+ngs
+1
+pscdl
+noapi
+rcb
+11
+sr
+1920x1080
+uaa
+x86
+uab
+64
+uafvl
+Chromium;152.0.7977.83|Not%3FA_Brand;24.0.0.0|Microsoft%20Edge;152.0.4191.66
+uam
+uamb
+0
+uap
+Windows
+uapv
+19.0.0
+uaw
+0
+ul
+pt-br
+_s
+1
+tag_exp
+115616985~115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153
+sid
+1788959188
+sct
+1
+seg
+1
+dl
+https://www.compras.rj.gov.br/EditaisLicitacoes/listar.action?origemIndex=true
+dr
+https://www.compras.rj.gov.br/
+dt
+Listar Editais Licitações
+en
+page_view
+tfd
+5380
+
+
+
+RESULTADO ESEPRADO 
+
+
+[
+  {
+    "Identificador\n\n": "",
+    "Unidade\n\n": "",
+    "Processo\n\n": "",
+    "Objeto\n\n": "",
+    "Modalidade\n\n": "",
+    "Data de Publicação\n\n": "",
+    "Status\n\n": "",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 001/21",
+    "Unidade\n\n": "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+    "Processo\n\n": "SEI-100001/000892/2021",
+    "Objeto\n\n": "MODELAGEM SPTA",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "21/10/2021",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 001/23",
+    "Unidade\n\n": "SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES",
+    "Processo\n\n": "SEI-100001/001406/2023",
+    "Objeto\n\n": "ESTUDO DE VIABILIDADE (EVTJEA)",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "23/10/2023",
+    "Status\n\n": "AGUARDANDO ABERTURA DE SESSÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 002/23",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330022/001191/2022",
+    "Objeto\n\n": "DER-Obr Imp RJ-204 Ent RJ228 ent BR101",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "09/02/2023",
+    "Status\n\n": "EXAME DE CONFORMIDADE",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 002/23",
+    "Unidade\n\n": "ITERJ - INSTIT DE TERRAS E CARTOGRAFIA DO EST DO RJ",
+    "Processo\n\n": "SEI-330020/000675A/2023, SEI-330020/000675B/2023",
+    "Objeto\n\n": "SRP - Asfalto",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "02/08/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 002/23",
+    "Unidade\n\n": "RIOTRILHOS - COMP DE TRANSP SOBRE TRILHOS DO EST DO RJ",
+    "Processo\n\n": "SEI-100002/000990/2/2023",
+    "Objeto\n\n": "Permissão de Uso - Área Remanescente 501",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "12/12/2023",
+    "Status\n\n": "AGUARDANDO ABERTURA DE SESSÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 002/23",
+    "Unidade\n\n": "FAETEC - CCF - FUND DE APOIO À ESCOLA TÉCNICA DO EST DO RJ",
+    "Processo\n\n": "SEI-260005/009942/2023",
+    "Objeto\n\n": "Obra de construção da Unidade Bangu no C",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "15/03/2024",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 003/22",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-160002/000233/2021",
+    "Objeto\n\n": "DER-Obras Pav Dren Con Sin RJ 134",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "07/10/2022",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 004/23",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-160002/000591/2022",
+    "Objeto\n\n": "DER-Obras Pav Proj Exec trecho 1 RJ104",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "07/02/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 004/23",
+    "Unidade\n\n": "UENF - UNIV EST DO NORTE FLUMINENSE DARCY RIB",
+    "Processo\n\n": "SEI-260009/002732/2022",
+    "Objeto\n\n": "Obras Complementação dos Prédios P6 e P7",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "25/07/2023",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 008/23",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "160002/000003/2023",
+    "Objeto\n\n": "DER - OBRAS DE CONT ENCOSTAS NA RJ-106",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "29/06/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 009/19",
+    "Unidade\n\n": "INEA - INSTITUTO ESTADUAL DO AMBIENTE",
+    "Processo\n\n": "E-07/002.926/2019",
+    "Objeto\n\n": "Manut Corpos Hídricos Baía de Guanabara",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "08/01/2021",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 01/23",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-330018/001149/2022",
+    "Objeto\n\n": "CONSTR DE PONTE,DRENAGEM,PAVIMENTAÇÃO",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "14/08/2023",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 010/23",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330022/002425/2022",
+    "Objeto\n\n": "DER-Obras RJ-240 acesso ao Porto do Açu",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "21/07/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 010/23",
+    "Unidade\n\n": "INEA - INSTITUTO ESTADUAL DO AMBIENTE",
+    "Processo\n\n": "SEI-070002/017212/2023",
+    "Objeto\n\n": "CÓRREGO DO BIQUINHO - VALENÇA",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "05/12/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 011/22",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-160002/000074/2022",
+    "Objeto\n\n": "DER-Obras Recup Pav Recap Remend RJ-127",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "21/07/2022",
+    "Status\n\n": "CLASSIFICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 017/23",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330032/003519/2/2023",
+    "Objeto\n\n": "DER-Obras Rec. Passarela RJ-104 Km 21.3",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "21/07/2023",
+    "Status\n\n": "EXAME DE CONFORMIDADE",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 038/22",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330022/001350/2022",
+    "Objeto\n\n": "DER-Obra Implan Terrap RJ162",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "07/11/2022",
+    "Status\n\n": "HOMOLOGADO",
+    "Valor Homologado\n\n": "R$ 50294166.04",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 13/23",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-460001/000417/2023",
+    "Objeto\n\n": "RECUPERAÇÃO DO CANAL DAS VELHAS CAXIAS",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "11/10/2023",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 14/23",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-460001/000418/2023",
+    "Objeto\n\n": "MACRODRENAGEM DO CANAL GASPAR VENTURA",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "08/12/2023",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC 33/22",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-330018/001038/2021",
+    "Objeto\n\n": "SISTEMA VIÁRIO 4 PONTES",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "22/11/2022",
+    "Status\n\n": "EXAME DE CONFORMIDADE",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC-001/23",
+    "Unidade\n\n": "FUNESBOM - FUNDO ESPECIAL DO CORPO DE BOMBEIROS",
+    "Processo\n\n": "SEI-270042/001003/2021",
+    "Objeto\n\n": "CBMERJ - Projeto do Novo Hospital",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "15/03/2024",
+    "Status\n\n": "EXAME DE CONFORMIDADE",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC-002/23",
+    "Unidade\n\n": "FUNESBOM - FUNDO ESPECIAL DO CORPO DE BOMBEIROS",
+    "Processo\n\n": "SEI-270122/000045/2021",
+    "Objeto\n\n": "CBMERJ - Reforma do Complexo CEICS",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "27/03/2024",
+    "Status\n\n": "CREDENCIAMENTO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CC0001/22",
+    "Unidade\n\n": "SECC - SECRETARIA DE ESTADO DA CASA CIVIL",
+    "Processo\n\n": "SEI-150001//006109/2021",
+    "Objeto\n\n": "SERVIÇO POUPA TEMPO",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "16/01/2023",
+    "Status\n\n": "EXAME DE CONFORMIDADE",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 001/26",
+    "Unidade\n\n": "UENF - UNIV EST DO NORTE FLUMINENSE DARCY RIB",
+    "Processo\n\n": "SEI-260002/001353/2026",
+    "Objeto\n\n": "Reforma e Adequação do Galpão",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "13/08/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3349",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 002/24",
+    "Unidade\n\n": "UENF - UNIV EST DO NORTE FLUMINENSE DARCY RIB",
+    "Processo\n\n": "SEI-260002/002923/2024",
+    "Objeto\n\n": "Projeto Executivo do Solar do Colégio",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "04/12/2024",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/8060",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 002/26",
+    "Unidade\n\n": "SEAS - SEC DE EST DO AMBIENT E SUSTENTABILIDADE",
+    "Processo\n\n": "SEI-070001/002628/2024",
+    "Objeto\n\n": "Elaboração de Projeto Executivo",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "25/02/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/746",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 002/26",
+    "Unidade\n\n": "FUNARJ - FUND ANITA MANTUANO DE ARTES DO EST DO RJ",
+    "Processo\n\n": "SEI-180002/002703/2025",
+    "Objeto\n\n": "Projeto Teatro Barra Mansa",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "20/03/2026",
+    "Status\n\n": "AVALIAÇÃO RECURSAL",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1268",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 005/26",
+    "Unidade\n\n": "FUNARJ - FUND ANITA MANTUANO DE ARTES DO EST DO RJ",
+    "Processo\n\n": "SEI-180002/003611/2025",
+    "Objeto\n\n": "Incêndio e Pânico do TAA",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "29/07/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2341",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 08/25",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-330001/001503/2025",
+    "Objeto\n\n": "DEMOLIÇÃO E CONSTRUÇÃO DE PONTE SÃO JOSÉ",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "03/12/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/6233",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE 09//25",
+    "Unidade\n\n": "SEIOP - SECRETARIA DE ESTADO DE INFRAESTRUTURA E OBRAS PUBLICAS - SEIOP",
+    "Processo\n\n": "SEI-330001/001422/2025",
+    "Objeto\n\n": "CONTENÇÃO DE ENCOSTA CANTAGALO",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "08/12/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/6320",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE0003/26",
+    "Unidade\n\n": "SEAS - SEC DE EST DO AMBIENT E SUSTENTABILIDADE",
+    "Processo\n\n": "SEI-070001/002662/2024",
+    "Objeto\n\n": "Esgotamento Sanitário Sub-BaciaL2 Irajá",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "24/02/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/6062",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CE001/25",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260008/011738/2022",
+    "Objeto\n\n": "UERJ-SERV ENGENHARIA AMB CENTRAL HUPE",
+    "Modalidade\n\n": "CONCORRÊNCIA ELETRÔNICA - 14.133/2021",
+    "Data de Publicação\n\n": "24/10/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/5541",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "CN031//22",
+    "Unidade\n\n": "SEINFRA - SECRETARIA DE ESTADO DE INFRA E OBRAS",
+    "Processo\n\n": "SEI-170026/003834/1/2022",
+    "Objeto\n\n": "PROTEÇÃO SUP TALUDES MUN.CARMO E LAJE M",
+    "Modalidade\n\n": "CONCORRÊNCIA",
+    "Data de Publicação\n\n": "31/08/2022",
+    "Status\n\n": "HABILITAÇÃO DOS FORNECEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 001/24",
+    "Unidade\n\n": "FSCABRINI - FUNDAÇÃO SANTA CABRINI",
+    "Processo\n\n": "SEI-210002/002016/2024",
+    "Objeto\n\n": "Aq. de Serviço e Material Permanente",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "03/10/2024",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/6700",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 001/25",
+    "Unidade\n\n": "SEGOV - SECRETARIA DE ESTADO DE GOVERNO",
+    "Processo\n\n": "SEI-420001/000566/2025",
+    "Objeto\n\n": "Contratação empre. de serviços gráficos",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "20/02/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/880",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 001/26",
+    "Unidade\n\n": "AGENERSA - AG REGUL ENERGIA E SANEAMENTO DO EST RJ",
+    "Processo\n\n": "SEI-480002/009897/2025",
+    "Objeto\n\n": "Material/Mobiliário (Espaço Convivência)",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "24/02/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/717",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 002/24",
+    "Unidade\n\n": "SEDCON - SECRETARIA DE ESTADO DE DEFESA DO CONSUMIDOR",
+    "Processo\n\n": "SEI-240001/000547/2024",
+    "Objeto\n\n": "Prestação de Serviço de Coffee Break",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "17/12/2024",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/8421",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 002/26",
+    "Unidade\n\n": "FIA - FUNDAÇÃO PARA A INFÂNCIA E ADOLESCÊNCIA",
+    "Processo\n\n": "SEI-310002/000647a/2025",
+    "Objeto\n\n": "AQUISIÇÃO DE MATERIAIS HOSPITALARES",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/02/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/741",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 002/26",
+    "Unidade\n\n": "AGENERSA - AG REGUL ENERGIA E SANEAMENTO DO EST RJ",
+    "Processo\n\n": "SEI-480002/004181/2026",
+    "Objeto\n\n": "Smartphones à prova de explosão",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "21/08/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3553",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 002/26 R1",
+    "Unidade\n\n": "RIOPREVIDÊNCIA - FUNDO UNICO DE PREVIDENCIA SOCIAL DO ESTADO DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-040014/049391/2025",
+    "Objeto\n\n": "Aquisição de equipamento de áudio",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "07/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3173",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 003/24",
+    "Unidade\n\n": "SEDCON - SECRETARIA DE ESTADO DE DEFESA DO CONSUMIDOR",
+    "Processo\n\n": "SEI-240001/000548/2/2024",
+    "Objeto\n\n": "Prest. Serviço de Coffee Break em Búzios",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "30/12/2024",
+    "Status\n\n": "ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/8675",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 003/26",
+    "Unidade\n\n": "SEPPENRJ - SECRETARIA DE ESTADO DE POLICIA PENAL",
+    "Processo\n\n": "SEI-210001/008687/2026",
+    "Objeto\n\n": "DEMOLIÇÃO TOTAL DO PASSADIÇO SEPPEN-FS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/04/2026",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1684",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 003/26",
+    "Unidade\n\n": "SEFAZ - SECRETARIA DE ESTADO DE FAZENDA",
+    "Processo\n\n": "SEI-040006/019409/2025",
+    "Objeto\n\n": "Aquisição de Camisas",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "04/05/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1940",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 004/25",
+    "Unidade\n\n": "DETRAN - DEPARTAMENTO DE TRÂNSITO DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-150016/084201/2025",
+    "Objeto\n\n": "DETRAN/RJ - CONFEC. CORDÕES DE CRACHÁS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "09/07/2025",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/3238",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 004/26",
+    "Unidade\n\n": "SEPPENRJ - SECRETARIA DE ESTADO DE POLICIA PENAL",
+    "Processo\n\n": "SEI-210001/086207/2024",
+    "Objeto\n\n": "DEMOLIÇÃO PARCIAL DO PASSADIÇO SEPPEN-IS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/04/2026",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1685",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 004/26",
+    "Unidade\n\n": "SEFAZ - SECRETARIA DE ESTADO DE FAZENDA",
+    "Processo\n\n": "SEI-040002/000607/2026",
+    "Objeto\n\n": "Aquisição de 9 motores e 9 hélices",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/08/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3356",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 006/26",
+    "Unidade\n\n": "DETRAN - DEPARTAMENTO DE TRÂNSITO DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-150016/033196/2026",
+    "Objeto\n\n": "DETRAN/RJ - CONF. DE 15.000 FORMULARIOS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "20/07/2026",
+    "Status\n\n": "AVALIAÇÃO RECURSAL",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2967",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 008/26",
+    "Unidade\n\n": "GSI - GABINETE DE SEGURANÇA INSTITUCIONAL DO GOVERNO DO ESTADO DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-390002/001105/2026",
+    "Objeto\n\n": "Controle de acesso",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "21/08/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3531",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 024/26",
+    "Unidade\n\n": "SEPOL - SECRETARIA DE ESTADO DE POLICIA CIVIL",
+    "Processo\n\n": "SEI-360018/000510/2026",
+    "Objeto\n\n": "Aq de impressoras term e etiquetas",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3600",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 0240/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/008285/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE SUBSTÂNCIAS QUÍMICAS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "04/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3169",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 039/26 R1",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/002155/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE INSUMOS LABORATORIAIS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "28/07/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3073",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 05//25",
+    "Unidade\n\n": "SEEDUC - SECRETARIA DE ESTADO DE EDUCAÇÃO",
+    "Processo\n\n": "SEI-030001/083931/2025",
+    "Objeto\n\n": "CONTAINERES METÁLICOS PARA ARMAZENAMENTO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/11/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/5905",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 06/26",
+    "Unidade\n\n": "FUNPERJ - FUNDO ESPECIAL DA PROCURADORIA GERAL DO ERJ",
+    "Processo\n\n": "SEI-140001/062786/2026",
+    "Objeto\n\n": "FUNPERJ - Aquisição de garrafas térmicas",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/08/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3589",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 10/24",
+    "Unidade\n\n": "FUNPERJ - FUNDO ESPECIAL DA PROCURADORIA GERAL DO ERJ",
+    "Processo\n\n": "SEI-140001/050000/2024",
+    "Objeto\n\n": "Aquisição e instalação de Letreiro",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "02/12/2024",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/7735",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 153/25",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/028514/2025",
+    "Objeto\n\n": "AQUISIÇÃO DE MEDICAMENTOS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "11/03/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1056",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 2483/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/024541/2025",
+    "Objeto\n\n": "AQUISIÇÃO DE MARCADORES INSTRUMENTAIS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "10/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3271",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 3942/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/013165/2026",
+    "Objeto\n\n": "F. CONTÍNUO DE TESTE IMUNOCROMATOGRÁFICO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "06/08/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3233",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 4258/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/011548/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE FIO CIRÚRGICO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3603",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 4333/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/013169/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE MEDICAMENTOS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3604",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 4341/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/016068/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE MEDICAMENTOS E SANEANTE",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "07/08/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3263",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 4422/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "080002/015023/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE MEDICAMENTOS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "31/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3694",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD 720/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/002081/2026",
+    "Objeto\n\n": "AQUISIÇÃO DE MEDICAMENTOS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "11/03/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1061",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD MADEIRA DOC I",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/024600/2024",
+    "Objeto\n\n": "Aquisição de madeira",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/03/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/1396",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD MADEIRA DOC II",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/027301/2024",
+    "Objeto\n\n": "Aquisição de madeira",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/03/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/1395",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD MADEIRA DOC III",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/028135/2024",
+    "Objeto\n\n": "Aquisição de madeira",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/03/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/1375",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD Manutenção de Raio-X",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/037115/2025",
+    "Objeto\n\n": "Serviço de manutenção de raio-x",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/09/2025",
+    "Status\n\n": "HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/4848",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD Placa",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/017138/2024",
+    "Objeto\n\n": "Serviço de confecção de Placa",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "14/01/2025",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/162",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD SEI-080001/000782/2025",
+    "Unidade\n\n": "FES - FUNDO ESTADUAL DE SAÚDE",
+    "Processo\n\n": "SEI-080001/000782/2025",
+    "Objeto\n\n": "Impr. e confecção de material gráfico",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "04/06/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/2680",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD SEI-080001/021811/2024",
+    "Unidade\n\n": "FES - FUNDO ESTADUAL DE SAÚDE",
+    "Processo\n\n": "SEI-080001/021811/2024",
+    "Objeto\n\n": "Emergencial de Manut. Elevadores",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "10/10/2024",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/6861",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD SEI-080001/026270/2025",
+    "Unidade\n\n": "FES - FUNDO ESTADUAL DE SAÚDE",
+    "Processo\n\n": "SEI-080001/026270/2025",
+    "Objeto\n\n": "Emergencial Dorzolamida 20 mg/ml",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "11/09/2025",
+    "Status\n\n": "HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/4576",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD USINA DE ARARUAMA",
+    "Unidade\n\n": "DER-RJ - FUND DEP ESTRADAS DE RODAGEM DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-330002/009169/2026",
+    "Objeto\n\n": "SERV DE ENGENHARIA NA USINA DE ARARUAMA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/04/2026",
+    "Status\n\n": "AGUARDANDO ADJUDICAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1654",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD-006/26 R1",
+    "Unidade\n\n": "FUNESBOM - FUNDO ESPECIAL DO CORPO DE BOMBEIROS",
+    "Processo\n\n": "SEI-270006/007066/2026",
+    "Objeto\n\n": "CBMERJ -Sedação Inalatória c/oxd Nitros",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "17/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3433",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0001/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260007/011195/2023",
+    "Objeto\n\n": "UERJ-AQUIS DE GERADOR DE RADIOFREQUENCIA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "08/01/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/50",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0006/26 R1",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "sei 260006/042206/2025",
+    "Objeto\n\n": "UERJ-AQUIS EQUIPAMENTOS DE SEGURANÇA ETC",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "08/04/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1501",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0007/26 R1",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/023665/2025",
+    "Objeto\n\n": "UERJ-AQUIS DE SERVIDOR ALTO DESEMPENHO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/02/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/735",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0010/25",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/054738/2024",
+    "Objeto\n\n": "UERJ-AQUIS ECOBAG ETC",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "30/12/2024",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/8672",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0010/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/050857/2025",
+    "Objeto\n\n": "UERJ-AQUIS DE MOBILIÁRIO DE ESCRITÓRIO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "19/01/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/149",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0011/25",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/045829/2024",
+    "Objeto\n\n": "UERJ-AQUIS EQUIP. DE INFORMÁTICA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "30/12/2024",
+    "Status\n\n": "PRAZO RECURSAL",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/8673",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0013/24",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/013798/2024",
+    "Objeto\n\n": "UERJ-AQUIS CATETER ETC",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "16/10/2024",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/6969",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0016/25",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/018182/2024",
+    "Objeto\n\n": "UERJ-AQUIS PLACA BISTURI",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "28/01/2025",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/323",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0018/26",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/000304/2026",
+    "Objeto\n\n": "UERJ-AQUIS FIO GUIA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "23/02/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/697",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0020/25",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/043476/2024",
+    "Objeto\n\n": "UERJ-AQUISIÇÃO DE MOBILIÁRIO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "30/01/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/407",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0022/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/046435/2025",
+    "Objeto\n\n": "UERJ-AQUIS GELADEIRA DUPLEX FROST FREE",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "26/02/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/759",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0029/25 R1",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/000333/2025",
+    "Objeto\n\n": "UERJ-AQUIS BALÃO DE ANGIOPLASTIA VENOSA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "19/02/2025",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/785",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD002_/R2",
+    "Unidade\n\n": "FUNESPOM - FUNDO ESP. POLÍCIA MILITAR RJ",
+    "Processo\n\n": "SEI-350010/012865.1/2025",
+    "Objeto\n\n": "Calibração de aparelhos fonoaudiológicos",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "27/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3635",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0035/24",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/012904/2024",
+    "Objeto\n\n": "UERJ-AQUIS CATETER E INTRODUTOR",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "31/10/2024",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/7309",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0036/24",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/040011/2024",
+    "Objeto\n\n": "UERJ-AQUISIÇÃO DE TABLETS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "31/10/2024",
+    "Status\n\n": "DECLARAÇÃO DE VENCEDORES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/7310",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0043/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/064558/2025",
+    "Objeto\n\n": "UERJ-AQUIS SCANNER E SOFTWARE DE CAPTURA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "10/04/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/1598",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0048/24 R1",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/042954/2024",
+    "Objeto\n\n": "UERJ-AQUIS INSUMOS PARA LABORATÓRIO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "02/12/2024",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/7986",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0057/26 R1",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/004172/2026",
+    "Objeto\n\n": "UERJ-AQUIS DE ATADURAS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "29/07/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3068",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0069/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/020728/2026",
+    "Objeto\n\n": "UERJ-AQUIS DE FRIGOBAR 117 LITROS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "03/06/2026",
+    "Status\n\n": "HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2366",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0071/26 R1",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/012196/2026",
+    "Objeto\n\n": "UERJ-AQUIS SMART TV E SUPORTE DE FIXAÇÃO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "13/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3346",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0073/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/010993/2026",
+    "Objeto\n\n": "FS - AQUISIÇÃO DE REAGENTES",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "27/07/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3047",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0074/26",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/004181/2026",
+    "Objeto\n\n": "UERJ-AQUIS DE ATADURAS",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "10/06/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2440",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0079/26 R1",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/005984/2026",
+    "Objeto\n\n": "UERJ-AQUIS FIXADOR DE TUBO OROTRAQUEAL",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "20/08/2026",
+    "Status\n\n": "EM NEGOCIAÇÃO/HABILITAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3449",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0081/24",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/041321/2024",
+    "Objeto\n\n": "UERJ-AQUISIÇÃO DE MOBILIÁRIO",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "02/12/2024",
+    "Status\n\n": "PRAZO RECURSAL",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2024/7956",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0093/26 R1",
+    "Unidade\n\n": "UERJ - HOSPITAL UNIVERSITÁRIO - HOSPITAL UNIVERSITARIO PEDRO ERNESTO",
+    "Processo\n\n": "SEI-260007/006654/2026",
+    "Objeto\n\n": "UERJ-AQUIS DE ETIQUETA TERMICA ADESIVA",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "25/08/2026",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/3559",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0096/26",
+    "Unidade\n\n": "FSERJ - FUNDAÇÃO SAÚDE DO EST. DO RIO DE JANEIRO",
+    "Processo\n\n": "SEI-080002/011188/2026",
+    "Objeto\n\n": "FS - AQUISIÇÃO DE REAGENTES",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "21/07/2026",
+    "Status\n\n": "AGUARDANDO HOMOLOGAÇÃO",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2973",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD0099/26",
+    "Unidade\n\n": "UERJ - ADMINISTRACAO CENTRAL",
+    "Processo\n\n": "SEI-260006/022155/2026",
+    "Objeto\n\n": "UERJ-AQUISNOTEBOOK IMPRESSORA COMPUTADOR",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "21/08/2026",
+    "Status\n\n": "AVALIAÇÃO RECURSAL",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2026/2885",
+    "Anexo\n\n": ""
+  },
+  {
+    "Identificador\n\n": "PD01",
+    "Unidade\n\n": "SUDERJ - SUPERINTENDÊNCIA DE DESPORTOS DO ESTADO DO RJ",
+    "Processo\n\n": "SEI-300002/000062/2025",
+    "Objeto\n\n": "AQUISIÇÃO DE CAFÉ, AÇÚCAR E ADOÇANTE",
+    "Modalidade\n\n": "PROCESSO ELETRÔNICO DE DISPENSA - LEI 14.133/21",
+    "Data de Publicação\n\n": "31/03/2025",
+    "Status\n\n": "CLASSIFICAÇÃO DE LANCES",
+    "Valor Homologado\n\n": "",
+    "PNCP\n\n": "2025/1512",
+    "Anexo\n\n": ""
+  }
+]
+

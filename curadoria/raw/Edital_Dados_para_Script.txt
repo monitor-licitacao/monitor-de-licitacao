@@ -1,0 +1,3063 @@
+Busca de Documentos 
+
+https://www.compras.rj.gov.br/EditaisLicitacoes/detalhar.action?idLic=25159&orderColumn=0&orderDirection=asc&filtro.nuLic=&filtro.objetoLic=&filtro.processoLic=&filtro.idStatus=&filtro.idModalidade=&filtro.idModoDisputa=&filtro.centroCusto=&filtro.idFormaLicitacao=&filtro.dtIniProp=&filtro.dtFimProp=&filtro.dtFimHomol=&filtro.dtIniHomol=&filtro.dtFimPublic=&filtro.dtIniPublic=&filtro.dtIniPublic=&filtro.mpe=&filtro.srp=&filtro.idTipoRamoAtividade=&filtro.idFamilia=&filtro.idClasse=&filtro.idArtigo=&filtro.item=&filtro.inSustentavel=false&filtro.tipoPesquisa_1=&filtro.campoPesquisa_1=&filtro.termoPesquisaItem_1=&filtro.tipoPesquisa_2=&filtro.campoPesquisa_2=&filtro.termoPesquisaItem_2=&filtro.condicao_2=&filtro.tipoPesquisa_3=&filtro.campoPesquisa_3=&filtro.termoPesquisaItem_3=&filtro.condicao_3=&numRegistros=&idAndamento=2&filtro.start=0&filtro.length=100&filtro.orderColumn=&filtro.orderDirection=&filtro.tipoRelatorio=12&dataTable_length=100&filtro.filtroLicitacao=&filtro.filtroUnidade=&filtro.filtroProcesso=&filtro.filtroObjeto=&filtro.filtroModalidade=&filtro.filtroDtPublicacao=&filtro.filtroStatus=&filtro.filtroValorHomolog=&filtro.filtroUrlPncp=
+
+URL da Solicitação
+https://www.compras.rj.gov.br/EditaisLicitacoes/detalhar.action?idLic=25159&orderColumn=0&orderDirection=asc&filtro.nuLic=&filtro.objetoLic=&filtro.processoLic=&filtro.idStatus=&filtro.idModalidade=&filtro.idModoDisputa=&filtro.centroCusto=&filtro.idFormaLicitacao=&filtro.dtIniProp=&filtro.dtFimProp=&filtro.dtFimHomol=&filtro.dtIniHomol=&filtro.dtFimPublic=&filtro.dtIniPublic=&filtro.dtIniPublic=&filtro.mpe=&filtro.srp=&filtro.idTipoRamoAtividade=&filtro.idFamilia=&filtro.idClasse=&filtro.idArtigo=&filtro.item=&filtro.inSustentavel=false&filtro.tipoPesquisa_1=&filtro.campoPesquisa_1=&filtro.termoPesquisaItem_1=&filtro.tipoPesquisa_2=&filtro.campoPesquisa_2=&filtro.termoPesquisaItem_2=&filtro.condicao_2=&filtro.tipoPesquisa_3=&filtro.campoPesquisa_3=&filtro.termoPesquisaItem_3=&filtro.condicao_3=&numRegistros=&idAndamento=2&filtro.start=0&filtro.length=100&filtro.orderColumn=&filtro.orderDirection=&filtro.tipoRelatorio=12&dataTable_length=100&filtro.filtroLicitacao=&filtro.filtroUnidade=&filtro.filtroProcesso=&filtro.filtroObjeto=&filtro.filtroModalidade=&filtro.filtroDtPublicacao=&filtro.filtroStatus=&filtro.filtroValorHomolog=&filtro.filtroUrlPncp=
+Método de Solicitação
+GET
+Código de Status
+200 OK
+Endereço Remoto
+187.62.129.55:443
+Política de referenciador
+strict-origin-when-cross-origin
+
+idLic
+25159
+orderColumn
+0
+orderDirection
+asc
+filtro.nuLic
+filtro.objetoLic
+filtro.processoLic
+filtro.idStatus
+filtro.idModalidade
+filtro.idModoDisputa
+filtro.centroCusto
+filtro.idFormaLicitacao
+filtro.dtIniProp
+filtro.dtFimProp
+filtro.dtFimHomol
+filtro.dtIniHomol
+filtro.dtFimPublic
+filtro.dtIniPublic
+filtro.dtIniPublic
+filtro.mpe
+filtro.srp
+filtro.idTipoRamoAtividade
+filtro.idFamilia
+filtro.idClasse
+filtro.idArtigo
+filtro.item
+filtro.inSustentavel
+false
+filtro.tipoPesquisa_1
+filtro.campoPesquisa_1
+filtro.termoPesquisaItem_1
+filtro.tipoPesquisa_2
+filtro.campoPesquisa_2
+filtro.termoPesquisaItem_2
+filtro.condicao_2
+filtro.tipoPesquisa_3
+filtro.campoPesquisa_3
+filtro.termoPesquisaItem_3
+filtro.condicao_3
+numRegistros
+idAndamento
+2
+filtro.start
+0
+filtro.length
+100
+filtro.orderColumn
+filtro.orderDirection
+filtro.tipoRelatorio
+12
+dataTable_length
+100
+filtro.filtroLicitacao
+filtro.filtroUnidade
+filtro.filtroProcesso
+filtro.filtroObjeto
+filtro.filtroModalidade
+filtro.filtroDtPublicacao
+filtro.filtroStatus
+filtro.filtroValorHomolog
+filtro.filtroUrlPncp
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- TODO REMOVER COMENTARIO DA LINHA ABAIXO QUANDO FOR ENVIAR PRA PROD -->
+
+
+	<title>
+		Detalhar Editais Licitações
+	</title>
+<meta name="description" content="Descrição do Sistema ou site">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link id="favicon" rel="shortcut icon"
+	href="/conteudo-estatico/compras/images/favicon.png" type="image/png" />
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="/conteudo-estatico/compras/css/print.css"
+	media="print">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/estilos.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/owl.theme.default.min.css">
+
+<link rel="alternate" type="application/rss+xml" title="SIGA"
+	href="/feed.xml" />
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/jquery-1.11.3.min.js"></script>
+
+
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/datatables.js"></script>
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/bootstrap.js"></script>
+
+
+
+<!-- ATUALIZAR BROWNSER, faz bem :)  -->
+
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148892236-1"></script>
+
+	<script>
+
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag(){dataLayer.push(arguments);}
+
+		gtag('js', new Date());
+		gtag('config', 'UA-148892236-1');
+
+	</script>
+
+	<!-- Elfsight WhatsApp Chat | Suporte SIGA -->
+	<script src="https://static.elfsight.com/platform/platform.js" async></script>
+	<div class="elfsight-app-5ad55d19-9bb1-4499-8195-09613725299f" data-elfsight-app-lazy></div>
+
+	<style>
+@media print {
+	.panel-body {
+		margin-left: -28px
+	}
+	.unordered, .ordered {
+		display: none !important;
+	}
+	.comprasheader {
+		display: block !important;
+		margin-bottom: 0px !important;
+	}
+	.site-title {
+		display: block;
+		color: #000 !important
+	}
+	.area-title-logo h1 {
+		color: #000 !important
+	}
+	.backToTop {
+		display: none;
+	}
+	.breadcrumb {
+		display: none;
+	}
+	.alert.alert-warning {
+		display: none;
+	}
+	.pagination {
+		display: none
+	}
+	.site-title h1 {
+		color: #000;
+		display: block
+	}
+	table td {
+		font-size: 10px;
+		border: 1px solid #ccc !important
+	}
+	.actionbar {
+		display: none;
+	}
+	.dataTables_info {
+		display: none
+	}
+	.data-table td {
+		font-size: 11px;
+		border: 1px solid #000 !important
+	}
+	.data-table th {
+		font-size: 12px;
+		font-weight: normal
+	}
+	.site-title h1 {
+		color: #000;
+		display: block
+	}
+	.site-title small {
+		color: #000;
+		display: block
+	}
+	.logo {
+		display: block
+	}
+	.table-bordered>thead>tr>th, .table-bordered>thead>tr>td,
+		.table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td,
+		.table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td {
+		border: 1px solid #333 !important;
+	}
+	h3 {
+		font-weight: 400;
+		font-size: 1.5em;
+		margin-top: -8px !important;
+	}
+	.print_tableheader {
+		margin: 0px;
+		padding: 0px;
+		border-bottom: 2px solid #666;
+		border-top: 1px solid #ccc;
+	}
+
+	.print_tableheader tr {
+		border: 0px !important
+	}
+
+	.print_tableheader td {
+		border: 0px !important
+	}
+
+	.info-print {
+		display: block !important
+	}
+
+	#actionbar{
+		right: 0px;
+	}
+}
+
+.text-dark{
+	color: #555555 !important;
+	font-size: 18px !important;
+}
+.legenda-ultima-atualizacao {
+	float: right;
+	margin-top: -15px;
+	color: #828080;
+	font-size: 0.8em;
+}
+	</style>
+
+	
+
+</head>
+
+<body class="corpo_documento">
+
+<!--// Layout para impressão  -->
+<div class="comprasheader" style="display: none">
+	<table summary="Cabeçalho da Impressão" border="0" class="print_tableheader" width="100%">
+		<thead></thead>
+		<tbody>
+		<tr>
+			<td><img src="/conteudo-estatico/compras/images/img-logo-gov-br-new.png"
+					 alt="Governo do Estado do Rio de Janeiro"></td>
+			<td style="width: 30px;"></td>
+			<td>
+				<div style="font-weight: 600;">
+					Compras Públicas <br/>
+					<span style="font-weight: 400; font-size: 24px;">
+								Sistema Integrado de Gestão de Aquisições
+							</span>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<!--//END:  Layout para impressão  -->
+
+<header role="banner" class="site-header no-print">
+
+	<noscript>
+		<div>Atenção! Javascript desabilitado. Este site pode não funcionar corretamente caso o Javascript não esteja
+			habilitado em seu navegador!!!
+		</div>
+	</noscript>
+
+	<div class="container-fluid header-content barra-topo">
+		<div class="row">
+			<nav class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10 area-title-logo">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="logo">
+							<a href="/index"><img
+									src="/conteudo-estatico/compras/images/img-logo-gov-br-new.png"
+									alt="Governo do Estado do Rio de Janeiro"></a>
+						</div>
+					</div>
+					<div
+							class="col-lg-6 col-md-6 col-sm-6 col-xs-12 login-acessibilidade">
+						<ul class="links-header">
+							<li class="btns-acessibilidade">
+								<ul>
+									<li class="aumentafonte" title="Aumentar fonte">
+										<a href="#" alt="Aumentar fonte" class="increase">
+											<span style="display: none">Aumentar fonte</span>
+										</a>
+									</li>
+									<li class="fontenormal" title="Tamanho normal">
+										<a href="#" alt="Tamanho normal" class="resetMe">
+											<span style="display: none">Tamanho normal</span>
+										</a>
+									</li>
+									<li class="diminuifonte" title="Diminuir fonte">
+										<a href="#" alt="Diminuir fonte" class="decrease">
+											<span style="display: none">Diminuir fonte</span>
+										</a>
+									</li>
+									<li class="contraste" id="siteaction-contraste" title="Alto contraste">
+										<a href="#" alt="Alto contraste">
+											<span style="display: none">Alto contraste</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li><a
+									href="/MapaSite/mapadosite.action">Mapa
+										do site</a></li>
+								<li><a
+									href="/Acessibilidade/acessibilidade.action">Acessibilidade</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-5 col-md-4 col-sm-6 col-xs-12">
+							<h1>
+								<a class="site-title"
+									href="/index"> Compras
+									Públicas <span>Sistema Integrado de Gestão de Aquisições</span>
+								</a>
+							</h1>
+						</div>
+
+						<div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 form-login visible-lg-block visible-md-block hidden-sm hidden-xs">
+
+							<a href="https://www.compras.rj.gov.br/mercatto/aplicacao/asp/seg/logon.asp">
+								<button type="submit" id="btnPcLogin" class="btn btn-default btn-sm"
+										style="width: 150px; background-color: #ecf0f2; color: #459ded; border: 1px solid #459ded;
+											   font-weight: 600; float: right; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);">
+									Acessar&nbsp;&nbsp;<img width="34" src="/conteudo-estatico/compras/images/logo-siga-header.png" alt="SIGA versão 2.5">
+								</button>
+							</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-lg hidden-md visible-sm-block visible-xs-block"
+							 style="padding-bottom: 15px;">
+							<a href="https://compras.rj.gov.br/mobile">
+								<img style="width:100%" src="/conteudo-estatico/images/banner-webapp.jpeg"
+									 alt="SIGA WebApp">
+							</a>
+						</div>
+
+					</div>
+
+				</nav>
+			</div>
+		</div>
+		<nav id="navbar" class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10 menu-topo">
+						<div class="row">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed"
+										data-toggle="collapse"
+										data-target="#bs-example-navbar-collapse-1"
+										aria-expanded="false">
+									<span class="sr-only">Expandir Navegação</span> <span
+										class="icon-bar"></span> <span class="icon-bar"></span> <span
+										class="icon-bar"></span>
+								</button>
+								<!-- a class="navbar-brand" href="#">Portal de Compras</a-->
+							</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse"
+								id="bs-example-navbar-collapse-1">
+								<!--accesskey="3" id="irnavegacao" name="irnavegacao"-->
+								<a href="#" class="sr-only">Início da Navegação</a>
+								<ul class="nav navbar-nav nav-stacked">
+									<li class="xs-hidden"> 
+											<a href="#" id="" onclick="parent.history.back();"
+												style="display: block"> <i
+												class="material-icons first sm">&#xE5C4;</i>Voltar
+											</a>
+										 
+									</li>
+
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Institucional</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<li><a
+												href="/Principal/sobreOPortal.action">
+													Sobre o Portal </a></li>
+											<li><a
+												href="/Principal/orgaoCentralLogistica.action">
+													Órgão Central de Logística </a></li>
+
+
+
+											<li><a
+												href="/Legislacao/listar.action">
+													Legislação </a></li>
+											<li><a
+												href="/Principal/sobreOSiga.action">
+													Sobre o SIGA </a></li>
+											<li><a
+												href="/Noticias/noticiasSiga.action">
+													Informes do SIGA </a></li>
+											<li><a
+												href="/Faq/listar.action">
+													Dúvidas Frequentes </a></li>
+
+											<li><a
+												href="/Principal/capacitacao.action">
+													Capacitação </a></li>
+
+											<li>
+												<a href="/Noticias/consultasAudienciasPublicas.action">
+													Consultas e Audiências Públicas </a></li>
+
+											<li><a
+												href="/LinkUtil/listar.action">
+													Links úteis </a></li>
+
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul>
+									</li>
+
+
+									<!-- 1st level -->
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"> <span class="sr-only">Abrir
+												ou Fechar SubMenu</span> Compras Públicas
+									</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<!--with items group-->
+											<li>
+												<a href="/AtaRegistroPreco/buscar.action">
+													Atas de Registro de Preço
+												</a>
+											</li>
+											<li>
+												<a href="/CompraDireta/buscar.action">
+													Compras Diretas
+												</a>
+											</li>
+											<li>
+												<a href="/OutrasCompras/buscar.action">
+													Outras Compras
+												</a>
+											</li>
+											<li>
+												<a href="/EditaisLicitacoes/buscar.action">
+													Licitações e Processos Eletrônicos de Dispensa
+												</a>
+											</li>
+											<li>
+												<a href="/ProcessoEletronicoDispensa/buscar.action">
+													Processo Eletrônico de Dispensa
+												</a>
+											</li>
+											<li>
+												<a target="_blank" href="https://redelog.rj.gov.br/redelog/compras-centralizadas/">
+													Compras Centralizadas
+												</a>
+											</li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true">Fechar Submenu</a></li>
+										</ul></li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Contratos</a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="/Contrato/buscar.action">
+													Consultar Contratos </a></li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul></li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span> Fornecedores </a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<!--with items group-->
+
+											 
+											<li class="dropdown dropdown-submenu">
+											<a href="/PreFornecedor/inicioRegistro.action" class="dropdown-toggle" data-toggle="dropdown">
+ 													Registre-se </a>
+ 												<ul class="dropdown-menu">
+ 													<li><a href="/PreFornecedor/primeiraEtapa.action">
+ 															Registro no SIGA </a></li>
+ 													<li><a href="/PreFornecedor/altereCompleteCadastro.action">
+ 															Altere ou Complete </a></li>
+ 												</ul>
+ 											</li>
+											 
+											<li><a
+												href="/Fornecedor/buscar.action">
+													Consultar Fornecedores </a></li>
+											<li><a
+												href="/Sancao/buscar.action">
+													Consultar Sanções </a></li>
+											<!-- <li> -->
+											<!-- <a href="#"> -->
+											<!-- Fornecedor - CRC -->
+											<!-- </a> -->
+											<!-- </li> -->
+											<!-- <li> -->
+											<!-- <a href="#"> -->
+											<!-- Consultar CRC -->
+											<!-- </a> -->
+											<!-- </li> -->
+											<li><a
+												href="/ManualTermo/listar.action">
+													Orientações ao Fornecedor </a></li>
+											
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul></li>
+
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Catálogo</a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="/Catalogo/buscar.action">
+													Materiais e Serviços </a></li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Banco de Preços</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<li><a
+												href="/BancoDePrecoHistorico/buscar.action">
+													Histórico de Preços </a></li>
+										</ul></li>
+
+									
+								</ul>
+
+								<!-- 									<div class="atalhorecolher"> -->
+								<!-- 										<a noref class="btn btn-default btn-sm expandir"><i class="material-icons md ">&#xE313;</i> Expandir Todos</a> -->
+								<!-- 										<a noref class="btn btn-default btn-sm recolher"><i class="material-icons md ">&#xE316;</i> Recolher Todos</a> -->
+								<!-- 										<div> -->
+								<!-- 											<a href="#fimnavegacao" id="fimnavegacao" name="fimnavegacao" class="sr-only">Fim da Navegação</a> -->
+								<!-- 										</div>/.navbar-collapse -->
+								<!-- 									</div> -->
+							</div>
+							<div class="buscaGoogle">
+								<form id="campoBuscaGoogle" action="realizaBusca();" onsubmit="return false">
+									<label for="campoBusca" class="hidden">Campo de Busca</label>
+									<input type="text" class="txt" id="campoBusca"> <input
+										type="submit" class="material-icons first md" value="&#xE8B6;"
+										onclick="realizaBusca();">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+	<div class="row submenubottom" style="display: none !important;">
+		<div class="col-lg-offset-1 col-md-12">
+			<span> <a
+				href="/Principal/extracaoTotal.action"
+				alt="Lista Extrações Totais"> Lista Extrações Totais <i
+					class="material-icons">chevron_right</i>
+			</a>
+			</span>
+		</div>
+	</div>
+
+	
+
+		<style type="text/css">
+
+
+			.modal-dialog {
+				top: 92px
+			}
+
+			@media print {
+
+				.modal-content {
+					margin: 0px;
+				}
+				header nav, footer {
+					display: none;
+					visibility: hidden;
+				}
+				body, .modal-header {
+					margin: 5px;
+					padding: 5px;
+				}
+				table {
+					width: auto!important;
+				}
+				table td{
+					font-size: 9px;
+				}
+				button, a, .modal-footer {
+					display: none;
+					visibility: hidden;
+				}
+			}
+
+			@page {
+				margin: 0.8cm;
+				size:landscape;
+			}
+
+			/*.grecaptcha-badge {*/
+			/*	bottom: 70px !important;*/
+			/*	z-index: 10 !important;*/
+			/*}*/
+		</style>
+
+
+
+		<script src="https://www.google.com/recaptcha/api.js?onload=_grecaptcha_callback"></script>
+		<script type="text/javascript">
+			window._grecaptcha_callback = () => {
+				window.grecaptcha.render({
+					sitekey: '6LddLKgZAAAAAJLB1r-JW2ugZHju4oWTTkkAAmFt',
+					badge: 'bottomleft',
+				})
+				window.grecaptcha.ready(() => {
+					// grecaptcha is ready
+					//console.log('grecaptcha is ready');
+				})
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$("#printButtonA").click(function() {
+					var printWindow = window.open('','',"width="+screen.availWidth+",height="+screen.availHeight);
+					var doc = printWindow.document;
+					var html = document.getElementById("modalDialog").outerHTML;
+					doc.open();
+					doc.write(html);
+					printWindow.print();
+					printWindow.close();
+
+				});
+
+				var tableAtas = $('#dataTableAtas').DataTable({
+					"searching" : true,
+					"processing" : true,
+					"paging" : true,
+					"serverSide" : false,
+					"info" : true,
+					"order" : [ [ 0, 'desc' ] ],
+					"bSortCellsTop" : true,
+					"pageLength" : 6,
+					"aLengthMenu" : [
+						[ 6, 12, 24, 50,
+							100, -1 ],
+						[ 6, 12, 24, 50,
+							100,
+							"Todos" ] ],
+					"orderable" : false,
+
+					"width":900,
+
+					"language" : {
+						"sEmptyTable" : "Nenhum registro encontrado na tabela",
+						"sInfo" : "Mostrar _START_ até _END_ de _TOTAL_ registros",
+						"sInfoEmpty" : "Mostrar 0 até 0 de 0 Registros",
+						"sInfoFiltered" : "(Filtrar de _MAX_ total registros)",
+						"sInfoPostFix" : "",
+						"sInfoThousands" : ".",
+						"sLengthMenu" : "Mostrar _MENU_ registros por página",
+						"sLoadingRecords" : "Carregando...",
+						"sProcessing" : "<img src='/portal-siga-static/compras/images/ajax-loader.gif'>",
+						"sZeroRecords" : "Nenhum registro encontrado",
+						"sSearch" : "Pesquisar: ",
+						"oPaginate" : {
+							"sNext" : "Próximo",
+							"sPrevious" : "Anterior",
+							"sFirst" : "Primeiro",
+							"sLast" : "Último"
+						},
+						"oAria" : {
+							"sSortAscending" : ": Ordenar colunas de forma ascendente",
+							"sSortDescending" : ": Ordenar colunas de forma descendente"
+						}
+					}
+				});
+
+				$("#dataTableAtas thead input").on(
+						'keyup change',
+						function() {
+							tableAtas.column(
+									$(this).parent().index()
+									+ ':visible')
+									.search(this.value).draw();
+						});
+
+				$("#dataTableAtas_filter").hide();
+
+				$("#detalharVoltar").click(function() {
+					//history.go(-1);
+					$("#formDetalharEditais").attr("action","/EditaisLicitacoes/listar.action");
+					$("#formDetalharEditais").submit();
+				});
+
+				$("#editaisDocumentos").click(function(e) {
+					e.preventDefault();
+
+					console.log("Editais documentos");
+
+					grecaptcha.ready(function() {
+						grecaptcha.execute(0, {action: 'editaldocumentos'}).then(function (token) {
+						// grecaptcha.execute('6LddLKgZAAAAAJLB1r-JW2ugZHju4oWTTkkAAmFt', {action: 'editaldocumentos'}).then(function (token) {
+							// TODO ADICIONAR CHAVE RETORNADA DO RECAPTCHA NA REQUISIÇAO
+							console.log(token);
+							$('#formDetalharEditais').prepend('<input type="hidden" name="tokenRecaptcha" value="' + token + '">');
+							$("#formDetalharEditais").attr("action", "/EditaisLicitacoes/loginEdital.action");
+							$("#formDetalharEditais").submit();
+						}, function (err) {
+							console.log(err);
+						});
+					});
+				});
+
+				console.log('Retornando modalidade licitação: ', 'Concorr&ecirc;ncia');
+
+				$("#lnkAcomp").on("click", function (e) {
+					e.preventDefault();
+					var modalidade = 'Concorr&ecirc;ncia';
+					
+					var statusAtual = '23';
+					var statusAnterior = '';
+
+					if (modalidade.includes('nica - 14.133/2021') || modalidade.includes('nica - 13.303/2016') ||
+						modalidade.includes('nico - 14.133/2021') || modalidade.includes('nico - 13.303/2016') ||
+						modalidade.includes('de Dispensa - Lei')) {
+
+						var statusAcompanhamentoPregoes = [3, 7, 11, 27, 28, 29, 30, 31, 32, 35, 36, 37, 38, 40, 41, 42, 43, 44];
+
+						// se estiver suspensa:
+						if (Number(statusAtual) === 10) {
+							console.log('Licitação suspensa!');
+
+							// status menos o 2 (Inscrição de Propostas) e o 6 (Lances)
+							var statusAnteriorPermitido = [7, 41, 40, 36, 11, 31, 27, 29, 37, 28, 38, 35, 43, 44, 30, 42, 10, 32];
+
+							if (!statusAnteriorPermitido.includes(Number(statusAnterior))) {
+								alert('O acesso ao Acompanhamento Online encontra-se indisponível para essa Licitação. ' +
+								  	  ' Acesso somente a partir do status Classificação de Lances e Julgamento de Lances.');
+								return;
+							}
+
+							console.log('Acesso permitido...');
+
+						} else if (!statusAcompanhamentoPregoes.includes(Number(statusAtual))) {
+							alert('O Acompanhamento Online está temporariamente em manutenção.' +
+							  	  ' Acesso somente a partir do status Classificação de Lances e Julgamento de Lances.');
+							return;
+							// alert('ATENÇÃO!!!! O Acompanhamento Online está temporariamente aberto para todos os status!!! ' +
+							// 	  'Desabilitar antes de instalar em produção.');
+							// return;
+						}
+					}
+
+					console.log("Acompanhamento Edital");
+
+					grecaptcha.ready(function () {
+						//grecaptcha.execute('6LddLKgZAAAAAJLB1r-JW2ugZHju4oWTTkkAAmFt', {action: 'editalacompanhamento'}).then(function (token) {
+						grecaptcha.execute(0, {action: 'editalacompanhamento'}).then(function (token) {
+							// TODO ADICIONAR CHAVE RETORNADA DO RECAPTCHA NA REQUISIÇAO
+							console.log(token);
+							$('#formAcompanhamento').prepend('<input type="hidden" name="tokenRecaptcha" value="' + token + '">');
+							$("#formAcompanhamento").submit();
+
+						}, function(err) {
+							console.log(err);
+						});
+					});
+				});
+
+				$("#showEdital").click(function(e) {
+
+					e.preventDefault();
+
+					console.log("Edital retirada");
+
+					grecaptcha.ready(function() {
+						grecaptcha.execute(0, {action: 'editalretirada'}).then(function (token) {
+						// grecaptcha.execute('6LddLKgZAAAAAJLB1r-JW2ugZHju4oWTTkkAAmFt', {action: 'editalretirada'}).then(function (token) {
+							// TODO ADICIONAR CHAVE RETORNADA DO RECAPTCHA NA REQUISIÇAO
+							console.log(token);
+							$('#formDetalharEditais').prepend('<input type="hidden" name="tokenRecaptcha" value="' + token + '">');
+							$("#formDetalharEditais").attr("action","/EditaisLicitacoes/retiradaDeEdital.action");
+							$("#formDetalharEditais").submit();
+						}, function (err) {
+							console.log(err);
+						});
+					});
+
+				});
+
+				$("#imprimir").click(function() {
+
+					$("#aguarde").show();
+					var order = tableAtas.order();
+
+					$("#arrayDataTableAvisos").val("");
+					var arrayDataTableAvisos = [];
+					$("#avisoId .row-aviso").each(function(value,key) {
+						arrayDataTableAvisos.push($(this).attr("id-aviso"));
+					});
+					$("#arrayDataTableAvisos").val(arrayDataTableAvisos);
+
+					$("#lengthAtas").val($("select[name='dataTableAtas_length']").val());
+					$("#lengthAvisos").val(0);
+
+					$("#orderColumn").val(order[0][0]);
+					$("#orderDirection").val(order[0][1]);
+					$("#formDetalharEditais").attr("action", "/EditaisLicitacoes/gerarRelatorio.action");
+					$("#formDetalharEditais").submit();
+
+					setTimeout(function() {
+						$("#aguarde").hide();
+					}, 2000);
+
+				});
+
+				$("#imprimirListaChat")
+						.click(
+								function(e) {
+									e.preventDefault();
+									$("#aguardeListaChat")
+											.show();
+									setTimeout(
+											function() {
+												$(
+														"#formRelatorioListarChat")
+														.attr(
+																"action",
+																"/EditaisLicitacoes/gerarRelatorio.action");
+												$(
+														"#formRelatorioListarChat")
+														.submit();
+												$(
+														"#aguardeListaChat")
+														.hide();
+											}, 2000);
+								});
+
+
+
+				$(".downloadAnexoAta").click(
+						function() {
+							var isIE = /*@cc_on!@*/false || !!document.documentMode;
+							var isEdge = !isIE
+									&& !!window.StyleMedia;
+							$.ajax({
+								type : 'GET',
+								async : false,
+								url : 'downloadAnexo?pathAta='
+										+ $(this).find("#pathAta").val()
+										+ '&tituloAta='
+										+ $(this).find("#tituloAta").val(),
+								dataType : 'json',
+								success : function(data) {
+									if (isIE|| isEdge) {
+										window.open(data.urlAnexo,'_blank');
+									} else {
+										var anchor = document.createElement('a');
+										anchor.href = data.urlAnexo;
+										anchor.target = '_blank';
+										anchor.download = $(this).attr("nomeAnexo");
+										anchor.click();
+									}
+								},
+								error : function(err) {
+									console.log(err);
+								}
+							});
+						});
+			});
+		</script>
+
+		<form id="formDetalharEditais" action="" method="post">
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idLic" value="25159" id="idLicitacao"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.nuLic" value="" id="codigoLicitacao"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.objetoLic" value="" id="objetoLicitacao"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idStatus" value="" id="idStatusLicitacao"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idModalidade" value="" id="idModalidade"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idUnidade" value="" id="idUnidade"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idFormaLicitacao" value="" id="idFormaLicitacao"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtIniProp" value="" id="dtinicioProposta"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtFimProp" value="" id="dtFimProposta"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtFimHomol" value="" id="dtFimHomol"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtIniHomol" value="" id="dtInicioHomol"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.mpe" value="" id="exclusividadeMPE"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idTipoRamoAtividade" value="" id="idTipo"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idFamilia" value="" id="idFamilia"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idClasse" value="" id="idClasse"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idArtigo" value="" id="idArtigo"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.item" value="" id="item"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="idTermo" value="26837" id="idTermo"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.inSustentavel" value="false" id="sustentavel"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_1" value="" id="tipoPesquisa_1"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_1" value="" id="campoPesquisa_1"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_1" value="" id="termoPesquisaItem_1"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_2" value="" id="tipoPesquisa_2"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_2" value="" id="campoPesquisa_2"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_2" value="" id="termoPesquisaItem_2"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.condicao_2" value="" id="condicao_2"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_3" value="" id="tipoPesquisa_3"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_3" value="" id="campoPesquisa_3"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_3" value="" id="termoPesquisaItem_3"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.condicao_3" value="" id="condicao_3"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.registroPreco" value="" id="registroPreco"/>  </td>
+</tr>
+
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoRelatorio" value="13" id="filtro_tipoRelatorio"/>  </td>
+</tr>
+
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="arrayDataTableAvisos" value="" id="arrayDataTableAvisos"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.orderColumn" value="" id="filtro_orderColumn"/>  </td>
+</tr>
+
+			<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.orderDirection" value="" id="filtro_orderDirection"/>  </td>
+</tr>
+
+
+			<input type="hidden" id="idPregao" value="25159" />
+			<input type="hidden" id="idPregao2" value="L"/>
+
+		</form>
+
+		<div class="content">
+			<!--<div class="row">-->
+			<div id="content" class="col-lg-offset-1 col-xs-12 col-sm-10 col-md-10 col-lg-9"
+				 role="main">
+
+				<ol class="breadcrumb">
+					<li><a href="/index.action"><i
+							class="material-icons md">&#xE88A;</i></a></li>
+					<li><a href="/index.action">Compras Públicas</a></li>
+					<li><a>Licitações e Processos Eletrônicos de Dispensa</a></li>
+					<li><a>Resultado da Pesquisa de Licitações e Processos Eletrônicos de Dispensa</a></li>
+					<li><a>Detalhe de Licitações e Processos Eletrônicos de Dispensa</a></li>
+				</ol>
+
+					
+
+				<div class="panel panel-default painel_um">
+						
+					<header class="panel-heading">
+						<a href="#panelId" data-toggle="collapse" aria-expanded="true">
+							<h4 class="panel-title" role="section">Detalhe Licitações e Processos Eletrônicos de Dispensa</h4>
+
+						</a>
+						<!--// informações para impressão -->
+						<div class="info-print" style="display: none">
+							
+							<span><strong>Data: </strong> 09/09/2026</span>&nbsp;&nbsp;&nbsp; <span><strong>Hora
+										Consulta: </strong> 12:36</span>
+						</div>
+						<!--// END: informações para impressão -->
+					</header>
+					<div id="panelId" class="panel-body collapse in"
+						 aria-expanded="true">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="input-group required">
+									<label for="valor_numero_licitacao">Identificador: </label>
+									<p id="valor_numero_licitacao">CC 001/21-MODELAGEM SPTA</p>
+								</div>
+								<!-- /input-group -->
+
+							</div>
+							<!-- /col-md-* -->
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="input-group required">
+									<label for="valor_unidade_licitacao">Unidade:</label>
+									<p id="valor_unidade_licitacao">SETRANS - SECRETARIA DE ESTADO DE TRANSPORTES
+									<p />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="valor_status_licitacao">Status: </label>
+									<p id="valor_status_licitacao">Credenciamento</p>
+								</div>
+								<!-- /input-group -->
+							</div>
+
+
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="valor_modalidade_licitacao">Modalidade:</label>
+									<p id="valor_modalidade_licitacao">Concorrência</p>
+								</div>
+							</div>
+
+							
+								<div class="col-md-4">
+									<div class="input-group required">
+										<label for="tipo_disputa">Modo de Disputa:</label>
+										<div id="tipo_disputa">
+												Tradicional
+										</div>
+									</div>
+								</div>
+							
+
+
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="valor_criterio_julgamento_licitacao">Critério de Julgamento:</label>
+									<p id="valor_criterio_julgamento_licitacao">Técnica e Preço</p>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="valor_data_hora_publicacao_licitacao">Data/Hora de Publicação:</label>
+									<p id="valor_data_hora_publicacao_licitacao">
+										21/10/2021 14:00:00
+									</p>
+								</div>
+							</div>
+							
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="valor_data_hora_abertura_licitacao">Data/Hora Abertura da Sessão:</label>
+									<p id="valor_data_hora_abertura_licitacao">
+										09/12/2021 10:31:00
+									</p>
+								</div>
+							</div>
+							
+							
+								<div class="col-md-4">
+									<div class="input-group required">
+										<label for="valor_processos_linha_data">Processo(s):</label>
+										<div id="valor_processos_linha_data">
+											
+												<div>SEI-100001/000892/2021</div>
+											
+										</div>
+									</div>
+								</div>
+							
+
+						</div>
+
+						<div class="row">
+
+							
+
+
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="edital_documentos_licitacao">Edital e Documentos:</label>
+									<p id="edital_documentos_licitacao">
+										<a href="#" id="showEdital" title="Clique para Visualizar">
+											<i class="material-icons">&#xE2C7;</i> Clique para
+											Visualizar
+										</a>
+									</p>
+								</div>
+							</div>
+
+
+							<div class="col-md-4">
+								<div class="input-group required">
+									<label for="lnkAcomp">Acompanhamento OnLine:</label>
+									<p>
+										<a href="#" id="lnkAcomp" title="Clique para Visualizar">
+											<i class="material-icons">&#xE2C7;</i> Clique para
+											Visualizar
+										</a>
+									</p>
+									<form id="formAcompanhamento" method="post"
+										  action="/PregaoEletronico/acompanhamento.action">
+										<input type="hidden" name="idPregao" value="25159" />
+									</form>
+								</div>
+							</div>
+
+							
+
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default painel_dois">
+					<header class="panel-heading">
+						<a href="#avisoId" data-toggle="collapse" aria-expanded="true">
+							<h4 class="panel-title" role="section">Avisos</h4>
+						</a>
+					</header>
+					<div id="avisoId" class="panel-body collapse in"
+						 aria-expanded="true">
+						<div class="row">
+
+							
+								<b>Até o momento a licitação encontra-se sem Avisos.</b>
+							
+							
+
+
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default painel_tres">
+					<header class="panel-heading">
+						<a href="#atasId" data-toggle="collapse">
+							<h4 class="panel-title" role="section">Atas</h4>
+						</a>
+					</header>
+					<div id="atasId" class="panel-body collapse in"
+						 aria-expanded="true">
+						<div class="row data-table">
+
+							<table id="dataTableAtas"
+								   class="table table-bordered table-striped table-hover responsive"
+								   cellspacing="0" width="100%" summary="Descrição da tabela.">
+								<thead>
+								<tr>
+									<th>Nome <i class="material-icons unordered">&#xE8D5;</i>
+										<i class="material-icons ordered">&#xE037;</i>
+									</th>
+									
+								</tr>
+								</thead>
+								<tbody>
+								
+									<tr>
+										<td class="dataTables_empty" colspan="2" valign="top">
+											Até o momento não existem atas para a licitação.</td>
+									</tr>
+								
+								
+								</tbody>
+							</table>
+
+
+							
+						</div>
+					</div>
+					<!--// atasId -->
+				</div>
+				<!--// panel panel-default -->
+
+				
+				
+					
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    var table = $('#dataTableLotes').DataTable({
+	        "columnDefs": [
+	        	{ "visible": false, "targets": [0] },
+	        	{ "visible": true, "targets": [1,2,3,4] }
+	        ],
+	        "searching" : true,
+			"processing" : true,
+			"paging" : true,
+			"serverSide": false,
+			"info" : true,
+// 			"order" : [[1, 'asc']],
+			"bSortCellsTop" : true,
+			"pageLength" :6,
+			"aLengthMenu": [[6, 12, 24, 50, 100], [6, 12, 24, 50, 100]],
+			"orderable" : false,
+			"language" : {
+				"sEmptyTable" : "Nenhum registro encontrado na tabela",
+				"sInfo" : "Mostrar _START_ até _END_ de _TOTAL_ registros",
+				"sInfoEmpty" : "Mostrar 0 até 0 de 0 Registros",
+				"sInfoFiltered" : "(Filtrar de _MAX_ total registros)",	
+				"sInfoPostFix" : "",
+				"sInfoThousands" : ".",
+				"sLengthMenu" : "Mostrar _MENU_ registros por página",
+				"sLoadingRecords" : "Carregando...",
+				"sProcessing" : "<img src='/conteudo-estatico/compras/images/ajax-loader.gif'>",
+				"sZeroRecords" : "Nenhum registro encontrado",
+				"sSearch" : "Pesquisar: ",
+				"oPaginate" : {
+					"sNext" : "Próximo",
+					"sPrevious" : "Anterior",
+					"sFirst" : "Primeiro",
+					"sLast" : "Último"
+				},
+				"oAria" : {
+					"sSortAscending" : ": Ordenar colunas de forma ascendente",
+					"sSortDescending" : ": Ordenar colunas de forma descendente"
+				}
+			},
+	        "drawCallback": function ( settings ) {
+	            var api = this.api();
+	            var rows = api.rows( {page:'current'} ).nodes();
+	            var last = null;
+
+	 			console.log(api.column(0, {page:'current'} ).data());
+	            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+	                if ( last !== group ) {
+	                    $(rows).eq( i ).before(
+	                        '<tr class="group"><td colspan="5"><b>Lote<b> '+group+'</td></tr>'
+	                    );
+
+							last = group;
+	                }
+	            });
+	        }
+	    } );
+	 
+	    // Order by the grouping
+	    $('#dataTableLotes tbody').on( 'click', 'tr.group', function () {
+	        var currentOrder = table.order()[0];
+	        if ( currentOrder[0] === 3 && currentOrder[1] === 'asc' ) {
+	            table.order( [ 0, 'desc' ] ).draw();
+	        }
+	        else {
+	            table.order( [ 0, 'asc' ] ).draw();
+	        }
+	    } );
+	} );
+</script>
+	<div class="panel panel-default pregao-panel">
+		<header class="panel-heading">
+		<a href="#lote" data-toggle="collapse">
+		<h4 class="panel-title" role="section">Lotes</h4>
+		</a>
+		</header>
+		<div id="lote" class="form-group panel-body lotes-itens collapse in" aria-expanded="true">
+			<div class="row data-table">
+				<div class="form-inline dt-bootstrap no-footer">
+					<table id="dataTableLotes" class="table listagem-curta table-bordered table-striped" cellspacing="0" width="100%" style="width: 100%;">
+						
+
+
+<thead><!--Cabeçalho-->
+	<tr role="row">
+		<th>
+			<b>Id</b>
+		</th>
+		<th rowspan="1" colspan="1">
+			Ord.
+		</th>
+		<th rowspan="1" colspan="1">
+			Descrição
+		</th>
+		<th rowspan="1" colspan="1">
+			Quantidade
+		</th>
+		<th rowspan="1" colspan="1">
+			Exclusivo ME/EPP
+		</th>
+		
+	</tr>
+</thead>
+
+						
+						<tr> 
+							<td><b>1</b></td> 		
+							<td class="larg1">1</td> 
+							<td class="larg2">SERVICOS DE CONSULTORIA,DESCRICAO: CONSULTORIA PARA ELABORACAO DE MODELAGEM DE PROCESSO LICITATORIO PARA OUTORGA DOS SERVICOS DE GESTAO OPERACAO E MANUTENCAO DE INSTALACOES, EM TRANSPORTE AQUAVIARIO COLETIVO INTERMUNICIPAL DE PASSAGEIROS E CARGAS, TIPO SERVICO: SERVICOS DE CONSULTORIA, ORIGEM: PESSOA JURIDICA - ID:168678 - C&oacute;digo do Item:0657.021.0069</td>
+							<td class="larg3">1</td>
+							<td class="larg4">N</td>
+						</tr>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+				
+
+			</div>
+
+
+
+			<div class="actionbar col-sm-2 col-xs-6">
+				<div class="actionbar-header">
+					<button type="button" class="btn actionbar-toggle collapsed"
+							data-toggle="collapse" data-target="#actionbar"
+							aria-expanded="false" aria-controls="actionbar">
+						<span class="sr-only-right">Expandir Menu de Ações</span> <i
+							class="material-icons first">&#xE5D4;</i> Ações <span
+							class="caret last"></span>
+					</button>
+				</div>
+				<div id="actionbar" class="navbar-collapse collapse" aria-expanded="false" role="menu">
+					<a href="#iracoes" id="iracoes" name="iracoes" lass="sr-only-right" accesskey="4">Início da
+						Barra de Ações</a>
+					<ul class="nav navbar-nav nav-stacked sidebarbuttons" role="menu">
+						<li>
+							<a href="#" id="imprimir">
+								<i class="material-icons first md">&#xE415;</i>
+								IMPRIMIR
+							</a>
+							<span id="aguarde">
+							      <img src="/portal-siga-static/images/aguarde.gif" alt="Aguarde"/>
+							      Preparando Impressão 
+							   </span>
+						</li>
+					</ul>
+					<a href="#fimacoes" id="fimacoes" name="fimacoes"
+					   class="sr-only-right">Fim da Barra de Ações</a>
+
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+
+
+			<!--</div>-->
+		</div>
+		<!--// Content -->
+
+		
+		
+
+
+
+<div class="modal fade in" id="modalAta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;max-height: 500px;overflow-y: scroll;max-width: 786px;margin: auto;">
+	<div class="modal-dialog modal-lg" role="document" style="margin-top: -100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="material-icons"></i></button>
+				<h3>
+					CC 001/21
+					&nbsp;-&nbsp;
+					MODELAGEM SPTA
+				</h3>
+			</div>
+			<div class="modal-body ata-container" id="contentAta">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="imprimirAta"><i class="material-icons first md"></i>Imprimir</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><i class="material-icons first md"></i>Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+		
+
+
+<!--[ LIGHTBOX] histÓrico chat  -->
+<div class="modal fade" id="modalHistorico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+	<div class="modal-dialog modal-lg" role="document" style="width: 774px;max-height: 463px;margin-top: -100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<h4 style="margin-bottom: -2px;">
+					<strong>CC 001/21</strong> | Histórico de Mensagens
+				</h4>
+			</div>
+			<div id="pressPage" class="modal-body">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th>Mensagem</th>
+					</tr>
+					
+						<tr>
+							<td>
+								<strong><span style="color:red;">28/12/2021 16:35:22 - Sistema :</span></strong> Abertura da Sess&atilde;o realizada. Iniciada etapa de credenciamento.
+							</td>
+						</tr>
+					
+				</table>
+			</div>
+			<div class="modal-footer">
+				<span id="aguardeListaChat" style="display:none; margin-right: 19px;"><img
+						src="/conteudo-estatico/images/aguarde.gif" alt="Aguarde"/> Preparando Impressão </span>
+				<!-- <button type="button" class="btn btn-default" id="imprimirListaChat">
+					<i class="material-icons first md">&#xE415;</i> Imprimir
+				</button> -->
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<i class="material-icons first md"></i>Fechar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<form class="form-group panel-body" action="" id="formRelatorioListarChat" method="post">
+	<input type="hidden" name="filtro.idLic" id="idLicAta" value="25159" />
+	<input type="hidden" name="filtro.tipoRelatorio" id="tipoRelatorio" value="14" />
+	<input type="hidden" name="filtro.nuLic" value="CC 001/21" />
+</form>
+<!--end: [ LIGHTBOX] histÓrico chat  -->
+
+
+	
+
+
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div class="modal" tabindex="-1" role="dialog" id="modalIEAviso">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row text-center">
+                    <br><br>
+                    <div class="col-lg-12">
+                        <img src='/conteudo-estatico/images/aviso.png'>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <h4>
+                            A partir do dia 15/06/2022, a Microsoft deixará de dar suporte ao Internet Explorer e não será mais possível acessar o sistema SIGA por esse navegador.
+                        </h4>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                           <span class="text-dark">Para continuar utilizando o sistema, escolha um dos navegadores homologados abaixo:</span>
+
+                    </div>
+                </div>
+                <br><br>
+                <div class="row text-center">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                            <a href="https://www.google.com/intl/pt-BR/chrome/" target="_blank"> <img src='/conteudo-estatico/images/nav-chrome.png'></a>
+                            <figcaption class="figure-caption text-center">Google Crome</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                            <a href="https://www.microsoft.com/pt-br/edge" target="_blank"><img src='/conteudo-estatico/images/nav-edge.png'></a>
+                            <figcaption class="figure-caption text-center">Microsft Edge</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                        <a href="https://www.mozilla.org/pt-BR/" target="_blank"><img src='/conteudo-estatico/images/nav-firefox.png'></a>
+                            <figcaption class="figure-caption text-center">Firefox</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, Entendi.</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+	<a href="#" id="backToTop" title="Ir para o topo"
+		class="btn btn-link pull-right"> <span><i
+			class="material-icons md branco">&#xE316;</i></span></a>
+
+	<div id="botao-fale-conosco">
+		<a href="https://www.compras.rj.gov.br/suportelogistico/" target="_blank">
+			<img src="/conteudo-estatico/images/Bottom_FaleConosco.png" id="img-fale-conosco"/>
+		</a>
+	</div>
+	<footer class="container-fluid no-print" role="contentinfo" id="footer-portal">
+		<div class="row footerbottom">
+			<div class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+						<div class="pull-left">
+                            <img src="/conteudo-estatico/compras/images/logoestadorj.svg"
+								 alt="Secretaria de Estado de Planejamento e Gestão"
+								 style="max-width:360px; margin-bottom:24px;"/>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+						<ul class="list-unstyled footer-list text-center">
+							<li>SUPORTE AO USUÁRIO</li>
+							<li>
+								<b><a alt="E-mail de suporte ao usuario" class="suporte-email" target="_blank">
+									Fale Conosco
+								</a></b><br>
+								<span class="suporte-horario"></span>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+						<ul class="list-unstyled footer-list lado-direito">
+							<li>SECRETARIA DE ESTADO DE PLANEJAMENTO E GESTÃO</li>
+							<li><span style="font-size:12px;">CNPJ 15.829.998/0001-09</span></li>
+							<li>
+								<address>Av. Erasmo Braga 118 - Centro, Rio de Janeiro - CEP 20020-000</address>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="version-number">
+							Versão: 20260630215605
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- SCRIPTS SITE -->
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/main.js"></script>
+	
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/jquery.hotkeys-0.7.9.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/jquery.datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/jquery.maskedinput.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/jquery.mask.min.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/cpf-cnpj-mask.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/owl.carousel.min.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/owl.chamada.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/tamanhoFonte.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/altoContraste.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/buscaGoogle.js"></script>
+
+	<!-- BIBLIOTECA UTILIZADA PARA CONVERTER O CONTEÚDO DE UM SELETOR EM PDF -->
+	
+
+	<!-- BIBLIOTECA UTILIZADA PARA CONVERTER O CONTEÚDO DE UM SELETOR EM IMAGEM PARA IMPRESSÃO OU DOWNLOAD -->
+	
+	
+	
+	
+	
+
+	<script type="text/javascript">
+		function verificarVersaoNavegador(){
+			var isIE = /*@cc_on!@*/false || !!document.documentMode;
+			if (isIE){
+				$("#modalIEAviso").modal('show');
+			}
+		}
+
+		$(document).ready(
+
+			function() {
+				$("#actionbar").length == 0?$("#img-fale-conosco").attr('src', "/conteudo-estatico/images/Bottom_FaleConosco.png"):$("#img-fale-conosco").attr('src', "/conteudo-estatico/images/Bottom_FaleConosco2.png");
+				verificarVersaoNavegador();
+
+				$.ajax({
+					type : 'GET',
+					url : '/Noticias/listarSuporteUsuario',
+					dataType : 'json',
+					success : function(data) {
+						if (data.telefone.indexOf('0000-') === -1) {
+							$(".suporte-tel").html(data.telefone + " |");
+						}
+						$(".suporte-email").attr('href', data.email);
+
+						$(".suporte-horario")
+								.html(
+								  data.horarioInicioAtendimento
+								+ " às "
+								+ data.horarioTerminoAtendimento
+								+ ", "
+								+ data.diasSemana);
+						$("#loadingSuporteUsuario").hide();
+					}
+				});
+			});
+	</script>
+</body>
+</html>
+
+
+https://www.compras.rj.gov.br/EditaisLicitacoes/retiradaDeEdital.action
+
+URL da Solicitação
+https://www.compras.rj.gov.br/EditaisLicitacoes/retiradaDeEdital.action
+Método de Solicitação
+POST
+Código de Status
+200 OK
+Endereço Remoto
+187.62.129.55:443
+Política de referenciador
+strict-origin-when-cross-origin
+
+onnection
+keep-alive
+content-language
+pt-BR
+content-security-policy-report-only
+object-src 'none'; script-src 'nonce-jLEBfnNVcUM4RdY5ReL2dUH2' 'strict-dynamic' http: https:; base-uri 'none';
+content-type
+text/html;charset=utf-8
+cross-origin-embedder-policy-report-only
+require-corp
+cross-origin-opener-policy
+same-origin
+date
+Wed, 09 Sep 2026 15:40:47 GMT
+server
+nginx/1.24.0
+strict-transport-security
+max-age=31536000; includeSubdomains
+transfer-encoding
+chunked
+vary
+Sec-Fetch-Dest,Sec-Fetch-Mode,Sec-Fetch-Site,Sec-Fetch-User
+x-oneagent-js-injection
+true
+x-ruxit-js-agent
+true
+accept
+text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+accept-encoding
+gzip, deflate, br, zstd
+accept-language
+pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+cache-control
+max-age=0
+connection
+keep-alive
+content-length
+3166
+content-type
+application/x-www-form-urlencoded
+cookie
+_gid=GA1.4.465542008.1788959188; JSESSIONID=FEDA4BB2BDA69B41E888435DED7F988C; _ga_869FDER0C1=GS2.1.s1788959188$o1$g1$t1788968185$j59$l0$h0; _ga=GA1.1.2017873155.1788959188
+host
+www.compras.rj.gov.br
+origin
+https://www.compras.rj.gov.br
+referer
+https://www.compras.rj.gov.br/EditaisLicitacoes/detalhar.action?idLic=25159&orderColumn=0&orderDirection=asc&filtro.nuLic=&filtro.objetoLic=&filtro.processoLic=&filtro.idStatus=&filtro.idModalidade=&filtro.idModoDisputa=&filtro.centroCusto=&filtro.idFormaLicitacao=&filtro.dtIniProp=&filtro.dtFimProp=&filtro.dtFimHomol=&filtro.dtIniHomol=&filtro.dtFimPublic=&filtro.dtIniPublic=&filtro.dtIniPublic=&filtro.mpe=&filtro.srp=&filtro.idTipoRamoAtividade=&filtro.idFamilia=&filtro.idClasse=&filtro.idArtigo=&filtro.item=&filtro.inSustentavel=false&filtro.tipoPesquisa_1=&filtro.campoPesquisa_1=&filtro.termoPesquisaItem_1=&filtro.tipoPesquisa_2=&filtro.campoPesquisa_2=&filtro.termoPesquisaItem_2=&filtro.condicao_2=&filtro.tipoPesquisa_3=&filtro.campoPesquisa_3=&filtro.termoPesquisaItem_3=&filtro.condicao_3=&numRegistros=&idAndamento=2&filtro.start=0&filtro.length=100&filtro.orderColumn=&filtro.orderDirection=&filtro.tipoRelatorio=12&dataTable_length=100&filtro.filtroLicitacao=&filtro.filtroUnidade=&filtro.filtroProcesso=&filtro.filtroObjeto=&filtro.filtroModalidade=&filtro.filtroDtPublicacao=&filtro.filtroStatus=&filtro.filtroValorHomolog=&filtro.filtroUrlPncp=
+sec-ch-ua
+"Chromium";v="152", "Not?A_Brand";v="24", "Microsoft Edge";v="152"
+sec-ch-ua-mobile
+?0
+sec-ch-ua-platform
+"Windows"
+sec-fetch-dest
+document
+sec-fetch-mode
+navigate
+sec-fetch-site
+same-origin
+sec-fetch-user
+?1
+upgrade-insecure-requests
+1
+user-agent
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0
+
+tokenRecaptcha
+0cAFcWeA4nDeLE_38KM7NqVduy6g2uRhnpQobiFlgNTOvkqLE6-7jbNAMqUttgVkdkyl2l-37u6ZGilyFDNIV_w3YhauFmS7Mg2hzbBfoowPREi2RpMeRO-6na47CTP4XsaxAW9RvgHirV_MBLBUJmgIqFISsJLDi69XiYujuMRU06GlY25VWQjtT1eZG3hcztwnu_tLDlz9Q7TgWTTsGNsqBzgo8Zqay3VxfA3g5D4jS7Cieqk801QA0cz7X6iURmGws-q8VjpmA9t4cJE6qmqnu_nyy842wlH6enY3InEbVLBJV5AkdEu3Mxk8m5MXzll72T-xkiZfvv7R2WuNBLT1DDKAMgXv2ew5QaZ3Er2nVJz587sunZJUu0ePpvDM_C8R5xhHhAYTLpTVH7ilMHfC1op-L_wWbCg4Xd7P_AJE4wz0n0lt0J8cyoYlSWOiKtNpAXDK1nGty1VYI_AiSSKb2UJHZciWTwZ2OVTCaDElOjQvvWnMu3kAwtj5x0g0xVqpyaaW1FYrTpVGr7AWBbITdfsjoxL5H9MuAhdF_YStoQXdYTb-HcHlHiGljKsXRtWHtFXmuMvA7To1pu0_6L1020_pe8Cvkzd3ELak9ncLnEcuPAVC75xH2S8tt_Qd4Rn9bSNWe8V5S8CxMi2FePEit6DFE8ZgCNB86Fbd6VPI4e0a2yEQiFW2tGuoU_p-Rij06H3ahTSP1GpZXQ0jxHpq52tngUl3Zl5Xea-6CL8FH-3BtmAsPREJRRzWu76mwITFPDgpZBUhO9vBQlOLi8sxtEyJ7fpQ3RUq3siCM-DcmWgbVAiCnGqhUftm_VlV-F2otOivUWkdfg1FiUa3TVJKwN4HDv1utp4zyA4qotdhmSAMkm9R-RYSsP9a5VDxFb7jOyqymOOEaHjlasnfpnkyR3Le1TG8TOhxoeRwASwCFCZGE5WZrGS9-2GvNZkJjYU7okM4JioLdpjO73FsyMY_IMWM2J4-lI6ZJgggZvI-g2rJID-HWr2wUzJtdF5iklmrhRrAQF1RaTj27seNX57-cQ-QljhoP_JoKfzfcYdCLTiHgF_egcd388YsFixJIJEo7M3IeNoypkQYdef01yJ5xUiWX1wPNZh6on_p3tuUqEbjvd_QAkNSdotI5aTHK5fc4YpTq72M2PsM12yJ86Zgh-HU5GDc_VJnabUgCWbk26KSbuCEhfdXsO5YKzAFqLzx182eeaXLGizLj-D-K6STiv9x7cMi2G5MenqU6gzx8WoroUgAJUVeHZmzjizBKcBHmvkkn5GahsyH680XuPgAVguECe0Fc8TJacxbc4bpiElOlo4YBIQ0IJmJxzH_FFkEr4BfoMKCqErHvG6zrTbeL_cOiga_2IK7I_jLBUNB-CRFke-d36E7MamSPFkUEabugy382r3cVdJK70fxCLOB4EXR6EBM9wXT3j5Bgq_pP4MOp9queKo6E_YjxfLOp7j6puwTwmc0owx8EYShC2WtgrdIgF74Opjg3H2Ac19nVT3quZh7Bzkx3r8c7Gmu0gPIxDKf5FnMKu2JUUafq2D2xRp-Q9EqdEkxLSU4srVGFZ7_ZF9w7X0zsrKvxTBBnFb4cres7PHlth__hTqnGZB3NCUrx1sG2KwOolPTOalGx3lv4IYWdzwrUeZRviGf8EbHfmt8DMVf0IgT8swnHYwh_2rxydXGBus0oBNrVtS-ttHVT-_PKkllSYPgJq2PWajy9t9uKrYjJtOR0XTr-9i3ld57Ilzrg59rxgdk8bFP6cIR1asofJjyVeBpmGkMTHB69xqeCo6K4pFaw3p8GEpp4tUSXqtxucf31O5i2pIvnal_xHEhkyk84ITap0CVMXEhcwlFxm05yuacEEuS_EeDiiAU78QkMdsrqJgkDCMAZZu14Vf9WVHHveqzUVSpye9aY_CzuosPEK-IT_Np-q10LZs-0csEq4ZP4TJQ1YQsxmVZ9I3Xy4o7x-4i9g_eJ_hqMQoMUhL7oCMV-4qjPloOaTaK1n--Kq1UWoPdsnw1QXHqfJ35hsbYWoPdTT1by8lNdRbHkrFSQsr580WVEJ5hxC9t0JWCCx-Snj5WgyqnIQEJVRBy5wH7hdE9GbLXCCNfvikG95OBXei1tWkn4z0SBfz_bIAeMTwjs1fxdlsbNKkNUfuyvl3rM5cefG-HRfh8dNc6Ru8cctHhOqCY2ZveqaT9mocfRH3EXWZSsO6BGHkqikgO2RDanXsxDN6HfT7ldA5UQPZBc3K5y8HvkJjHk7hTE9sQ4tlM5U-s5M_5bx6pI3HM5ngEfANAJ_cG6ZQrYDWpflD9vzwNLQEH2mrGyqD1uEXCUf9oCnY-jO38-fI9Pd3DgoT7LAKVTqXJ-NhgRwbjSFVK75-0xmOHe7xvoogijBAjR3m44-La5_2UzBmkACBYVBNaI
+filtro.idLic
+25159
+filtro.nuLic
+filtro.objetoLic
+filtro.idStatus
+filtro.idModalidade
+filtro.idUnidade
+filtro.idFormaLicitacao
+filtro.dtIniProp
+filtro.dtFimProp
+filtro.dtFimHomol
+filtro.dtIniHomol
+filtro.mpe
+filtro.idTipoRamoAtividade
+filtro.idFamilia
+filtro.idClasse
+filtro.idArtigo
+filtro.item
+idTermo
+26837
+filtro.inSustentavel
+false
+filtro.tipoPesquisa_1
+filtro.campoPesquisa_1
+filtro.termoPesquisaItem_1
+filtro.tipoPesquisa_2
+filtro.campoPesquisa_2
+filtro.termoPesquisaItem_2
+filtro.condicao_2
+filtro.tipoPesquisa_3
+filtro.campoPesquisa_3
+filtro.termoPesquisaItem_3
+filtro.condicao_3
+filtro.registroPreco
+filtro.tipoRelatorio
+13
+arrayDataTableAvisos
+filtro.orderColumn
+filtro.orderDirection
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- TODO REMOVER COMENTARIO DA LINHA ABAIXO QUANDO FOR ENVIAR PRA PROD -->
+
+
+	<title>
+			Retirada de Edital
+	</title>
+<meta name="description" content="Descrição do Sistema ou site">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link id="favicon" rel="shortcut icon"
+	href="/conteudo-estatico/compras/images/favicon.png" type="image/png" />
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet" href="/conteudo-estatico/compras/css/print.css"
+	media="print">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/estilos.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="/conteudo-estatico/compras/css/owl.theme.default.min.css">
+
+<link rel="alternate" type="application/rss+xml" title="SIGA"
+	href="/feed.xml" />
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/jquery-1.11.3.min.js"></script>
+
+
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/datatables.js"></script>
+
+<script type="text/javascript"
+	src="/conteudo-estatico/compras/js/bootstrap.js"></script>
+
+
+
+<!-- ATUALIZAR BROWNSER, faz bem :)  -->
+
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148892236-1"></script>
+
+	<script>
+
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag(){dataLayer.push(arguments);}
+
+		gtag('js', new Date());
+		gtag('config', 'UA-148892236-1');
+
+	</script>
+
+	<!-- Elfsight WhatsApp Chat | Suporte SIGA -->
+	<script src="https://static.elfsight.com/platform/platform.js" async></script>
+	<div class="elfsight-app-5ad55d19-9bb1-4499-8195-09613725299f" data-elfsight-app-lazy></div>
+
+	<style>
+@media print {
+	.panel-body {
+		margin-left: -28px
+	}
+	.unordered, .ordered {
+		display: none !important;
+	}
+	.comprasheader {
+		display: block !important;
+		margin-bottom: 0px !important;
+	}
+	.site-title {
+		display: block;
+		color: #000 !important
+	}
+	.area-title-logo h1 {
+		color: #000 !important
+	}
+	.backToTop {
+		display: none;
+	}
+	.breadcrumb {
+		display: none;
+	}
+	.alert.alert-warning {
+		display: none;
+	}
+	.pagination {
+		display: none
+	}
+	.site-title h1 {
+		color: #000;
+		display: block
+	}
+	table td {
+		font-size: 10px;
+		border: 1px solid #ccc !important
+	}
+	.actionbar {
+		display: none;
+	}
+	.dataTables_info {
+		display: none
+	}
+	.data-table td {
+		font-size: 11px;
+		border: 1px solid #000 !important
+	}
+	.data-table th {
+		font-size: 12px;
+		font-weight: normal
+	}
+	.site-title h1 {
+		color: #000;
+		display: block
+	}
+	.site-title small {
+		color: #000;
+		display: block
+	}
+	.logo {
+		display: block
+	}
+	.table-bordered>thead>tr>th, .table-bordered>thead>tr>td,
+		.table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td,
+		.table-bordered>tfoot>tr>th, .table-bordered>tfoot>tr>td {
+		border: 1px solid #333 !important;
+	}
+	h3 {
+		font-weight: 400;
+		font-size: 1.5em;
+		margin-top: -8px !important;
+	}
+	.print_tableheader {
+		margin: 0px;
+		padding: 0px;
+		border-bottom: 2px solid #666;
+		border-top: 1px solid #ccc;
+	}
+
+	.print_tableheader tr {
+		border: 0px !important
+	}
+
+	.print_tableheader td {
+		border: 0px !important
+	}
+
+	.info-print {
+		display: block !important
+	}
+
+	#actionbar{
+		right: 0px;
+	}
+}
+
+.text-dark{
+	color: #555555 !important;
+	font-size: 18px !important;
+}
+.legenda-ultima-atualizacao {
+	float: right;
+	margin-top: -15px;
+	color: #828080;
+	font-size: 0.8em;
+}
+	</style>
+
+	
+
+</head>
+
+<body class="corpo_documento">
+
+<!--// Layout para impressão  -->
+<div class="comprasheader" style="display: none">
+	<table summary="Cabeçalho da Impressão" border="0" class="print_tableheader" width="100%">
+		<thead></thead>
+		<tbody>
+		<tr>
+			<td><img src="/conteudo-estatico/compras/images/img-logo-gov-br-new.png"
+					 alt="Governo do Estado do Rio de Janeiro"></td>
+			<td style="width: 30px;"></td>
+			<td>
+				<div style="font-weight: 600;">
+					Compras Públicas <br/>
+					<span style="font-weight: 400; font-size: 24px;">
+								Sistema Integrado de Gestão de Aquisições
+							</span>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<!--//END:  Layout para impressão  -->
+
+<header role="banner" class="site-header no-print">
+
+	<noscript>
+		<div>Atenção! Javascript desabilitado. Este site pode não funcionar corretamente caso o Javascript não esteja
+			habilitado em seu navegador!!!
+		</div>
+	</noscript>
+
+	<div class="container-fluid header-content barra-topo">
+		<div class="row">
+			<nav class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10 area-title-logo">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="logo">
+							<a href="/index"><img
+									src="/conteudo-estatico/compras/images/img-logo-gov-br-new.png"
+									alt="Governo do Estado do Rio de Janeiro"></a>
+						</div>
+					</div>
+					<div
+							class="col-lg-6 col-md-6 col-sm-6 col-xs-12 login-acessibilidade">
+						<ul class="links-header">
+							<li class="btns-acessibilidade">
+								<ul>
+									<li class="aumentafonte" title="Aumentar fonte">
+										<a href="#" alt="Aumentar fonte" class="increase">
+											<span style="display: none">Aumentar fonte</span>
+										</a>
+									</li>
+									<li class="fontenormal" title="Tamanho normal">
+										<a href="#" alt="Tamanho normal" class="resetMe">
+											<span style="display: none">Tamanho normal</span>
+										</a>
+									</li>
+									<li class="diminuifonte" title="Diminuir fonte">
+										<a href="#" alt="Diminuir fonte" class="decrease">
+											<span style="display: none">Diminuir fonte</span>
+										</a>
+									</li>
+									<li class="contraste" id="siteaction-contraste" title="Alto contraste">
+										<a href="#" alt="Alto contraste">
+											<span style="display: none">Alto contraste</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li><a
+									href="/MapaSite/mapadosite.action">Mapa
+										do site</a></li>
+								<li><a
+									href="/Acessibilidade/acessibilidade.action">Acessibilidade</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-5 col-md-4 col-sm-6 col-xs-12">
+							<h1>
+								<a class="site-title"
+									href="/index"> Compras
+									Públicas <span>Sistema Integrado de Gestão de Aquisições</span>
+								</a>
+							</h1>
+						</div>
+
+						<div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 form-login visible-lg-block visible-md-block hidden-sm hidden-xs">
+
+							<a href="https://www.compras.rj.gov.br/mercatto/aplicacao/asp/seg/logon.asp">
+								<button type="submit" id="btnPcLogin" class="btn btn-default btn-sm"
+										style="width: 150px; background-color: #ecf0f2; color: #459ded; border: 1px solid #459ded;
+											   font-weight: 600; float: right; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);">
+									Acessar&nbsp;&nbsp;<img width="34" src="/conteudo-estatico/compras/images/logo-siga-header.png" alt="SIGA versão 2.5">
+								</button>
+							</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-lg hidden-md visible-sm-block visible-xs-block"
+							 style="padding-bottom: 15px;">
+							<a href="https://compras.rj.gov.br/mobile">
+								<img style="width:100%" src="/conteudo-estatico/images/banner-webapp.jpeg"
+									 alt="SIGA WebApp">
+							</a>
+						</div>
+
+					</div>
+
+				</nav>
+			</div>
+		</div>
+		<nav id="navbar" class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10 menu-topo">
+						<div class="row">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed"
+										data-toggle="collapse"
+										data-target="#bs-example-navbar-collapse-1"
+										aria-expanded="false">
+									<span class="sr-only">Expandir Navegação</span> <span
+										class="icon-bar"></span> <span class="icon-bar"></span> <span
+										class="icon-bar"></span>
+								</button>
+								<!-- a class="navbar-brand" href="#">Portal de Compras</a-->
+							</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse"
+								id="bs-example-navbar-collapse-1">
+								<!--accesskey="3" id="irnavegacao" name="irnavegacao"-->
+								<a href="#" class="sr-only">Início da Navegação</a>
+								<ul class="nav navbar-nav nav-stacked">
+									<li class="xs-hidden"> 
+											<a href="#" id="" onclick="parent.history.back();"
+												style="display: block"> <i
+												class="material-icons first sm">&#xE5C4;</i>Voltar
+											</a>
+										 
+									</li>
+
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Institucional</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<li><a
+												href="/Principal/sobreOPortal.action">
+													Sobre o Portal </a></li>
+											<li><a
+												href="/Principal/orgaoCentralLogistica.action">
+													Órgão Central de Logística </a></li>
+
+
+
+											<li><a
+												href="/Legislacao/listar.action">
+													Legislação </a></li>
+											<li><a
+												href="/Principal/sobreOSiga.action">
+													Sobre o SIGA </a></li>
+											<li><a
+												href="/Noticias/noticiasSiga.action">
+													Informes do SIGA </a></li>
+											<li><a
+												href="/Faq/listar.action">
+													Dúvidas Frequentes </a></li>
+
+											<li><a
+												href="/Principal/capacitacao.action">
+													Capacitação </a></li>
+
+											<li>
+												<a href="/Noticias/consultasAudienciasPublicas.action">
+													Consultas e Audiências Públicas </a></li>
+
+											<li><a
+												href="/LinkUtil/listar.action">
+													Links úteis </a></li>
+
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul>
+									</li>
+
+
+									<!-- 1st level -->
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"> <span class="sr-only">Abrir
+												ou Fechar SubMenu</span> Compras Públicas
+									</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<!--with items group-->
+											<li>
+												<a href="/AtaRegistroPreco/buscar.action">
+													Atas de Registro de Preço
+												</a>
+											</li>
+											<li>
+												<a href="/CompraDireta/buscar.action">
+													Compras Diretas
+												</a>
+											</li>
+											<li>
+												<a href="/OutrasCompras/buscar.action">
+													Outras Compras
+												</a>
+											</li>
+											<li>
+												<a href="/EditaisLicitacoes/buscar.action">
+													Licitações e Processos Eletrônicos de Dispensa
+												</a>
+											</li>
+											<li>
+												<a href="/ProcessoEletronicoDispensa/buscar.action">
+													Processo Eletrônico de Dispensa
+												</a>
+											</li>
+											<li>
+												<a target="_blank" href="https://redelog.rj.gov.br/redelog/compras-centralizadas/">
+													Compras Centralizadas
+												</a>
+											</li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true">Fechar Submenu</a></li>
+										</ul></li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Contratos</a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="/Contrato/buscar.action">
+													Consultar Contratos </a></li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul></li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span> Fornecedores </a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<!--with items group-->
+
+											 
+											<li class="dropdown dropdown-submenu">
+											<a href="/PreFornecedor/inicioRegistro.action" class="dropdown-toggle" data-toggle="dropdown">
+ 													Registre-se </a>
+ 												<ul class="dropdown-menu">
+ 													<li><a href="/PreFornecedor/primeiraEtapa.action">
+ 															Registro no SIGA </a></li>
+ 													<li><a href="/PreFornecedor/altereCompleteCadastro.action">
+ 															Altere ou Complete </a></li>
+ 												</ul>
+ 											</li>
+											 
+											<li><a
+												href="/Fornecedor/buscar.action">
+													Consultar Fornecedores </a></li>
+											<li><a
+												href="/Sancao/buscar.action">
+													Consultar Sanções </a></li>
+											<!-- <li> -->
+											<!-- <a href="#"> -->
+											<!-- Fornecedor - CRC -->
+											<!-- </a> -->
+											<!-- </li> -->
+											<!-- <li> -->
+											<!-- <a href="#"> -->
+											<!-- Consultar CRC -->
+											<!-- </a> -->
+											<!-- </li> -->
+											<li><a
+												href="/ManualTermo/listar.action">
+													Orientações ao Fornecedor </a></li>
+											
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul></li>
+
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Catálogo</a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="/Catalogo/buscar.action">
+													Materiais e Serviços </a></li>
+											<li class="sr-only"><a href="#" class="dropdown-toggle"
+												data-toggle="dropdown" role="button" aria-haspopup="true"
+												aria-expanded="true"> Fechar Submenu </a></li>
+										</ul>
+									</li>
+
+									<li class="dropdown"><a no-href class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false"><span class="sr-only">Abrir
+												ou Fechar SubMenu</span>Banco de Preços</a>
+										<ul class="dropdown-menu">
+											<!-- 2nd level -->
+											<li><a
+												href="/BancoDePrecoHistorico/buscar.action">
+													Histórico de Preços </a></li>
+										</ul></li>
+
+									
+								</ul>
+
+								<!-- 									<div class="atalhorecolher"> -->
+								<!-- 										<a noref class="btn btn-default btn-sm expandir"><i class="material-icons md ">&#xE313;</i> Expandir Todos</a> -->
+								<!-- 										<a noref class="btn btn-default btn-sm recolher"><i class="material-icons md ">&#xE316;</i> Recolher Todos</a> -->
+								<!-- 										<div> -->
+								<!-- 											<a href="#fimnavegacao" id="fimnavegacao" name="fimnavegacao" class="sr-only">Fim da Navegação</a> -->
+								<!-- 										</div>/.navbar-collapse -->
+								<!-- 									</div> -->
+							</div>
+							<div class="buscaGoogle">
+								<form id="campoBuscaGoogle" action="realizaBusca();" onsubmit="return false">
+									<label for="campoBusca" class="hidden">Campo de Busca</label>
+									<input type="text" class="txt" id="campoBusca"> <input
+										type="submit" class="material-icons first md" value="&#xE8B6;"
+										onclick="realizaBusca();">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+	<div class="row submenubottom" style="display: none !important;">
+		<div class="col-lg-offset-1 col-md-12">
+			<span> <a
+				href="/Principal/extracaoTotal.action"
+				alt="Lista Extrações Totais"> Lista Extrações Totais <i
+					class="material-icons">chevron_right</i>
+			</a>
+			</span>
+		</div>
+	</div>
+
+	
+		<script type="text/javascript">		
+		
+		
+		$("#detalharVoltar").click(function() {
+					history.go(-1);
+				});
+		
+	 
+		
+// 			$(document).ready(function() {
+// 				$(".nav.navbar-nav a").attr("onclick","");
+// 				$(".nav.navbar-nav a").click(function() {
+// 						$("#formListarEditais").attr("action","/EditaisLicitacoes/detalhar.action");
+// 						$("#formListarEditais").submit();
+// 					});								
+// 				});
+		</script>
+	
+		<form id="formListarEditais" action="" method="post">
+						
+						  
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="idLic" value="" id="idLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idLic" value="25159" id="idLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.codigoLicitacao" value="" id="codigoLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.objetoLicitacao" value="" id="objetoLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idStatusLicitacao" value="" id="idStatusLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idModalidade" value="" id="idModalidade"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idUnidade" value="" id="idUnidade"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idFormaLicitacao" value="" id="idFormaLicitacao"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtinicioProposta" value="" id="dtinicioProposta"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtFimProposta" value="" id="dtFimProposta"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtFimHomol" value="" id="dtFimHomol"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.dtInicioHomol" value="" id="dtInicioHomol"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.exclusividadeMPE" value="" id="exclusividadeMPE"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idTipo" value="" id="idTipo"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idFamilia" value="" id="idFamilia"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idClasse" value="" id="idClasse"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.idartigo" value="" id="idArtigo"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.item" value="" id="item"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="idTermo" value="" id="idTermo"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.sustentavel" value="" id="sustentavel"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_1" value="" id="tipoPesquisa_1"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_1" value="" id="campoPesquisa_1"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_1" value="" id="termoPesquisaItem_1"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_2" value="" id="tipoPesquisa_2"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_2" value="" id="campoPesquisa_2"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_2" value="" id="termoPesquisaItem_2"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.condicao_2" value="" id="condicao_2"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.tipoPesquisa_3" value="" id="tipoPesquisa_3"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.campoPesquisa_3" value="" id="campoPesquisa_3"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.termoPesquisaItem_3" value="" id="termoPesquisaItem_3"/>  </td>
+</tr>
+
+						<tr style="display:none;">
+  <td colspan="2">
+<input type="hidden" name="filtro.condicao_3" value="" id="condicao_3"/>  </td>
+</tr>
+
+	
+		</form>	
+	
+		<div class="content">
+			<!--<div class="row">-->
+				<div id="content" class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10" role="main">
+				
+					<ol class="breadcrumb" style="display: inline-block;">
+						<li><a href="/index.action"><i class="material-icons md">&#xE88A;</i></a></li>
+						<li><a href="/index.action">Compras Públicas</a></li>
+						<li><a>Editais</a></li>
+						<li><a>Resultado da Pesquisa de Editais e Licitações </a></li>
+						<li><a>Detalhe de Editais e Licitações</a></li>
+						<li><a>Retirada de Edital</a></li>
+					</ol>
+				
+					<div class="panel panel-default">
+						<header class="panel-heading">
+							<a href="#avisoId" data-toggle="collapse" >
+								<h4 class="panel-title" role="section">Edital</h4><span class="caret last"></span>
+						
+							</a>
+							<!--// informações para impressão -->
+							<div class="info-print" style="display: none">
+							
+							<span><strong>Data: </strong>09/09/2026</span>&nbsp;&nbsp;&nbsp;					  
+							<span><strong>Hora Consulta: </strong>12:40</span> 
+							</div>				
+							<!--// END: informações para impressão -->
+						</header>
+						<div id="avisoId" class="panel-body collapse in" >
+							<div class="row">
+								<table id="dataTable" class="table table-bordered table-striped table-hover responsive" cellspacing="0" width="100%" summary="Descrição da tabela.">
+									<thead>
+										<tr>										
+											<th>Nome
+											</th>
+											<th style="width: 60px">Documento
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+										
+										
+											
+												<tr>
+													<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/0/edital concorrencia 001 2021.pdf"></a>edital concorrencia 001 2021.pdf</td>
+													<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/0/edital concorrencia 001 2021.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+												</tr>
+												
+										
+									</tbody>
+								</table>							
+							</div>
+						</div>
+					</div>
+					
+					<!--  inicio avulsos -->
+					<div class="panel panel-default">
+						<header class="panel-heading">
+							<a href="#avulosId" data-toggle="collapse" >
+								<h4 class="panel-title" role="section">Avulsos</h4><span class="caret last"></span>
+							</a>
+						</header>
+						<div id="avulosId" class="panel-body collapse in" >
+							<div class="row">
+								<table id="dataTable" class="table table-bordered table-striped table-hover responsive" cellspacing="0" width="100%" summary="Descrição da tabela.">
+									<thead>
+										<tr>										
+											<th>Nome
+											</th>
+											<th style="width: 60px">Documento
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									
+									
+										
+									
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- Fim avulsos  -->
+					
+					<!-- inicio anexos -->
+					<div class="panel panel-default">
+						<header class="panel-heading">
+							<a href="#atasId" data-toggle="collapse" >
+								<h4 class="panel-title" role="section">Anexos</h4><span class="caret last"></span>
+							</a>
+						</header>
+						<div id="atasId" class="panel-body collapse in" >
+							<div class="row">
+								<table id="dataTable" class="table table-bordered table-striped table-hover responsive" cellspacing="0" width="100%" summary="Descrição da tabela.">
+									<thead>
+										<tr>										
+											<th>Nome
+											</th>
+											<th style="width: 60px">Documento
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+									
+									
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II A TR TABELA DE PRODUTOS E CRONOGRAMA FISICO FINANCEIRO.pdf"></a>ANEXO II A TR TABELA DE PRODUTOS E CRONOGRAMA FISICO FINANCEIRO.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II A TR TABELA DE PRODUTOS E CRONOGRAMA FISICO FINANCEIRO.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II B TR CRITERIOS PARA JULGAMENTO DA LICITACAO E REGRAS PARA APRESENTACAO DAS PROPOSTAS.pdf"></a>ANEXO II B TR CRITERIOS PARA JULGAMENTO DA LICITACAO E REGRAS PARA APRESENTACAO DAS PROPOSTAS.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II B TR CRITERIOS PARA JULGAMENTO DA LICITACAO E REGRAS PARA APRESENTACAO DAS PROPOSTAS.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II TERMO DE REFERENCIA.pdf"></a>ANEXO II TERMO DE REFERENCIA.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO II TERMO DE REFERENCIA.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO IX Minuta do Contrato.pdf"></a>ANEXO IX Minuta do Contrato.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/ANEXO IX Minuta do Contrato.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo I proposta detalhe.pdf"></a>Anexo I proposta detalhe.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo I proposta detalhe.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo III Carta de Credenciamento.pdf"></a>Anexo III Carta de Credenciamento.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo III Carta de Credenciamento.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo IV Modelo de Declaracao de Atendimento ao disposto no art 7 inciso XXXIII da CF.pdf"></a>Anexo IV Modelo de Declaracao de Atendimento ao disposto no art 7 inciso XXXIII da CF.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo IV Modelo de Declaracao de Atendimento ao disposto no art 7 inciso XXXIII da CF.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo V modelo de declaracao de elaboracao independente de proposta.pdf"></a>Anexo V modelo de declaracao de elaboracao independente de proposta.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo V modelo de declaracao de elaboracao independente de proposta.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VI PLANILHA DE CUSTOS E FORMACAO DE PRECOS.pdf"></a>Anexo VI PLANILHA DE CUSTOS E FORMACAO DE PRECOS.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VI PLANILHA DE CUSTOS E FORMACAO DE PRECOS.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VII Modelo de Declaracao de Inexistencia de Penalidade.pdf"></a>Anexo VII Modelo de Declaracao de Inexistencia de Penalidade.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VII Modelo de Declaracao de Inexistencia de Penalidade.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+											<tr>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VIII Modelo de Declaracao de Microempresa ou Empresa de Pequeno Porte.pdf"></a>Anexo VIII Modelo de Declaracao de Microempresa ou Empresa de Pequeno Porte.pdf</td>
+												<td><a target=”new” href="https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/ANEXOS/Anexo VIII Modelo de Declaracao de Microempresa ou Empresa de Pequeno Porte.pdf"><i class="material-icons">&#xE2C7;</i></a></td>
+											</tr>
+										
+									
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- fim anexos -->
+				</div>
+			<!--</div>-->
+		</div>
+	
+
+
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div class="modal" tabindex="-1" role="dialog" id="modalIEAviso">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row text-center">
+                    <br><br>
+                    <div class="col-lg-12">
+                        <img src='/conteudo-estatico/images/aviso.png'>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <h4>
+                            A partir do dia 15/06/2022, a Microsoft deixará de dar suporte ao Internet Explorer e não será mais possível acessar o sistema SIGA por esse navegador.
+                        </h4>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                           <span class="text-dark">Para continuar utilizando o sistema, escolha um dos navegadores homologados abaixo:</span>
+
+                    </div>
+                </div>
+                <br><br>
+                <div class="row text-center">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                            <a href="https://www.google.com/intl/pt-BR/chrome/" target="_blank"> <img src='/conteudo-estatico/images/nav-chrome.png'></a>
+                            <figcaption class="figure-caption text-center">Google Crome</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                            <a href="https://www.microsoft.com/pt-br/edge" target="_blank"><img src='/conteudo-estatico/images/nav-edge.png'></a>
+                            <figcaption class="figure-caption text-center">Microsft Edge</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-2">
+                        <figure class="figure">
+                        <a href="https://www.mozilla.org/pt-BR/" target="_blank"><img src='/conteudo-estatico/images/nav-firefox.png'></a>
+                            <figcaption class="figure-caption text-center">Firefox</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, Entendi.</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+	<a href="#" id="backToTop" title="Ir para o topo"
+		class="btn btn-link pull-right"> <span><i
+			class="material-icons md branco">&#xE316;</i></span></a>
+
+	<div id="botao-fale-conosco">
+		<a href="https://www.compras.rj.gov.br/suportelogistico/" target="_blank">
+			<img src="/conteudo-estatico/images/Bottom_FaleConosco.png" id="img-fale-conosco"/>
+		</a>
+	</div>
+	<footer class="container-fluid no-print" role="contentinfo" id="footer-portal">
+		<div class="row footerbottom">
+			<div class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+						<div class="pull-left">
+                            <img src="/conteudo-estatico/compras/images/logoestadorj.svg"
+								 alt="Secretaria de Estado de Planejamento e Gestão"
+								 style="max-width:360px; margin-bottom:24px;"/>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+						<ul class="list-unstyled footer-list text-center">
+							<li>SUPORTE AO USUÁRIO</li>
+							<li>
+								<b><a alt="E-mail de suporte ao usuario" class="suporte-email" target="_blank">
+									Fale Conosco
+								</a></b><br>
+								<span class="suporte-horario"></span>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+						<ul class="list-unstyled footer-list lado-direito">
+							<li>SECRETARIA DE ESTADO DE PLANEJAMENTO E GESTÃO</li>
+							<li><span style="font-size:12px;">CNPJ 15.829.998/0001-09</span></li>
+							<li>
+								<address>Av. Erasmo Braga 118 - Centro, Rio de Janeiro - CEP 20020-000</address>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="version-number">
+							Versão: 20260630215605
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- SCRIPTS SITE -->
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/main.js"></script>
+	
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/jquery.hotkeys-0.7.9.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/jquery.datetimepicker.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/jquery.maskedinput.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/jquery.mask.min.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/js/cpf-cnpj-mask.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/owl.carousel.min.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/owl.chamada.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/tamanhoFonte.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/altoContraste.js"></script>
+	<script type="text/javascript"
+		src="/conteudo-estatico/compras/js/buscaGoogle.js"></script>
+
+	<!-- BIBLIOTECA UTILIZADA PARA CONVERTER O CONTEÚDO DE UM SELETOR EM PDF -->
+	
+
+	<!-- BIBLIOTECA UTILIZADA PARA CONVERTER O CONTEÚDO DE UM SELETOR EM IMAGEM PARA IMPRESSÃO OU DOWNLOAD -->
+	
+	
+	
+	
+	
+
+	<script type="text/javascript">
+		function verificarVersaoNavegador(){
+			var isIE = /*@cc_on!@*/false || !!document.documentMode;
+			if (isIE){
+				$("#modalIEAviso").modal('show');
+			}
+		}
+
+		$(document).ready(
+
+			function() {
+				$("#actionbar").length == 0?$("#img-fale-conosco").attr('src', "/conteudo-estatico/images/Bottom_FaleConosco.png"):$("#img-fale-conosco").attr('src', "/conteudo-estatico/images/Bottom_FaleConosco2.png");
+				verificarVersaoNavegador();
+
+				$.ajax({
+					type : 'GET',
+					url : '/Noticias/listarSuporteUsuario',
+					dataType : 'json',
+					success : function(data) {
+						if (data.telefone.indexOf('0000-') === -1) {
+							$(".suporte-tel").html(data.telefone + " |");
+						}
+						$(".suporte-email").attr('href', data.email);
+
+						$(".suporte-horario")
+								.html(
+								  data.horarioInicioAtendimento
+								+ " às "
+								+ data.horarioTerminoAtendimento
+								+ ", "
+								+ data.diasSemana);
+						$("#loadingSuporteUsuario").hide();
+					}
+				});
+			});
+	</script>
+</body>
+</html>
+
+
+https://arquivossiga.proderj.rj.gov.br/siga_imagens//documentos/termos/26837/0/edital%20concorrencia%20001%202021.pdf
+
+
+link local - file:///C:/Users/marce/Downloads/edital%20concorrencia%20001%202021.pdf
+

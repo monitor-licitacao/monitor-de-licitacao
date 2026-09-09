@@ -6,6 +6,9 @@
 export const CANONICAL_SISTEMA_S_URLS = {
   SEST_SENAT: 'https://compras.sestsenat.org.br/portal/Mural.aspx',
   SESC_DN: 'https://egov-br.paradigmabs.com.br/sescdn/portal/Mural.aspx',
+  SESC_SP: 'https://scr360.paradigmabs.com.br/sescsp/Default.aspx',
+  SESC_SENAC_RS: 'https://egov.paradigmabs.com.br/sesc_senac_rs/Default.aspx',
+  SESI_SENAI_RS_FIERGS: 'https://compras.sistemafiergs.org.br/portal/Mural.aspx',
 } as const;
 
 export const REJECTED_SISTEMA_S_PATTERNS = [
@@ -84,5 +87,19 @@ export const CANONICAL_URL_REWRITE_RULES = [
     replacement: CANONICAL_SISTEMA_S_URLS.SEST_SENAT,
     priority: 1,
     description: 'Canonicalização SEST SENAT para portal Mural Paradigma (https://compras.sestsenat.org.br/portal/Mural.aspx)',
+  },
+  {
+    source: 'sesc-sp',
+    pattern: '^https?:\\/\\/(?:www\\.sescsp\\.org\\.br\\/licitacoes).*',
+    replacement: CANONICAL_SISTEMA_S_URLS.SESC_SP,
+    priority: 1,
+    description: 'Canonicalização SESC SP institucional para portal de compras transacional Paradigma',
+  },
+  {
+    source: 'sesi-senai-rs',
+    pattern: '^https?:\\/\\/(?:www\\.sesirs\\.org\\.br|www\\.senairs\\.org\\.br)\\/transparencia.*',
+    replacement: CANONICAL_SISTEMA_S_URLS.SESI_SENAI_RS_FIERGS,
+    priority: 1,
+    description: 'Canonicalização SESI/SENAI RS para portal Mural Paradigma FIERGS',
   },
 ];

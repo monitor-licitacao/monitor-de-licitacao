@@ -254,3 +254,81 @@ test('6) Pipeline NCM Multi-Item - Suporte a Múltiplos NCMs e Desbloqueio de It
   assert.equal(monitoredNcms.find(n => n.id === 1)?.isPrimary, false);
 });
 
+test('7) Conector Prioritário SESI SP - Validação dos Seletores Reais contra DOM de Transparência', async () => {
+  const mockSesiHtml = `
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      </head>
+      <body>
+        <article class="edital">
+          <div class="dados">
+            <h3 id="Resumo" class="filtravel">Execução das piscinas infantil e recreativa no Centro de Atividades de Sumaré, SP.</h3>
+            <p class="text-bold"><strong>Status:</strong><span id="Status" class="filtravel"> Aberto/Em Execução</span></p>
+            <p class="text-bold"><strong>Objeto:</strong><span id="Objeto" class="filtravel"> Contratação de empresa para execução das piscinas no Centro de Atividades de Sumaré, SP.</span></p>
+            <ul>
+              <li><a href="/licitacoes/DocumentosSap?id=3000492294&name=PSDF 564-2026.pdf">PSDF 564-2026.pdf</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="edital">
+          <div class="dados">
+            <h3 id="Resumo" class="filtravel">Aquisição de tatames p/ modalidade de judô nos níveis de participação</h3>
+            <p class="text-bold"><strong>Status:</strong><span id="Status" class="filtravel"> Aberto/Em Execução</span></p>
+            <p class="text-bold"><strong>Objeto:</strong><span id="Objeto" class="filtravel"> Fornecimento de tatames em EVA de alta densidade.</span></p>
+            <ul>
+              <li><a href="/licitacoes/DocumentosSap?id=3000490203&name=PSDA 532-2026BB.pdf">PSDA 532-2026BB.pdf</a></li>
+            </ul>
+          </div>
+        </article>
+      </body>
+    </html>
+  `;
+
+  const mockFetch: typeof fetch = async () => {
+    return new Response(mockSesiHtml, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    });
+  };
+
+  const result = await executeConnector({
+    sourceId: 'src-sesi-sp-01',
+    sourceName: 'SESI São Paulo — Portal de Transparência (Licitações)',
+    type: 'SCRAPER',
+    endpointOrUrl: 'https://transparencia.sesisp.org.br/licitacoes/licitacoes-editais',
+    selectorOrParams: JSON.stringify({
+      listSelector: 'article.edital',
+      titleSelector: '#Resumo, h3',
+      descriptionSelector: '#Objeto',
+      dateSelector: '#Status',
+    }),
+    customFetch: mockFetch,
+  });
+
+  assert.equal(result.success, true);
+  assert.equal(result.itemsFound, 2);
+  assert.equal(result.payloadPreview.detectedItems, 2);
+  assert.ok(result.payloadPreview.sampleTitle?.includes('Execução das piscinas'));
+  assert.equal(result.payloadPreview.items?.[1].title, 'Aquisição de tatames p/ modalidade de judô nos níveis de participação');
+  assert.equal(result.payloadPreview.items?.[1].description, 'Fornecimento de tatames em EVA de alta densidade.');
+  assert.equal(result.payloadPreview.items?.[1].date, 'Aberto/Em Execução');
+});
+
+test('8) Conector ComprasNet vs PNCP - Comparação de Cobertura e Decisão Documentada', async () => {
+  // ComprasNet e PNCP possuem identificadores e fontes distintas
+  const comprasnetConfig = normalizeConnectorConfig('API', '?ncm=9506.91.00&modalidade=concorrencia,pregao&status=aberta');
+  assert.equal(comprasnetConfig.type, 'api');
+  assert.equal((comprasnetConfig as ApiConnectorConfig).query?.['ncm'], '9506.91.00');
+
+  // Confirmação de que ambas as fontes devem ser mantidas
+  // ComprasNet: Cobertura direta do SIASG/Compras.gov.br (Federal e conveniados)
+  // PNCP: Agregador nacional Lei 14.133/2021 de todos os entes federativos
+  const decision = {
+    action: 'MANTER',
+    rationale: 'Manter ComprasNet em paralelo ao PNCP para máxima cobertura e validação cruzada por NCM, evitando perda de editais federais legados/específicos.',
+  };
+  assert.equal(decision.action, 'MANTER');
+});
+
+

@@ -487,7 +487,11 @@ export async function executeConnector(
         });
       });
 
-      const isBotProtected = /captcha|access denied|cloudflare|are you human/i.test(bodyText);
+      // Evita falsos positivos como CDNs públicas (cdnjs.cloudflare.com)
+      const sanitizedBody = bodyText
+        .replace(/cdnjs\.cloudflare\.com/gi, '')
+        .replace(/cloudflare\.com\/ajax/gi, '');
+      const isBotProtected = /cf-challenge|cf-browser-verification|hcaptcha|g-recaptcha|access denied|are you human|checking your browser/i.test(sanitizedBody);
 
       return {
         success: response.ok && !isBotProtected,

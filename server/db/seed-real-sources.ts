@@ -87,16 +87,16 @@ const REAL_SOURCES = [
     type: 'SCRAPER' as const,
     uf: 'SP',
     city: 'São Paulo',
-    endpointOrUrl: 'https://transparencia.sesisp.org.br/',
+    endpointOrUrl: 'https://transparencia.sesisp.org.br/licitacoes/licitacoes-editais',
     selectorOrParams: JSON.stringify({
-      listSelector: '.processo-item, table.licitacoes tr, .card-processo',
-      linkSelector: 'a[href*="edital"], a[href$=".pdf"]',
-      titleSelector: '.objeto, .descricao, td.objeto',
-      dateSelector: '.data-abertura, td.data',
+      listSelector: 'article.edital',
+      titleSelector: '#Resumo, h3',
+      descriptionSelector: '#Objeto',
+      dateSelector: '#Status',
     }),
     authType: 'NONE' as const,
     format: 'HTML' as const,
-    notes: 'SESI SP. Busca avançada disponível. Regulamento RCA (desde 01/04/2024).',
+    notes: 'SESI SP Transparência. Seletores validados diretamente no DOM real da página pública.',
   },
 ];
 

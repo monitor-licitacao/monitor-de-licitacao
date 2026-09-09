@@ -1,4 +1,5 @@
-import { pgTable, serial, text, timestamp, jsonb, boolean, integer, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, timestamp, jsonb, boolean, integer, numeric, uniqueIndex, index, foreignKey } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 
 // Tenants (Empresas Clientes)
 export const tenants = pgTable('tenants', {
@@ -88,6 +89,8 @@ export const editais = pgTable('editais', {
   objectDescription: text('object_description'),
   url: text('url'),
   rawUrl: text('raw_url').notNull(),
+  // Ponteiro abstrato da versão corrente (s3:// legado ou gs://). Nullable.
+  // Objeto no cofre = linha em edital_documents com status 'stored'.
   s3StorageKey: text('s3_storage_key'),
   sha256Hash: text('sha256_hash'),
   fileSizeBytes: integer('file_size_bytes'),
@@ -107,7 +110,49 @@ export const editais = pgTable('editais', {
   estimatedValue: numeric('estimated_value'),
   ploomesDealId: integer('ploomes_deal_id'), // To satisfy auditability rule
   createdAt: timestamp('created_at').defaultNow(),
-});
+}, (table) => ({
+  // Enables composite FK from edital_documents (edital_id, tenant_id) so a
+  // document cannot be attached to an edital of another tenant.
+  idTenantUidx: uniqueIndex('editais_id_tenant_uidx').on(table.id, table.tenantId),
+}));
+
+export const EDITAL_DOCUMENT_STATUSES = ['pending', 'uploading', 'stored', 'failed'] as const;
+export type EditalDocumentStatus = (typeof EDITAL_DOCUMENT_STATUSES)[number];
+
+/**
+ * Versões de PDF no Cofre (GCS). `editais.s3_storage_key` permanece o ponteiro
+ * abstrato da versão corrente (s3:// legado ou gs://). Não sobrescreve o original.
+ */
+export const editalDocuments = pgTable('edital_documents', {
+  id: text('id').primaryKey(),
+  editalId: text('edital_id').notNull(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  storageProvider: text('storage_provider').notNull(),
+  storageKey: text('storage_key').notNull(),
+  sha256Hash: text('sha256_hash').notNull(),
+  fileSizeBytes: integer('file_size_bytes'),
+  contentType: text('content_type').default('application/pdf'),
+  sourceUrl: text('source_url'),
+  capturedAt: timestamp('captured_at'),
+  status: text('status').notNull().default('pending'),
+  errorCode: text('error_code'),
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+  uploadedBy: text('uploaded_by'),
+}, (table) => ({
+  editalTenantFk: foreignKey({
+    name: 'edital_documents_edital_tenant_fk',
+    columns: [table.editalId, table.tenantId],
+    foreignColumns: [editais.id, editais.tenantId],
+  }),
+  hashIdempotencyUidx: uniqueIndex('edital_documents_edital_sha256_uidx').on(table.editalId, table.sha256Hash),
+  inflightLockUidx: uniqueIndex('edital_documents_inflight_edital_uidx')
+    .on(table.editalId)
+    .where(sql`${table.status} IN ('pending', 'uploading')`),
+  tenantEditalIdx: index('edital_documents_tenant_edital_idx').on(table.tenantId, table.editalId),
+  tenantStatusIdx: index('edital_documents_tenant_status_idx').on(table.tenantId, table.status),
+}));
 
 // CRM INTERNAL TABLES
 

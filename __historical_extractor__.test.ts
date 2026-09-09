@@ -101,18 +101,33 @@ test('Historical PNCP Extractor - 3) Normalização Canônica de Dados e Orçame
   assert.ok(normalized.url.includes('pncp.gov.br'));
 });
 
-test('Historical PNCP Extractor - 4) Integração com API Real de Dados Abertos (Consulta Amostra 14.133)', async () => {
-  const { fetchComprasDadosAbertosPncp } = await import('./server/workers/historical_pncp_extractor.js');
+const externalIntegrationTest = process.env.RUN_EXTERNAL_HISTORICAL_TESTS === '1' ? test : test.skip;
+externalIntegrationTest(
+  'Historical PNCP Extractor - 4) Integração com API Real de Dados Abertos (Consulta Amostra 14.133)',
+  async () => {
+    const { fetchComprasDadosAbertosPncp, COMPRAS_DADOS_ABERTOS_PNCP_URL } = await import(
+      './server/workers/historical_pncp_extractor.js'
+    );
 
-  // Consulta um intervalo real de 3 dias de 2024 para Pregão Eletrônico (modalidade 6)
-  const result = await fetchComprasDadosAbertosPncp('2024-06-01', '2024-06-03', 6, 1, 10);
-  assert.ok(result.total > 0, 'Deveria retornar registros no período de dados abertos');
-  assert.ok(Array.isArray(result.items), 'Deveria retornar array de itens');
-  assert.ok(result.items.length > 0, 'Deveria conter itens reais retornados');
+    const healthUrl = new URL(COMPRAS_DADOS_ABERTOS_PNCP_URL);
+    healthUrl.searchParams.set('dataPublicacaoPncpInicial', '2024-06-01');
+    healthUrl.searchParams.set('dataPublicacaoPncpFinal', '2024-06-03');
+    healthUrl.searchParams.set('codigoModalidade', '6');
+    healthUrl.searchParams.set('pagina', '1');
+    healthUrl.searchParams.set('tamanhoPagina', '1');
+    const healthResponse = await fetch(healthUrl.toString());
+    assert.equal(healthResponse.status, 200, 'Endpoint externo deve responder com HTTP 200');
 
-  const first = result.items[0];
-  assert.ok(first.idCompra || first.numeroControlePNCP, 'Item deve ter idCompra ou controle PNCP');
-});
+    // Consulta um intervalo real de 3 dias de 2024 para Pregão Eletrônico (modalidade 6)
+    const result = await fetchComprasDadosAbertosPncp('2024-06-01', '2024-06-03', 6, 1, 10);
+    assert.ok(result.total > 0, 'Deveria retornar registros no período de dados abertos');
+    assert.ok(Array.isArray(result.items), 'Deveria retornar array de itens');
+    assert.ok(result.items.length > 0, 'Deveria conter itens reais retornados');
+
+    const first = result.items[0];
+    assert.ok(first.idCompra || first.numeroControlePNCP, 'Item deve ter idCompra ou controle PNCP');
+  }
+);
 
 test('Historical PNCP Extractor - 5) Fail-Closed e Proteção de Tenant nas Rotas de Extração Histórica', async () => {
   const { historicalRouter } = await import('./server/routes/historical.js');
@@ -138,5 +153,4 @@ test('Historical PNCP Extractor - 5) Fail-Closed e Proteção de Tenant nas Rota
   assert.equal(tid, null, 'Sem req.user deve retornar null');
   assert.equal(resStatus, 401, 'Deve retornar 401 fail-closed');
 });
-
 

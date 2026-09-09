@@ -22,6 +22,7 @@ import postgres from 'postgres';
 import * as schema from '../db/schema.js';
 import { eq } from 'drizzle-orm';
 import fs from 'fs';
+import { createHash } from 'crypto';
 import { decryptSecret } from '../lib/crypto.js';
 
 export interface HistoricalExtractionOptions {
@@ -134,6 +135,9 @@ export function generateDateChunks(
   if (!Number.isFinite(chunkDays) || chunkDays < 1 || chunkDays > 31) {
     throw new Error('chunkDays inválido para extração histórica (use um valor entre 1 e 31).');
   }
+  const chunks: Array<{ start: string; end: string }> = [];
+  let currentStart = new Date(start);
+
   while (currentStart <= end) {
     const currentEnd = new Date(currentStart);
     currentEnd.setDate(currentEnd.getDate() + chunkDays - 1);
@@ -299,7 +303,23 @@ export function normalizeRawProcurementItem(
       item.unidadeOrgaoNomeUnidade ||
       `Órgão CNPJ ${item.orgaoEntidadeCnpj || 'Desconhecido'}`;
 
-    const rawId = `hist-compras-${item.idCompra || item.numeroControlePNCP || Math.random().toString(36).substring(7)}`;
+    const fallbackDeterministicKey = [
+      item.processo,
+      item.numeroCompra,
+      item.objetoCompra,
+      item.dataPublicacaoPncp,
+      item.dataInclusaoPncp,
+      item.orgaoEntidadeCnpj,
+      item.orgaoEntidadeRazaoSocial,
+    ]
+      .filter(Boolean)
+      .join('|');
+    const fallbackDeterministicId = createHash('sha256')
+      .update(fallbackDeterministicKey || 'sem-identificador-compras')
+      .digest('hex')
+      .slice(0, 24);
+
+    const rawId = `hist-compras-${item.idCompra || item.numeroControlePNCP || fallbackDeterministicId}`;
     const uniqueId = rawId.toLowerCase().replace(/[^a-z0-9-]/g, '-');
 
     const pubDateStr = item.dataPublicacaoPncp || item.dataInclusaoPncp;
@@ -314,11 +334,15 @@ export function normalizeRawProcurementItem(
       processNumber: item.processo || item.numeroCompra || item.numeroControlePNCP || uniqueId,
       title: (item.objetoCompra || 'Contratação Pública').slice(0, 100),
       agency,
-      ncmCode: item.codigoNCM || '9506.91.00',
+      ncmCode: item.codigoNcm || item.codigoNCM || '9506.91.00',
       objectDescription: item.objetoCompra || '',
-      url: item.linkSistemaOrigem || (item.numeroControlePNCP ? `https://pncp.gov.br/app/editais/${item.numeroControlePNCP}` : 'https://compras.gov.br'),
+      url:
+        item.linkSistemaOrigem ||
+        (item.numeroControlePNCP
+          ? `https://pncp.gov.br/app/editais/${encodeURIComponent(item.numeroControlePNCP)}`
+          : 'https://compras.gov.br'),
       rawUrl: COMPRAS_DADOS_ABERTOS_PNCP_URL,
-      estimatedValue: val && !isNaN(val) ? val : null,
+      estimatedValue: val != null && !isNaN(val) ? val : null,
       publishedAt: isNaN(pubDate.getTime()) ? new Date() : pubDate,
       biddingDate: isNaN(bidDate.getTime()) ? new Date() : bidDate,
     };
@@ -342,7 +366,7 @@ export function normalizeRawProcurementItem(
       objectDescription: item.objetoCompra || item.objeto || '',
       url: item.linkSistemaOrigem || PNCP_DIRECT_URL,
       rawUrl: PNCP_DIRECT_URL,
-      estimatedValue: val && !isNaN(val) ? val : null,
+      estimatedValue: val != null && !isNaN(val) ? val : null,
       publishedAt: isNaN(pubDate.getTime()) ? new Date() : pubDate,
       biddingDate: isNaN(bidDate.getTime()) ? new Date() : bidDate,
     };
@@ -534,7 +558,8 @@ export async function executeHistoricalExtraction(
                       rawUrl: normalized.rawUrl,
                       status: 'OPEN',
                       agency: normalized.agency,
-                      estimatedValue: normalized.estimatedValue ? String(normalized.estimatedValue) : null,
+                      estimatedValue:
+                        normalized.estimatedValue != null ? String(normalized.estimatedValue) : null,
                       publishedAt: normalized.publishedAt,
                       biddingDate: normalized.biddingDate,
                       humanReviewStatus: 'PENDING',

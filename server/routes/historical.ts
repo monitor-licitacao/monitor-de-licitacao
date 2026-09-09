@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { db } from '../db/index.js';
 import * as schema from '../db/schema.js';
-import { eq, sql, desc } from 'drizzle-orm';
+import { eq, desc, and, gte, lte } from 'drizzle-orm';
 import { getAuthenticatedTenantId, validateTenantAccess } from '../lib/tenantAuth.js';
 import {
   executeHistoricalExtraction,
@@ -161,7 +161,37 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
 
   if (!validateTenantAccess(req, res, tenantId)) return;
 
+  const startDateQuery = req.query.startDate as string | undefined;
+  const endDateQuery = req.query.endDate as string | undefined;
+
+  const hasOnlyOneDateFilter =
+    (startDateQuery && !endDateQuery) || (!startDateQuery && endDateQuery);
+  if (hasOnlyOneDateFilter) {
+    return res.status(400).json({
+      error: 'Informe startDate e endDate juntos no formato YYYY-MM-DD.',
+    });
+  }
+
+  const startDate = startDateQuery ? new Date(startDateQuery) : null;
+  const endDate = endDateQuery ? new Date(endDateQuery) : null;
+  if (
+    (startDateQuery && isNaN(startDate!.getTime())) ||
+    (endDateQuery && isNaN(endDate!.getTime())) ||
+    (startDate && endDate && startDate > endDate)
+  ) {
+    return res.status(400).json({
+      error: 'Intervalo de datas inválido para budget analytics.',
+    });
+  }
+
   try {
+    const whereConditions = [eq(schema.editais.tenantId, tenantId)];
+    if (startDate && endDate) {
+      whereConditions.push(gte(schema.editais.publishedAt, startDate));
+      whereConditions.push(lte(schema.editais.publishedAt, endDate));
+    }
+    const whereClause = and(...whereConditions);
+
     // 1. Busca editais do tenant ordenados por data de publicação
     const editaisData = await db
       .select({
@@ -175,7 +205,7 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
         sourceName: schema.editais.sourceName,
       })
       .from(schema.editais)
-      .where(eq(schema.editais.tenantId, tenantId))
+      .where(whereClause)
       .orderBy(desc(schema.editais.publishedAt));
 
     let totalBudget = 0;

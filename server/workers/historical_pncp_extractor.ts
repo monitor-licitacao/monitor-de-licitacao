@@ -508,7 +508,7 @@ export async function executeHistoricalExtraction(
 
             if (matchEval.matches) {
               progress.matchedItemsCount++;
-              if (normalized.estimatedValue) {
+              if (normalized.estimatedValue != null) {
                 progress.totalEstimatedValue += normalized.estimatedValue;
               }
 

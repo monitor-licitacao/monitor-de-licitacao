@@ -410,6 +410,12 @@ export function bindHistoricalJob(
   return progress;
 }
 
+export function isHistoricalJobCancelled(
+  progress: Pick<HistoricalExtractionProgress, 'status'>
+): boolean {
+  return progress.status === 'CANCELLED';
+}
+
 /**
  * Executa a orquestração histórica completa fatiada para um determinado Tenant
  */
@@ -425,7 +431,7 @@ export async function executeHistoricalExtraction(
 
   const chunks = generateDateChunks(options.startDate, options.endDate, chunkDays);
   const progress = bindHistoricalJob(options);
-  if (progress.status === 'CANCELLED') {
+  if (isHistoricalJobCancelled(progress)) {
     return progress;
   }
   progress.status = 'RUNNING';
@@ -478,7 +484,7 @@ export async function executeHistoricalExtraction(
 
   try {
     for (let cIdx = 0; cIdx < chunks.length; cIdx++) {
-      if ((progress.status as string) === 'CANCELLED') break;
+      if (isHistoricalJobCancelled(progress)) break;
 
       const chunk = chunks[cIdx];
       progress.currentChunkIndex = cIdx + 1;
@@ -487,7 +493,7 @@ export async function executeHistoricalExtraction(
       if (onProgress) onProgress(progress);
 
       for (const modalidade of modalidades) {
-        if ((progress.status as string) === 'CANCELLED') break;
+        if (isHistoricalJobCancelled(progress)) break;
 
         let page = 1;
         let keepPaging = true;
@@ -602,12 +608,12 @@ export async function executeHistoricalExtraction(
       }
     }
 
-    if (progress.status !== 'CANCELLED') {
+    if (!isHistoricalJobCancelled(progress)) {
       progress.status = 'COMPLETED';
       progress.finishedAt = new Date().toISOString();
     }
   } catch (fatalErr: any) {
-    if (progress.status !== 'CANCELLED') {
+    if (!isHistoricalJobCancelled(progress)) {
       progress.status = 'FAILED';
       progress.error = fatalErr.message;
       progress.finishedAt = new Date().toISOString();

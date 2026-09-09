@@ -106,33 +106,41 @@ test('Historical PNCP Extractor - 3) Normalização Canônica de Dados e Orçame
   );
 });
 
-const externalIntegrationTest = process.env.RUN_EXTERNAL_HISTORICAL_TESTS === '1' ? test : test.skip;
-externalIntegrationTest(
-  'Historical PNCP Extractor - 4) Integração com API Real de Dados Abertos (Consulta Amostra 14.133)',
-  async () => {
-    const { fetchComprasDadosAbertosPncp, COMPRAS_DADOS_ABERTOS_PNCP_URL } = await import(
-      './server/workers/historical_pncp_extractor.js'
+test('Historical PNCP Extractor - 4) Parser da API de Dados Abertos (fixture, sem rede)', async (t) => {
+  const { fetchComprasDadosAbertosPncp } = await import('./server/workers/historical_pncp_extractor.js');
+  const fixtureItem = {
+    idCompra: '92515306000572024',
+    numeroControlePNCP: '28305936000140-1-000129/2024',
+    objetoCompra: 'AQUISIÇÃO DE EQUIPAMENTOS',
+    valorTotalEstimado: 185400.5,
+  };
+  const originalFetch = globalThis.fetch;
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input);
+    assert.match(url, /1_consultarContratacoes_PNCP_14133/);
+    assert.match(url, /dataPublicacaoPncpInicial=2024-06-01/);
+    assert.match(url, /codigoModalidade=6/);
+    return new Response(
+      JSON.stringify({
+        resultado: [fixtureItem],
+        totalRegistros: 5,
+        totalPaginas: 1,
+      }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
+  }) as typeof fetch;
 
-    const healthUrl = new URL(COMPRAS_DADOS_ABERTOS_PNCP_URL);
-    healthUrl.searchParams.set('dataPublicacaoPncpInicial', '2024-06-01');
-    healthUrl.searchParams.set('dataPublicacaoPncpFinal', '2024-06-03');
-    healthUrl.searchParams.set('codigoModalidade', '6');
-    healthUrl.searchParams.set('pagina', '1');
-    healthUrl.searchParams.set('tamanhoPagina', '1');
-    const healthResponse = await fetch(healthUrl.toString());
-    assert.equal(healthResponse.status, 200, 'Endpoint externo deve responder com HTTP 200');
-
-    // Consulta um intervalo real de 3 dias de 2024 para Pregão Eletrônico (modalidade 6)
-    const result = await fetchComprasDadosAbertosPncp('2024-06-01', '2024-06-03', 6, 1, 10);
-    assert.ok(result.total > 0, 'Deveria retornar registros no período de dados abertos');
-    assert.ok(Array.isArray(result.items), 'Deveria retornar array de itens');
-    assert.ok(result.items.length > 0, 'Deveria conter itens reais retornados');
-
-    const first = result.items[0];
-    assert.ok(first.idCompra || first.numeroControlePNCP, 'Item deve ter idCompra ou controle PNCP');
-  }
-);
+  const result = await fetchComprasDadosAbertosPncp('2024-06-01', '2024-06-03', 6, 1, 10);
+  assert.equal(result.total, 5);
+  assert.ok(Array.isArray(result.items));
+  assert.equal(result.items.length, 1);
+  assert.equal(result.items[0].idCompra, fixtureItem.idCompra);
+  assert.ok(result.items[0].numeroControlePNCP);
+});
 
 test('Historical PNCP Extractor - 5) Fail-Closed e Proteção de Tenant nas Rotas de Extração Histórica', async () => {
   const { historicalRouter } = await import('./server/routes/historical.js');

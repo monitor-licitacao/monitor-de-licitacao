@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      CERT_ENCRYPTION_KEY: ${{ secrets.CERT_ENCRYPTION_KEY }}
     steps:
       - uses: actions/checkout@v4
 

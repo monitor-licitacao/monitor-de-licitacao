@@ -131,9 +131,9 @@ export function generateDateChunks(
     throw new Error('Intervalo de datas inválido para extração histórica.');
   }
 
-  const chunks: Array<{ start: string; end: string }> = [];
-  let currentStart = new Date(start);
-
+  if (!Number.isFinite(chunkDays) || chunkDays < 1 || chunkDays > 31) {
+    throw new Error('chunkDays inválido para extração histórica (use um valor entre 1 e 31).');
+  }
   while (currentStart <= end) {
     const currentEnd = new Date(currentStart);
     currentEnd.setDate(currentEnd.getDate() + chunkDays - 1);

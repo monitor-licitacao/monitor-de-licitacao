@@ -1,7 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-process.env.CERT_ENCRYPTION_KEY = process.env.CERT_ENCRYPTION_KEY || 'test-cert-encryption-key-min-32-chars-long';
+if (!process.env.CERT_ENCRYPTION_KEY || process.env.CERT_ENCRYPTION_KEY === 'CHANGE_ME_IN_PRODUCTION') {
+  process.env.CERT_ENCRYPTION_KEY = 'test-cert-encryption-key-min-32-chars-long';
+}
 
 import {
   getAuthenticatedTenantId,

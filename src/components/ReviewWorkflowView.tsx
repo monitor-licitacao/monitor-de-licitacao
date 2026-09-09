@@ -168,6 +168,12 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
               </div>
 
               <div className="space-y-4 text-xs text-slate-600 leading-relaxed relative z-10">
+                {currentEdital.sourceName.includes('PNCP') && (
+                  <p className="flex items-start gap-1.5 text-[11px] text-slate-500">
+                    <ShieldCheck size={13} className="mt-0.5 shrink-0 text-slate-400" />
+                    O acesso ao portal ocorre no navegador externo. Para rotas restritas, o certificado A1 deve estar instalado neste navegador.
+                  </p>
+                )}
                 <div className="bg-slate-50 p-3 rounded border border-slate-100">
                   <p><strong>Objeto Oficial:</strong> {currentEdital.objectDescription}</p>
                 </div>

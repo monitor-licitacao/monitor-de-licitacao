@@ -122,22 +122,32 @@ export async function generateTextWithFallback(options: GenerateWithFallbackOpti
 }
 
 /** Health check leve da API Ollama (tags). Suporta localhost e ollama.com (Bearer). */
-export async function checkOllamaHealth(): Promise<{ ok: boolean; models: string[]; error?: string }> {
+export async function checkOllamaHealth(timeoutMs = 1500): Promise<{ ok: boolean; models: string[]; error?: string }> {
   const base = (process.env.OLLAMA_BASE_URL || 'http://127.0.0.1:11434/v1').replace(/\/v1\/?$/, '');
   const apiKey = process.env.OLLAMA_API_KEY;
   const headers: Record<string, string> = {};
   if (apiKey && apiKey !== 'ollama' && base.includes('ollama.com')) {
-    headers.Authorization = `Bearer ${apiKey}`;
+    headers.Authorization = 'Bearer ' + apiKey;
   }
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(`${base}/api/tags`, { headers });
+    const res = await fetch(`${base}/api/tags`, {
+      headers,
+      signal: controller.signal,
+    });
     if (!res.ok) {
       return { ok: false, models: [], error: `HTTP ${res.status}` };
     }
     const data = (await res.json()) as { models?: { name: string }[] };
     return { ok: true, models: (data.models || []).map((m) => m.name) };
   } catch (err: any) {
+    if (err?.name === 'AbortError') {
+      return { ok: false, models: [], error: `timeout after ${timeoutMs}ms` };
+    }
     return { ok: false, models: [], error: err?.message || String(err) };
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

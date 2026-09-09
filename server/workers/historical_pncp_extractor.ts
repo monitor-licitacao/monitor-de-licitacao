@@ -132,7 +132,7 @@ export function generateDateChunks(
     throw new Error('Intervalo de datas inválido para extração histórica.');
   }
 
-  if (!Number.isFinite(chunkDays) || chunkDays < 1 || chunkDays > 31) {
+  if (!Number.isInteger(chunkDays) || chunkDays < 1 || chunkDays > 31) {
     throw new Error('chunkDays inválido para extração histórica (use um valor entre 1 e 31).');
   }
   const chunks: Array<{ start: string; end: string }> = [];
@@ -416,6 +416,12 @@ export function isHistoricalJobCancelled(
   return progress.status === 'CANCELLED';
 }
 
+export function countSuccessfulInserts(
+  returningRows: Array<{ id?: string }> | null | undefined
+): number {
+  return Array.isArray(returningRows) ? returningRows.length : 0;
+}
+
 /**
  * Executa a orquestração histórica completa fatiada para um determinado Tenant
  */
@@ -562,7 +568,7 @@ export async function executeHistoricalExtraction(
               // Persistência idempotente
               if (db) {
                 try {
-                  await db
+                  const inserted = await db
                     .insert(schema.editais)
                     .values({
                       id: normalized.id,
@@ -587,9 +593,10 @@ export async function executeHistoricalExtraction(
                       biddingDate: normalized.biddingDate,
                       humanReviewStatus: 'PENDING',
                     })
-                    .onConflictDoNothing();
+                    .onConflictDoNothing()
+                    .returning({ id: schema.editais.id });
 
-                  progress.newEditaisInserted++;
+                  progress.newEditaisInserted += countSuccessfulInserts(inserted);
                 } catch (dbErr: any) {
                   // Conflito ou erro de chave ignorado
                 }

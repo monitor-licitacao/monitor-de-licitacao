@@ -8,6 +8,7 @@ import {
   DEFAULT_FITNESS_NEGATIVE_KEYWORDS,
   activeHistoricalJobs,
   bindHistoricalJob,
+  countSuccessfulInserts,
 } from './server/workers/historical_pncp_extractor.js';
 
 test('Historical PNCP Extractor - 1) Fatiamento Temporal (Date Chunks)', () => {
@@ -29,6 +30,13 @@ test('Historical PNCP Extractor - 1) Fatiamento Temporal (Date Chunks)', () => {
   assert.throws(() => {
     generateDateChunks('2024-05-01', '2024-01-01', 15);
   }, /Intervalo de datas inválido/);
+
+  assert.throws(() => {
+    generateDateChunks('2024-01-01', '2024-02-01', 0);
+  }, /chunkDays inválido/);
+  assert.throws(() => {
+    generateDateChunks('2024-01-01', '2024-02-01', 1.5);
+  }, /chunkDays inválido/);
 });
 
 test('Historical PNCP Extractor - 2) Avaliação de Match Semântico e NCM Fitness (9506.91.00)', () => {
@@ -213,5 +221,19 @@ test('Historical PNCP Extractor - 7) estimatedValue zero não vira null', () => 
     'COMPRAS_DADOS_ABERTOS'
   );
   assert.equal(fallbackNcm.ncmCode, '9506.91.00');
+
+  const firstFallback = normalizeRawProcurementItem(
+    { processo: '2024/1', objetoCompra: 'esteira', orgaoEntidadeCnpj: '123' },
+    'COMPRAS_DADOS_ABERTOS'
+  );
+  const secondFallback = normalizeRawProcurementItem(
+    { processo: '2024/1', objetoCompra: 'esteira', orgaoEntidadeCnpj: '123' },
+    'COMPRAS_DADOS_ABERTOS'
+  );
+  assert.equal(firstFallback.id, secondFallback.id);
+  assert.match(firstFallback.id, /^hist-compras-[a-f0-9-]+$/);
+
+  assert.equal(countSuccessfulInserts([]), 0);
+  assert.equal(countSuccessfulInserts([{ id: 'a' }]), 1);
 });
 

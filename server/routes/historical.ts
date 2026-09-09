@@ -158,8 +158,8 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
     });
   }
 
-  const startDate = startDateQuery ? new Date(startDateQuery) : null;
-  const endDate = endDateQuery ? new Date(endDateQuery) : null;
+  let startDate = startDateQuery ? new Date(startDateQuery) : null;
+  let endDate = endDateQuery ? new Date(endDateQuery) : null;
   if (
     (startDateQuery && isNaN(startDate!.getTime())) ||
     (endDateQuery && isNaN(endDate!.getTime())) ||
@@ -170,16 +170,22 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
     });
   }
 
+  const BUDGET_ANALYTICS_MAX_ROWS = 5000;
+  if (!startDate || !endDate) {
+    endDate = new Date();
+    startDate = new Date(endDate);
+    startDate.setFullYear(startDate.getFullYear() - 2);
+  }
+
   try {
-    const whereConditions = [eq(schema.editais.tenantId, tenantId)];
-    if (startDate && endDate) {
-      whereConditions.push(gte(schema.editais.publishedAt, startDate));
-      whereConditions.push(lte(schema.editais.publishedAt, endDate));
-    }
-    const whereClause = and(...whereConditions);
+    const whereClause = and(
+      eq(schema.editais.tenantId, tenantId),
+      gte(schema.editais.publishedAt, startDate),
+      lte(schema.editais.publishedAt, endDate)
+    );
 
     // 1. Busca editais do tenant ordenados por data de publicação
-    const editaisData = await db
+    const fetchedEditais = await db
       .select({
         id: schema.editais.id,
         title: schema.editais.title,
@@ -192,7 +198,13 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
       })
       .from(schema.editais)
       .where(whereClause)
-      .orderBy(desc(schema.editais.publishedAt));
+      .orderBy(desc(schema.editais.publishedAt))
+      .limit(BUDGET_ANALYTICS_MAX_ROWS + 1);
+
+    const truncated = fetchedEditais.length > BUDGET_ANALYTICS_MAX_ROWS;
+    const editaisData = truncated
+      ? fetchedEditais.slice(0, BUDGET_ANALYTICS_MAX_ROWS)
+      : fetchedEditais;
 
     let totalBudget = 0;
     let editaisWithBudgetCount = 0;
@@ -257,6 +269,9 @@ historicalRouter.get('/budget-analytics', async (req: Request, res: Response) =>
         totalEditaisWithBudget: editaisWithBudgetCount,
         totalEstimatedBudget: totalBudget,
         averageTicket: averageTicketOverall,
+        periodStart: startDate.toISOString(),
+        periodEnd: endDate.toISOString(),
+        truncated,
       },
       topAgencies,
       quarterlyTrends,

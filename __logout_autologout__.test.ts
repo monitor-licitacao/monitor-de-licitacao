@@ -189,7 +189,7 @@ test('Logout Gap 7: Header renderiza botão de logout quando onLogout é forneci
     React.createElement(Header, {
       activeTab: 'dashboard',
       setActiveTab: () => {},
-      scheduler: { isRunning: true, lastRunAt: '', nextRunAt: '', totalRuns: 0 },
+      scheduler: { isRunning: true, lastRunAt: '', nextRunAt: '', totalRunsCompleted: 0, logs: [], intervalMinutes: 60, activeSourcesCount: 1, lastExecutionDurationSeconds: 10 } as any,
       onTriggerScheduler: () => {},
       pendingReviewCount: 0,
       isTriggering: false,

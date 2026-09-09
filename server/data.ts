@@ -155,20 +155,26 @@ export const INITIAL_SOURCES: Source[] = [
   },
   {
     id: 'src-sesi-sp-01',
-    name: 'SESI Regional São Paulo (FIESP)',
+    name: 'SESI São Paulo — Portal de Transparência (Licitações)',
     category: 'SESI',
     type: 'SCRAPER',
     uf: 'SP',
     city: 'São Paulo',
-    endpointOrUrl: 'https://compras.sesisp.org.br/processos',
-    selectorOrParams: '.grid-licitacoes-fiesp .processo-row',
+    endpointOrUrl: 'https://transparencia.sesisp.org.br/licitacoes/licitacoes-editais',
+    selectorOrParams: JSON.stringify({
+      listSelector: 'article.edital',
+      titleSelector: '#Resumo, h3',
+      descriptionSelector: '#Objeto',
+      dateSelector: '#Status',
+    }),
     authType: 'NONE',
     status: 'ACTIVE',
     lastCheckedAt: '2026-08-16T17:25:00Z',
     latencyMs: 290,
     successRate: 99.2,
     totalCollected: 44,
-    format: 'HTML'
+    format: 'HTML',
+    notes: 'Portal oficial de transparência e processos licitatórios do SESI SP. Seletores canônicos validados contra DOM real.',
   },
 
   // 3. 28 Municípios AMZOP / Região RS

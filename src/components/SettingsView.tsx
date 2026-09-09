@@ -20,7 +20,7 @@ import {
   FileKey,
   Layers
 } from 'lucide-react';
-import { LexicalTerm, NCMConfig, NCMClassificationResult } from '../types';
+import { LexicalTerm, NCMConfig, NCMClassificationResult, NCMRecord } from '../types';
 import { StatusCatalogView } from './mural/StatusCatalogView';
 import { replaceById } from '../utils/collectionUtils';
 
@@ -36,6 +36,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
   const [ncmCode, setNcmCode] = useState('9506.91.00');
   const [ncmDescription, setNcmDescription] = useState('Artigos e equipamentos para cultura física, ginástica ou atletismo');
   const [terms, setTerms] = useState<LexicalTerm[]>([]);
+  const [ncms, setNcms] = useState<NCMRecord[]>([]);
+  const [newNcmCode, setNewNcmCode] = useState('');
+  const [newNcmDesc, setNewNcmDesc] = useState('');
+  const [isAddingNcm, setIsAddingNcm] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -112,6 +116,9 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
         setNcmCode(data.ncmCode);
         setNcmDescription(data.ncmDescription);
         setTerms(data.terms || []);
+        if (data.ncms && Array.isArray(data.ncms)) {
+          setNcms(data.ncms);
+        }
       }
     } catch (err) {
       console.error('Error fetching NCM config:', err);
@@ -130,11 +137,82 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
       if (res.ok) {
         const updated = await res.json();
         setConfig(updated);
+        if (updated.ncms && Array.isArray(updated.ncms)) {
+          setNcms(updated.ncms);
+        }
         setIsSaved(true);
         setTimeout(() => setIsSaved(false), 2500);
       }
     } catch (err) {
       console.error('Error saving NCM base config:', err);
+    }
+  };
+
+  const handleAddNcmCode = async () => {
+    if (!newNcmCode.trim() || !newNcmDesc.trim()) return;
+    try {
+      setIsAddingNcm(true);
+      const res = await fetch('/api/config/ncm/codes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: newNcmCode.trim(), description: newNcmDesc.trim() })
+      });
+      if (res.ok) {
+        const created: NCMRecord = await res.json();
+        setNcms(prev => [...prev, created]);
+        setNewNcmCode('');
+        setNewNcmDesc('');
+      } else {
+        const err = await res.json();
+        alert(err.error || 'Erro ao adicionar NCM.');
+      }
+    } catch (err) {
+      console.error('Error adding NCM code:', err);
+    } finally {
+      setIsAddingNcm(false);
+    }
+  };
+
+  const handleDeleteNcmCode = async (id: number | string) => {
+    try {
+      const res = await fetch(`/api/config/ncm/codes/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setNcms(prev => prev.filter(n => String(n.id) !== String(id)));
+      } else {
+        const err = await res.json();
+        alert(err.error || 'Erro ao remover NCM.');
+      }
+    } catch (err) {
+      console.error('Error deleting NCM code:', err);
+    }
+  };
+
+  const handleToggleNcmCode = async (id: number | string) => {
+    try {
+      const res = await fetch(`/api/config/ncm/codes/${id}/toggle`, { method: 'PATCH' });
+      if (res.ok) {
+        const updated: NCMRecord = await res.json();
+        setNcms(prev => prev.map(n => String(n.id) === String(id) ? updated : n));
+      }
+    } catch (err) {
+      console.error('Error toggling NCM code:', err);
+    }
+  };
+
+  const handleSetPrimaryNcm = async (id: number | string) => {
+    try {
+      const res = await fetch(`/api/config/ncm/codes/${id}/primary`, { method: 'PATCH' });
+      if (res.ok) {
+        const data: NCMConfig = await res.json();
+        setConfig(data);
+        setNcmCode(data.ncmCode);
+        setNcmDescription(data.ncmDescription);
+        if (data.ncms) setNcms(data.ncms);
+        setIsSaved(true);
+        setTimeout(() => setIsSaved(false), 2500);
+      }
+    } catch (err) {
+      console.error('Error setting primary NCM:', err);
     }
   };
 
@@ -312,6 +390,124 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
                   Última parametrização: {new Date(config.updatedAt).toLocaleString('pt-BR')} por {config.updatedBy}
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Multiple Monitored NCMs Catalog Card */}
+          <div className="bg-white border border-slate-200 rounded-lg p-4 space-y-3 shadow-xs text-slate-800">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 uppercase tracking-wider">
+                <Layers className="w-4 h-4 text-blue-600" />
+                <span>NCMs Monitorados ({ncms.length})</span>
+              </div>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
+                Multi-NCM SaaS
+              </span>
+            </div>
+
+            {/* List of NCMs */}
+            <div className="space-y-2 max-h-56 overflow-y-auto pr-0.5">
+              {ncms.map(n => {
+                const isCurrentPrimary = n.code.trim() === ncmCode.trim() || n.isPrimary;
+                return (
+                  <div
+                    key={n.id}
+                    className={`p-2.5 rounded-lg border text-xs transition-colors ${
+                      isCurrentPrimary
+                        ? 'bg-blue-50/60 border-blue-200'
+                        : n.active
+                        ? 'bg-slate-50 border-slate-200'
+                        : 'bg-slate-50/40 border-slate-100 opacity-60'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="font-mono font-bold text-blue-700 bg-white px-1.5 py-0.5 rounded border border-blue-200 text-[11px]">
+                            {n.code}
+                          </span>
+                          {isCurrentPrimary && (
+                            <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-blue-600 text-white">
+                              Principal
+                            </span>
+                          )}
+                          <span className={`text-[9.5px] font-semibold px-1.5 py-0.5 rounded ${
+                            n.active ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'
+                          }`}>
+                            {n.active ? 'Ativo' : 'Inativo'}
+                          </span>
+                        </div>
+                        <p className="text-slate-600 text-[11px] mt-1 line-clamp-2" title={n.description}>
+                          {n.description}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-1 shrink-0 pt-0.5">
+                        {!isCurrentPrimary && (
+                          <button
+                            type="button"
+                            onClick={() => handleSetPrimaryNcm(n.id)}
+                            title="Tornar este NCM o principal"
+                            className="text-[10px] text-blue-600 hover:text-blue-700 hover:bg-blue-100/50 px-1.5 py-0.5 rounded border border-blue-200 font-semibold cursor-pointer"
+                          >
+                            Tornar Principal
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => handleToggleNcmCode(n.id)}
+                          title={n.active ? 'Desativar NCM' : 'Ativar NCM'}
+                          className={`p-1 rounded cursor-pointer ${
+                            n.active ? 'text-emerald-600 hover:bg-emerald-50' : 'text-slate-400 hover:bg-slate-100'
+                          }`}
+                        >
+                          <Check className="w-3.5 h-3.5" />
+                        </button>
+                        {!isCurrentPrimary && (
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteNcmCode(n.id)}
+                            title="Remover NCM"
+                            className="p-1 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded cursor-pointer"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Add NCM Form */}
+            <div className="border-t border-slate-100 pt-2.5 space-y-2">
+              <span className="text-[11px] font-bold text-slate-700 block">Adicionar Novo NCM</span>
+              <div className="space-y-1.5">
+                <input
+                  type="text"
+                  placeholder="Código NCM (ex: 9506.99.00)"
+                  value={newNcmCode}
+                  onChange={e => setNewNcmCode(e.target.value)}
+                  className="w-full bg-white border border-slate-200 rounded px-2.5 py-1 text-xs font-mono focus:outline-none focus:border-blue-500"
+                />
+                <input
+                  type="text"
+                  placeholder="Descrição oficial do NCM"
+                  value={newNcmDesc}
+                  onChange={e => setNewNcmDesc(e.target.value)}
+                  className="w-full bg-white border border-slate-200 rounded px-2.5 py-1 text-xs focus:outline-none focus:border-blue-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddNcmCode}
+                  disabled={isAddingNcm || !newNcmCode.trim() || !newNcmDesc.trim()}
+                  className="w-full flex items-center justify-center gap-1.5 py-1.5 text-xs font-semibold rounded bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-50 transition cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>{isAddingNcm ? 'Adicionando...' : 'Adicionar NCM Monitorado'}</span>
+                </button>
+              </div>
             </div>
           </div>
 

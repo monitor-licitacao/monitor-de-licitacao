@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Status & Scheduler Quick Actions */}
         <div className="flex items-center gap-3 sm:gap-5 text-xs">
           <div className="hidden md:flex items-center gap-2 text-slate-300">
-            <span className={`w-2 h-2 rounded-full ${scheduler.isRunning ? 'bg-green-400 animate-pulse' : 'bg-amber-400'}`}></span>
+            <span className={`w-2 h-2 rounded-full ${scheduler?.isRunning ? 'bg-green-400 animate-pulse' : 'bg-amber-400'}`}></span>
             <span className="text-[11px]">Scheduler: <strong className="text-green-400">Operacional</strong></span>
           </div>
 

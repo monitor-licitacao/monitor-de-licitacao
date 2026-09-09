@@ -6,10 +6,8 @@ import { getAuthenticatedTenantId, validateTenantAccess } from '../lib/tenantAut
 import {
   executeHistoricalExtraction,
   activeHistoricalJobs,
+  bindHistoricalJob,
   generateDateChunks,
-  DEFAULT_FITNESS_KEYWORDS,
-  DEFAULT_FITNESS_NEGATIVE_KEYWORDS,
-  type HistoricalExtractionProgress,
 } from '../workers/historical_pncp_extractor.js';
 
 export const historicalRouter = Router();
@@ -59,30 +57,18 @@ historicalRouter.post('/start', async (req: Request, res: Response) => {
   }
 
   const chunks = generateDateChunks(startDate, endDate, chunkDays);
-  const initialJobId = `job-${tenantId}-${Date.now()}`;
-  const initialProgress: HistoricalExtractionProgress = {
-    jobId: initialJobId,
+  const initialProgress = bindHistoricalJob({
     tenantId,
-    status: 'RUNNING',
-    currentChunkIndex: 0,
-    totalChunks: chunks.length,
-    currentStartDate: chunks[0]?.start || startDate,
-    currentEndDate: chunks[0]?.end || endDate,
-    pagesProcessed: 0,
-    itemsExamined: 0,
-    matchedItemsCount: 0,
-    totalEstimatedValue: 0,
-    newEditaisInserted: 0,
-    sourceUsed: sourcePreference,
-    startedAt: new Date().toISOString(),
-  };
-
-  activeHistoricalJobs.set(initialJobId, initialProgress);
+    startDate,
+    endDate,
+    chunkDays,
+    sourcePreference,
+  });
 
   // Executa em background de forma assíncrona
   executeHistoricalExtraction({
     tenantId,
-    jobId: initialJobId,
+    jobId: initialProgress.jobId,
     startDate,
     endDate,
     ncmCode,

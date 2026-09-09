@@ -6,6 +6,8 @@ import {
   normalizeRawProcurementItem,
   DEFAULT_FITNESS_KEYWORDS,
   DEFAULT_FITNESS_NEGATIVE_KEYWORDS,
+  activeHistoricalJobs,
+  bindHistoricalJob,
 } from './server/workers/historical_pncp_extractor.js';
 
 test('Historical PNCP Extractor - 1) Fatiamento Temporal (Date Chunks)', () => {
@@ -98,7 +100,10 @@ test('Historical PNCP Extractor - 3) Normalização Canônica de Dados e Orçame
   assert.equal(normalized.agency, 'PREFEITURA MUNICIPAL DE TESTE');
   assert.equal(normalized.estimatedValue, 185400.5);
   assert.ok(normalized.title.includes('AQUISIÇÃO DE EQUIPAMENTOS'));
-  assert.ok(normalized.url.includes('pncp.gov.br'));
+  assert.equal(
+    normalized.url,
+    'https://pncp.gov.br/app/editais/28305936000140-1-000129%2F2024'
+  );
 });
 
 const externalIntegrationTest = process.env.RUN_EXTERNAL_HISTORICAL_TESTS === '1' ? test : test.skip;
@@ -152,5 +157,53 @@ test('Historical PNCP Extractor - 5) Fail-Closed e Proteção de Tenant nas Rota
   const tid = getAuthenticatedTenantId(mockReq, mockRes);
   assert.equal(tid, null, 'Sem req.user deve retornar null');
   assert.equal(resStatus, 401, 'Deve retornar 401 fail-closed');
+});
+
+test('Historical PNCP Extractor - 6) /start e worker compartilham o mesmo jobId e o mesmo objeto', () => {
+  activeHistoricalJobs.clear();
+  const jobId = 'job-1-placeholder';
+  const placeholder = bindHistoricalJob({
+    tenantId: 1,
+    jobId,
+    startDate: '2024-01-01',
+    endDate: '2024-01-15',
+  });
+  activeHistoricalJobs.set(jobId, placeholder);
+
+  const workerBound = bindHistoricalJob({
+    tenantId: 1,
+    jobId,
+    startDate: '2024-01-01',
+    endDate: '2024-01-15',
+  });
+
+  assert.equal(workerBound.jobId, jobId);
+  assert.equal(workerBound, placeholder, 'Worker deve reutilizar o objeto registrado em /start');
+  assert.equal(activeHistoricalJobs.size, 1, 'Não pode criar um segundo entry no Map');
+
+  placeholder.status = 'CANCELLED';
+  assert.equal(workerBound.status, 'CANCELLED', 'Cancelar o placeholder deve parar o job real');
+  activeHistoricalJobs.clear();
+});
+
+test('Historical PNCP Extractor - 7) estimatedValue zero não vira null', () => {
+  const zeroItem = normalizeRawProcurementItem(
+    {
+      idCompra: '1',
+      numeroControlePNCP: '12.345/2024',
+      codigoNcm: '9506.91.00',
+      valorTotalEstimado: 0,
+      objetoCompra: 'Doação de esteira',
+    },
+    'COMPRAS_DADOS_ABERTOS'
+  );
+  assert.equal(zeroItem.estimatedValue, 0);
+  assert.ok(zeroItem.url.includes('%2F'));
+
+  const fallbackNcm = normalizeRawProcurementItem(
+    { idCompra: '2', codigoNCM: '9506.91.00', objetoCompra: 'x' },
+    'COMPRAS_DADOS_ABERTOS'
+  );
+  assert.equal(fallbackNcm.ncmCode, '9506.91.00');
 });
 

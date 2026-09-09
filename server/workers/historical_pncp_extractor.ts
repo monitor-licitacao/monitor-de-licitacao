@@ -379,25 +379,21 @@ export function normalizeRawProcurementItem(
 export const activeHistoricalJobs = new Map<string, HistoricalExtractionProgress>();
 
 /**
- * Executa a orquestração histórica completa fatiada para um determinado Tenant
+ * Reuses the Map entry created by POST /start so status/cancel mutate the same object
+ * the worker reads. Mint a jobId only when the caller did not supply one.
  */
-export async function executeHistoricalExtraction(
-  options: HistoricalExtractionOptions,
-  onProgress?: (progress: HistoricalExtractionProgress) => void
-): Promise<HistoricalExtractionProgress> {
+export function bindHistoricalJob(
+  options: Pick<HistoricalExtractionOptions, 'tenantId' | 'jobId' | 'startDate' | 'endDate' | 'chunkDays' | 'sourcePreference'>
+): HistoricalExtractionProgress {
   const jobId = options.jobId || `job-${options.tenantId}-${Date.now()}`;
-  const targetNcm = options.ncmCode || '9506.91.00';
-  const modalidades = options.modalidades && options.modalidades.length > 0 ? options.modalidades : [6, 5, 4, 8];
-  const chunkDays = options.chunkDays || 15;
-  const delayMs = options.delayMs || 400;
-  const keywords = options.keywords && options.keywords.length > 0 ? options.keywords : DEFAULT_FITNESS_KEYWORDS;
+  const existing = activeHistoricalJobs.get(jobId);
+  if (existing) return existing;
 
-  const chunks = generateDateChunks(options.startDate, options.endDate, chunkDays);
-
+  const chunks = generateDateChunks(options.startDate, options.endDate, options.chunkDays || 15);
   const progress: HistoricalExtractionProgress = {
     jobId,
     tenantId: options.tenantId,
-    status: 'RUNNING' as HistoricalExtractionProgress['status'],
+    status: 'RUNNING',
     currentChunkIndex: 0,
     totalChunks: chunks.length,
     currentStartDate: chunks[0]?.start || options.startDate,
@@ -407,11 +403,32 @@ export async function executeHistoricalExtraction(
     matchedItemsCount: 0,
     totalEstimatedValue: 0,
     newEditaisInserted: 0,
-    sourceUsed: 'AUTO',
+    sourceUsed: options.sourcePreference || 'AUTO',
     startedAt: new Date().toISOString(),
   };
-
   activeHistoricalJobs.set(jobId, progress);
+  return progress;
+}
+
+/**
+ * Executa a orquestração histórica completa fatiada para um determinado Tenant
+ */
+export async function executeHistoricalExtraction(
+  options: HistoricalExtractionOptions,
+  onProgress?: (progress: HistoricalExtractionProgress) => void
+): Promise<HistoricalExtractionProgress> {
+  const targetNcm = options.ncmCode || '9506.91.00';
+  const modalidades = options.modalidades && options.modalidades.length > 0 ? options.modalidades : [6, 5, 4, 8];
+  const chunkDays = options.chunkDays || 15;
+  const delayMs = options.delayMs || 400;
+  const keywords = options.keywords && options.keywords.length > 0 ? options.keywords : DEFAULT_FITNESS_KEYWORDS;
+
+  const chunks = generateDateChunks(options.startDate, options.endDate, chunkDays);
+  const progress = bindHistoricalJob(options);
+  if (progress.status === 'CANCELLED') {
+    return progress;
+  }
+  progress.status = 'RUNNING';
   if (onProgress) onProgress(progress);
 
   // Conexão com o banco Neon
@@ -585,12 +602,16 @@ export async function executeHistoricalExtraction(
       }
     }
 
-    progress.status = 'COMPLETED';
-    progress.finishedAt = new Date().toISOString();
+    if (progress.status !== 'CANCELLED') {
+      progress.status = 'COMPLETED';
+      progress.finishedAt = new Date().toISOString();
+    }
   } catch (fatalErr: any) {
-    progress.status = 'FAILED';
-    progress.error = fatalErr.message;
-    progress.finishedAt = new Date().toISOString();
+    if (progress.status !== 'CANCELLED') {
+      progress.status = 'FAILED';
+      progress.error = fatalErr.message;
+      progress.finishedAt = new Date().toISOString();
+    }
   } finally {
     if (dbClient) {
       await dbClient.end({ timeout: 5 }).catch(() => {});

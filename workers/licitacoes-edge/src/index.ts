@@ -2,6 +2,15 @@
  * Edge proxy for Monitor de Licitações.
  * Public hostname (Custom Domain) → Worker → ORIGIN_URL (Tunnel hostname).
  */
+interface ExecutionContext {
+  waitUntil(promise: Promise<unknown>): void;
+  passThroughOnException(): void;
+}
+
+interface ExportedHandler<WorkerEnv = unknown> {
+  fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> | Response;
+}
+
 export interface Env {
   /** Upstream via Cloudflare Tunnel, e.g. https://licitacoes-origin.getgymsite.com.br */
   ORIGIN_URL: string;

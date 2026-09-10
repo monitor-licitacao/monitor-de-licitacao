@@ -222,26 +222,26 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
       <div className="flex items-center gap-1 bg-slate-200 p-1 rounded-lg w-fit">
         <button
           onClick={() => setActiveTab('status-catalog')}
-          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5 min-h-[36px] ${activeTab === 'status-catalog' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5 min-h-9 ${activeTab === 'status-catalog' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
         >
           <Layers className="w-3.5 h-3.5" />
           <span>Catálogo de Status</span>
         </button>
         <button
           onClick={() => setActiveTab('ncm')}
-          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors min-h-[36px] ${activeTab === 'ncm' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors min-h-9 ${activeTab === 'ncm' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
         >
           Motor Semântico (NCM)
         </button>
         <button
           onClick={() => setActiveTab('pncp')}
-          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors min-h-[36px] ${activeTab === 'pncp' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors min-h-9 ${activeTab === 'pncp' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
         >
           Integração PNCP (Certificados)
         </button>
         <button
           onClick={() => setActiveTab('mural-test')}
-          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5 min-h-[36px] ${activeTab === 'mural-test' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+          className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5 min-h-9 ${activeTab === 'mural-test' ? 'bg-white text-blue-700 shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
         >
           <Play className="w-3.5 h-3.5" />
           <span>Teste Mural</span>
@@ -675,14 +675,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
                 </span>
                 <label className="relative inline-flex items-center cursor-pointer ml-2">
                   <input type="checkbox" className="sr-only peer" checked={pncpIsActive} onChange={e => setPncpIsActive(e.target.checked)} />
-                  <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                 </label>
               </div>
             </div>
 
             <div className="p-5 space-y-4">
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg flex gap-3 text-amber-800 text-sm">
-                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 shrink-0" />
                 <div>
                   <strong className="block mb-1">Atenção ao Mapeamento (Docker)</strong>
                   O caminho do arquivo informado abaixo deve ser absoluto. Caso o sistema seja conteinerizado (ex: VPS Hetzner), garanta que o diretório `D:\CERTIFICADOS` está mapeado como volume para o container e informe o caminho interno (ex: `/app/certs/...`).

@@ -22,6 +22,7 @@ import { db } from './server/db/index.js';
 import * as schema from './server/db/schema.js';
 import { eq, ilike, or, desc, sql } from 'drizzle-orm';
 import { crmRouter } from './server/routes/crm.js';
+import { historicalRouter } from './server/routes/historical.js';
 import { encryptSecret } from './server/lib/crypto.js';
 import { checkOllamaHealth } from './server/lib/ai.js';
 import { verifyPassword } from './server/lib/password.js';
@@ -363,6 +364,8 @@ async function startServer() {
 
   // Registrar rotas de CRM (após middleware de autenticação)
   app.use('/api/crm', crmRouter);
+  // Registrar rotas de extração histórica (PNCP & Dados Abertos)
+  app.use('/api/historical-extractor', historicalRouter);
 
   // ==========================================
   // REST API ENDPOINTS (Placed before Vite)

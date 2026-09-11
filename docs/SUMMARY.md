@@ -9,3 +9,4 @@
 * [Git Workflow: Commits e Branches](git-workflow-commits-e-branches.md)
 * [Notas Práticas de Deploy (Hetzner VPS)](notas-praticas-de-deploy-hetzner-vps.md)
 * [🛡️ SOP v1: Gates Operacionais](processo/gates-operacionais.md)
+* [📑 PRD: Plano Estratégico de Melhorias no Produto (2026)](PRD-Melhorias-Produto-2026.md)

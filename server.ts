@@ -245,56 +245,54 @@ async function startServer() {
       return res.status(400).json({ error: 'E-mail e senha são obrigatórios.' });
     }
 
+    // Mock credentials — fallback para desenvolvimento/teste quando DATABASE_URL não configurada
+    const MOCK_CREDENTIALS = [
+      { email: 'test@example.com', password: 'password123', id: 'test-user-1', name: 'Test User' },
+      { email: 'marcelo.rosas@getgymsite.com.br', password: '123456', id: 'usr-marcelo-rosas', name: 'Marcelo Rosas' },
+    ];
+
     try {
+      // Se DATABASE_URL não configurada, usar mock
+      if (!process.env.DATABASE_URL) {
+        const mockCred = MOCK_CREDENTIALS.find(c => c.email === email && c.password === password);
+        if (mockCred) {
+          const mockUser = { ...mockCred, tenantId: 1, role: 'user' };
+          const secret = process.env.JWT_SECRET || 'dev-fallback-secret-for-testing';
+          const token = jwt.sign(mockUser, secret, { expiresIn: '12h' });
+          console.info(`[Auth] Mock login (DATABASE_URL not set): ${email}`);
+          return res.json({ token, user: mockUser });
+        }
+        console.warn('[Auth] Mock login failed (DATABASE_URL not set):', { email, ip: req.ip });
+        return res.status(401).json({ error: 'Credenciais inválidas' });
+      }
+
+      // DB lookup
       const rows = await db.select().from(schema.users).where(eq(schema.users.email, email));
       const dbUser = rows[0];
 
       if (!dbUser || !verifyPassword(password, dbUser.passwordHash)) {
-        // Log failed auth without secrets/passwords (Regra 12: audit trail)
-        const safeEmail =
-          typeof email === 'string' ? email.trim().slice(0, 120) : undefined;
-        console.warn('[Auth] Failed login attempt', {
-          email: safeEmail,
-          ip: req.ip,
-          at: new Date().toISOString(),
-        });
+        const safeEmail = typeof email === 'string' ? email.trim().slice(0, 120) : undefined;
+        console.warn('[Auth] Failed login attempt', { email: safeEmail, ip: req.ip, at: new Date().toISOString() });
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
 
-      // Security decision: role must NOT fail-open to admin.
-      // Missing or null dbUser.role defaults strictly to non-admin 'user'.
       const role = dbUser.role === 'admin' ? 'admin' : (dbUser.role || 'user');
-      const user = {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        tenantId: dbUser.tenantId,
-        role,
-      };
-
+      const user = { id: dbUser.id, name: dbUser.name, email: dbUser.email, tenantId: dbUser.tenantId, role };
       const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '12h' });
       return res.json({ token, user });
     } catch (e: any) {
-      // Fase 0 DEV ONLY: mock login para teste quando banco falha
-      if (
-        (email === 'test@example.com' && password === 'password123') ||
-        (email === 'marcelo.rosas@getgymsite.com.br' && password === '123456')
-      ) {
-        const mockUser = {
-          id: email === 'marcelo.rosas@getgymsite.com.br' ? 'usr-marcelo-rosas' : 'test-user-1',
-          name: email === 'marcelo.rosas@getgymsite.com.br' ? 'Marcelo Rosas' : 'Test User',
-          email,
-          tenantId: 1,
-          role: 'user',
-        };
+      // DB connection error — fallback to mock
+      const mockCred = MOCK_CREDENTIALS.find(c => c.email === email && c.password === password);
+      if (mockCred) {
+        const mockUser = { ...mockCred, tenantId: 1, role: 'user' };
         const secret = process.env.JWT_SECRET || 'dev-fallback-secret-for-testing';
         const token = jwt.sign(mockUser, secret, { expiresIn: '12h' });
-        console.info(`[Auth] Mock login (DEV): ${email}`);
+        console.warn(`[Auth] DB connection error, using mock login: ${email}`, { error: e.message });
         return res.json({ token, user: mockUser });
       }
 
-      console.error('[Auth Login Error]:', e);
-      return res.status(500).json({ error: 'Erro ao autenticar.' });
+      console.error('[Auth Login Error]:', e.message);
+      return res.status(500).json({ error: 'Erro ao autenticar. Verifique DATABASE_URL e JWT_SECRET.' });
     }
   });
 

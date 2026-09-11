@@ -1,0 +1,86 @@
+{
+  "display_information": {
+    "name": "Notion Task Creator",
+    "description": "Cria tarefas no Notion a partir de um Workflow do Slack e registra telemetria de adoção no Amplitude.",
+    "background_color": "#0F1013"
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "notion-task-bot",
+      "always_online": true
+    }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "chat:write",
+        "links:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://SEU-SUBDOMINIO.ngrok-free.app/slack/events",
+      "bot_events": [
+        "function_executed"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "https://SEU-SUBDOMINIO.ngrok-free.app/slack/events"
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  },
+  "functions": {
+    "create_notion_task": {
+      "title": "Criar tarefa no Notion",
+      "description": "Cria uma tarefa em um banco de dados do Notion e notifica o canal",
+      "input_parameters": {
+        "task_title": {
+          "type": "string",
+          "title": "Título da Tarefa",
+          "description": "Título da tarefa a ser criada no Notion",
+          "is_required": true
+        },
+        "task_description": {
+          "type": "string",
+          "title": "Descrição",
+          "description": "Descrição detalhada da tarefa",
+          "is_required": false
+        },
+        "due_date": {
+          "type": "string",
+          "title": "Prazo",
+          "description": "Data limite no formato AAAA-MM-DD",
+          "is_required": false
+        },
+        "channel_id": {
+          "type": "slack#/types/channel_id",
+          "title": "Canal de notificação",
+          "description": "Canal onde a confirmação (ou o erro) será postada",
+          "is_required": true
+        },
+        "slack_user_id": {
+          "type": "slack#/types/user_id",
+          "title": "Usuário responsável",
+          "description": "Usuário associado ao evento de telemetria (opcional)",
+          "is_required": false
+        }
+      },
+      "output_parameters": {
+        "notion_page_url": {
+          "type": "string",
+          "title": "URL da tarefa no Notion",
+          "is_required": false
+        },
+        "success": {
+          "type": "boolean",
+          "title": "Sucesso",
+          "is_required": true
+        }
+      }
+    }
+  }
+}

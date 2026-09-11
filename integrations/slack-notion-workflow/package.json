@@ -1,0 +1,21 @@
+{
+  "name": "slack-notion-workflow-step",
+  "version": "1.0.0",
+  "description": "Custom Step do Slack Workflow Builder que cria tarefas no Notion e envia telemetria ao Amplitude.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "@slack/bolt": "^4.1.0",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

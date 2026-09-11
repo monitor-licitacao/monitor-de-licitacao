@@ -50,12 +50,19 @@ O escopo de melhorias foi clusterizado em **4 grandes fluxos de trabalho**, orde
 ### 📦 Cluster 1: Ingestão, Pipeline de Fontes & Cofre de Documentos (Prioridade P0)
 *Liderança: Engenharia de Backend / Infraestrutura*
 
+#### Épico 1.0 — Ingestão em 2 Níveis & Cache Lazy de Documentos (Benchmark Todas Licitações)
+- **Aprendizado Competitivo:** O modelo do *Todas Licitações* comprova que indexar previamente apenas metadados leves (objeto, órgão, datas, valores, município/UF) e hidratar itens/documentos **sob demanda (on-demand/lazy) com cache local** reduz drasticamente o custo de computação e storage, permitindo cobrir alto volume sem onerar a infraestrutura.
+- **Implementação no Monitor:**
+  1. **Nível 1 (Lote Leve):** Sincronização periódica PNCP apenas para índice pesquisável no Neon DB (`editais`), sem download antecipado de PDFs pesados de todo o universo.
+  2. **Nível 2 (Hidratação Sob Demanda / Trigger de Negócio):** O download de PDFs, OCR e anexos para o Cofre GCS só é disparado quando: (a) o edital possui aderência ao NCM/termo de negócio do tenant (ex.: 9506.91), ou (b) o usuário abre o detalhe da oportunidade no app.
+  3. **Camada de Cache de Borda/Local:** Respostas de detalhes de itens ficam cacheadas para evitar reconsultas desnecessárias à API pública do PNCP (respeitando rate limits).
+
 #### Épico 1.1 — Cofre Canônico de Editais (Gate 1 / Issue #48)
 - **Problema:** O campo `editais.s3_storage_key` é um ponteiro legado mantido por compatibilidade. PDFs originais de editais ainda não contam com upload idempotente e seguro no GCS/S3 com isolamento multitenant.
 - **Entregas:**
   1. Concluir migração da tabela `edital_documents` com chave composta `(edital_id, tenant_id)` e hash SHA-256 para desduplicação.
   2. Implementar endpoint seguro de URL assinada (`GET /api/editais/:id/vault-url`) com validação de tenant (prevenção de IDOR).
-  3. Worker de ingestão automática de arquivos anexos dos editais aprovados.
+  3. Worker de ingestão automática de arquivos anexos dos editais qualificados.
 - **Critérios de Aceite:**
   - Nenhuma requisição a arquivos permite download cross-tenant.
   - Parser compatível com `s3://`, `gs://` e `gcs://`.
@@ -122,6 +129,13 @@ O escopo de melhorias foi clusterizado em **4 grandes fluxos de trabalho**, orde
 - **Entregas:**
   1. Mapeamento de Atas de Registro de Preço e Contratos anteriores para emitir alertas preditivos de renovação.
   2. Módulo de Preços Homologados Históricos para embasamento de propostas e inteligência competitiva.
+
+#### Épico 4.3 — Estratégia de Aquisição Orgânica (SEO Programático & Hubs Públicos)
+- **Aprendizado Competitivo:** O *Todas Licitações* constrói tração orgânica em massa sem custos de tráfego pago gerando URLs semânticas e hubs hierárquicos SSR (`/licitacoes/{categoria}/{uf}/{municipio}`).
+- **Implementação no Monitor (Top-of-Funnel B2B):**
+  1. Criar camada pública de hubs por segmento (ex.: `/licitacoes/equipamentos-fitness-academias`, `/licitacoes/sistema-s/{uf}`) expondo dados agregados e listagem leve.
+  2. Call-to-action nos hubs para conversão direta no SaaS: *"Quer ser alertado quando sair edital deste órgão com minuta pronta de impugnação? Teste o Monitor"*.
+  3. Manter a separação estrita: páginas públicas em SSR leve para aquisição; inteligência pesada (IA, auditoria de restrição, pipeline Ploomes) restrita ao workspace privado do assinante.
 
 ---
 

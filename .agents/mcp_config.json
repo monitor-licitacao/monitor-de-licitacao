@@ -9,6 +9,19 @@
       "env": {
         "LINEAR_API_KEY": "lin_api_Xzr25X4w7Vq0nxFubzRNyvqg34dbeCYaoWF38F2A"
       }
+    },
+    "onecompiler": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@onecompiler/onecompiler-mcp-server",
+        "--provider=onecompiler"
+      ],
+      "env": {
+        "ONECOMPILER_API_KEY": "oc_45328zk4u_45328zk5h_5d21d1597b2a0633c7d138aa32c1c8ea0b40ccfa0f142793",
+        "ONECOMPILER_PROVIDER": "onecompiler",
+        "ONECOMPILER_ENVIRONMENT": "production"
+      }
     }
   }
 }

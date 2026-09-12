@@ -18,6 +18,12 @@
       "sourceType": "github",
       "skillPath": "skills/typescript-pro/SKILL.md",
       "computedHash": "5f5bc47c167f0485c01a3b5a14b9999141b1e7c54e7775aecf73ad16f114c066"
+    },
+    "playwright-expert": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/playwright-expert/SKILL.md",
+      "computedHash": "d6c5c04e570659a902e7c212067116131743e588af16406672fab58f0f62d8e1"
     }
   }
 }

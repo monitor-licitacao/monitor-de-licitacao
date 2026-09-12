@@ -198,3 +198,31 @@ export const statusCatalog = pgTable('status_catalog', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
+export const TELEMETRY_IDEMPOTENCY_STATUSES = ['pending', 'sending', 'sent', 'failed'] as const;
+export type TelemetryIdempotencyStatus = (typeof TELEMETRY_IDEMPOTENCY_STATUSES)[number];
+
+/** Audit + dedup for pipeline telemetry (Amplitude HTTP API v2). Scoped per tenant. */
+export const telemetryEventIdempotency = pgTable('telemetry_event_idempotency', {
+  id: serial('id').primaryKey(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  idempotencyKey: text('idempotency_key').notNull(),
+  collectionBatchId: text('collection_batch_id').notNull(),
+  payloadHash: text('payload_hash').notNull(),
+  status: text('status').notNull(),
+  amplitudeEventId: text('amplitude_event_id'),
+  retryAttempt: integer('retry_attempt').default(0).notNull(),
+  actorUserId: text('actor_user_id'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  sentAt: timestamp('sent_at'),
+}, (table) => ({
+  tenantKeyUidx: uniqueIndex('telemetry_event_idempotency_tenant_key_uidx').on(
+    table.tenantId,
+    table.idempotencyKey
+  ),
+  tenantStatusIdx: index('telemetry_event_idempotency_tenant_status_idx').on(
+    table.tenantId,
+    table.status
+  ),
+}));
+

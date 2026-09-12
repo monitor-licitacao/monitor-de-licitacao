@@ -12,6 +12,9 @@ import {
   CircuitBreaker,
   sendHistoricoPrecoImportadoEvent,
 } from './server/lib/historico-preco-telemetry.js';
+import { sanitizeHistoricoPrecoForAmplitude } from './server/lib/telemetry-redaction.js';
+
+const TENANT_ID = 1;
 
 const SAMPLE_BATCH_ID = '550e8400-e29b-41d4-a716-446655440000';
 
@@ -52,14 +55,24 @@ test('sendHistoricoPrecoImportadoEvent publishes once and deduplicates replays',
   const publisher = new MockAmplitudeHttpPublisher();
   const event = buildSampleEvent();
 
-  const first = await sendHistoricoPrecoImportadoEvent(event, { store, publisher, userId: 'worker-1' });
+  const first = await sendHistoricoPrecoImportadoEvent(event, {
+    tenantId: TENANT_ID,
+    store,
+    publisher,
+    userId: 'worker-1',
+  });
   assert.equal(first.sent, true);
   assert.equal(first.duplicate, false);
   assert.equal(publisher.events.length, 1);
   assert.equal(publisher.events[0].eventType, 'historico_preco_importado');
   assert.equal(publisher.events[0].insertId, event.idempotency_key);
 
-  const second = await sendHistoricoPrecoImportadoEvent(event, { store, publisher, userId: 'worker-1' });
+  const second = await sendHistoricoPrecoImportadoEvent(event, {
+    tenantId: TENANT_ID,
+    store,
+    publisher,
+    userId: 'worker-1',
+  });
   assert.equal(second.sent, false);
   assert.equal(second.duplicate, true);
   assert.equal(second.skippedReason, 'duplicate');
@@ -80,6 +93,7 @@ test('sendHistoricoPrecoImportadoEvent retries transient failures with backoff',
   };
 
   const result = await sendHistoricoPrecoImportadoEvent(buildSampleEvent(), {
+    tenantId: TENANT_ID,
     store,
     publisher,
     maxRetries: 3,
@@ -100,6 +114,7 @@ test('sendHistoricoPrecoImportadoEvent respects circuit breaker', async () => {
   };
 
   const first = await sendHistoricoPrecoImportadoEvent(buildSampleEvent(), {
+    tenantId: TENANT_ID,
     store,
     publisher,
     maxRetries: 0,
@@ -108,6 +123,7 @@ test('sendHistoricoPrecoImportadoEvent respects circuit breaker', async () => {
   assert.equal(first.sent, false);
 
   const second = await sendHistoricoPrecoImportadoEvent(buildSampleEvent({ collection_batch_id: '660e8400-e29b-41d4-a716-446655440001', idempotency_key: buildIdempotencyKey('compras_rj', '660e8400-e29b-41d4-a716-446655440001', 999) }), {
+    tenantId: TENANT_ID,
     store,
     publisher,
     maxRetries: 0,
@@ -115,4 +131,21 @@ test('sendHistoricoPrecoImportadoEvent respects circuit breaker', async () => {
   });
   assert.equal(second.sent, false);
   assert.equal(second.skippedReason, 'circuit_open');
+});
+
+test('sanitizeHistoricoPrecoForAmplitude redacts CNPJ and monetary values (Golden Rule 6)', () => {
+  const sanitized = sanitizeHistoricoPrecoForAmplitude(
+    buildSampleEvent({
+      status: 'failure',
+      error_message: 'Falha no fornecedor 12.345.678/0001-99 valor R$ 1.234,56',
+      error_code: 'SUPPLIER_12.345.678/0001-99',
+    }) as any
+  );
+  assert.match(String(sanitized.error_message), /\[CNPJ_REDACTED\]/);
+  assert.match(String(sanitized.error_message), /\[VALOR_REDACTED\]/);
+  assert.doesNotMatch(String(sanitized.error_message), /12\.345\.678/);
+});
+
+test('MockAmplitudeHttpPublisher is separate from MockAmplitudeAI (pipeline vs agent analytics)', () => {
+  assert.doesNotMatch(MockAmplitudeHttpPublisher.name, /AI/);
 });

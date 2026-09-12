@@ -6,6 +6,7 @@ import {
 } from '../events/historico-preco-event.js';
 import { AmplitudeHttpPublisher } from './amplitude-http.js';
 import { IdempotencyRecord, IdempotencyStore } from './idempotency-store.js';
+import { sanitizeHistoricoPrecoForAmplitude } from './telemetry-redaction.js';
 
 export interface SendHistoricoPrecoResult {
   sent: boolean;
@@ -17,9 +18,11 @@ export interface SendHistoricoPrecoResult {
 }
 
 export interface HistoricoPrecoTelemetryDeps {
+  tenantId: number;
   store: IdempotencyStore;
   publisher: AmplitudeHttpPublisher;
   userId?: string;
+  actorUserId?: string;
   maxRetries?: number;
   circuitBreaker?: CircuitBreaker;
 }
@@ -90,7 +93,7 @@ export async function sendHistoricoPrecoImportadoEvent(
     };
   }
 
-  const existing = await deps.store.get(event.idempotency_key);
+  const existing = await deps.store.get(deps.tenantId, event.idempotency_key);
   if (existing?.status === 'sent') {
     return {
       sent: false,
@@ -105,12 +108,14 @@ export async function sendHistoricoPrecoImportadoEvent(
   const retryAttempt = event.retry_attempt ?? existing?.retryAttempt ?? 0;
   const maxRetries = deps.maxRetries ?? 3;
   const baseRecord: IdempotencyRecord = {
+    tenantId: deps.tenantId,
     idempotencyKey: event.idempotency_key,
     collectionBatchId: event.collection_batch_id,
     payloadHash,
     status: 'sending',
     amplitudeEventId: existing?.amplitudeEventId ?? null,
     retryAttempt,
+    actorUserId: deps.actorUserId ?? null,
     createdAt: existing?.createdAt ?? nowIso(),
     updatedAt: nowIso(),
     sentAt: existing?.sentAt ?? null,
@@ -121,9 +126,9 @@ export async function sendHistoricoPrecoImportadoEvent(
     try {
       const publishResult = await deps.publisher.publish(
         HISTORICO_PRECO_EVENT_TYPE,
-        event,
+        sanitizeHistoricoPrecoForAmplitude(event),
         {
-          userId: deps.userId ?? 'system',
+          userId: deps.userId ?? `tenant-${deps.tenantId}`,
           insertId: event.idempotency_key,
           timeMs: Date.parse(event.timestamp),
         }

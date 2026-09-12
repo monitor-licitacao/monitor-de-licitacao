@@ -12,37 +12,24 @@ import { eq } from 'drizzle-orm';
 import fs from 'fs';
 import { Agent, fetch as undiciFetch } from 'undici';
 import { decryptSecret } from '../lib/crypto';
+import {
+  applyClientSideFilters,
+  buildPublicationQuery,
+  DEFAULT_PNCP_MODALIDADES,
+  formatPncpDate,
+  matchTenantsForItem,
+  normalizePncpItem,
+  type PncpRawItem,
+  type TenantMatchRule,
+} from '../lib/pncpClient';
 
-const BASE_URL = 'https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao';
-
-// As principais modalidades onde ocorrem compras
-const MODALIDADES = [
-  6, // Pregão Eletrônico
-  5, // Concorrência Eletrônica
-  4, // Concorrência
-  8, // Dispensa Eletrônica
-];
-
-function extractPdfUrl(arquivos: any[]): string | null {
-  if (!arquivos || !Array.isArray(arquivos)) return null;
-  const editalDoc = arquivos.find(a => 
-    a.tipoDocumentoNome?.toLowerCase() === 'edital' || 
-    a.titulo?.toLowerCase().includes('edital')
-  );
-  return editalDoc ? editalDoc.url : (arquivos[0]?.url || null);
-}
-
-// Representa a regra de negócio carregada do banco
-interface TenantRule {
-  tenantId: number;
-  keywords: string[];
-  ncms: string[];
+type TenantRule = TenantMatchRule & {
   pncpConfig?: {
     certificatePath?: string;
     certificatePassword?: string;
     isActive?: boolean;
   };
-}
+};
 
 async function runCollector() {
   const connectionString = process.env.DATABASE_URL;
@@ -95,12 +82,10 @@ async function runCollector() {
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(today.getDate() - 30);
   
-  const formatDate = (date: Date) => date.toISOString().split('T')[0].replace(/-/g, '');
+  const dataInicialLabel = formatPncpDate(thirtyDaysAgo);
+  const dataFinalLabel = formatPncpDate(today);
 
-  const dataInicial = formatDate(thirtyDaysAgo);
-  const dataFinal = formatDate(today);
-
-  console.log(`🚀 Iniciando Coletor PNCP Dinâmico [${dataInicial} a ${dataFinal}]`);
+  console.log(`🚀 Iniciando Coletor PNCP Dinâmico [${dataInicialLabel} a ${dataFinalLabel}]`);
   console.log(`🏢 Carregadas regras para ${tenantRules.length} tenants ativos.`);
 
   let newInsertions = 0;
@@ -127,18 +112,19 @@ async function runCollector() {
     }
   }
 
-  for (const modalidade of MODALIDADES) {
+  for (const modalidade of DEFAULT_PNCP_MODALIDADES) {
     console.log(`\n🔍 Buscando modalidade ${modalidade}...`);
     let page = 1;
     let keepSearching = true;
 
     while (keepSearching && page <= 5) { // Limite de paginação
-      const url = new URL(BASE_URL);
-      url.searchParams.set('dataInicial', dataInicial);
-      url.searchParams.set('dataFinal', dataFinal);
-      url.searchParams.set('codigoModalidadeContratacao', String(modalidade));
-      url.searchParams.set('tamanhoPagina', '50');
-      url.searchParams.set('pagina', String(page));
+      const { url, clientSideFilters } = buildPublicationQuery({
+        dataInicial: thirtyDaysAgo,
+        dataFinal: today,
+        modalidade,
+        pagina: page,
+        tamanhoPagina: 50,
+      });
 
       try {
         // O Agent (dispatcher) já foi instanciado fora do loop principal,
@@ -155,63 +141,48 @@ async function runCollector() {
           break;
         }
 
-        const data: any = await res.json();
-        const items = data?.data || [];
-        
-        if (items.length === 0) {
+        const data: { data?: PncpRawItem[] } = await res.json();
+        const rawItems: PncpRawItem[] = data?.data || [];
+        const items = applyClientSideFilters(rawItems, clientSideFilters);
+
+        if (rawItems.length === 0) {
           keepSearching = false;
           break;
         }
 
-        console.log(`  [Página ${page}] Lidos ${items.length} registros...`);
+        console.log(`  [Página ${page}] Lidos ${rawItems.length} registros (${items.length} após filtros)...`);
 
-        // Para cada item da API, cruza com as regras dos tenants
         for (const item of items) {
-          const itemNcm = (item.codigoNcm || '').toLowerCase().trim();
-          const itemDesc = (item.objetoCompra || item.objeto || '').toLowerCase();
-          
-          for (const rule of tenantRules) {
-            // Verifica se o edital bate com NCM ou Keyword do tenant
-            const hasNcmMatch = rule.ncms.length > 0 && rule.ncms.some(ncm => itemNcm.startsWith(ncm));
-            const hasKeywordMatch = rule.keywords.length > 0 && rule.keywords.some(kw => itemDesc.includes(kw));
-            
-            if (hasNcmMatch || hasKeywordMatch) {
-              // Edital de interesse para este tenant!
-              const uniqueId = `edital-pncp-${item.anoContratacao}-${item.numeroContratacao}-${item.orgaoEntidade?.cnpj || 's-cnpj'}`
-                .toLowerCase().replace(/[^a-z0-9-]/g, '-');
+          const tenantMatches = matchTenantsForItem(item, tenantRules);
 
-              const pdfUrl = extractPdfUrl(item.arquivos);
-              const agencyName = item.orgaoEntidade?.razaoSocial || 'Órgão Desconhecido';
-              
-              const pubDate = item.dataPublicacaoPncp ? new Date(item.dataPublicacaoPncp) : new Date();
-              const bidDate = item.dataAberturaProposta ? new Date(item.dataAberturaProposta) : pubDate;
+          for (const match of tenantMatches) {
+            const draft = normalizePncpItem(item, tenantRules.find(r => r.tenantId === match.tenantId)?.ncms[0] ?? 'N/A');
 
-              try {
-                await db.insert(schema.editais).values({
-                  id: uniqueId,
-                  tenantId: rule.tenantId, // Vincula ao tenant que deu match
-                  sourceId,
-                  processNumber: item.processo || `${item.numeroContratacao}/${item.anoContratacao}`,
-                  title: (item.objetoCompra || item.objeto || '').slice(0, 100),
-                  sourceName: 'PNCP (Portal Nacional)',
-                  sourceCategory: 'Federal',
-                  ncmCode: item.codigoNcm || (rule.ncms[0] || 'N/A'), // Salva o NCM oficial ou o 1º da regra
-                  objectDescription: item.objetoCompra || item.objeto || '',
-                  url: pdfUrl || item.linkSistemaOrigem, 
-                  rawUrl: item.linkSistemaOrigem || url.toString(),
-                  status: 'OPEN',
-                  agency: agencyName,
-                  estimatedValue: item.valorTotalEstimado ? String(item.valorTotalEstimado) : null,
-                  publishedAt: pubDate,
-                  biddingDate: bidDate,
-                  humanReviewStatus: 'PENDING',
-                }).onConflictDoNothing();
-                
-                console.log(`    ✅ [TENANT ${rule.tenantId}] Match [${hasNcmMatch ? 'NCM' : 'KEYWORD'}]: Salvo ${uniqueId}`);
-                newInsertions++;
-              } catch (dbErr: any) {
-                console.log(`    ⚠️ Erro DB: ${dbErr.message}`);
-              }
+            try {
+              await db.insert(schema.editais).values({
+                id: draft.id,
+                tenantId: match.tenantId,
+                sourceId,
+                processNumber: draft.processNumber,
+                title: draft.title,
+                sourceName: 'PNCP (Portal Nacional)',
+                sourceCategory: 'Federal',
+                ncmCode: draft.ncmCode,
+                objectDescription: draft.objectDescription,
+                url: draft.url,
+                rawUrl: draft.rawUrl,
+                status: 'OPEN',
+                agency: draft.agency,
+                estimatedValue: draft.estimatedValue,
+                publishedAt: draft.publishedAt,
+                biddingDate: draft.biddingDate,
+                humanReviewStatus: 'PENDING',
+              }).onConflictDoNothing();
+
+              console.log(`    ✅ [TENANT ${match.tenantId}] Match [${match.matchType}]: Salvo ${draft.id} (${match.matchedTerm})`);
+              newInsertions++;
+            } catch (dbErr: any) {
+              console.log(`    ⚠️ Erro DB: ${dbErr.message}`);
             }
           }
         }

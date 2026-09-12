@@ -36,6 +36,12 @@
       "sourceType": "github",
       "skillPath": "skills/code-reviewer/SKILL.md",
       "computedHash": "8f0ddb7d90178b6986f8d597ab0bc93ec01adb044bd27b75e1682b06902dae93"
+    },
+    "devops-engineer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/devops-engineer/SKILL.md",
+      "computedHash": "078f8e80c432f1cbaa7aaa70391a8d61c2b87cc71f2f64f361da61b13c19d9cf"
     }
   }
 }

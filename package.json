@@ -53,7 +53,8 @@
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "undici": "^8.10.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",

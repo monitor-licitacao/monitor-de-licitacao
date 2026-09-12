@@ -30,6 +30,12 @@
       "sourceType": "github",
       "skillPath": "skills/test-master/SKILL.md",
       "computedHash": "f16f02c55fcc761bac2e9f31fff2fc47398601b125a3658399b35670271889e9"
+    },
+    "code-reviewer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/code-reviewer/SKILL.md",
+      "computedHash": "8f0ddb7d90178b6986f8d597ab0bc93ec01adb044bd27b75e1682b06902dae93"
     }
   }
 }

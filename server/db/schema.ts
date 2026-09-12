@@ -198,3 +198,27 @@ export const statusCatalog = pgTable('status_catalog', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
+// TELEMETRY & IDEMPOTENCY AUDIT (Issue #60 / Compras RJ / Amplitude)
+export const telemetryEvents = pgTable('telemetry_events', {
+  idempotencyKey: text('idempotency_key').primaryKey(),
+  tenantId: integer('tenant_id').references(() => tenants.id),
+  eventType: text('event_type').notNull(),
+  collectionBatchId: text('collection_batch_id').notNull(),
+  sourceSystem: text('source_system').notNull(),
+  status: text('status').notNull(), // 'pending' | 'sending' | 'sent' | 'failed'
+  payloadHash: text('payload_hash').notNull(),
+  eventPayload: jsonb('event_payload').$type<Record<string, unknown>>(),
+  amplitudeEventId: text('amplitude_event_id'),
+  retryAttempt: integer('retry_attempt').default(0).notNull(),
+  errorCode: text('error_code'),
+  errorMessage: text('error_message'),
+  userId: text('user_id'),
+  sentAt: timestamp('sent_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  batchIdx: index('telemetry_events_batch_idx').on(table.collectionBatchId),
+  tenantStatusIdx: index('telemetry_events_tenant_status_idx').on(table.tenantId, table.status),
+}));
+
+

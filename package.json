@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "node --import tsx --test __amplitude_verify__.test.ts __mural_v1__.test.ts __mural_frontend_ui__.test.ts __authz_gaps__.test.ts __logout_autologout__.test.ts __connector_pipeline__.test.ts __historical_extractor__.test.ts",
+    "test": "node --import tsx --test __amplitude_verify__.test.ts __historico_preco_telemetry__.test.ts __mural_v1__.test.ts __mural_frontend_ui__.test.ts __authz_gaps__.test.ts __logout_autologout__.test.ts __connector_pipeline__.test.ts __historical_extractor__.test.ts",
     "test:e2e": "playwright test",
     "check-health": "bash ./scripts/check-health.sh",
     "commit": "npx git-cz",
@@ -53,7 +53,8 @@
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "undici": "^8.10.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "zod": "^4.6.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",

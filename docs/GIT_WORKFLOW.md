@@ -122,6 +122,14 @@ Essas camadas juntas (disciplina de branch + hook local + CI + proteção remota
 
 Project: [Monitor de Licitações](https://github.com/orgs/monitor-licitacao/projects) (org `monitor-licitacao`).
 
+**Setup inicial (uma vez):** após `gh auth refresh -h github.com -s project,read:project`, rode:
+
+```bash
+bash scripts/setup-github-kanban-project.sh
+# ou no Windows:
+pwsh scripts/setup-github-kanban-project.ps1
+```
+
 ### Colunas (6 estados)
 
 | Coluna | Quando usar |

@@ -1,0 +1,56 @@
+name: Setup Kanban Project (one-time)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  projects: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bootstrap GitHub Project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: monitor-licitacao
+          REPO: monitor-de-licitacao
+          PROJECT_TITLE: Monitor de Licitações
+        run: |
+          set -euo pipefail
+
+          PROJECT_NUMBER="$(gh project list --owner "$OWNER" --format json \
+            | jq -r --arg t "$PROJECT_TITLE" '.projects[] | select(.title == $t) | .number' | head -n1)"
+
+          if [[ -z "$PROJECT_NUMBER" ]]; then
+            PROJECT_NUMBER="$(gh project create --owner "$OWNER" --title "$PROJECT_TITLE" --format json | jq -r '.number')"
+            echo "Project criado: #$PROJECT_NUMBER"
+          else
+            echo "Project existente: #$PROJECT_NUMBER"
+          fi
+
+          gh project link "$PROJECT_NUMBER" --owner "$OWNER" --repo "$OWNER/$REPO" || true
+
+          if ! gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json | jq -e '.fields[] | select(.name == "Status")' >/dev/null; then
+            gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" \
+              --name "Status" --data-type SINGLE_SELECT \
+              --single-select-options "Backlog,Ready,In Progress,In Review,Blocked,Done"
+          fi
+
+          BASE="https://github.com/$OWNER/$REPO"
+          for url in \
+            "$BASE/issues/48" \
+            "$BASE/issues/60" \
+            "$BASE/pull/61" \
+            "$BASE/pull/63" \
+            "$BASE/pull/68" \
+            "$BASE/pull/71"; do
+            gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --url "$url" || true
+          done
+
+          echo "Project pronto: https://github.com/orgs/$OWNER/projects/$PROJECT_NUMBER"

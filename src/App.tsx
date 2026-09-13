@@ -277,7 +277,7 @@ export default function App() {
         return;
       }
     } catch (e) {
-      setEditais(prev => replaceById(prev, editalId, (current) => {
+      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => {
         const newOcrPages = [...(current.ocrPages || [])];
         const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
         if (pageIndex >= 0) {
@@ -337,7 +337,7 @@ export default function App() {
       }
     } catch (e) {
       showToast('Revisão registrada localmente.', 'info');
-      setEditais(prev => replaceById(prev, editalId, (current) => ({
+      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => ({
         ...current,
         humanReviewStatus: 'APPROVED',
         reviewNotes: payload.reviewNotes

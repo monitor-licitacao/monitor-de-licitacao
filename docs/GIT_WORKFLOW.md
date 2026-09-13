@@ -102,12 +102,91 @@ Estas camadas existem para pegar o erro humano/IA antes que ele chegue no reposi
    - Avisa (e pede confirmação) se o número de arquivos staged for anormalmente alto para a tarefa.
    - Roda lint e detecta segredos (`.env`) antes de permitir o commit.
 2. **`.gitignore` completo e revisado no início do projeto** — nunca deixe artefatos de build/IDE aparecerem como `??` no `git status` recorrentemente; se aparecerem, adicione ao `.gitignore` imediatamente (commit `chore:` isolado).
-3. **Proteção de branch no GitHub** (Settings → Branches → `main`):
-   - Require pull request before merging.
-   - Require status checks to pass (CI / `npm test`).
-   - Aplicar a regra também para administradores.
+3. **CI no GitHub** (`.github/workflows/ci.yml`, job `quality`):
+   - Roda em todo PR e push em `main`.
+   - Gates: `npm run lint` (type-check) + `npm test`.
+4. **Proteção de branch no GitHub** (ruleset em `main`):
+   - PR obrigatório antes de merge.
+   - Status check `quality` deve passar.
+   - 1 approval (no time pequeno, o autor pode aprovar se não houver segundo reviewer).
+   - Conversas resolvidas; squash merge como padrão.
+   - Bypass só para admin em hotfix de emergência.
 
-Essas três camadas juntas (disciplina de branch + hook local + proteção remota) garantem que mesmo uma falha em uma camada não resulte em `main` corrompida.
+Essas camadas juntas (disciplina de branch + hook local + CI + proteção remota) garantem que mesmo uma falha em uma camada não resulte em `main` corrompida.
+
+---
+
+## 8. Kanban GitHub Project (execução)
+
+**Notion Workbench = planejamento.** **GitHub Project = execução.** Sync manual — sem script automático.
+
+Project: [Monitor de Licitações](https://github.com/orgs/monitor-licitacao/projects) (org `monitor-licitacao`).
+
+### Colunas (6 estados)
+
+| Coluna | Quando usar |
+|---|---|
+| **Backlog** | Ideia registrada, ainda sem aceite claro |
+| **Ready** | Aceite definido; pode abrir branch |
+| **In Progress** | Branch aberta, desenvolvimento ativo |
+| **In Review** | PR aberto, aguardando CI + review |
+| **Blocked** | Impedimento externo (dependência, decisão, ambiente) |
+| **Done** | Merge em `main` concluído |
+
+### Fluxo Issue → Branch → PR
+
+1. Criar issue (template **Task** ou **Execução por Gate** para entregas grandes).
+2. Mover para **Ready** no Project quando o aceite estiver claro.
+3. Abrir branch: `feat/#<numero>-<slug>` ou `fix/#<numero>-<slug>`.
+4. Abrir PR; mover para **In Review**.
+5. CI verde + 1 approval → squash merge → **Done**.
+
+Deploy dispara automaticamente no push em `main` (workflow `deploy.yml`).
+
+---
+
+## 9. Labels mínimas
+
+Tipo de issue usa **Issue Types** nativos da org (Task / Bug / Feature). Labels adicionais:
+
+**Prioridade:** `P0`, `P1`, `P2`
+
+**Área:**
+- `area:ingestao` — coleta PNCP, scrapers, portais
+- `area:ui` — React, layout, UX
+- `area:api` — Express, rotas, auth, banco
+- `area:telemetry` — Amplitude, observabilidade, KPIs
+
+Não é obrigatório retaggar issues antigas.
+
+---
+
+## 10. Sync manual com Notion
+
+Board compartilhado: [Workbench / Tasks](https://app.notion.com/p/76217dab7efd460aa0d9fa5c2ac37b7b).
+
+**Não altere os status do Workbench** — são compartilhados entre projetos. Os 6 estados granulares vivem só no GitHub Project.
+
+| Notion (Tasks) | GitHub Project |
+|---|---|
+| Not started | Backlog (ou Ready se já tiver aceite) |
+| In progress | In Progress |
+| Blocked | Blocked |
+| Done / Archived | Done |
+
+**Ready** e **In Review** existem só no GitHub — não têm coluna equivalente no Notion.
+
+Em cada task Notion em execução, colar a URL da issue GitHub no campo **Note**.
+
+Projeto Notion: [Monitor de Licitações](https://app.notion.com/p/3d2f1fc77c6b81e8ac98d5e95da14c76).
+
+---
+
+## 11. Merge e emergência
+
+- **Estratégia padrão:** squash merge (histórico limpo, 1 commit por entrega).
+- **Requisitos:** CI `quality` verde + 1 approval + conversas resolvidas.
+- **Hotfix:** admin pode usar bypass do ruleset apenas em emergência de produção; documentar no PR o motivo.
 
 ---
 

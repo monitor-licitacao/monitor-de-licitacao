@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Notion — Monitor de Licitações
+    url: https://app.notion.com/p/3d2f1fc77c6b81e8ac98d5e95da14c76
+    about: Planejamento e tasks no Workbench (sync manual com GitHub)
+  - name: Git Workflow
+    url: https://github.com/monitor-licitacao/monitor-de-licitacao/blob/main/docs/GIT_WORKFLOW.md
+    about: Commits, branches, Kanban e regras de merge

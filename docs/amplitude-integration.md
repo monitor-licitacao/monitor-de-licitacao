@@ -92,3 +92,33 @@ Execute a suíte com:
 ```bash
 npm test
 ```
+
+---
+
+## 6. Configuração do MCP Server da Amplitude (Cursor IDE)
+
+Para habilitar a integração com o Amplitude MCP Server no Cursor Desktop:
+
+1. **Configuração via Repositório (`.cursor/mcp.json`)**:
+   O repositório já conta com o arquivo `.cursor/mcp.json`:
+   ```json
+   {
+     "mcpServers": {
+       "Amplitude": {
+         "url": "https://mcp.amplitude.com/mcp",
+         "transport": "streamable-http"
+       }
+     }
+   }
+   ```
+   > **Nota (Região EU)**: Para contas Amplitude na União Europeia, utilize a URL `https://mcp.eu.amplitude.com/mcp`.
+
+2. **Autenticação**:
+   * No Cursor Desktop, acesse **Cursor > Settings > Cursor Settings > Tools & Integrations**.
+   * Localize o servidor **Amplitude** e clique em **Authenticate**.
+   * Siga o fluxo OAuth no navegador para autorizar o Cursor a interagir com os dashboards e relatórios da Amplitude.
+
+3. **Ambiente Headless / Cloud Agents**:
+   * Em Cloud Agents ou CI/CD headless, MCP servers que exigem OAuth interativo reportam `namespaceStatus: "needsAuth"`.
+   * Para a ingestão programática e workers do pipeline, utiliza-se a variável de ambiente `AMPLITUDE_API_KEY` (configurada via Secrets do Cursor Dashboard ou `.env`).
+

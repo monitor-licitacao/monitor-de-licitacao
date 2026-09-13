@@ -122,9 +122,10 @@ Essas camadas juntas (disciplina de branch + hook local + CI + proteção remota
 
 Project: [Monitor de Licitações](https://github.com/orgs/monitor-licitacao/projects) (org `monitor-licitacao`).
 
-**Setup inicial (uma vez):** após `gh auth refresh -h github.com -s project,read:project`, rode:
+**Setup inicial (uma vez):** o `gh` local precisa do escopo `project` (o `GITHUB_TOKEN` do Actions **não** cobre Projects v2 de org). Rode:
 
 ```bash
+gh auth refresh -h github.com -s project,read:project
 bash scripts/setup-github-kanban-project.sh
 # ou no Windows:
 pwsh scripts/setup-github-kanban-project.ps1

@@ -160,5 +160,6 @@ function parseSentinel(val: any): any {
   return val;
 }
 
-export { ParadigmaSession, SessionConfig, ProcessoDto, PaginationDto };
+export { ParadigmaSession };
+export type { SessionConfig, ProcessoDto, PaginationDto };
 export { parseParadigmaDate, parseSentinel };

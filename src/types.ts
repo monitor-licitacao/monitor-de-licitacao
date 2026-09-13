@@ -131,6 +131,10 @@ export interface Edital {
   openingDate: string;
   budgetEstimated?: number;
   rawUrl: string;
+  url?: string;
+  agency?: string;
+  estimatedValue?: number;
+  ploomesDealId?: string;
   s3StorageKey: string;
   sha256Hash: string;
   fileSizeBytes: number;

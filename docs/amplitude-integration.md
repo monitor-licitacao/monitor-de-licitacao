@@ -38,29 +38,34 @@ Definido em `server/events/historico-preco-event.ts`:
 
 ---
 
-## 3. Persistência e Tabela de Auditoria (`telemetry_events`)
+## 3. Persistência e Tabela de Auditoria (`telemetry_event_idempotency`)
 
 Estrutura implementada no schema relacional Drizzle (`server/db/schema.ts`):
 
 ```typescript
-export const telemetryEvents = pgTable('telemetry_events', {
-  idempotencyKey: text('idempotency_key').primaryKey(),
-  tenantId: integer('tenant_id').references(() => tenants.id),
-  eventType: text('event_type').notNull(),
+export const telemetryEventIdempotency = pgTable('telemetry_event_idempotency', {
+  id: serial('id').primaryKey(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  idempotencyKey: text('idempotency_key').notNull(),
   collectionBatchId: text('collection_batch_id').notNull(),
-  sourceSystem: text('source_system').notNull(),
-  status: text('status').notNull(), // 'pending' | 'sending' | 'sent' | 'failed'
   payloadHash: text('payload_hash').notNull(),
-  eventPayload: jsonb('event_payload').$type<Record<string, unknown>>(),
+  status: text('status').notNull(),
   amplitudeEventId: text('amplitude_event_id'),
   retryAttempt: integer('retry_attempt').default(0).notNull(),
-  errorCode: text('error_code'),
-  errorMessage: text('error_message'),
-  userId: text('user_id'),
-  sentAt: timestamp('sent_at'),
+  actorUserId: text('actor_user_id'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+  sentAt: timestamp('sent_at'),
+}, (table) => ({
+  tenantKeyUidx: uniqueIndex('telemetry_event_idempotency_tenant_key_uidx').on(
+    table.tenantId,
+    table.idempotencyKey
+  ),
+  tenantStatusIdx: index('telemetry_event_idempotency_tenant_status_idx').on(
+    table.tenantId,
+    table.status
+  ),
+}));
 ```
 
 ---
@@ -68,7 +73,7 @@ export const telemetryEvents = pgTable('telemetry_events', {
 ## 4. Variáveis de Ambiente e Configuração
 
 * `AMPLITUDE_API_KEY`: Chave de API da Amplitude para HTTP API v2 (`process.env.AMPLITUDE_API_KEY`). Nunca commitada diretamente no repositório.
-* `DATABASE_URL`: String de conexão Neon Postgres para a tabela `telemetry_events`. Caso ausente em testes locais ou workers isolados, a camada faz fallback gracioso para cache de idempotência em memória.
+* `DATABASE_URL`: String de conexão Neon Postgres para a tabela `telemetry_event_idempotency`. Caso ausente em testes locais ou workers isolados, a camada faz fallback gracioso para cache de idempotência em memória.
 
 > **Nota sobre Retenção**: A política de retenção de eventos de 90 dias mencionada no PRD é gerenciada diretamente no console de administração da Amplitude e não pode ser configurada dinamicamente via chamada à API de eventos.
 

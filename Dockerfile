@@ -14,8 +14,8 @@
 #
 # Base: node:20-bookworm-slim (Debian), NÃO Alpine — evita os problemas
 # clássicos de libc musl x glibc caso os workers com Puppeteer (já existem no
-# código: server/workers/pncp_collector.ts, scraper_puppeteer_sesc.ts,
-# sesc_sp_scraper.ts) passem a rodar neste container no futuro.
+# código: server/workers/pncp_collector.ts, scraper_puppeteer_sesc.ts)
+# passem a rodar neste container no futuro.
 #
 # Por enquanto esses workers NÃO rodam aqui (são scripts npm separados,
 # `worker:pncp` / `worker:sescsp`, disparados manualmente — server.ts não os

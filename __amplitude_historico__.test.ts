@@ -100,7 +100,7 @@ test('Amplitude Compras RJ Telemetry - 4) Integration: Send Event & Deduplicatio
     operation_type: 'import',
     processing_time_ms: 850,
     status: 'success',
-    idempotency_key: 'compras_rj_batch-1_1726155000000',
+    idempotency_key: 'compras_rj_a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d_1726155000000',
     data_quality_score: 98,
   };
 
@@ -152,7 +152,7 @@ test('Amplitude Compras RJ Telemetry - 5) Retry & Circuit Breaker', async (t) =>
     operation_type: 'import',
     processing_time_ms: 100,
     status: 'failure',
-    idempotency_key: 'compras_rj_batch-err_1726155000000',
+    idempotency_key: 'compras_rj_c1c2c3c4-e5f6-7a8b-9c0d-1e2f3a4b5c6d_1726155000000',
   };
 
   // Simula 2 falhas antes de sucesso

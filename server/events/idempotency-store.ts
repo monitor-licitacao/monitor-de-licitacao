@@ -43,8 +43,8 @@ export async function getIdempotencyRecord(key: string): Promise<TelemetryRecord
   try {
     const records = await db
       .select()
-      .from(schema.telemetryEvents)
-      .where(eq(schema.telemetryEvents.idempotencyKey, key))
+      .from(schema.telemetryEventIdempotency)
+      .where(eq(schema.telemetryEventIdempotency.idempotencyKey, key))
       .limit(1);
 
     if (records.length === 0) return null;
@@ -53,17 +53,14 @@ export async function getIdempotencyRecord(key: string): Promise<TelemetryRecord
     return {
       idempotencyKey: r.idempotencyKey,
       tenantId: r.tenantId,
-      eventType: r.eventType,
+      eventType: 'historico_preco_importado',
       collectionBatchId: r.collectionBatchId,
-      sourceSystem: r.sourceSystem,
+      sourceSystem: 'compras_rj',
       status: r.status as TelemetryRecord['status'],
       payloadHash: r.payloadHash,
-      eventPayload: (r.eventPayload as Record<string, unknown>) || undefined,
       amplitudeEventId: r.amplitudeEventId,
       retryAttempt: r.retryAttempt,
-      errorCode: r.errorCode,
-      errorMessage: r.errorMessage,
-      userId: r.userId,
+      userId: r.actorUserId,
       sentAt: r.sentAt,
       createdAt: r.createdAt,
       updatedAt: r.updatedAt,
@@ -107,35 +104,32 @@ export async function upsertIdempotencyRecord(
 
   memoryStore.set(key, merged);
 
-  if (isDatabaseConfigured) {
+  if (isDatabaseConfigured && merged.tenantId != null) {
     try {
       await db
-        .insert(schema.telemetryEvents)
+        .insert(schema.telemetryEventIdempotency)
         .values({
-          idempotencyKey: merged.idempotencyKey,
           tenantId: merged.tenantId,
-          eventType: merged.eventType,
+          idempotencyKey: merged.idempotencyKey,
           collectionBatchId: merged.collectionBatchId,
-          sourceSystem: merged.sourceSystem,
-          status: merged.status,
           payloadHash: merged.payloadHash,
-          eventPayload: merged.eventPayload,
+          status: merged.status,
           amplitudeEventId: merged.amplitudeEventId,
           retryAttempt: merged.retryAttempt,
-          errorCode: merged.errorCode,
-          errorMessage: merged.errorMessage,
-          userId: merged.userId,
+          actorUserId: merged.userId,
           sentAt: merged.sentAt,
           updatedAt: merged.updatedAt,
         })
         .onConflictDoUpdate({
-          target: schema.telemetryEvents.idempotencyKey,
+          target: [
+            schema.telemetryEventIdempotency.tenantId,
+            schema.telemetryEventIdempotency.idempotencyKey,
+          ],
           set: {
             status: merged.status,
             amplitudeEventId: merged.amplitudeEventId,
             retryAttempt: merged.retryAttempt,
-            errorCode: merged.errorCode,
-            errorMessage: merged.errorMessage,
+            actorUserId: merged.userId,
             sentAt: merged.sentAt,
             updatedAt: merged.updatedAt,
           },

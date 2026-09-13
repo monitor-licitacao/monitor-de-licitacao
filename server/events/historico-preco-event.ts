@@ -1,31 +1,21 @@
 import { z } from 'zod';
 
-/**
- * Documento gerado por assistência de IA. Revisão humana obrigatória.
- * Event schema para telemetria de coleta e importação do histórico de preços (PRD Seção 6.2 / Issue #60)
- */
+/** Documento gerado por assistência de IA. Revisão humana obrigatória. */
+export const HISTORICO_PRECO_EVENT_TYPE = 'historico_preco_importado' as const;
 
 export const HistoricoPrecoImportadoSchema = z.object({
   timestamp: z.string().refine((s) => !Number.isNaN(Date.parse(s)), {
-    message: 'timestamp must be a valid ISO 8601 string',
+    message: 'timestamp must be ISO 8601',
   }),
   source_system: z.literal('compras_rj'),
-  collection_batch_id: z.string().uuid({
-    message: 'collection_batch_id must be a valid UUID',
-  }),
-  item_count: z.number().int().nonnegative({
-    message: 'item_count must be a non-negative integer',
-  }),
+  collection_batch_id: z.string().uuid(),
+  item_count: z.number().int().nonnegative(),
   operation_type: z.enum(['import', 'update', 'verify']),
-  processing_time_ms: z.number().int().nonnegative({
-    message: 'processing_time_ms must be a non-negative integer',
-  }),
+  processing_time_ms: z.number().int().nonnegative(),
   status: z.enum(['success', 'failure', 'partial']),
   error_code: z.string().optional(),
   error_message: z.string().optional(),
-  idempotency_key: z.string().min(1, {
-    message: 'idempotency_key is required',
-  }),
+  idempotency_key: z.string().min(1),
   retry_attempt: z.number().int().nonnegative().optional(),
   data_quality_score: z.number().int().min(0).max(100).optional(),
   affected_items: z.number().int().nonnegative().optional(),
@@ -33,24 +23,29 @@ export const HistoricoPrecoImportadoSchema = z.object({
 
 export type HistoricoPrecoImportado = z.infer<typeof HistoricoPrecoImportadoSchema>;
 
-/**
- * Padroniza o gerador de chave de idempotência conforme especificado:
- * {source}_{batch_id}_{timestamp_ms}
- */
+const IDEMPOTENCY_KEY_PATTERN = /^compras_rj_[0-9a-f-]{36}_\d+$/i;
+
 export function buildIdempotencyKey(
   sourceSystem: string,
-  batchId: string,
+  collectionBatchId: string,
   timestampMs: number = Date.now()
 ): string {
-  return `${sourceSystem}_${batchId}_${timestampMs}`;
+  return `${sourceSystem}_${collectionBatchId}_${timestampMs}`;
 }
 
-/**
- * Validador do formato canônico de idempotency_key
- */
-export function isValidIdempotencyKey(key: string): boolean {
-  const parts = key.split('_');
-  if (parts.length < 3) return false;
-  const timestampPart = parts[parts.length - 1];
-  return /^\d+$/.test(timestampPart);
+export function isValidIdempotencyKeyFormat(key: string): boolean {
+  return IDEMPOTENCY_KEY_PATTERN.test(key);
+}
+
+/** Alias para compatibilidade com suítes de teste de idempotência */
+export const isValidIdempotencyKey = isValidIdempotencyKeyFormat;
+
+export function parseHistoricoPrecoImportado(raw: unknown): HistoricoPrecoImportado {
+  const parsed = HistoricoPrecoImportadoSchema.parse(raw);
+  if (!isValidIdempotencyKeyFormat(parsed.idempotency_key)) {
+    throw new Error(
+      'idempotency_key must match {source_system}_{collection_batch_id}_{timestamp_ms}'
+    );
+  }
+  return parsed;
 }

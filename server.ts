@@ -13,7 +13,6 @@ declare global {
 }
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import { analyzeEditalTextWithAI, analyzeTechnicalSpecificationRestrictedAI } from './server/gemini';
 import { analyzeEditalMultiAgent } from './server/lib/ai.js';
 import { createAuditPage } from './server/lib/notion.js';
 import { WhatsAppNotification, RetificationDiff, SchedulerState } from './src/types';
@@ -27,7 +26,8 @@ import { encryptSecret } from './server/lib/crypto.js';
 import { checkOllamaHealth } from './server/lib/ai.js';
 import { verifyPassword } from './server/lib/password.js';
 import jwt from 'jsonwebtoken';
-import rateLimit from 'express-rate-limit';
+import { createPersistedRateLimiter } from './server/lib/rateLimiter.js';
+import { registerAiProxyRoutes } from './server/lib/aiProxy.js';
 import * as cheerio from 'cheerio';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -209,32 +209,25 @@ async function startServer() {
 
   // Rate limiting: Brute-force protection em /api/auth/login
   // Máximo 5 tentativas por 15 minutos por IP (Regra 12: Anti Brute-Force)
-  const loginLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutos
-    max: 5, // máximo 5 requisições
+  const loginLimiter = createPersistedRateLimiter({
+    bucket: 'auth_login',
+    windowMs: 15 * 60 * 1000,
+    limit: 5,
     message: 'Muitas tentativas de login. Tente novamente em 15 minutos.',
-    standardHeaders: true,
-    legacyHeaders: false,
   });
 
-  // Rate limiting: AI / Gemini consumption (cost + abuse protection)
-  // 30 requests / 15 min / IP — covers analyze-ai, gemini tech-spec, revops AI
-  const aiLimiter = rateLimit({
+  const aiLimiter = createPersistedRateLimiter({
+    bucket: 'ai_gemini',
     windowMs: 15 * 60 * 1000,
-    max: 30,
+    limit: 30,
     message: 'Limite de requisições de IA atingido. Tente novamente em alguns minutos.',
-    standardHeaders: true,
-    legacyHeaders: false,
   });
 
-  // Rate limiting: Source testing (HTTP probe — prevents resource exhaustion from parallel fetches)
-  // 10 requests / 15 min / IP — prevents abuse of 15s timeouts blocking server
-  const sourceTestLimiter = rateLimit({
+  const sourceTestLimiter = createPersistedRateLimiter({
+    bucket: 'source_test',
     windowMs: 15 * 60 * 1000,
-    max: 10,
+    limit: 10,
     message: 'Muitas tentativas de teste de fonte. Tente novamente em alguns minutos.',
-    standardHeaders: true,
-    legacyHeaders: false,
   });
 
   // Rotas públicas (login)
@@ -1413,45 +1406,7 @@ async function startServer() {
     }
   });
 
-  // Gemini AI Analysis endpoint
-  app.post('/api/editais/:id/analyze-ai', aiLimiter, async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      const [edital] = await db.select().from(schema.editais).where(eq(schema.editais.id, id));
-      if (!edital) {
-        return res.status(404).json({ error: 'Edital não encontrado' });
-      }
-
-      const ocrPages: any[] = edital.ocrPages || [];
-      const fullText = ocrPages.map((p: any) => `[PÁGINA ${p.pageNumber}]\n${p.text}`).join('\n\n');
-      const analysis = await analyzeEditalTextWithAI(fullText, edital.title, id);
-
-      res.json(analysis);
-    } catch (e) {
-      res.status(500).json({ error: 'Erro ao analisar com IA.' });
-    }
-  });
-
-  // Gemini AI Technical Specification & Supplier/Product research endpoint (Item 4.3)
-  app.post('/api/gemini/analyze-technical-specification', aiLimiter, async (req: Request, res: Response) => {
-    try {
-      const { clauseText, editalTitle, entityName, processNumber } = req.body;
-      if (!clauseText || typeof clauseText !== 'string') {
-        return res.status(400).json({ error: 'Texto da especificação técnica é obrigatório.' });
-      }
-
-      const result = await analyzeTechnicalSpecificationRestrictedAI(clauseText, {
-        editalTitle,
-        entityName,
-        processNumber
-      });
-
-      res.json(result);
-    } catch (error) {
-      console.error('Error analyzing technical specification:', error);
-      res.status(500).json({ error: 'Erro ao processar análise técnica de especificação com IA.' });
-    }
-  });
+  registerAiProxyRoutes(app, aiLimiter);
 
   // Retification Diffs
   app.get('/api/diffs', (req: Request, res: Response) => {

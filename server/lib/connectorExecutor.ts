@@ -6,6 +6,7 @@
  */
 import * as cheerio from 'cheerio';
 import { isRejectedSistemaSUrl } from './sistemaSUrls.js';
+import { resilientFetch, ResilientFetchError } from './resilientFetch.js';
 
 export type ApiConnectorConfig = {
   type: 'api';
@@ -373,13 +374,18 @@ export async function executeConnector(
     };
   }
 
-  // 5. Execução HTTP real com timeout
+  // 5. Execução HTTP real com timeout (resilientFetch quando fetch padrão)
   const startTime = Date.now();
   try {
-    const response = await customFetch(finalUrl, {
-      headers: requestHeaders,
-      signal: AbortSignal.timeout(15000),
-    });
+    const response = customFetch
+      ? await customFetch(finalUrl, {
+          headers: requestHeaders,
+          signal: AbortSignal.timeout(15000),
+        })
+      : await resilientFetch(finalUrl, {
+          headers: requestHeaders,
+          timeoutMs: 15000,
+        });
 
     const latencyMs = Date.now() - startTime;
     const bodyText = await response.text();
@@ -518,8 +524,15 @@ export async function executeConnector(
     }
   } catch (error: any) {
     const latencyMs = Date.now() - startTime;
-    const isTimeout = error.name === 'TimeoutError' || error.name === 'AbortError';
-    const statusText = isTimeout ? 'Timeout (15s) sem resposta.' : (error.message || 'Erro de rede.');
+    const isTimeout =
+      error instanceof ResilientFetchError
+        ? error.code === 'TIMEOUT'
+        : error.name === 'TimeoutError' || error.name === 'AbortError';
+    const statusText = isTimeout
+      ? 'Timeout (15s) sem resposta.'
+      : error instanceof ResilientFetchError
+        ? `${error.code}: ${error.message}`
+        : (error.message || 'Erro de rede.');
 
     return {
       success: false,

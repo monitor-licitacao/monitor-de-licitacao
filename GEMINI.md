@@ -98,7 +98,10 @@ Ao terminar uma tarefa ou o dia de trabalho:
 * **Como aplicar**:
   - Nunca solicite ao usuário uma chave de API para funções nativas do sistema.
   - Se houver falha de cota, instrua o usuário a verificar o saldo no dashboard e não a trocar chaves de API.
-  - Use sempre o endpoint `/api/proxy/gemini` (ou equivalente no Cloudflare/backend) para operações de LLM.
+  - Use sempre o endpoint `/api/proxy/gemini/*` no Express backend para operações de LLM.
+  - Rotas canônicas: `POST /api/proxy/gemini/analyze-edital/:id` e `POST /api/proxy/gemini/analyze-technical-specification`.
+  - Aliases legados (`/api/editais/:id/analyze-ai`, `/api/gemini/analyze-technical-specification`) permanecem por compatibilidade.
+  - O Worker Cloudflare (`licitacoes-edge`) é proxy reverso genérico — **não** é AI Gateway. Decisão documentada em `docs/SNAPSHOT_DECISION.md`.
 
 ## 10. Priorização Baseada em Bloqueadores
 * **A Regra**: A cosmética nunca passa na frente da fundação.

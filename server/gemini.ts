@@ -1,5 +1,6 @@
 import { GoogleGenAI } from '@amplitude/ai';
 import { ai as amplitudeAI, editalAnalyzerAgent, techSpecAuditorAgent } from './lib/amplitude-ai';
+import { filterKeywordsBeforeAI } from './lib/tokenEfficiency.js';
 
 let geminiClient: GoogleGenAI | null = null;
 
@@ -99,7 +100,7 @@ Analise o texto do edital abaixo e retorne APENAS um JSON válido no seguinte fo
 }
 
 Texto do Edital:
-"${editalText.substring(0, 12000)}"`;
+"${filterKeywordsBeforeAI(editalText)}"`;
 
     const response: any = await ai.generateContent({
       model: 'gemini-3.7-flash',

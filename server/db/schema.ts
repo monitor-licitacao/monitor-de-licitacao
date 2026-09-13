@@ -202,6 +202,39 @@ export const TELEMETRY_IDEMPOTENCY_STATUSES = ['pending', 'sending', 'sent', 'fa
 export type TelemetryIdempotencyStatus = (typeof TELEMETRY_IDEMPOTENCY_STATUSES)[number];
 
 /** Audit + dedup for pipeline telemetry (Amplitude HTTP API v2). Scoped per tenant. */
+export const auditLog = pgTable('audit_log', {
+  id: serial('id').primaryKey(),
+  tenantId: integer('tenant_id').references(() => tenants.id),
+  action: text('action').notNull(),
+  actorUserId: text('actor_user_id'),
+  resourceType: text('resource_type'),
+  resourceId: text('resource_id'),
+  metadata: jsonb('metadata').$type<Record<string, unknown>>(),
+  ipAddress: text('ip_address'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  tenantCreatedIdx: index('audit_log_tenant_created_idx').on(table.tenantId, table.createdAt),
+  actionIdx: index('audit_log_action_idx').on(table.action),
+}));
+
+export const rateLimitCounters = pgTable('rate_limit_counters', {
+  id: serial('id').primaryKey(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  bucket: text('bucket').notNull(),
+  identifier: text('identifier').notNull().default('default'),
+  windowStart: timestamp('window_start').notNull(),
+  requestCount: integer('request_count').notNull().default(0),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  tenantBucketWindowUidx: uniqueIndex('rate_limit_counters_tenant_bucket_window_uidx').on(
+    table.tenantId,
+    table.bucket,
+    table.identifier,
+    table.windowStart
+  ),
+  tenantBucketIdx: index('rate_limit_counters_tenant_bucket_idx').on(table.tenantId, table.bucket),
+}));
+
 export const telemetryEventIdempotency = pgTable('telemetry_event_idempotency', {
   id: serial('id').primaryKey(),
   tenantId: integer('tenant_id').references(() => tenants.id).notNull(),

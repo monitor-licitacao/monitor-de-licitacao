@@ -116,4 +116,4 @@ Essas três camadas juntas (disciplina de branch + hook local + proteção remot
 
 ***
 
-**Ver também**: GEMINI.md (Regras de Ouro), NEON\_RULES.md (migrações de banco em feature branches).
+**Ver também**: GEMINI.md (Regras de Ouro), README.md (migrações de banco em feature branches).

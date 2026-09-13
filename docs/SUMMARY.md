@@ -1,5 +1,6 @@
 # Table of contents
 
+* [Domain Registry PNCP (issue #81)](pncp-domains.md)
 * [🚀 Boas Práticas e Regras para o Neon (Serverless Postgres)](README.md)
 * [PRD: Deploy na Infraestrutura Hetzner (VPS)](prd-deployment-hetzner.md)
 * [📄 PRD: Módulo de Agentes Autônomos - Monitor de Licitações](prd-grok-bot.md)

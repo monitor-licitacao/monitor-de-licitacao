@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nome": "Lei 14.133/2021, Art. 28, I",
+    "descricao": "pregão: modalidade de licitação obrigatória para aquisição de bens e serviços comuns",
+    "tipoAmparoLegal": {
+      "id": 1,
+      "nome": "Lei",
+      "descricao": "Amparo em lei",
+      "statusAtivo": true
+    },
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-01-15T10:00:00",
+    "statusAtivo": true
+  },
+  {
+    "id": 75,
+    "nome": "Lei 14.133/2021, Art. 75, VIII",
+    "descricao": "dispensa para aquisição de bens ou contratação de serviços",
+    "tipoAmparoLegal": {
+      "id": 1,
+      "nome": "Lei",
+      "descricao": "Amparo em lei",
+      "statusAtivo": true
+    },
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-03-01T09:00:00",
+    "statusAtivo": true
+  },
+  {
+    "id": 99,
+    "nome": "Amparo sem tipo aninhado",
+    "descricao": "Registro de teste com campo opcional ausente",
+    "dataInclusao": "2022-01-01T00:00:00",
+    "dataAtualizacao": "2022-01-01T00:00:00",
+    "statusAtivo": false
+  }
+]

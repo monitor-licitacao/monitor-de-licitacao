@@ -9,6 +9,10 @@
       "env": {
         "LINEAR_API_KEY": ""
       }
+    },
+    "Amplitude": {
+      "url": "https://mcp.amplitude.com/mcp",
+      "transport": "streamable-http"
     }
   }
 }

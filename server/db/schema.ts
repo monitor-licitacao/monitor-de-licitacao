@@ -225,4 +225,3 @@ export const telemetryEventIdempotency = pgTable('telemetry_event_idempotency', 
     table.status
   ),
 }));
-

@@ -26,7 +26,7 @@ export type HistoricoPrecoImportado = z.infer<typeof HistoricoPrecoImportadoSche
 const IDEMPOTENCY_KEY_PATTERN = /^compras_rj_[0-9a-f-]{36}_\d+$/i;
 
 export function buildIdempotencyKey(
-  sourceSystem: HistoricoPrecoImportado['source_system'],
+  sourceSystem: string,
   collectionBatchId: string,
   timestampMs: number = Date.now()
 ): string {
@@ -36,6 +36,9 @@ export function buildIdempotencyKey(
 export function isValidIdempotencyKeyFormat(key: string): boolean {
   return IDEMPOTENCY_KEY_PATTERN.test(key);
 }
+
+/** Alias para compatibilidade com suítes de teste de idempotência */
+export const isValidIdempotencyKey = isValidIdempotencyKeyFormat;
 
 export function parseHistoricoPrecoImportado(raw: unknown): HistoricoPrecoImportado {
   const parsed = HistoricoPrecoImportadoSchema.parse(raw);

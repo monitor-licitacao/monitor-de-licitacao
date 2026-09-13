@@ -13,6 +13,7 @@ import { ReviewWorkflowView } from './components/ReviewWorkflowView';
 import { RetificationDiffView } from './components/RetificationDiffView';
 import { WhatsAppNotificationsView } from './components/WhatsAppNotificationsView';
 import { SettingsView } from './components/SettingsView';
+import { ContratacoesView } from './components/ContratacoesView';
 
 import { 
   Source, 
@@ -44,6 +45,12 @@ function getProcessCodigoFromPath(): string | null {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
+function getContratacaoIdFromPath(): string | null {
+  if (typeof window === 'undefined') return null;
+  const match = window.location.pathname.match(/^\/contratacoes\/([^/]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 export default function App() {
   // Auth Guard
   const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
@@ -55,8 +62,12 @@ export default function App() {
   }, []);
 
   const initialCodigo = getProcessCodigoFromPath();
-  const [activeTab, setActiveTab] = useState(initialCodigo ? 'processos' : 'editais');
+  const initialContratacaoId = getContratacaoIdFromPath();
+  const [activeTab, setActiveTab] = useState(
+    initialContratacaoId ? 'contratacoes' : 'editais',
+  );
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
+  const [selectedContratacaoId, setSelectedContratacaoId] = useState<string | null>(initialContratacaoId);
 
   // App Domain State
   const [sources, setSources] = useState<Source[]>([]);
@@ -380,10 +391,18 @@ export default function App() {
     setActiveTab('tech-spec-ai');
   };
 
-  // Sync with browser URL navigation (/processos/:codigo)
+  // Sync with browser URL navigation (/processos/:codigo | /contratacoes/:id)
   useEffect(() => {
     const handlePopState = () => {
+      const contratacaoId = getContratacaoIdFromPath();
       const codigo = getProcessCodigoFromPath();
+      if (contratacaoId) {
+        setSelectedContratacaoId(contratacaoId);
+        setSelectedProcessCodigo(null);
+        setActiveTab('contratacoes');
+        return;
+      }
+      setSelectedContratacaoId(null);
       setSelectedProcessCodigo(codigo);
       if (codigo) {
         setActiveTab('editais');
@@ -414,9 +433,34 @@ export default function App() {
     }
   };
 
+  const handleSelectContratacaoId = (id: string | null) => {
+    setSelectedContratacaoId(id);
+    if (id) {
+      setActiveTab('contratacoes');
+      setSelectedProcessCodigo(null);
+      const path = `/contratacoes/${id}`;
+      if (window.location.pathname !== path) {
+        window.history.pushState(null, '', path);
+      }
+    } else if (window.location.pathname.startsWith('/contratacoes/')) {
+      window.history.pushState(null, '', '/contratacoes');
+    }
+  };
+
   const handleNavigateTab = (tab: string) => {
     if (tab === 'editais' && activeTab === 'editais' && selectedProcessCodigo) {
       handleSelectProcessCodigo(null);
+    }
+    if (tab === 'contratacoes') {
+      setSelectedProcessCodigo(null);
+      if (window.location.pathname.startsWith('/processos/')) {
+        window.history.pushState(null, '', selectedContratacaoId ? `/contratacoes/${selectedContratacaoId}` : '/contratacoes');
+      } else if (!window.location.pathname.startsWith('/contratacoes')) {
+        window.history.pushState(null, '', selectedContratacaoId ? `/contratacoes/${selectedContratacaoId}` : '/contratacoes');
+      }
+    } else if (window.location.pathname.startsWith('/contratacoes')) {
+      setSelectedContratacaoId(null);
+      window.history.pushState(null, '', '/');
     }
     setActiveTab(tab);
   };
@@ -504,6 +548,13 @@ export default function App() {
                 sources={sources}
                 onAddSource={handleAddSource}
                 onTestSource={handleTestSource}
+              />
+            )}
+
+            {activeTab === 'contratacoes' && (
+              <ContratacoesView
+                selectedId={selectedContratacaoId}
+                onSelectId={handleSelectContratacaoId}
               />
             )}
 

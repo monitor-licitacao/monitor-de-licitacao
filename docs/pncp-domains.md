@@ -52,19 +52,17 @@ POST /api/v1/domains/sync
 
 Filtros: `status_ativo`, `tipo` (pncp_id do tipo de amparo), `q` (nome/descrição). Toda listagem devolve `pncpId`.
 
-## Relação com contratação — não inventada nesta issue
+## Relação com contratação — #82
 
-A tabela `contratacao` **não** ganhou FK nova aqui.
+Só IDs explícitos do payload da compra. Sem matching por nome, valor, objeto ou modalidade presumida.
 
-Evidência já existente no payload PNCP da compra SESC CE 026/2026 (`server/lib/pncp/fixtures/sesc-ce-026-2026/compra.json`):
-
-| Campo da fonte | Significado | Situação atual |
+| Campo da fonte | Coluna integer | FK UUID (NULL se o registry não tiver a linha) |
 |---|---|---|
-| `modalidadeId` | ID oficial da modalidade | gravado em `contratacao.modalidade_id` (integer PNCP, não FK UUID) |
-| `tipoInstrumentoConvocatorioCodigo` | ID oficial do instrumento | **não persistido** como coluna |
-| `amparoLegal.codigo` | ID oficial do amparo | **não persistido** como coluna |
+| `modalidadeId` | `contratacao.modalidade_id` | `pncp_modalidade_id` → `pncp_modalidade.pncp_id` |
+| `tipoInstrumentoConvocatorioCodigo` | `instrumento_convocatorio_codigo` | `pncp_instrumento_convocatorio_id` |
+| `amparoLegal.codigo` | `amparo_legal_codigo` | `pncp_amparo_legal_id` |
 
-Não há matching por nome, valor, objeto ou modalidade presumida. Follow-up: mapear essas três chaves explícitas para as tabelas deste registry.
+Golden: SESC CE 026/2026 → `6` / `1` / `1`. Ingest: `extractDomainKeys` + subquery no upsert (`server/lib/pncp/resolve-domains.ts`).
 
 ## Limitações
 
@@ -72,6 +70,6 @@ Não há matching por nome, valor, objeto ou modalidade presumida. Follow-up: ma
 - Não existe `if valor < X → Art. 75, II`.
 - Não existe `modalidade X → amparo Y`.
 - Não há tabela `alert_rule` no schema atual; filtros de alerta por domínio ficam para issue posterior.
-- Analytics por amparo dependem do relacionamento com contratação, ainda não fechado.
+- Analytics e `alert_rule` por amparo ficam para issue posterior; o relacionamento com contratação já grava IDs explícitos (#82).
 
 Uma eventual rule engine jurídica precisará de legislação, vigência, fonte e versão **próprias**, fora deste registry.

@@ -1,0 +1,66 @@
+{
+  "url": "https://pncp.gov.br/api/consulta/v1/orgaos/00394452000103/compras/2026/19732",
+  "body": {
+    "valorTotalEstimado": 221916.82,
+    "valorTotalHomologado": null,
+    "orcamentoSigilosoCodigo": 1,
+    "orcamentoSigilosoDescricao": "Compra sem sigilo",
+    "numeroControlePNCP": "00394452000103-1-019732/2026",
+    "linkSistemaOrigem": "https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=16036005002242026",
+    "linkProcessoEletronico": "https://6bcom.eb.mil.br",
+    "anoCompra": 2026,
+    "sequencialCompra": 19732,
+    "numeroCompra": "224",
+    "processo": "64029.005184/2026-14",
+    "orgaoEntidade": {
+      "cnpj": "00394452000103",
+      "razaoSocial": "COMANDO DO EXERCITO",
+      "poderId": "E",
+      "esferaId": "F"
+    },
+    "unidadeOrgao": {
+      "ufNome": "Rio Grande do Sul",
+      "municipioNome": "Bento Gon??alves",
+      "ufSigla": "RS",
+      "codigoUnidade": "160360",
+      "nomeUnidade": "6 BATALHAO DE COMUNICACAO DIVISIONARIO/RS",
+      "codigoIbge": "4302105"
+    },
+    "orgaoSubRogado": null,
+    "unidadeSubRogada": null,
+    "modalidadeId": 6,
+    "modalidadeNome": "Preg??o - Eletr??nico",
+    "justificativaPresencial": null,
+    "modoDisputaId": 1,
+    "modoDisputaNome": "Aberto",
+    "tipoInstrumentoConvocatorioCodigo": 1,
+    "tipoInstrumentoConvocatorioNome": "Edital",
+    "amparoLegal": {
+      "codigo": 1,
+      "descricao": "preg??o: modalidade de licita????o obrigat??ria para aquisi????o de bens e servi??os comuns",
+      "nome": "Lei 14.133/2021, Art. 28, I"
+    },
+    "objetoCompra": "Preg??o para aquisi????o de material Extra Passex",
+    "informacaoComplementar": null,
+    "srp": true,
+    "fontesOrcamentarias": [
+      {
+        "codigo": 4,
+        "nome": "Federal",
+        "descricao": "Recurso or??ament??rio federal dispon??vel e devidamente vinculado ?? despesa que ser?? realizada.",
+        "dataInclusao": "2026-09-11T04:00:07"
+      }
+    ],
+    "emendaParlamentar": false,
+    "dataPublicacaoPncp": "2026-09-11T04:00:07",
+    "dataAberturaProposta": "2026-09-11T08:00:00",
+    "dataEncerramentoProposta": "2026-09-24T08:30:00",
+    "situacaoCompraId": 1,
+    "situacaoCompraNome": "Divulgada no PNCP",
+    "existeResultado": false,
+    "dataInclusao": "2026-09-11T04:00:07",
+    "dataAtualizacao": "2026-09-11T04:00:07",
+    "dataAtualizacaoGlobal": "2026-09-11T04:29:11",
+    "usuarioNome": "Compras.gov.br"
+  }
+}

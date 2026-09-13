@@ -21,8 +21,11 @@ import {
   PncpEdital,
   PncpFilterOptions,
   PncpOrgao,
+  PncpRawItem,
   PncpSearchResult,
   RateLimitConfig,
+  TenantMatchResult,
+  TenantMatchRule,
 } from './types';
 
 /**
@@ -342,4 +345,74 @@ export class PncpApiClient {
   private async sleep(delayMs: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, delayMs));
   }
+}
+
+/**
+ * Match item against tenant rules (NCM + Keywords)
+ *
+ * **Matching Strategy:**
+ * - For each tenant rule, checks if item's NCM starts with configured NCMs
+ * - Also checks if item description contains configured keywords
+ * - Returns ALL matches (both NCM and keyword) for audit trail
+ * - Deduplicates same value from appearing multiple times in description
+ *
+ * **Examples:**
+ *
+ * Item: NCM=9506.91.00, Description="Esteira elétrica fitness"
+ * Rule: { tenantId: 'T1', ncms: ['9506.91'], keywords: ['esteira'] }
+ * → Result: { tenantId: 'T1', matches: [
+ *     { type: 'NCM', value: '9506.91' },
+ *     { type: 'KEYWORD', value: 'esteira' }
+ *   ]}
+ *
+ * **Multi-Tenant Example:**
+ * Item: NCM=9506.91.00, Description="Bola de basquete"
+ * Rules: [
+ *   { tenantId: 'T-fitness', ncms: ['9506.91'], keywords: [] },
+ *   { tenantId: 'T-sports', ncms: [], keywords: ['basquete'] }
+ * ]
+ * → Result: [
+ *     { tenantId: 'T-fitness', matches: [{ type: 'NCM', value: '9506.91' }] },
+ *     { tenantId: 'T-sports', matches: [{ type: 'KEYWORD', value: 'basquete' }] }
+ *   ]
+ *
+ * @param item PNCP edital item with NCM and description
+ * @param rules Tenant matching rules (NCM + keywords per tenant)
+ * @returns Array of tenant matches with captured keywords/NCMs for audit trail
+ */
+export function matchTenantsForItem(
+  item: PncpRawItem,
+  rules: TenantMatchRule[],
+): TenantMatchResult[] {
+  const itemNcm = (item.codigoNcm || '').toLowerCase().trim();
+  const itemDesc = (item.objetoCompra || item.objeto || '').toLowerCase();
+  const tenantMatches = new Map<string, TenantMatchResult>();
+
+  for (const rule of rules) {
+    // Find all NCM hits (item NCM starts with any configured NCM)
+    const ncmHits = rule.ncms.filter((ncm) => itemNcm.startsWith(ncm.toLowerCase()));
+
+    // Find all keyword hits (description contains keyword) - deduplicated by Set
+    const keywordHitsSet = new Set<string>();
+    rule.keywords.forEach((kw) => {
+      if (itemDesc.includes(kw.toLowerCase())) {
+        keywordHitsSet.add(kw.toLowerCase());
+      }
+    });
+    const keywordHits = Array.from(keywordHitsSet);
+
+    // If either NCM or keyword matches, record all matches for this tenant
+    if (ncmHits.length > 0 || keywordHits.length > 0) {
+      tenantMatches.set(rule.tenantId, {
+        tenantId: rule.tenantId,
+        matches: [
+          ...ncmHits.map((v) => ({ type: 'NCM' as const, value: v })),
+          ...keywordHits.map((v) => ({ type: 'KEYWORD' as const, value: v })),
+        ],
+      });
+    }
+  }
+
+  // Return matches in stable order (order of rules)
+  return Array.from(tenantMatches.values());
 }

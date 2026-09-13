@@ -196,6 +196,51 @@ export interface RateLimitConfig {
 }
 
 /**
+ * Item bruto do PNCP (dados de entrada)
+ */
+export interface PncpRawItem {
+  /** Código NCM (Nomenclatura Comum do MERCOSUL) */
+  codigoNcm?: string;
+
+  /** Descrição do objeto de compra */
+  objetoCompra?: string;
+
+  /** Alternativa de campo para descrição */
+  objeto?: string;
+}
+
+/**
+ * Regra de matching de tenant
+ */
+export interface TenantMatchRule {
+  /** Identificador único do tenant */
+  tenantId: string;
+
+  /** Lista de NCMs para matching */
+  ncms: string[];
+
+  /** Lista de keywords para matching na descrição */
+  keywords: string[];
+}
+
+/**
+ * Resultado do matching de um item contra regras de tenant
+ */
+export interface TenantMatchResult {
+  /** Identificador do tenant que fez match */
+  tenantId: string;
+
+  /** Array de matches encontrados (NCM ou KEYWORD) */
+  matches: {
+    /** Tipo de match */
+    type: 'NCM' | 'KEYWORD';
+
+    /** Valor do match */
+    value: string;
+  }[];
+}
+
+/**
  * Erro customizado da API PNCP
  */
 export class PncpApiError extends Error {

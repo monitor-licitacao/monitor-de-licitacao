@@ -153,36 +153,51 @@ async function runCollector() {
         console.log(`  [Página ${page}] Lidos ${rawItems.length} registros (${items.length} após filtros)...`);
 
         for (const item of items) {
-          const tenantMatches = matchTenantsForItem(item, tenantRules);
+          const itemNcm = (item.codigoNcm || '').toLowerCase().trim();
+          const itemDesc = (item.objetoCompra || item.objeto || '').toLowerCase();
+          
+          for (const rule of tenantRules) {
+            // Verifica se o edital bate com NCM ou Keyword do tenant
+            const hasNcmMatch = rule.ncms.length > 0 && rule.ncms.some(ncm => itemNcm.startsWith(ncm));
+            const hasKeywordMatch = rule.keywords.length > 0 && rule.keywords.some(kw => itemDesc.includes(kw));
+            
+            if (hasNcmMatch || hasKeywordMatch) {
+              // Edital de interesse para este tenant!
+              const uniqueId = `edital-pncp-${item.anoContratacao}-${item.numeroContratacao}-${item.orgaoEntidade?.cnpj || 's-cnpj'}`
+                .toLowerCase().replace(/[^a-z0-9-]/g, '-');
 
-          for (const match of tenantMatches) {
-            const draft = normalizePncpItem(item, tenantRules.find(r => r.tenantId === match.tenantId)?.ncms[0] ?? 'N/A');
+              const pdfUrl = extractPdfUrl(item.arquivos);
+              const agencyName = item.orgaoEntidade?.razaoSocial || 'Órgão Desconhecido';
+              
+              const pubDate = item.dataPublicacaoPncp ? new Date(item.dataPublicacaoPncp).toISOString() : new Date().toISOString();
+              const bidDate = item.dataAberturaProposta ? new Date(item.dataAberturaProposta).toISOString() : pubDate;
 
-            try {
-              await db.insert(schema.editais).values({
-                id: draft.id,
-                tenantId: match.tenantId,
-                sourceId,
-                processNumber: draft.processNumber,
-                title: draft.title,
-                sourceName: 'PNCP (Portal Nacional)',
-                sourceCategory: 'Federal',
-                ncmCode: draft.ncmCode,
-                objectDescription: draft.objectDescription,
-                url: draft.url,
-                rawUrl: draft.rawUrl,
-                status: 'OPEN',
-                agency: draft.agency,
-                estimatedValue: draft.estimatedValue,
-                publishedAt: draft.publishedAt,
-                biddingDate: draft.biddingDate,
-                humanReviewStatus: 'PENDING',
-              }).onConflictDoNothing();
-
-              console.log(`    ✅ [TENANT ${match.tenantId}] Match [${match.matchType}]: Salvo ${draft.id} (${match.matchedTerm})`);
-              newInsertions++;
-            } catch (dbErr: any) {
-              console.log(`    ⚠️ Erro DB: ${dbErr.message}`);
+              try {
+                await db.insert(schema.editais).values({
+                  id: uniqueId,
+                  tenantId: rule.tenantId, // Vincula ao tenant que deu match
+                  sourceId,
+                  processNumber: item.processo || `${item.numeroContratacao}/${item.anoContratacao}`,
+                  title: (item.objetoCompra || item.objeto || '').slice(0, 100),
+                  sourceName: 'PNCP (Portal Nacional)',
+                  sourceCategory: 'Federal',
+                  ncmCode: item.codigoNcm || (rule.ncms[0] || 'N/A'), // Salva o NCM oficial ou o 1º da regra
+                  objectDescription: item.objetoCompra || item.objeto || '',
+                  url: pdfUrl || item.linkSistemaOrigem, 
+                  rawUrl: item.linkSistemaOrigem || url.toString(),
+                  status: 'OPEN',
+                  agency: agencyName,
+                  estimatedValue: item.valorTotalEstimado ? String(item.valorTotalEstimado) : null,
+                  publishedAt: pubDate,
+                  biddingDate: bidDate,
+                  humanReviewStatus: 'PENDING',
+                }).onConflictDoNothing();
+                
+                console.log(`    ✅ [TENANT ${rule.tenantId}] Match [${hasNcmMatch ? 'NCM' : 'KEYWORD'}]: Salvo ${uniqueId}`);
+                newInsertions++;
+              } catch (dbErr: any) {
+                console.log(`    ⚠️ Erro DB: ${dbErr.message}`);
+              }
             }
           }
         }

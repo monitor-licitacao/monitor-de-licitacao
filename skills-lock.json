@@ -12,6 +12,42 @@
       "sourceType": "github",
       "skillPath": "skills/neon-postgres/SKILL.md",
       "computedHash": "479d9f1357a29a878216cf3fc10ab0bf82fdb5bdc1b5ef3d68d442ad883ca2a6"
+    },
+    "typescript-pro": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/typescript-pro/SKILL.md",
+      "computedHash": "5f5bc47c167f0485c01a3b5a14b9999141b1e7c54e7775aecf73ad16f114c066"
+    },
+    "playwright-expert": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/playwright-expert/SKILL.md",
+      "computedHash": "d6c5c04e570659a902e7c212067116131743e588af16406672fab58f0f62d8e1"
+    },
+    "test-master": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/test-master/SKILL.md",
+      "computedHash": "f16f02c55fcc761bac2e9f31fff2fc47398601b125a3658399b35670271889e9"
+    },
+    "code-reviewer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/code-reviewer/SKILL.md",
+      "computedHash": "8f0ddb7d90178b6986f8d597ab0bc93ec01adb044bd27b75e1682b06902dae93"
+    },
+    "devops-engineer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/devops-engineer/SKILL.md",
+      "computedHash": "078f8e80c432f1cbaa7aaa70391a8d61c2b87cc71f2f64f361da61b13c19d9cf"
+    },
+    "security-reviewer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/security-reviewer/SKILL.md",
+      "computedHash": "e9a96f7be5c52e4c0ee7eec268a2f3bdb16e24ea31620e648bfb95c36e1437d8"
     }
   }
 }

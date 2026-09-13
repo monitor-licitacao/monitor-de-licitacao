@@ -25,25 +25,12 @@ export function generateEditalPDFReport(edital: Edital): void {
   // Determine URL validation status defaults if not explicitly populated
   // Determine collection method, falling back to defaults if data is missing
   const method = edital.collectionMethod || edital.urlValidation?.collectionMethod || 'DIRECT_HTTPX';
-  const urlVal: UrlValidationData = edital.urlValidation || {
-    originalUrl: edital.rawUrl,
-    originalRequestedUrl: edital.rawUrl,
-    validationStatus: 'VALID_DIRECT_200',
-    collectionMethod: method,
-    httpStatusCode: 200,
-    finalResolvedUrl: edital.rawUrl.replace('http://', 'https://'),
-    mimeTypeValidated: 'application/pdf (Magic Bytes %PDF-1.5)',
-    contentLengthBytes: edital.fileSizeBytes || 3418290,
-    validatedAt: new Date().toISOString(),
-    dnsResolutionStatus: 'RESOLVED_OK',
-    limitationNotice: 'Documento baixado e validado com sucesso via worker httpx.',
-    isUnavailable: false
-  };
+  const urlVal = edital.urlValidation;
 
   // Flags for various failure scenarios used to decide which banner to render
-  const isDnsFailure = urlVal.validationStatus === 'REDIRECT_DESTINATION_DNS_FAILURE' || urlVal.dnsResolutionStatus === 'NXDOMAIN_ERROR';
-  const isS3Cache = method === 'S3_CACHE_FALLBACK' || !!urlVal.cachedVersionDate;
-  const isUnavailable = urlVal.isUnavailable || isDnsFailure || urlVal.validationStatus === 'UNAVAILABLE_4XX_5XX';
+  const isDnsFailure = urlVal?.validationStatus === 'REDIRECT_DESTINATION_DNS_FAILURE' || urlVal?.dnsResolutionStatus === 'NXDOMAIN_ERROR';
+  const isS3Cache = method === 'S3_CACHE_FALLBACK' || !!urlVal?.cachedVersionDate;
+  const isUnavailable = !!urlVal?.isUnavailable || isDnsFailure || urlVal?.validationStatus === 'UNAVAILABLE_4XX_5XX';
 
   // 1. Top Header Banner
   doc.setFillColor(15, 23, 42); // Slate-900 Dark Navy
@@ -80,7 +67,7 @@ export function generateEditalPDFReport(edital: Edital): void {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(6.8);
     doc.setTextColor(120, 53, 15);
-    const cacheDateStr = urlVal.cachedVersionDate ? new Date(urlVal.cachedVersionDate).toLocaleString('pt-BR') : 'coleta anterior';
+    const cacheDateStr = urlVal?.cachedVersionDate ? new Date(urlVal.cachedVersionDate).toLocaleString('pt-BR') : 'coleta anterior';
     doc.text(`O link público original estava temporariamente inacessível no momento da coleta (Erro: NXDOMAIN/Rede).`, 18, currentY + 8.8);
     doc.text(`Este relatório analisa a versão cacheada em ${cacheDateStr}, preservada no Vault. Verifique manualmente antes de prazos críticos.`, 18, currentY + 12.2);
 
@@ -160,11 +147,19 @@ export function generateEditalPDFReport(edital: Edital): void {
   currentY += 38;
 
   // 4. NOVA SEÇÃO OBRIGATÓRIA: Rastreabilidade e Validação de Acesso (RF-11 a RF-14 / Sprint 0)
-  const isDnsFail = urlVal.validationStatus === 'REDIRECT_DESTINATION_DNS_FAILURE';
+  const isDnsFail = urlVal?.validationStatus === 'REDIRECT_DESTINATION_DNS_FAILURE';
   const boxHeight = isDnsFail ? 46 : 38;
 
-  doc.setFillColor(isDnsFail ? 254 : isUnavailable ? 255 : 241, isDnsFail ? 242 : isUnavailable ? 241 : 245, isDnsFail ? 242 : isUnavailable ? 242 : 249);
-  doc.setDrawColor(isDnsFail ? 239 : isUnavailable ? 248 : 203, isDnsFail ? 68 : isUnavailable ? 113 : 213, isDnsFail ? 68 : isUnavailable ? 113 : 225);
+  doc.setFillColor(
+    !urlVal ? 248 : isDnsFail ? 254 : isUnavailable ? 255 : 241,
+    !urlVal ? 250 : isDnsFail ? 242 : isUnavailable ? 241 : 245,
+    !urlVal ? 252 : isDnsFail ? 242 : isUnavailable ? 242 : 249
+  );
+  doc.setDrawColor(
+    !urlVal ? 226 : isDnsFail ? 239 : isUnavailable ? 248 : 203,
+    !urlVal ? 232 : isDnsFail ? 68 : isUnavailable ? 113 : 213,
+    !urlVal ? 240 : isDnsFail ? 68 : isUnavailable ? 113 : 225
+  );
   doc.roundedRect(14, currentY, 182, boxHeight, 2, 2, 'FD');
 
   doc.setTextColor(15, 23, 42);
@@ -181,7 +176,7 @@ export function generateEditalPDFReport(edital: Edital): void {
   doc.text('URL Original Detectada:', 18, currentY + 11.5);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(37, 99, 235);
-  doc.text(urlVal.originalUrl, 54, currentY + 11.5, { maxWidth: 138 });
+  doc.text(urlVal?.originalUrl || edital.rawUrl, 54, currentY + 11.5, { maxWidth: 138 });
 
   // Line 2: Validation Status & Method Badge
   doc.setTextColor(51, 65, 85);
@@ -189,7 +184,10 @@ export function generateEditalPDFReport(edital: Edital): void {
   doc.text('Status & Método:', 18, currentY + 16.5);
   doc.setFont('helvetica', 'bold');
 
-  if (isDnsFail) {
+  if (!urlVal) {
+    doc.setTextColor(100, 116, 139);
+    doc.text('⚠️ [DADOS AUSENTES] Validação ativa não executada', 54, currentY + 16.5);
+  } else if (isDnsFail) {
     doc.setTextColor(220, 38, 38);
     doc.text('❌ REDIRECT_DESTINATION_DNS_FAILURE (HTTP 302 -> Falha NXDOMAIN no Destino)', 54, currentY + 16.5);
   } else if (method === 'URL_REWRITE') {
@@ -215,7 +213,26 @@ export function generateEditalPDFReport(edital: Edital): void {
   // Line 3: Resolved or Attempted URL
   doc.setTextColor(51, 65, 85);
   doc.setFont('helvetica', 'bold');
-  if (isDnsFail) {
+  if (!urlVal) {
+    doc.text('URL Final Resolvida:', 18, currentY + 21.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 116, 139);
+    doc.text('[DADOS AUSENTES]', 54, currentY + 21.5);
+
+    // Line 4: MIME Type & SHA-256
+    doc.setTextColor(51, 65, 85);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Tipo MIME & Hash:', 18, currentY + 26.5);
+    doc.setFont('helvetica', 'normal');
+    const hash = edital.sha256Hash ? `${edital.sha256Hash.substring(0, 36)}...` : '[HASH AUSENTE]';
+    doc.text(`[DADOS AUSENTES - Magic Bytes não verificados] | SHA-256: ${hash}`, 54, currentY + 26.5);
+
+    // Line 5: Timestamp and limitation notice
+    doc.setFont('helvetica', 'bold');
+    doc.text('Nota de Rastreabilidade:', 18, currentY + 31.5);
+    doc.setFont('helvetica', 'normal');
+    doc.text('[DADOS AUSENTES] Nenhuma validação ativa registrada para este edital.', 54, currentY + 31.5, { maxWidth: 138 });
+  } else if (isDnsFail) {
     doc.text('Tentativa de Destino:', 18, currentY + 21.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(220, 38, 38);
@@ -241,7 +258,8 @@ export function generateEditalPDFReport(edital: Edital): void {
     doc.setFont('helvetica', 'bold');
     doc.text('Auditoria de Acesso:', 18, currentY + 41.5);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Auditado em: ${new Date(urlVal.validatedAt).toLocaleString('pt-BR')} (Playwright + Teste de Socket DNS)`, 54, currentY + 41.5);
+    const auditTime = urlVal.validatedAt ? new Date(urlVal.validatedAt).toLocaleString('pt-BR') : '[Data ausente]';
+    doc.text(`Auditado em: ${auditTime} (Playwright + Teste de Socket DNS)`, 54, currentY + 41.5);
   } else {
     doc.text('URL Final Resolvida:', 18, currentY + 21.5);
     doc.setFont('helvetica', 'normal');
@@ -254,13 +272,16 @@ export function generateEditalPDFReport(edital: Edital): void {
     doc.setFont('helvetica', 'bold');
     doc.text('Tipo MIME & Hash:', 18, currentY + 26.5);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${urlVal.mimeTypeValidated || 'application/pdf'} | SHA-256: ${edital.sha256Hash.substring(0, 36)}...`, 54, currentY + 26.5);
+    const mimeText = urlVal.mimeTypeValidated || '[MIME e Magic Bytes não validados]';
+    const hash = edital.sha256Hash ? `${edital.sha256Hash.substring(0, 36)}...` : '[HASH AUSENTE]';
+    doc.text(`${mimeText} | SHA-256: ${hash}`, 54, currentY + 26.5);
 
     // Line 5: Timestamp and limitation notice
     doc.setFont('helvetica', 'bold');
     doc.text('Nota de Rastreabilidade:', 18, currentY + 31.5);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${urlVal.limitationNotice || 'Validação ativa executada.'} (Auditado em: ${new Date(urlVal.validatedAt).toLocaleString('pt-BR')})`, 54, currentY + 31.5, { maxWidth: 138 });
+    const auditTime = urlVal.validatedAt ? ` (Auditado em: ${new Date(urlVal.validatedAt).toLocaleString('pt-BR')})` : ' [Data de auditoria ausente]';
+    doc.text(`${urlVal.limitationNotice || 'Validação ativa executada.'}${auditTime}`, 54, currentY + 31.5, { maxWidth: 138 });
   }
 
   currentY += boxHeight + 4;
@@ -369,7 +390,10 @@ export function generateEditalPDFReport(edital: Edital): void {
   doc.setTextColor(100, 116, 139);
   doc.text('• Este relatório é produto de triagem automatizada assistida por OCR (confiança média: ' + edital.ocrConfidenceAvg + '%).', 18, currentY + 9);
   doc.text('• A análise cobre exclusivamente o NCM ' + edital.ncmCode + ' e legislação declarada no próprio edital (Lei 14.133/2021 ou Regulamento SESC/Sistema S).', 18, currentY + 13);
-  doc.text('• Documentos anexos (DOCX/XLSX/ZIP) foram catalogados. Links externos validados em ' + new Date(urlVal.validatedAt).toLocaleDateString('pt-BR') + '.', 18, currentY + 17);
+  const linkAuditDate = urlVal?.validatedAt
+    ? new Date(urlVal.validatedAt).toLocaleDateString('pt-BR')
+    : '[DADOS AUSENTES - Não auditado]';
+  doc.text('• Documentos anexos (DOCX/XLSX/ZIP) foram catalogados. Links externos validados: ' + linkAuditDate + '.', 18, currentY + 17);
   doc.text('• REGRA DE OURO: NENHUM ACHADO POSSUI EFICÁCIA EXTERNA SEM HOMOLOGAÇÃO HUMANA EXPRESSA.', 18, currentY + 20);
 
   // Add a compact audit footer with technical metadata

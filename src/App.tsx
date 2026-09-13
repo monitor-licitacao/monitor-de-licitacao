@@ -129,26 +129,7 @@ export default function App() {
       showToast('Varredura executada com sucesso!');
     } catch (error) {
       console.error('[Scheduler Trigger Error]:', error);
-      setScheduler(prev => ({
-        ...prev,
-        lastRunAt: new Date().toISOString(),
-        totalRunsCompleted: (prev?.totalRunsCompleted || 0) + 1,
-        logs: [
-          {
-            id: `log-${Date.now()}`,
-            timestamp: new Date().toISOString(),
-            sourceId: 'src-manual-sync',
-            sourceName: 'Todas as Fontes (Varredura Manual)',
-            sourceType: 'API',
-            status: 'SUCCESS',
-            message: 'Varredura concluída. Fontes sincronizadas com sucesso.',
-            itemsFound: 0,
-            latencyMs: 142
-          },
-          ...(prev?.logs || [])
-        ]
-      }));
-      showToast('Coleta sincronizada.', 'info');
+      showToast(error instanceof Error ? error.message : 'Falha ao executar varredura do agendador', 'error');
     } finally {
       setIsTriggering(false);
     }
@@ -157,7 +138,7 @@ export default function App() {
   // Add Source Handler
   const handleAddSource = async (sourceData: Partial<Source>) => {
     try {
-      const res = await fetch('/api/sources', {
+      const res = await apiClient('/api/sources', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sourceData)
@@ -167,54 +148,42 @@ export default function App() {
         setSources(prev => [newSource, ...prev]);
         showToast(`Fonte ${newSource.name} cadastrada com sucesso!`);
       } else {
-        const localSource: Source = {
-          id: `src-${Date.now()}`,
-          name: sourceData.name || 'Nova Fonte',
-          category: sourceData.category || 'Prefeitura',
-          type: sourceData.type || 'SCRAPER',
-          uf: sourceData.uf || 'RS',
-          city: sourceData.city,
-          endpointOrUrl: sourceData.endpointOrUrl || '',
-          selectorOrParams: sourceData.selectorOrParams,
-          authType: sourceData.authType || 'NONE',
-          status: 'ACTIVE',
-          lastCheckedAt: new Date().toISOString(),
-          latencyMs: 210,
-          successRate: 100,
-          totalCollected: 0,
-          format: sourceData.format || (sourceData.type === 'API' ? 'JSON' : 'HTML'),
-          notes: sourceData.notes
-        };
-        setSources(prev => [localSource, ...prev]);
-        showToast(`Fonte ${localSource.name} adicionada!`);
+        let errMessage = 'Erro ao cadastrar conector';
+        try {
+          const errData = await res.json();
+          if (errData?.error) errMessage = errData.error;
+        } catch {
+          // fallback
+        }
+        showToast(errMessage, 'error');
       }
     } catch (error) {
-      showToast('Erro ao cadastrar conector', 'error');
+      showToast(error instanceof Error ? error.message : 'Erro ao cadastrar conector', 'error');
     }
   };
 
   // Test Source Handler
   const handleTestSource = async (source: Source) => {
     try {
-      const res = await fetch(`/api/sources/${source.id}/test`, { method: 'POST' });
-      if (res.ok) {
-        return await res.json();
+      const res = await apiClient(`/api/sources/${source.id}/test`, { method: 'POST' });
+      if (!res.ok) {
+        let errDetail = `Falha ao testar conector (${res.status})`;
+        try {
+          const errData = await res.json();
+          if (errData?.error || errData?.statusText) {
+            errDetail = errData.error || errData.statusText;
+          }
+        } catch {}
+        showToast(errDetail, 'error');
+        throw new Error(errDetail);
       }
-    } catch (e) {
+      return await res.json();
+    } catch (e: any) {
+      if (!e?.message?.startsWith('Falha ao testar conector')) {
+        showToast(e?.message || 'Erro ao conectar à API de teste', 'error');
+      }
+      throw e;
     }
-    return {
-      success: true,
-      urlTested: source.endpointOrUrl,
-      type: source.type,
-      latencyMs: source.latencyMs,
-      payloadPreview: {
-        httpStatus: 200,
-        detectedItems: 3,
-        sampleTitle: `Licitação ${source.name} - Aquisição de Aparelhos de Ginástica`,
-        ncmCandidate: '9506.91.00',
-        antiBotDetected: false
-      }
-    };
   };
 
   // Save OCR Manual Text Override
@@ -252,7 +221,7 @@ export default function App() {
   // Analyze Edital with AI (Golden Rule Context)
   const handleAnalyzeWithAI = async (editalId: string) => {
     try {
-      const res = await fetch(`/api/editais/${editalId}/analyze`, { method: 'POST' });
+      const res = await apiClient(`/api/editais/${editalId}/analyze`, { method: 'POST' });
       if (res.ok) {
         const updated = await res.json();
         setEditais(prev => replaceById(prev, editalId, updated));
@@ -260,8 +229,14 @@ export default function App() {
         showToast('Análise de IA concluída com sucesso!');
         return;
       }
-    } catch (e) {
-      showToast('Análise de IA concluída! (Modo Simulado)', 'info');
+      let errMessage = 'Falha na análise de IA';
+      try {
+        const errData = await res.json();
+        if (errData?.error) errMessage = errData.error;
+      } catch {}
+      showToast(errMessage, 'error');
+    } catch (e: any) {
+      showToast(e?.message || 'Erro na comunicação com serviço de IA', 'error');
     }
   };
 
@@ -291,7 +266,7 @@ export default function App() {
             publishedInternally: true,
           };
 
-      const res = await fetch(`/api/editais/${editalId}/review`, {
+      const res = await apiClient(`/api/editais/${editalId}/review`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -305,17 +280,19 @@ export default function App() {
         setActiveTab('editais');
         return;
       }
-    } catch {
-      showToast('Revisão registrada localmente.', 'info');
-      setEditais(prev => replaceById(prev, editalId, (current) => ({
-        ...current,
-        humanReviewStatus: 'APPROVED',
-        reviewNotes: typeof payloadOrDecisions === 'object' && !Array.isArray(payloadOrDecisions)
-          ? payloadOrDecisions.reviewNotes
-          : (notes || '')
-      })));
-      setSelectedEditalForReview(null);
-      setActiveTab('editais');
+
+      let errMessage = 'Erro ao salvar revisão do edital';
+      try {
+        const errData = await res.json();
+        if (errData?.error) errMessage = errData.error;
+      } catch {}
+      showToast(errMessage, 'error');
+      throw new Error(errMessage);
+    } catch (e: any) {
+      if (!e?.message?.startsWith('Erro ao salvar revisão')) {
+        showToast(e?.message || 'Falha ao registrar revisão', 'error');
+      }
+      throw e;
     }
   };
 

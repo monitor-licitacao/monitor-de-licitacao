@@ -8,7 +8,6 @@ interface CRMViewProps {
 /**
  * CRMView component renders the RevOps Command Center UI.
  * It fetches insights from the `/api/crm/revops/insights` endpoint for a given tenant.
- * Provides actions to mark stale deals as WON or LOST with optimistic UI updates.
  *
  * @param {Object} props - Component props.
  * @param {string} [props.tenantId='1'] - Identifier of the tenant (defaults to '1').
@@ -18,7 +17,6 @@ export const CRMView: React.FC<CRMViewProps> = ({ tenantId = '1' }) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [processingId, setProcessingId] = useState<number | null>(null);
 
   const fetchInsights = async () => {
     setLoading(true);
@@ -38,26 +36,6 @@ export const CRMView: React.FC<CRMViewProps> = ({ tenantId = '1' }) => {
   useEffect(() => {
     fetchInsights();
   }, [tenantId]);
-
-  const handleAction = async (dealId: number, action: 'WON' | 'LOST') => {
-    setProcessingId(dealId);
-    // TODO: In a real app, call a specific endpoint for updating the deal status
-    // For now, optimistic update to clear it from the list
-    setTimeout(() => {
-      setData((prev: any) => ({
-        ...prev,
-        metrics: {
-          ...prev.metrics,
-          hygieneData: {
-            ...prev.metrics.hygieneData,
-            staleDeals: prev.metrics.hygieneData.staleDeals.filter((d: any) => d.id !== dealId),
-            staleCount: prev.metrics.hygieneData.staleCount - 1
-          }
-        }
-      }));
-      setProcessingId(null);
-    }, 800);
-  };
 
   if (loading) {
     return (
@@ -232,25 +210,21 @@ export const CRMView: React.FC<CRMViewProps> = ({ tenantId = '1' }) => {
 
                 <div className="flex items-center gap-2">
                   <button 
-                    onClick={() => handleAction(deal.id, 'WON')}
-                    disabled={processingId === deal.id}
-                    className="flex-1 sm:flex-none px-3 py-1.5 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                    type="button"
+                    disabled
+                    title="Ação em desenvolvimento (integração CRM pendente)"
+                    className="flex-1 sm:flex-none px-3 py-1.5 text-xs font-semibold text-slate-400 bg-slate-100 border border-slate-200 rounded cursor-not-allowed transition-colors flex items-center justify-center gap-1.5"
                   >
-                    Manter Aberto
+                    Manter Aberto [Em Desenvolvimento]
                   </button>
                   <button 
-                    onClick={() => handleAction(deal.id, 'LOST')}
-                    disabled={processingId === deal.id}
-                    className="flex-1 sm:flex-none px-3 py-1.5 text-xs font-semibold text-white bg-rose-600 border border-transparent rounded hover:bg-rose-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                    type="button"
+                    disabled
+                    title="Ação em desenvolvimento (integração CRM pendente)"
+                    className="flex-1 sm:flex-none px-3 py-1.5 text-xs font-semibold text-slate-400 bg-slate-100 border border-slate-200 rounded cursor-not-allowed transition-colors flex items-center justify-center gap-1.5 shadow-none"
                   >
-                    {processingId === deal.id ? (
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <>
-                        <XCircle className="w-4 h-4" />
-                        Aprovar Descarte
-                      </>
-                    )}
+                    <XCircle className="w-4 h-4 text-slate-400" />
+                    Aprovar Descarte [Em Desenvolvimento]
                   </button>
                 </div>
               </div>

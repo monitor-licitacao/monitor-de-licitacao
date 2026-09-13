@@ -36,8 +36,8 @@ export interface PncpSearchFilters {
   valorMin?: number;
   valorMax?: number;
   /** Intervalo de publicação — obrigatório para consulta oficial. */
-  dataInicial: string;
-  dataFinal: string;
+  dataInicial: string | Date;
+  dataFinal: string | Date;
   pagina?: number;
   tamanhoPagina?: number;
 }
@@ -239,7 +239,10 @@ export function applyClientSideFilters(
   });
 }
 
-/** Cruza edital normalizado com regras NCM/keyword de um ou mais tenants. */
+/**
+ * Cruza edital normalizado com regras NCM/keyword de um ou mais tenants.
+ * Semântica de match: NCM match tem precedência e faz short-circuit na checagem de keyword por tenant.
+ */
 export function matchTenantsForItem(
   item: PncpRawItem,
   rules: TenantMatchRule[],

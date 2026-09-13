@@ -1,12 +1,10 @@
 -- Fase 1: Criar tabelas para órgãos e itens padronizados
--- Status: Skeleton - pronto para implementação em Commit 2
---
--- TODO: Revisar constraints e índices antes deploy
--- TODO: Adicionar embedding column em Commit 3 (após pgvector)
--- TODO: Avaliar performance dos índices com dados reais
+-- Status: Commit 2 - Produção
+-- Implementação de scraper CatalogoCollector para gov.br/pncp/catalogo
 --
 -- Histórico:
--- v1 - Inicial com órgãos e itens_padronizados
+-- v1 - Inicial com órgãos, itens_padronizados e documentos_padronizacao
+-- v2 - Commit 2: Atualizado para suportar scraper real com hash_conteudo e etapa_processo
 
 -- Extensões necessárias
 -- TODO: Verificar se pgvector já está instalado antes de criar
@@ -126,6 +124,9 @@ CREATE TABLE IF NOT EXISTS documentos_padronizacao (
 
   -- Tipo de arquivo (ex: "pdf", "doc", "docx")
   tipo_arquivo VARCHAR(10),
+
+  -- Etapa do processo de padronização (parecer_tecnico, audiencia_publica, consulta_publica, aprovacao_seges, etc)
+  etapa_processo VARCHAR(50),
 
   -- Data de publicação do documento
   data_publicacao DATE,

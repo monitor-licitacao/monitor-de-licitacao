@@ -183,8 +183,8 @@ async function runCollector() {
               const pdfUrl = extractPdfUrl(item.arquivos);
               const agencyName = item.orgaoEntidade?.razaoSocial || 'Órgão Desconhecido';
               
-              const pubDate = item.dataPublicacaoPncp ? new Date(item.dataPublicacaoPncp) : new Date();
-              const bidDate = item.dataAberturaProposta ? new Date(item.dataAberturaProposta) : pubDate;
+              const pubDate = item.dataPublicacaoPncp ? new Date(item.dataPublicacaoPncp).toISOString() : new Date().toISOString();
+              const bidDate = item.dataAberturaProposta ? new Date(item.dataAberturaProposta).toISOString() : pubDate;
 
               try {
                 await db.insert(schema.editais).values({

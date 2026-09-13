@@ -1,5 +1,5 @@
 -- Additive only. Do not DROP or rename editais.s3_storage_key.
--- Apply on a Neon branch first (docs/NEON_RULES.md). Do not treat fixture
+-- Apply on a Neon branch first (docs/README.md). Do not treat fixture
 -- s3://editais-vault/... keys as stored vault objects.
 
 CREATE UNIQUE INDEX IF NOT EXISTS editais_id_tenant_uidx

@@ -1,5 +1,5 @@
 -- Telemetry idempotency audit table (Neon Postgres / Drizzle).
--- Apply on a Neon branch first (docs/NEON_RULES.md).
+-- Apply on a Neon branch first (docs/README.md).
 
 CREATE TABLE IF NOT EXISTS telemetry_event_idempotency (
   id serial PRIMARY KEY,

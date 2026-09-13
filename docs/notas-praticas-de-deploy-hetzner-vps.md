@@ -97,7 +97,7 @@ A partir daí, todo push na `main` builda a imagem, publica em `ghcr.io/monitor-
 
 ## O que este plano NÃO inclui ainda
 
-Os workers de scraping (`pncp_collector.ts`, `scraper_puppeteer_sesc.ts`, `sesc_sp_scraper.ts`) já existem no repositório e usam Puppeteer, mas não rodam neste deploy: `server.ts` não os importa, e o build seta `PUPPETEER_SKIP_DOWNLOAD=true` para não baixar o Chromium à toa na imagem. Este deploy cobre só a aplicação web (Express + Vite) que já existe hoje. Quando decidir colocar os workers para rodar em produção, é preciso: remover `PUPPETEER_SKIP_DOWNLOAD`, instalar as libs de sistema que o Chromium exige (a base Debian já ajuda aqui) e adicionar os serviços de worker no `docker-compose.licitacoes.yml` (ou um agendamento via `node-cron`).
+Os workers de scraping (`pncp_collector.ts`, `scraper_puppeteer_sesc.ts`) já existem no repositório e usam Puppeteer, mas não rodam neste deploy: `server.ts` não os importa, e o build seta `PUPPETEER_SKIP_DOWNLOAD=true` para não baixar o Chromium à toa na imagem. Este deploy cobre só a aplicação web (Express + Vite) que já existe hoje. Quando decidir colocar os workers para rodar em produção, é preciso: remover `PUPPETEER_SKIP_DOWNLOAD`, instalar as libs de sistema que o Chromium exige (a base Debian já ajuda aqui) e adicionar os serviços de worker no `docker-compose.licitacoes.yml` (ou um agendamento via `node-cron`).
 
 ## 4b. Status cutover Monitor (2026-09-06)
 

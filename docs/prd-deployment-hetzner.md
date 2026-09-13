@@ -16,7 +16,7 @@ sistema **Monitor de Licitações** na VPS Hetzner `gymsite-api`.
 Monorepo em **React (Vite) + Express (Node.js) + Drizzle ORM**, conectando a um
 **Neon DB (PostgreSQL Serverless)** externo e à API Gemini. O repositório já
 contém os workers de scraping (`server/workers/pncp_collector.ts`,
-`scraper_puppeteer_sesc.ts`, `sesc_sp_scraper.ts`) e `puppeteer` está no
+`scraper_puppeteer_sesc.ts`) e `puppeteer` está no
 `package.json` — mas nenhum deles é importado por `server.ts` nem entra no
 bundle de produção; são scripts npm separados (`worker:pncp`, `worker:sescsp`)
 disparados manualmente, fora deste deploy por enquanto (ver seção 3.3).
@@ -85,7 +85,7 @@ atualizar o Monitor de Licitações nunca reinicia os containers do GymSite.
 
 ### 3.3 Workers/Scrapers — código existe, execução em produção adiada
 
-`pncp_collector.ts`, `scraper_puppeteer_sesc.ts` e `sesc_sp_scraper.ts` já
+`pncp_collector.ts` e `scraper_puppeteer_sesc.ts` já
 existem no repositório, mas não fazem parte deste deploy: `server.ts` não os
 importa, e a imagem de produção nem baixa o Chromium do Puppeteer
 (`PUPPETEER_SKIP_DOWNLOAD=true`). Quando forem colocados para rodar em

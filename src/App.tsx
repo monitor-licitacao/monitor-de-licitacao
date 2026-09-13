@@ -24,14 +24,19 @@ import {
   HumanDecision
 } from './types';
 
-import { 
-  INITIAL_SOURCES, 
-  INITIAL_EDITAIS, 
-  INITIAL_DIFFS, 
-  INITIAL_NOTIFICATIONS, 
-  INITIAL_SCHEDULER 
-} from './data/initialData';
+import { AlertCircle, Loader2 } from 'lucide-react';
 import { replaceById } from './utils/collectionUtils';
+
+const DEFAULT_SCHEDULER: SchedulerState = {
+  isRunning: false,
+  intervalMinutes: 60,
+  lastRunAt: '',
+  nextRunAt: '',
+  totalRunsCompleted: 0,
+  activeSourcesCount: 0,
+  lastExecutionDurationSeconds: 0,
+  logs: []
+};
 
 function getProcessCodigoFromPath(): string | null {
   if (typeof window === 'undefined') return null;
@@ -54,11 +59,11 @@ export default function App() {
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
 
   // App Domain State
-  const [sources, setSources] = useState<Source[]>(INITIAL_SOURCES);
-  const [editais, setEditais] = useState<Edital[]>(INITIAL_EDITAIS);
-  const [diffs, setDiffs] = useState<RetificationDiff[]>(INITIAL_DIFFS);
-  const [notifications, setNotifications] = useState<WhatsAppNotification[]>(INITIAL_NOTIFICATIONS);
-  const [scheduler, setScheduler] = useState<SchedulerState>(INITIAL_SCHEDULER);
+  const [sources, setSources] = useState<Source[]>([]);
+  const [editais, setEditais] = useState<Edital[]>([]);
+  const [diffs, setDiffs] = useState<RetificationDiff[]>([]);
+  const [notifications, setNotifications] = useState<WhatsAppNotification[]>([]);
+  const [scheduler, setScheduler] = useState<SchedulerState>(DEFAULT_SCHEDULER);
 
   // Selection State
   const [selectedEdital, setSelectedEdital] = useState<Edital | null>(null);
@@ -66,11 +71,85 @@ export default function App() {
   const [activeSpecClause, setActiveSpecClause] = useState<string | undefined>(undefined);
 
   // Loading & Action State
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [isTriggering, setIsTriggering] = useState(false);
   const [toastMessage, setToastMessage] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
 
+  const fetchData = async () => {
+    setIsLoading(true);
+    setLoadError(null);
+    try {
+      const [sourcesRes, editaisRes, diffsRes, notifsRes, schedRes] = await Promise.allSettled([
+        fetch('/api/sources').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        fetch('/api/editais').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        fetch('/api/diffs').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        fetch('/api/notifications').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        fetch('/api/scheduler').then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        })
+      ]);
+
+      const failedEndpoints: string[] = [];
+      if (sourcesRes.status === 'fulfilled' && Array.isArray(sourcesRes.value)) {
+        setSources(sourcesRes.value);
+      } else {
+        failedEndpoints.push('fontes');
+      }
+
+      if (editaisRes.status === 'fulfilled' && Array.isArray(editaisRes.value)) {
+        setEditais(editaisRes.value);
+      } else {
+        failedEndpoints.push('editais');
+      }
+
+      if (diffsRes.status === 'fulfilled' && Array.isArray(diffsRes.value)) {
+        setDiffs(diffsRes.value);
+      } else {
+        failedEndpoints.push('diffs');
+      }
+
+      if (notifsRes.status === 'fulfilled' && Array.isArray(notifsRes.value)) {
+        setNotifications(notifsRes.value);
+      } else {
+        failedEndpoints.push('notificações');
+      }
+
+      if (schedRes.status === 'fulfilled' && schedRes.value) {
+        setScheduler(schedRes.value);
+      } else {
+        failedEndpoints.push('agendador');
+      }
+
+      if (failedEndpoints.length === 5) {
+        setLoadError('Backend indisponível. Não foi possível carregar os dados do sistema.');
+      } else if (failedEndpoints.length > 0) {
+        setLoadError(`Aviso: falha ao carregar dados do servidor (${failedEndpoints.join(', ')}).`);
+      }
+    } catch (err) {
+      console.error('[App] Erro ao carregar dados da API:', err);
+      setLoadError('Erro de conexão ao carregar dados do servidor.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
+    fetchData();
   };
 
   const showToast = (text: string, type: 'success' | 'error' | 'info' = 'success') => {
@@ -80,26 +159,6 @@ export default function App() {
 
   // Fetch initial data from Backend API on mount
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [sourcesRes, editaisRes, diffsRes, notifsRes, schedRes] = await Promise.allSettled([
-          fetch('/api/sources').then(r => r.ok ? r.json() : null),
-          fetch('/api/editais').then(r => r.ok ? r.json() : null),
-          fetch('/api/diffs').then(r => r.ok ? r.json() : null),
-          fetch('/api/notifications').then(r => r.ok ? r.json() : null),
-          fetch('/api/scheduler').then(r => r.ok ? r.json() : null)
-        ]);
-
-        if (sourcesRes.status === 'fulfilled' && sourcesRes.value) setSources(sourcesRes.value);
-        if (editaisRes.status === 'fulfilled' && editaisRes.value) setEditais(editaisRes.value);
-        if (diffsRes.status === 'fulfilled' && diffsRes.value) setDiffs(diffsRes.value);
-        if (notifsRes.status === 'fulfilled' && notifsRes.value) setNotifications(notifsRes.value);
-        if (schedRes.status === 'fulfilled' && schedRes.value) setScheduler(schedRes.value);
-      } catch (err) {
-        console.warn('Using client-side fallback data', err);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -251,17 +310,21 @@ export default function App() {
   };
 
   // Submit Review Workflow (Golden Rule)
-  const handleSubmitReview = async (editalId: string, decisions: HumanDecision[], notes: string) => {
+  const handleSubmitReview = async (
+    editalId: string,
+    payload: {
+      humanReviewStatus: ReviewStatus;
+      reviewedBy: string;
+      reviewNotes: string;
+      findingsDecisions: { findingId: string; decision: HumanDecision; comment?: string }[];
+      publishedInternally: boolean;
+    }
+  ) => {
     try {
       const res = await fetch(`/api/editais/${editalId}/review`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          humanReviewStatus: 'APPROVED', 
-          reviewedBy: 'Gestor Comercial', 
-          reviewNotes: notes, 
-          findingsDecisions: decisions 
-        })
+        body: JSON.stringify(payload)
       });
 
       if (res.ok) {
@@ -277,7 +340,7 @@ export default function App() {
       setEditais(prev => replaceById(prev, editalId, (current) => ({
         ...current,
         humanReviewStatus: 'APPROVED',
-        reviewNotes: notes
+        reviewNotes: payload.reviewNotes
       })));
       setSelectedEditalForReview(null);
       setActiveTab('editais');
@@ -397,6 +460,29 @@ export default function App() {
 
           {/* Main Content Area */}
           <main className="flex-1 overflow-y-auto no-scrollbar pb-10">
+            {loadError && (
+              <div className="mx-4 mt-3 p-3 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg flex items-center justify-between text-xs shadow-xs" role="alert">
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>{loadError}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={fetchData}
+                  className="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded font-medium transition cursor-pointer"
+                >
+                  Tentar novamente
+                </button>
+              </div>
+            )}
+
+            {isLoading && (
+              <div className="flex items-center justify-center p-6 text-slate-500 gap-2 text-xs">
+                <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+                <span>Carregando dados do sistema...</span>
+              </div>
+            )}
+
             {activeTab === 'crm' && (
               <CRMView tenantId="1" />
             )}

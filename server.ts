@@ -287,7 +287,7 @@ async function startServer() {
         const mockUser = { ...mockCred, tenantId: 1, role: 'user' };
         const secret = process.env.JWT_SECRET || 'dev-fallback-secret-for-testing';
         const token = jwt.sign(mockUser, secret, { expiresIn: '12h' });
-        console.warn(`[Auth] DB connection error, using mock login: ${email}`, { error: e.message });
+        console.warn('[Auth] DB connection error, using mock login: %s', email, { error: e.message });
         return res.json({ token, user: mockUser });
       }
 

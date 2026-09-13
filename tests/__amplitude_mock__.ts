@@ -33,7 +33,18 @@ export class MockAmplitudeHttpApi {
     globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
 
-      if (url.includes('api.amplitude.com') || url.includes('/2/httpapi')) {
+      let parsedUrl: URL | null = null;
+      try {
+        parsedUrl = new URL(url, 'http://localhost');
+      } catch {
+        parsedUrl = null;
+      }
+
+      const isAmplitudeRequest =
+        parsedUrl?.hostname === 'api.amplitude.com' ||
+        parsedUrl?.pathname === '/2/httpapi';
+
+      if (isAmplitudeRequest) {
         let parsedBody: any = {};
         if (init?.body) {
           try {

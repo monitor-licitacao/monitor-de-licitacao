@@ -14,8 +14,6 @@ declare global {
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { analyzeEditalTextWithAI, analyzeTechnicalSpecificationRestrictedAI } from './server/gemini';
-import { analyzeEditalMultiAgent } from './server/lib/ai.js';
-import { createAuditPage } from './server/lib/notion.js';
 import { WhatsAppNotification, RetificationDiff, SchedulerState } from './src/types';
 
 import { db } from './server/db/index.js';
@@ -291,20 +289,6 @@ async function startServer() {
       const token = jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: '12h' });
       return res.json({ token, user });
     } catch (e: any) {
-      // Fase 0 DEV ONLY: mock login para teste quando banco falha
-      if (email === 'test@example.com' && password === 'password123') {
-        const mockUser = {
-          id: 'test-user-1',
-          name: 'Test User',
-          email: 'test@example.com',
-          tenantId: 1,
-          role: 'user',
-        };
-        const token = jwt.sign(mockUser, process.env.JWT_SECRET!, { expiresIn: '12h' });
-        console.info('[Auth] Mock login (DEV): test@example.com');
-        return res.json({ token, user: mockUser });
-      }
-
       console.error('[Auth Login Error]:', e);
       return res.status(500).json({ error: 'Erro ao autenticar.' });
     }
@@ -323,8 +307,8 @@ async function startServer() {
     const serverKey = process.env.MONITOR_API_KEY;
     const jwtSecret = process.env.JWT_SECRET;
 
-    // Libera health check, login e seed
-    if (req.path === '/health' || req.path === '/auth/login' || req.path === '/auth/seed-test-user') {
+    // Libera health check e login
+    if (req.path === '/health' || req.path === '/auth/login') {
       return next();
     }
 
@@ -1684,38 +1668,6 @@ async function startServer() {
     } catch (e: any) {
       console.error('[Status Catalog Validate Error]:', e);
       res.status(500).json({ error: 'Erro ao validar status.' });
-    }
-  });
-
-  // ==========================================
-  // Teste: Grok Multi-Agent + Notion Audit
-  // ==========================================
-  app.post('/api/test-multi-agent', async (req: Request, res: Response) => {
-    try {
-      const { prompt, editalContent, databaseId } = req.body;
-      if (!prompt || !editalContent || !databaseId) {
-        return res.status(400).json({ error: 'Faltam parâmetros: prompt, editalContent ou databaseId.' });
-      }
-
-      console.log('[Multi-Agent Test] Iniciando análise...');
-      const analysis = await analyzeEditalMultiAgent(prompt, editalContent);
-      
-      console.log('[Multi-Agent Test] Análise concluída. Criando página no Notion...');
-      const notionPageId = await createAuditPage(databaseId, {
-        title: `Auditoria Edital: ${new Date().toISOString()}`,
-        finalSummary: analysis.finalSummary,
-        legalAnalysis: analysis.reasoning, // Mapeado do raciocínio bruto do Multi-Agent
-        warnings: analysis.warnings
-      });
-
-      res.json({
-        success: true,
-        notionPageId,
-        analysis
-      });
-    } catch (e: any) {
-      console.error('[Multi-Agent Test Error]:', e);
-      res.status(500).json({ error: e.message || 'Erro ao executar teste Multi-Agent.' });
     }
   });
 

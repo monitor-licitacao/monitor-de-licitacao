@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "node --import tsx --test server/lib/allowedOutboundUrl.test.ts __amplitude_verify__.test.ts __pncp_client__.test.ts __mural_v1__.test.ts __mural_frontend_ui__.test.ts __pncp_domains__.test.ts",
+    "test": "node --import tsx --test server/lib/allowedOutboundUrl.test.ts __amplitude_verify__.test.ts __pncp_client__.test.ts __pncp_search__.test.ts __contratacoes_enrichment__.test.ts __contratacao_itens__.test.ts __mural_v1__.test.ts __mural_frontend_ui__.test.ts __compras_gov_open_data__.test.ts __passex_golden__.test.ts __compras_gov_enrich__.test.ts __pncp_domains__.test.ts __pncp_domain_links__.test.ts __parse_pncp_facets__.test.ts",
+    "compras-gov:compare-golden": "node --import tsx scripts/compras_gov_compare_golden.ts",
+    "compras-gov:enrich-fixture": "node --import tsx scripts/compras_gov_enrich_fixture.ts",
+    "pncp:discover-fixture": "node --import tsx scripts/pncp_discover_fixture.ts",
     "check-health": "bash ./scripts/check-health.sh",
     "commit": "npx git-cz",
     "push-safe": "npm run check-health && git push origin $(git branch --show-current)",
@@ -18,7 +21,9 @@
     "prepare": "node -e \"try{require('child_process').execSync('husky',{stdio:'inherit'})}catch(e){}\"",
     "worker:pncp": "tsx server/workers/pncp_collector.ts",
     "worker:sescsp": "tsx server/workers/scraper_puppeteer_sesc.ts",
-    "worker:pncp-domains": "tsx server/workers/pncp_domains.ts"
+    "worker:pncp-domains": "tsx server/workers/pncp_domains.ts",
+    "worker:compras-gov": "tsx server/workers/compras_gov_enrich.ts",
+    "worker:pncp-discover": "tsx server/workers/pncp_discover.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.63",

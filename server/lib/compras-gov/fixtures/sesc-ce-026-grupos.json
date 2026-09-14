@@ -1,0 +1,25 @@
+{
+  "numeroControlePncp": "03612122000127-1-000026/2026",
+  "grupos": [
+    {
+      "identificador": "G1",
+      "descricao": "Grupo 1",
+      "itemNumeros": [1, 2, 3, 4, 5, 6, 7, 8],
+      "valorEstimadoTotal": 1380996.1,
+      "possuiOrcamentoSigiloso": true,
+      "tratamentoMeEpp": "Sem benefícios ME/EPP (Art. 4º, lei 14.133/2021)",
+      "motivoAnulacao": "Aplicação de evento de anulação.",
+      "situacaoLabel": "Homologado (anulado)"
+    },
+    {
+      "identificador": "G2",
+      "descricao": "Grupo 2",
+      "itemNumeros": [9, 10, 11, 12, 13],
+      "valorEstimadoTotal": 2913371.85,
+      "possuiOrcamentoSigiloso": true,
+      "tratamentoMeEpp": "Sem benefícios ME/EPP (Art. 4º, lei 14.133/2021)",
+      "motivoAnulacao": "Aplicação de evento de anulação.",
+      "situacaoLabel": "Homologado (anulado)"
+    }
+  ]
+}

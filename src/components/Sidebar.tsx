@@ -11,6 +11,7 @@ import {
   MessageSquare, 
   Dumbbell,
   BarChart3,
+  Globe,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -29,6 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, pendi
     { id: 'crm', label: 'RevOps & CRM', icon: BarChart3, badge: 'Novo' },
     { id: 'sources', label: 'Conectores', icon: Building2 },
     { id: 'editais', label: 'Editais', icon: FileText },
+    { id: 'contratacoes', label: 'Contratações PNCP', icon: Globe, badge: 'Tier 1' },
     { id: 'findings', label: 'Achados', icon: Scale },
     { id: 'tech-spec-ai', label: 'Tech AI', icon: Sparkles },
     { id: 'review', label: 'Revisão', icon: UserCheck, badge: pendingReviewCount > 0 ? String(pendingReviewCount) : undefined, highlight: pendingReviewCount > 0 },

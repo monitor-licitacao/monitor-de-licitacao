@@ -1,0 +1,66 @@
+{
+  "url": "https://pncp.gov.br/api/consulta/v1/orgaos/03612122000127/compras/2026/26",
+  "body": {
+    "valorTotalEstimado": 0,
+    "valorTotalHomologado": null,
+    "orcamentoSigilosoCodigo": 3,
+    "orcamentoSigilosoDescricao": "Compra totalmente sigilosa",
+    "numeroControlePNCP": "03612122000127-1-000026/2026",
+    "linkSistemaOrigem": "https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=45102305000062026",
+    "linkProcessoEletronico": null,
+    "anoCompra": 2026,
+    "sequencialCompra": 26,
+    "numeroCompra": "6",
+    "processo": "119308",
+    "orgaoEntidade": {
+      "cnpj": "03612122000127",
+      "razaoSocial": "SERVICO SOCIAL DO COMERCIO - SESC - AR.CE.",
+      "poderId": "N",
+      "esferaId": "N"
+    },
+    "unidadeOrgao": {
+      "ufNome": "Ceará",
+      "codigoUnidade": "451023",
+      "nomeUnidade": "SERVICO SOCIAL DO COMERCIO - SESC AR/CE",
+      "ufSigla": "CE",
+      "municipioNome": "Fortaleza",
+      "codigoIbge": "2304400"
+    },
+    "orgaoSubRogado": null,
+    "unidadeSubRogada": null,
+    "modalidadeId": 6,
+    "modalidadeNome": "Pregão - Eletrônico",
+    "justificativaPresencial": null,
+    "modoDisputaId": 3,
+    "modoDisputaNome": "Aberto-Fechado",
+    "tipoInstrumentoConvocatorioCodigo": 1,
+    "tipoInstrumentoConvocatorioNome": "Edital",
+    "amparoLegal": {
+      "descricao": "pregão: modalidade de licitação obrigatória para aquisição de bens e serviços comuns",
+      "nome": "Lei 14.133/2021, Art. 28, I",
+      "codigo": 1
+    },
+    "objetoCompra": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA O FORNECIMENTO DE EQUIPAMENTOS PARA ACADEMIAS DE MUSCULAÇÃO E GINÁSTICA DO SESC CEARÁ ATRAVÉS DE ATA DE REGISTRO DE PREÇOS.",
+    "informacaoComplementar": null,
+    "srp": true,
+    "fontesOrcamentarias": [
+      {
+        "codigo": 4,
+        "nome": "Federal",
+        "descricao": "Recurso orçamentário federal disponível e devidamente vinculado à despesa que será realizada.",
+        "dataInclusao": "2026-08-31T13:02:25"
+      }
+    ],
+    "emendaParlamentar": false,
+    "dataPublicacaoPncp": "2026-08-31T13:02:25",
+    "dataAberturaProposta": "2026-09-01T08:30:00",
+    "dataEncerramentoProposta": "2026-09-14T08:30:00",
+    "situacaoCompraId": 3,
+    "situacaoCompraNome": "Anulada",
+    "existeResultado": false,
+    "dataInclusao": "2026-08-31T13:02:25",
+    "dataAtualizacao": "2026-09-11T15:39:48",
+    "dataAtualizacaoGlobal": "2026-09-11T15:39:48",
+    "usuarioNome": "Compras.gov.br"
+  }
+}

@@ -40,17 +40,14 @@ fi
 
 add_item() {
   local url="$1"
-  local status="$2"
   gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --url "$url" >/dev/null 2>&1 || true
 }
 
-BASE="https://github.com/$OWNER/$REPO"
 echo "==> Enfileirando issues e PRs abertas..."
-add_item "$BASE/issues/48" "Backlog"
-add_item "$BASE/issues/60" "In Progress"
-add_item "$BASE/pull/61" "In Review"
-add_item "$BASE/pull/63" "In Review"
-add_item "$BASE/pull/68" "In Review"
-add_item "$BASE/pull/71" "In Review"
+while IFS= read -r url; do
+  [ -n "$url" ] || continue
+  add_item "$url"
+  echo "  + $url"
+done < <(gh issue list --repo "$OWNER/$REPO" --state open --limit 100 --json url --jq '.[].url'; gh pr list --repo "$OWNER/$REPO" --state open --limit 100 --json url --jq '.[].url')
 
 echo "==> Concluído. Abra: gh project view $PROJECT_NUMBER --owner $OWNER --web"

@@ -1,0 +1,27 @@
+# Enfileira issues e PRs no Project v2 da org.
+# GITHUB_TOKEN não escreve em Projects de organização — precisa de PAT.
+# Secret: GH_PROJECT_TOKEN (fine-grained: Issues R, Pull requests R, Projects W no owner monitor-licitacao)
+name: Sync GitHub Project
+
+on:
+  issues:
+    types: [opened, transferred, reopened]
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    steps:
+      - name: Add to Monitor de Licitações
+        if: ${{ env.GH_PROJECT_TOKEN != '' }}
+        uses: actions/add-to-project@v1.0.2
+        env:
+          GH_PROJECT_TOKEN: ${{ secrets.GH_PROJECT_TOKEN }}
+        with:
+          project-url: https://github.com/orgs/monitor-licitacao/projects/1
+          github-token: ${{ secrets.GH_PROJECT_TOKEN }}

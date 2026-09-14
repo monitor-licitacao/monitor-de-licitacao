@@ -1,0 +1,27 @@
+---
+description: Toda issue e PR vai para o GitHub Project da org
+alwaysApply: true
+---
+
+# GitHub Project — sync de issues
+
+Project de execução: [Monitor de Licitações](https://github.com/orgs/monitor-licitacao/projects/1) (org `monitor-licitacao`, número `1`).
+
+O board já tem **Auto-add to project**. Issue/PR nova deste repo entra sozinha.
+
+Se o card não aparecer em ~1 min, completar no mesmo turno:
+
+```bash
+gh project item-add 1 --owner monitor-licitacao --url <url-da-issue-ou-pr>
+```
+
+Regras:
+
+- Não terminar o turno com issue/PR nova fora do Project.
+- Fechada → **Item closed** → `Done`. Reaberta → **Item reopened** → `In Progress`. Não apagar o card.
+- Status do board: `Todo` | `In Progress` | `Done`.
+- **Fonte da prioridade = label** `P0` | `P1` | `P2` na issue. Ao criar issue, aplicar a label e o campo Project `Prioridade` com o mesmo valor. Não inferir P0 por palavra (“urgente”, “asap”).
+- **Fonte do executor = label** `exec:cursor` | `exec:claude` | `exec:github`. Sem label: `P0`→`exec:claude`, `P1`→`exec:cursor`, `P2`→`exec:github`.
+- Modelo só muda se a issue disser **Modelo:** com slug. Senão: Claude→Claude Code; Cursor→modelo da sessão; GitHub→Copilot do repo.
+- `GITHUB_TOKEN` do Actions **não** escreve em Project v2 de org. Local: `gh` com escopo `project`.
+- Se o `item-add` falhar por escopo: `gh auth refresh -h github.com -s project,read:project`.

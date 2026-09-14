@@ -42,25 +42,13 @@ if (-not $statusField) {
   Write-Host "Campo Status já existe (id: $($statusField.id)). Ajuste manual se precisar renomear opções."
 }
 
-function Add-ProjectItem {
-  param([string]$Url, [string]$Status)
-  gh project item-add $projectNumber --owner $Owner --url $Url 2>$null | Out-Null
-  if ($Status) {
-    $itemId = (gh project item-list $projectNumber --owner $Owner --format json --limit 200 | ConvertFrom-Json).items |
-      Where-Object { $_.content.url -eq $Url } | Select-Object -First 1 -ExpandProperty id
-    if ($itemId -and $statusField) {
-      gh project item-edit --id $itemId --project-id $projectNumber --field-id $statusField.id --single-select-option $Status 2>$null
-    }
-  }
-}
-
 Write-Host "==> Enfileirando issues e PRs abertas..."
-$base = "https://github.com/$Owner/$Repo"
-Add-ProjectItem "$base/issues/48" "Backlog"
-Add-ProjectItem "$base/issues/60" "In Progress"
-Add-ProjectItem "$base/pull/61" "In Review"
-Add-ProjectItem "$base/pull/63" "In Review"
-Add-ProjectItem "$base/pull/68" "In Review"
-Add-ProjectItem "$base/pull/71" "In Review"
+$issueUrls = gh issue list --repo "$Owner/$Repo" --state open --limit 100 --json url | ConvertFrom-Json
+$prUrls = gh pr list --repo "$Owner/$Repo" --state open --limit 100 --json url | ConvertFrom-Json
+foreach ($item in @($issueUrls + $prUrls)) {
+  if (-not $item.url) { continue }
+  gh project item-add $projectNumber --owner $Owner --url $item.url 2>$null | Out-Null
+  Write-Host "  + $($item.url)"
+}
 
 Write-Host "==> Concluído. Abra: gh project view $projectNumber --owner $Owner --web"

@@ -118,11 +118,19 @@ Essas camadas juntas (disciplina de branch + hook local + CI + proteção remota
 
 ## 8. Kanban GitHub Project (execução)
 
-**Notion Workbench = planejamento.** **GitHub Project = execução.** Sync manual — sem script automático.
+**Notion Workbench = planejamento.** **GitHub Project = execução.**
 
-Project: [Monitor de Licitações](https://github.com/orgs/monitor-licitacao/projects) (org `monitor-licitacao`).
+Project: [Monitor de Licitações #1](https://github.com/orgs/monitor-licitacao/projects/1) (privado na org).
 
-**Setup inicial (uma vez):** o `gh` local precisa do escopo `project` (o `GITHUB_TOKEN` do Actions **não** cobre Projects v2 de org). Rode:
+Toda issue/PR nova entra no board:
+
+1. **Agente / `gh` local** — regra `.cursor/rules/github-project-sync.mdc` (`gh project item-add 1`).
+2. **Actions** — `.github/workflows/project-sync.yml` (secret `GH_PROJECT_TOKEN`; o `GITHUB_TOKEN` não escreve em Project v2 de org).
+3. **Nativo do Project** (já ligado): Item closed → `Done`; PR merged; auto-close issue.
+
+Workflows nativos ligados no board (13/09/2026): Auto-add to project, Item closed → Done, Item reopened → In Progress, PR merged, auto-close issue.
+
+**Setup / backfill:**
 
 ```bash
 gh auth refresh -h github.com -s project,read:project
@@ -131,24 +139,26 @@ bash scripts/setup-github-kanban-project.sh
 pwsh scripts/setup-github-kanban-project.ps1
 ```
 
-### Colunas (6 estados)
+Secret do Actions (uma vez, PAT fine-grained no owner `monitor-licitacao`, Projects Write):
+
+```bash
+gh secret set GH_PROJECT_TOKEN --repo monitor-licitacao/monitor-de-licitacao
+```
+
+### Colunas (Status do Project)
 
 | Coluna | Quando usar |
 |---|---|
-| **Backlog** | Ideia registrada, ainda sem aceite claro |
-| **Ready** | Aceite definido; pode abrir branch |
+| **Todo** | Issue/PR no board, ainda não em execução |
 | **In Progress** | Branch aberta, desenvolvimento ativo |
-| **In Review** | PR aberto, aguardando CI + review |
-| **Blocked** | Impedimento externo (dependência, decisão, ambiente) |
-| **Done** | Merge em `main` concluído |
+| **Done** | Issue fechada ou PR merged (automático) |
 
 ### Fluxo Issue → Branch → PR
 
-1. Criar issue (template **Task** ou **Execução por Gate** para entregas grandes).
-2. Mover para **Ready** no Project quando o aceite estiver claro.
-3. Abrir branch: `feat/#<numero>-<slug>` ou `fix/#<numero>-<slug>`.
-4. Abrir PR; mover para **In Review**.
-5. CI verde + 1 approval → squash merge → **Done**.
+1. Criar issue (template **Task** ou **Execução por Gate** para entregas grandes) — o card entra em **Todo**.
+2. Abrir branch: `feat/#<numero>-<slug>` ou `fix/#<numero>-<slug>`; mover para **In Progress**.
+3. Abrir PR (continua **In Progress** até merge).
+4. CI verde + 1 approval → squash merge → issue fecha → **Done**.
 
 Deploy dispara automaticamente no push em `main` (workflow `deploy.yml`).
 
@@ -158,7 +168,14 @@ Deploy dispara automaticamente no push em `main` (workflow `deploy.yml`).
 
 Tipo de issue usa **Issue Types** nativos da org (Task / Bug / Feature). Labels adicionais:
 
-**Prioridade:** `P0`, `P1`, `P2`
+**Prioridade:** `P0`, `P1`, `P2` — label é a fonte da verdade; o campo Project `Prioridade` só copia a label.
+
+**Executor (quem roda a tarefa):**
+- `exec:cursor` — Cursor Agent (modelo da sessão, ou slug no corpo)
+- `exec:claude` — Claude Code / Claude
+- `exec:github` — GitHub Copilot (instruções em `.github/copilot-instructions.md`)
+
+Sem `exec:*`: `P0`→Claude, `P1`→Cursor, `P2`→GitHub Copilot. Não inferir prioridade pelo título.
 
 **Área:**
 - `area:ingestao` — coleta PNCP, scrapers, portais
@@ -174,16 +191,13 @@ Não é obrigatório retaggar issues antigas.
 
 Board compartilhado: [Workbench / Tasks](https://app.notion.com/p/76217dab7efd460aa0d9fa5c2ac37b7b).
 
-**Não altere os status do Workbench** — são compartilhados entre projetos. Os 6 estados granulares vivem só no GitHub Project.
+**Não altere os status do Workbench** — são compartilhados entre projetos. Os 3 estados de execução vivem no GitHub Project.
 
 | Notion (Tasks) | GitHub Project |
 |---|---|
-| Not started | Backlog (ou Ready se já tiver aceite) |
+| Not started | Todo |
 | In progress | In Progress |
-| Blocked | Blocked |
 | Done / Archived | Done |
-
-**Ready** e **In Review** existem só no GitHub — não têm coluna equivalente no Notion.
 
 Em cada task Notion em execução, colar a URL da issue GitHub no campo **Note**.
 

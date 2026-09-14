@@ -14,6 +14,8 @@ import { RetificationDiffView } from './components/RetificationDiffView';
 import { WhatsAppNotificationsView } from './components/WhatsAppNotificationsView';
 import { SettingsView } from './components/SettingsView';
 import { ContratacoesView } from './components/ContratacoesView';
+import { ContratosView } from './components/ContratosView';
+import type { RegisterContratoPrefill } from './components/contratacoes/ContratacaoItensPanel';
 
 import { 
   Source, 
@@ -51,6 +53,17 @@ function getContratacaoIdFromPath(): string | null {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
+function getContratoIdFromPath(): string | null {
+  if (typeof window === 'undefined') return null;
+  const match = window.location.pathname.match(/^\/contratos\/([^/]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function isContratosPath(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.location.pathname === '/contratos' || window.location.pathname.startsWith('/contratos/');
+}
+
 export default function App() {
   // Auth Guard
   const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
@@ -63,11 +76,17 @@ export default function App() {
 
   const initialCodigo = getProcessCodigoFromPath();
   const initialContratacaoId = getContratacaoIdFromPath();
+  const initialContratoId = getContratoIdFromPath();
   const [activeTab, setActiveTab] = useState(
-    initialContratacaoId ? 'contratacoes' : 'editais',
+    initialContratoId || isContratosPath()
+      ? 'contratos'
+      : initialContratacaoId
+        ? 'contratacoes'
+        : 'editais',
   );
   const [selectedProcessCodigo, setSelectedProcessCodigo] = useState<string | null>(initialCodigo);
   const [selectedContratacaoId, setSelectedContratacaoId] = useState<string | null>(initialContratacaoId);
+  const [selectedContratoId, setSelectedContratoId] = useState<string | null>(initialContratoId);
 
   // App Domain State
   const [sources, setSources] = useState<Source[]>([]);
@@ -391,11 +410,20 @@ export default function App() {
     setActiveTab('tech-spec-ai');
   };
 
-  // Sync with browser URL navigation (/processos/:codigo | /contratacoes/:id)
+  // Sync with browser URL navigation (/processos/:codigo | /contratacoes/:id | /contratos/:id)
   useEffect(() => {
     const handlePopState = () => {
+      const contratoId = getContratoIdFromPath();
       const contratacaoId = getContratacaoIdFromPath();
       const codigo = getProcessCodigoFromPath();
+      if (contratoId) {
+        setSelectedContratoId(contratoId);
+        setSelectedContratacaoId(null);
+        setSelectedProcessCodigo(null);
+        setActiveTab('contratos');
+        return;
+      }
+      setSelectedContratoId(null);
       if (contratacaoId) {
         setSelectedContratacaoId(contratacaoId);
         setSelectedProcessCodigo(null);
@@ -403,6 +431,11 @@ export default function App() {
         return;
       }
       setSelectedContratacaoId(null);
+      if (isContratosPath()) {
+        setSelectedProcessCodigo(null);
+        setActiveTab('contratos');
+        return;
+      }
       setSelectedProcessCodigo(codigo);
       if (codigo) {
         setActiveTab('editais');
@@ -435,6 +468,7 @@ export default function App() {
 
   const handleSelectContratacaoId = (id: string | null) => {
     setSelectedContratacaoId(id);
+    setSelectedContratoId(null);
     if (id) {
       setActiveTab('contratacoes');
       setSelectedProcessCodigo(null);
@@ -447,19 +481,59 @@ export default function App() {
     }
   };
 
+  const handleRegisterContratoFromContratacao = ({
+    contratacaoId,
+    grupoFilter,
+    itemFacetKey,
+  }: RegisterContratoPrefill) => {
+    setSelectedContratacaoId(null);
+    setSelectedContratoId(null);
+    setActiveTab('contratos');
+    const params = new URLSearchParams({ tab: 'dashboard', contratacaoId, novo: '1' });
+    if (grupoFilter && grupoFilter !== 'ALL') params.set('grupo', grupoFilter);
+    const itemNumero = itemFacetKey?.startsWith('item:') ? itemFacetKey.slice(5) : null;
+    if (itemNumero) params.set('item', itemNumero);
+    window.history.pushState(null, '', `/contratos?${params.toString()}`);
+  };
+
+  const handleSelectContratoId = (id: string | null) => {
+    setSelectedContratoId(id);
+    setSelectedContratacaoId(null);
+    if (id) {
+      setActiveTab('contratos');
+      setSelectedProcessCodigo(null);
+      const path = `/contratos/${id}`;
+      if (window.location.pathname !== path) {
+        window.history.pushState(null, '', path);
+      }
+    } else if (window.location.pathname.startsWith('/contratos/')) {
+      window.history.pushState(null, '', '/contratos?tab=dashboard');
+    }
+  };
+
   const handleNavigateTab = (tab: string) => {
     if (tab === 'editais' && activeTab === 'editais' && selectedProcessCodigo) {
       handleSelectProcessCodigo(null);
     }
     if (tab === 'contratacoes') {
       setSelectedProcessCodigo(null);
+      setSelectedContratoId(null);
       if (window.location.pathname.startsWith('/processos/')) {
         window.history.pushState(null, '', selectedContratacaoId ? `/contratacoes/${selectedContratacaoId}` : '/contratacoes');
       } else if (!window.location.pathname.startsWith('/contratacoes')) {
         window.history.pushState(null, '', selectedContratacaoId ? `/contratacoes/${selectedContratacaoId}` : '/contratacoes');
       }
+    } else if (tab === 'contratos') {
+      setSelectedProcessCodigo(null);
+      setSelectedContratacaoId(null);
+      if (!window.location.pathname.startsWith('/contratos')) {
+        window.history.pushState(null, '', selectedContratoId ? `/contratos/${selectedContratoId}` : '/contratos?tab=dashboard');
+      }
     } else if (window.location.pathname.startsWith('/contratacoes')) {
       setSelectedContratacaoId(null);
+      window.history.pushState(null, '', '/');
+    } else if (window.location.pathname.startsWith('/contratos')) {
+      setSelectedContratoId(null);
       window.history.pushState(null, '', '/');
     }
     setActiveTab(tab);
@@ -555,6 +629,14 @@ export default function App() {
               <ContratacoesView
                 selectedId={selectedContratacaoId}
                 onSelectId={handleSelectContratacaoId}
+                onRegisterContrato={handleRegisterContratoFromContratacao}
+              />
+            )}
+
+            {activeTab === 'contratos' && (
+              <ContratosView
+                selectedId={selectedContratoId}
+                onSelectId={handleSelectContratoId}
               />
             )}
 

@@ -79,6 +79,7 @@ export type ContratacaoEnrichment = {
 export type PncpParsedFacets = {
   base_class?: string;
   tipo?: string;
+  variante?: string;
   material?: string;
   aplicacao?: string;
   caracteristicas_adicionais?: Record<string, string>;
@@ -146,4 +147,5 @@ export type ContratacaoDetail = {
   anexos: MuralProcessAnexo[];
   historico: MuralProcessHistorico[];
   enriquecimento: ContratacaoEnrichment;
+  vigencia_expectativa?: 'preenchida' | 'aguardando_contrato' | 'aguardando_ata' | 'nao_aplicavel';
 };

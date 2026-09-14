@@ -7,16 +7,20 @@ import {
   FileText,
   Clock,
   FolderArchive,
-  Layers,
+  FilePlus2,
+  Kanban,
 } from 'lucide-react';
 import { apiClient, assertOk } from '../../apiClient';
 import type { ContratacaoDetail, ContratacaoGrupo } from '../../types/contratacoes';
 import { EnrichmentBadge } from './EnrichmentBadge';
 import {
-  ContratacaoGruposPanel,
   ContratacaoItensPanel,
-  hasStructuredGrupos,
   type GrupoFilter,
+  type RegisterContratoPrefill,
+  getItemDisplayName,
+  grupoFilterLabel,
+  hasStructuredGrupos,
+  parseItemFacetKey,
 } from './ContratacaoItensPanel';
 import { StatusBadge } from '../mural/StatusBadge';
 import { HonestField } from '../mural/HonestField';
@@ -25,24 +29,22 @@ import { formatCurrencyBRL, formatDateTimeToBR } from '../../utils/muralFormatte
 interface ContratacaoDetailViewProps {
   contratacaoId: string;
   onBack: () => void;
+  onRegisterContrato?: (prefill: RegisterContratoPrefill) => void;
+  onParticipar?: (contratacaoId: string) => void;
 }
 
 export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
   contratacaoId,
   onBack,
+  onRegisterContrato,
+  onParticipar,
 }) => {
   const [detail, setDetail] = useState<ContratacaoDetail | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'grupos' | 'itens' | 'anexos' | 'historico'>('itens');
+  const [activeTab, setActiveTab] = useState<'itens' | 'anexos' | 'historico'>('itens');
   const [grupoFilter, setGrupoFilter] = useState<GrupoFilter>('ALL');
-
-  useEffect(() => {
-    if (!detail) return;
-    const gruposLoaded = detail.grupos?.length ? detail.grupos : [];
-    setActiveTab(hasStructuredGrupos(gruposLoaded) ? 'grupos' : 'itens');
-    setGrupoFilter('ALL');
-  }, [detail?.resumo.numero_controle_pncp]);
+  const [itemFacetKey, setItemFacetKey] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -137,21 +139,26 @@ export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
         ];
   const totalItens =
     grupos.reduce((n, g) => n + g.itens.length, 0) + itensAvulsos.length;
-  const structuredGrupos = hasStructuredGrupos(grupos);
-  const grupoTabCount =
-    grupos.filter((g) => g.identificador !== 'ALL').length + (itensAvulsos.length > 0 ? 1 : 0);
-
   const tabs = [
-    ...(structuredGrupos
-      ? [{ id: 'grupos' as const, label: 'Grupos', count: grupoTabCount, icon: Layers }]
-      : []),
     { id: 'itens' as const, label: 'Itens', count: totalItens, icon: FileText },
     { id: 'anexos' as const, label: 'Anexos', count: anexos.length, icon: FolderArchive },
     { id: 'historico' as const, label: 'Histórico', count: historico.length, icon: Clock },
   ];
 
-  const effectiveTab =
-    activeTab === 'grupos' && !structuredGrupos ? 'itens' : activeTab;
+  const registerLabel = (() => {
+    const itemNumero = parseItemFacetKey(itemFacetKey);
+    if (itemNumero != null) {
+      const item = [...grupos.flatMap((g) => g.itens), ...itensAvulsos].find(
+        (i) => i.numero_item === itemNumero,
+      );
+      const nome = item ? getItemDisplayName(item) : `item ${itemNumero}`;
+      return `Registrar ${nome}`;
+    }
+    if (grupoFilter !== 'ALL' && hasStructuredGrupos(grupos)) {
+      return `Registrar ${grupoFilterLabel(grupoFilter, grupos)}`;
+    }
+    return 'Registrar como contrato';
+  })();
 
   return (
     <div className="p-4 sm:p-6 max-w-5xl mx-auto space-y-5">
@@ -204,6 +211,32 @@ export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
                 <ExternalLink className="w-4 h-4" />
               </a>
             ) : null}
+            {onParticipar ? (
+              <button
+                type="button"
+                onClick={() => onParticipar(contratacaoId)}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold text-blue-800 bg-blue-50 border border-blue-200 hover:bg-blue-100"
+              >
+                <Kanban className="w-4 h-4" />
+                Participar
+              </button>
+            ) : null}
+            {onRegisterContrato ? (
+              <button
+                type="button"
+                onClick={() =>
+                  onRegisterContrato({
+                    contratacaoId,
+                    grupoFilter,
+                    itemFacetKey,
+                  })
+                }
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100"
+              >
+                <FilePlus2 className="w-4 h-4" />
+                {registerLabel}
+              </button>
+            ) : null}
           </div>
 
           <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
@@ -231,10 +264,10 @@ export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
               key={id}
               type="button"
               role="tab"
-              aria-selected={effectiveTab === id}
+              aria-selected={activeTab === id}
               onClick={() => setActiveTab(id)}
               className={`py-3 px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 ${
-                effectiveTab === id
+                activeTab === id
                   ? 'border-slate-900 text-slate-900 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
               }`}
@@ -249,26 +282,21 @@ export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
         </div>
 
         <div className="p-4 sm:p-5">
-          {effectiveTab === 'grupos' && structuredGrupos && (
-            <ContratacaoGruposPanel
-              grupos={grupos}
-              itensAvulsos={itensAvulsos}
-              selectedFilter={grupoFilter}
-              onSelectFilter={setGrupoFilter}
-              onVerItens={() => setActiveTab('itens')}
-            />
-          )}
-
-          {effectiveTab === 'itens' && (
+          {activeTab === 'itens' && (
             <ContratacaoItensPanel
               grupos={grupos}
               itensAvulsos={itensAvulsos}
               grupoFilter={grupoFilter}
-              onClearGrupoFilter={() => setGrupoFilter('ALL')}
+              onGrupoFilterChange={(filter) => {
+                setGrupoFilter(filter);
+                setItemFacetKey(null);
+              }}
+              itemFacetKey={itemFacetKey}
+              onItemFacetChange={setItemFacetKey}
             />
           )}
 
-          {effectiveTab === 'anexos' && (
+          {activeTab === 'anexos' && (
             <ul className="space-y-2">
               {anexos.length === 0 ? (
                 <li className="text-sm text-slate-500 py-8 text-center flex flex-col items-center gap-2">
@@ -303,8 +331,14 @@ export const ContratacaoDetailView: React.FC<ContratacaoDetailViewProps> = ({
             </ul>
           )}
 
-          {effectiveTab === 'historico' && (
+          {activeTab === 'historico' && (
             <ul className="space-y-3">
+              {historico.some((h) => h.implica_vigencia && h.implica_vigencia !== 'nenhuma') && (
+                <li className="p-3 rounded-lg border border-amber-200 bg-amber-50 text-sm text-amber-900">
+                  Eventos de publicação de contrato/ata alimentam automaticamente contratos vinculados
+                  quando sincronizados com o PNCP.
+                </li>
+              )}
               {historico.length === 0 ? (
                 <li className="text-sm text-slate-500 py-8 text-center flex flex-col items-center gap-2">
                   <Clock className="w-8 h-8 text-slate-300" />

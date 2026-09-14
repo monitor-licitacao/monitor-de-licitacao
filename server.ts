@@ -23,6 +23,7 @@ import * as schema from './server/db/schema.js';
 import { eq, ilike, or, desc, sql } from 'drizzle-orm';
 import { crmRouter } from './server/routes/crm.js';
 import { contratacoesRouter } from './server/routes/contratacoes.js';
+import { contratosRouter } from './server/routes/contratos.js';
 import { domainsRouter } from './server/routes/domains.js';
 import { encryptSecret } from './server/lib/crypto.js';
 import { verifyPassword } from './server/lib/password.js';
@@ -376,6 +377,7 @@ async function startServer() {
   // Registrar rotas de CRM (após middleware de autenticação)
   app.use('/api/crm', crmRouter);
   app.use('/api/contratacoes', contratacoesRouter);
+  app.use('/api/contratos', contratosRouter);
   app.use('/api/v1/domains', domainsRouter);
 
   // ==========================================

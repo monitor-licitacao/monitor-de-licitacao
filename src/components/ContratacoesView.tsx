@@ -8,6 +8,7 @@ import {
 import { apiClient, assertOk } from '../apiClient';
 import type { ContratacaoListItem } from '../types/contratacoes';
 import { ContratacaoDetailView } from './contratacoes/ContratacaoDetailView';
+import type { RegisterContratoPrefill } from './contratacoes/ContratacaoItensPanel';
 
 function formatCurrency(value: number | null): string {
   if (value == null || value === 0) return '—';
@@ -26,11 +27,15 @@ function formatDate(iso: string | null): string {
 interface ContratacoesViewProps {
   selectedId?: string | null;
   onSelectId?: (id: string | null) => void;
+  onRegisterContrato?: (prefill: RegisterContratoPrefill) => void;
+  onParticipar?: (contratacaoId: string) => void;
 }
 
 export const ContratacoesView: React.FC<ContratacoesViewProps> = ({
   selectedId: propId,
   onSelectId,
+  onRegisterContrato,
+  onParticipar,
 }) => {
   const [internalId, setInternalId] = useState<string | null>(null);
   const selectedId = propId !== undefined ? propId : internalId;
@@ -79,6 +84,8 @@ export const ContratacoesView: React.FC<ContratacoesViewProps> = ({
       <ContratacaoDetailView
         contratacaoId={selectedId}
         onBack={() => setSelected(null)}
+        onRegisterContrato={onRegisterContrato}
+        onParticipar={onParticipar}
       />
     );
   }

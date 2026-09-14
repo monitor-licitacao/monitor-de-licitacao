@@ -11,6 +11,7 @@ import {
 import { parsePncpFacets, resolveCatalogMatchMethod } from './parse-pncp-facets.js';
 import { parseNumeroControlePncp } from './resolve-controle.js';
 import { extractDomainKeys } from './resolve-domains.js';
+import { syncPncpDocumentos } from './sync-documentos.js';
 import type { IngestContratacaoResult, PncpCompraDto, PncpItemDto } from './types.js';
 
 export const PNCP_SOURCE = 'pncp';
@@ -266,6 +267,14 @@ export async function ingestContratacaoBundle(
 
     const { id: contratacaoId } = await upsertContratacaoFromPncp(compra, sourceId);
     const itemCount = await upsertItensFromPncp(contratacaoId, itens, sourceId);
+
+    await syncPncpDocumentos({
+      contratacaoId,
+      cnpj: parsed.cnpj,
+      ano: parsed.ano,
+      sequencial: parsed.sequencial,
+      source: 'pncp_ingest',
+    }).catch(() => undefined);
 
     return {
       ok: true,

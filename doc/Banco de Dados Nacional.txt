@@ -1,0 +1,2799 @@
+[
+  {
+    "id": 3,
+    "Nome": "COMPRAS.GOV.BR",
+    "CNPJ": "00.394.460/0001-41",
+    "Data de Inclusão no PNCP": "05/08/2021"
+  },
+  {
+    "id": 5,
+    "Nome": "ECUSTOMIZE CONSULTORIA EM SOFTWARE S.A",
+    "CNPJ": "09.397.355/0001-30",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 6,
+    "Nome": "BLL COMPRAS",
+    "CNPJ": "10.508.843/0002-38",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 7,
+    "Nome": "BOLSA BRASILEIRA DE MERCADORIAS - BBMNET LICITAÇÕES",
+    "CNPJ": "05.342.088/0001-43",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 9,
+    "Nome": "AZ INFORMATICA LTDA",
+    "CNPJ": "24.598.492/0001-27",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 10,
+    "Nome": "PORTAL DE COMPRAS DO ESTADO DE MINAS GERAIS",
+    "CNPJ": "05.461.142/0001-70",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 12,
+    "Nome": "BOLSA NACIONAL DE COMPRAS - BNC",
+    "CNPJ": "25.099.967/0001-01",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 13,
+    "Nome": "LICITAR DIGITAL - PLATAFORMA DE LICITAÇÕES ONLINE",
+    "CNPJ": "35.125.567/0001-79",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 14,
+    "Nome": "PORTAL DE COMPRAS PÚBLICAS DO ESTADO DO RIO DE JANEIRO",
+    "CNPJ": "15.829.998/0001-09",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 16,
+    "Nome": "COMPRAS PARÁ",
+    "CNPJ": "35.747.782/0001-01",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 17,
+    "Nome": "SUPERINTENDÊNCIA DE COMPRAS E LICITAÇÕES DO ESTADO DE RONDÔNIA",
+    "CNPJ": "04.696.490/0001-63",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 18,
+    "Nome": "LICITANET LICITAÇÕES ELETRÔNICAS LTDA",
+    "CNPJ": "21.280.462/0001-80",
+    "Data de Inclusão no PNCP": "09/08/2021"
+  },
+  {
+    "id": 26,
+    "Nome": "MEMORY PROJETOS E DESENVOLVIMENTO DE SISTEMAS LTDA",
+    "CNPJ": "71.000.731/0001-85",
+    "Data de Inclusão no PNCP": "17/08/2021"
+  },
+  {
+    "id": 27,
+    "Nome": "HLH ASSESSORIA E CONSULTORIA LTDA",
+    "CNPJ": "02.915.196/0001-70",
+    "Data de Inclusão no PNCP": "17/08/2021"
+  },
+  {
+    "id": 28,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DO ESPÍRITO SANTO",
+    "CNPJ": "28.483.014/0001-22",
+    "Data de Inclusão no PNCP": "20/08/2021"
+  },
+  {
+    "id": 30,
+    "Nome": "ASCONTECH SOLUTIONS",
+    "CNPJ": "33.611.861/0001-65",
+    "Data de Inclusão no PNCP": "20/08/2021"
+  },
+  {
+    "id": 32,
+    "Nome": "CENTRAL DE COMPRAS DA PARAÍBA/PB",
+    "CNPJ": "08.761.140/0001-94",
+    "Data de Inclusão no PNCP": "20/08/2021"
+  },
+  {
+    "id": 34,
+    "Nome": "ABASE SISTEMAS",
+    "CNPJ": "93.088.649/0001-97",
+    "Data de Inclusão no PNCP": "25/08/2021"
+  },
+  {
+    "id": 35,
+    "Nome": "CENTRO ELETRÔNICO BANCÁRIO INDUSTRIAL LTDA",
+    "CNPJ": "59.302.711/0001-63",
+    "Data de Inclusão no PNCP": "26/08/2021"
+  },
+  {
+    "id": 36,
+    "Nome": "CONTRATOS.GOV.BR",
+    "CNPJ": "00.394.460/0001-41",
+    "Data de Inclusão no PNCP": "06/09/2021"
+  },
+  {
+    "id": 39,
+    "Nome": "COPLAN - CONSULTORIA E PLANEJAMENTO EIRELI",
+    "CNPJ": "07.281.368/0001-14",
+    "Data de Inclusão no PNCP": "09/09/2021"
+  },
+  {
+    "id": 40,
+    "Nome": "LICITAÇÕES-E BB",
+    "CNPJ": "00.000.000/0001-91",
+    "Data de Inclusão no PNCP": "14/09/2021"
+  },
+  {
+    "id": 41,
+    "Nome": "ELOTECH GESTÃO PÚBLICA LTDA",
+    "CNPJ": "80.896.194/0001-94",
+    "Data de Inclusão no PNCP": "20/09/2021"
+  },
+  {
+    "id": 42,
+    "Nome": "4R TECNOLOGIA DA INFORMAÇÃO LTDA",
+    "CNPJ": "36.729.529/0001-98",
+    "Data de Inclusão no PNCP": "22/09/2021"
+  },
+  {
+    "id": 43,
+    "Nome": "ESCAL EMPRESA DE SERVIÇOS DE CONTABILIDADE E ASSESSORIA LTDA",
+    "CNPJ": "18.272.880/0001-10",
+    "Data de Inclusão no PNCP": "03/10/2021"
+  },
+  {
+    "id": 45,
+    "Nome": "PÚBLICA TECNOLOGIA",
+    "CNPJ": "95.836.771/0001-20",
+    "Data de Inclusão no PNCP": "03/10/2021"
+  },
+  {
+    "id": 46,
+    "Nome": "CENTI",
+    "CNPJ": "14.419.896/0001-52",
+    "Data de Inclusão no PNCP": "03/10/2021"
+  },
+  {
+    "id": 51,
+    "Nome": "SECRETARIA DO PLANEJAMENTO E GESTÃO DO CEARÁ",
+    "CNPJ": "08.691.976/0001-60",
+    "Data de Inclusão no PNCP": "15/10/2021"
+  },
+  {
+    "id": 53,
+    "Nome": "TRIBUNAL DE JUSTIÇA DE MATO GROSSO",
+    "CNPJ": "03.535.606/0001-10",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 54,
+    "Nome": "DIRETRIZ INFORMATICA EIRELI",
+    "CNPJ": "22.493.902/0001-40",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 55,
+    "Nome": "IPM SISTEMAS",
+    "CNPJ": "01.258.027/0001-41",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 56,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO PARANÁ",
+    "CNPJ": "77.821.841/0001-94",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 57,
+    "Nome": "MEGASOFT INFORMÁTICA",
+    "CNPJ": "37.615.788/0001-50",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 58,
+    "Nome": "SECRETARIA DE ADMINISTRAÇÃO DO ESTADO DE PERNAMBUCO",
+    "CNPJ": "10.572.022/0001-80",
+    "Data de Inclusão no PNCP": "19/10/2021"
+  },
+  {
+    "id": 59,
+    "Nome": "IBDM MODERNIZAÇÃO ASSESSORIA E CONSULTORIA",
+    "CNPJ": "10.442.698/0001-59",
+    "Data de Inclusão no PNCP": "15/11/2021"
+  },
+  {
+    "id": 63,
+    "Nome": "CECAM - CONSULTORIA ECONÔMICA, CONTÁBIL E ADMINISTRATIVA MUNICIPAL",
+    "CNPJ": "00.626.646/0001-89",
+    "Data de Inclusão no PNCP": "15/11/2021"
+  },
+  {
+    "id": 64,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DE SÃO PAULO TJSP",
+    "CNPJ": "51.174.001/0001-93",
+    "Data de Inclusão no PNCP": "15/11/2021"
+  },
+  {
+    "id": 67,
+    "Nome": "DBSELLER SERVIÇOS DE INFORMÁTICA",
+    "CNPJ": "05.238.851/0001-90",
+    "Data de Inclusão no PNCP": "15/11/2021"
+  },
+  {
+    "id": 70,
+    "Nome": "CREA-PR",
+    "CNPJ": "76.639.384/0001-59",
+    "Data de Inclusão no PNCP": "28/11/2021"
+  },
+  {
+    "id": 73,
+    "Nome": "EI SOLUÇÕES INTELIGENTES",
+    "CNPJ": "11.626.937/0001-93",
+    "Data de Inclusão no PNCP": "28/11/2021"
+  },
+  {
+    "id": 77,
+    "Nome": "LICITACON - TCE-RS",
+    "CNPJ": "89.550.032/0001-74",
+    "Data de Inclusão no PNCP": "10/12/2021"
+  },
+  {
+    "id": 80,
+    "Nome": "ELMAR TECNOLOGIA",
+    "CNPJ": "09.164.369/0001-04",
+    "Data de Inclusão no PNCP": "14/02/2022"
+  },
+  {
+    "id": 81,
+    "Nome": "PRODATA INFORMÁTICA",
+    "CNPJ": "02.744.987/0001-84",
+    "Data de Inclusão no PNCP": "02/03/2022"
+  },
+  {
+    "id": 82,
+    "Nome": "GOVERNANÇABRASIL TECNOLOGIA E GESTÃO EM SERVIÇOS",
+    "CNPJ": "00.165.960/0001-01",
+    "Data de Inclusão no PNCP": "02/03/2022"
+  },
+  {
+    "id": 83,
+    "Nome": "FIORILLI SOFTWARE",
+    "CNPJ": "01.704.233/0001-38",
+    "Data de Inclusão no PNCP": "24/03/2022"
+  },
+  {
+    "id": 84,
+    "Nome": "BETHA SISTEMAS",
+    "CNPJ": "00.456.865/0001-67",
+    "Data de Inclusão no PNCP": "24/03/2022"
+  },
+  {
+    "id": 85,
+    "Nome": "GRUPO ASSESSOR",
+    "CNPJ": "04.334.666/0001-37",
+    "Data de Inclusão no PNCP": "01/04/2022"
+  },
+  {
+    "id": 86,
+    "Nome": "MUNICÍPIO DE AÇAILÂNDIA",
+    "CNPJ": "07.000.268/0001-72",
+    "Data de Inclusão no PNCP": "05/05/2022"
+  },
+  {
+    "id": 87,
+    "Nome": "FUNDAÇÃO BUTANTAN",
+    "CNPJ": "61.189.445/0001-56",
+    "Data de Inclusão no PNCP": "10/05/2022"
+  },
+  {
+    "id": 88,
+    "Nome": "M2A TECNOLOGIA",
+    "CNPJ": "19.337.907/0001-79",
+    "Data de Inclusão no PNCP": "17/05/2022"
+  },
+  {
+    "id": 89,
+    "Nome": "LICITA + BRASIL",
+    "CNPJ": "42.342.559/0001-40",
+    "Data de Inclusão no PNCP": "10/06/2022"
+  },
+  {
+    "id": 90,
+    "Nome": "NOVO BBMNET LICITAÇÕES",
+    "CNPJ": "05.342.088/0001-43",
+    "Data de Inclusão no PNCP": "17/06/2022"
+  },
+  {
+    "id": 91,
+    "Nome": "SECRETARIA DE ESTADO DA ADMINISTRAÇÃO E DA PREVIDÊNCIA DO ESTADO DO PARANÁ - SEAP-PR",
+    "CNPJ": "77.071.579/0001-08",
+    "Data de Inclusão no PNCP": "17/06/2022"
+  },
+  {
+    "id": 92,
+    "Nome": "ACADEMIA DE GESTÃO PÚBLICA S/A",
+    "CNPJ": "10.532.822/0001-77",
+    "Data de Inclusão no PNCP": "04/07/2022"
+  },
+  {
+    "id": 93,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO DE JANEIRO",
+    "CNPJ": "28.538.734/0001-48",
+    "Data de Inclusão no PNCP": "29/07/2022"
+  },
+  {
+    "id": 94,
+    "Nome": "SIGEP - SISTEMAS INTEGRADOS",
+    "CNPJ": "04.294.699/0001-09",
+    "Data de Inclusão no PNCP": "01/08/2022"
+  },
+  {
+    "id": 96,
+    "Nome": "BR CONECTADO",
+    "CNPJ": "15.464.263/0001-29",
+    "Data de Inclusão no PNCP": "23/08/2022"
+  },
+  {
+    "id": 98,
+    "Nome": "TECTRILHA INFORMÁTICA LTDA EPP",
+    "CNPJ": "05.565.222/0001-75",
+    "Data de Inclusão no PNCP": "21/09/2022"
+  },
+  {
+    "id": 99,
+    "Nome": "INSTITUTO MUNICIPAL DE ADMINISTRAÇÃO PÚBLICA - IMAP",
+    "CNPJ": "05.277.208/0001-76",
+    "Data de Inclusão no PNCP": "05/10/2022"
+  },
+  {
+    "id": 100,
+    "Nome": "TECNOSWEB - TECNOLOGIA DE GESTÃO",
+    "CNPJ": "09.310.477/0001-48",
+    "Data de Inclusão no PNCP": "06/10/2022"
+  },
+  {
+    "id": 101,
+    "Nome": "CONTRATOSGOV SISTEMAS",
+    "CNPJ": "40.628.906/0001-70",
+    "Data de Inclusão no PNCP": "26/10/2022"
+  },
+  {
+    "id": 102,
+    "Nome": "SMARAPD INFORMATICA LTDA",
+    "CNPJ": "50.735.505/0001-72",
+    "Data de Inclusão no PNCP": "03/11/2022"
+  },
+  {
+    "id": 103,
+    "Nome": "TRIBUNAL REGIONAL FEDERAL DA 3ª REGIÃO",
+    "CNPJ": "59.949.362/0001-76",
+    "Data de Inclusão no PNCP": "29/11/2022"
+  },
+  {
+    "id": 104,
+    "Nome": "MUNICÍPIO DE CURITIBA",
+    "CNPJ": "76.417.005/0001-86",
+    "Data de Inclusão no PNCP": "29/11/2022"
+  },
+  {
+    "id": 105,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO CEARÁ",
+    "CNPJ": "09.444.530/0001-01",
+    "Data de Inclusão no PNCP": "12/12/2022"
+  },
+  {
+    "id": 106,
+    "Nome": "SISTEMA CONTRATOS SJES",
+    "CNPJ": "05.424.467/0001-82",
+    "Data de Inclusão no PNCP": "12/12/2022"
+  },
+  {
+    "id": 107,
+    "Nome": "INSTAR TECNOLOGIA EM INFORMÁTICA",
+    "CNPJ": "08.225.893/0001-85",
+    "Data de Inclusão no PNCP": "14/12/2022"
+  },
+  {
+    "id": 108,
+    "Nome": "CÂMARA MUNICIPAL DE BELO HORIZONTE",
+    "CNPJ": "17.316.563/0001-96",
+    "Data de Inclusão no PNCP": "21/12/2022"
+  },
+  {
+    "id": 109,
+    "Nome": "STS INFORMATICA LTDA / STS INFORMATICA",
+    "CNPJ": "73.726.333/0001-76",
+    "Data de Inclusão no PNCP": "21/12/2022"
+  },
+  {
+    "id": 110,
+    "Nome": "MUNICIPIO DE ESTEIO",
+    "CNPJ": "88.150.495/0001-86",
+    "Data de Inclusão no PNCP": "21/12/2022"
+  },
+  {
+    "id": 111,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO GRANDE DO SUL",
+    "CNPJ": "89.522.064/0001-66",
+    "Data de Inclusão no PNCP": "27/12/2022"
+  },
+  {
+    "id": 112,
+    "Nome": "TRIBUNAL DE CONTAS DO DISTRITO FEDERAL",
+    "CNPJ": "00.534.560/0001-26",
+    "Data de Inclusão no PNCP": "28/12/2022"
+  },
+  {
+    "id": 113,
+    "Nome": "MINISTÉRIO PÚBLICO DO ESTADO DO RIO GRANDE DO SUL",
+    "CNPJ": "93.802.833/0001-57",
+    "Data de Inclusão no PNCP": "28/12/2022"
+  },
+  {
+    "id": 114,
+    "Nome": "SLICX - RAC ASSESSORIA",
+    "CNPJ": "07.315.552/0001-38",
+    "Data de Inclusão no PNCP": "11/01/2023"
+  },
+  {
+    "id": 115,
+    "Nome": "REIS & LOPES CONTABILIDADE E SISTEMAS DE INFORMAÇÃO LTDA / REIS & LOPES ASSESSORIA E SISTEMAS",
+    "CNPJ": "26.366.373/0001-74",
+    "Data de Inclusão no PNCP": "20/01/2023"
+  },
+  {
+    "id": 116,
+    "Nome": "SELCORP LICITAÇÕES S/A",
+    "CNPJ": "29.945.708/0001-05",
+    "Data de Inclusão no PNCP": "24/01/2023"
+  },
+  {
+    "id": 117,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO MARANHÃO",
+    "CNPJ": "05.288.790/0001-76",
+    "Data de Inclusão no PNCP": "26/01/2023"
+  },
+  {
+    "id": 118,
+    "Nome": "J J S SILVA -  MULTIPUBLIK",
+    "CNPJ": "21.784.056/0001-54",
+    "Data de Inclusão no PNCP": "02/02/2023"
+  },
+  {
+    "id": 119,
+    "Nome": "SISLOG - SISTEMA DE LOGÍSTICA DE GOIÁS",
+    "CNPJ": "02.476.034/0001-82",
+    "Data de Inclusão no PNCP": "02/02/2023"
+  },
+  {
+    "id": 120,
+    "Nome": "LEMOS E MARQUES LTDA / LEMARQ SOFTWARE",
+    "CNPJ": "01.243.220/0001-09",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 121,
+    "Nome": "SH3 INFORMÁTICA LTDA.",
+    "CNPJ": "01.264.892/0001-09",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 122,
+    "Nome": "SANTA CATARINA TRIBUNAL DE JUSTIÇA/TRIBUNAL DE JUSTIÇA DO ESTADO DE SANTA CATARINA",
+    "CNPJ": "83.845.701/0001-59",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 123,
+    "Nome": "MUNICÍPIO DE NÃO-ME-TOQUE",
+    "CNPJ": "87.613.519/0001-23",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 124,
+    "Nome": "CÂMARA MUNICIPAL DE PIRACICABA",
+    "CNPJ": "51.327.708/0001-92",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 125,
+    "Nome": "4R SISTEMAS E ASSESSORIA LTDA",
+    "CNPJ": "05.081.873/0001-90",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 126,
+    "Nome": "ASSEMBLEIA LEGISLATIVA DO ESTADO DE GOIÁS",
+    "CNPJ": "02.474.419/0001-00",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 127,
+    "Nome": "RESOFT CONSULTORIA E ASSESSORIA EM INFORMÁTICA LTDA",
+    "CNPJ": "00.892.248/0001-04",
+    "Data de Inclusão no PNCP": "17/02/2023"
+  },
+  {
+    "id": 130,
+    "Nome": "MUNICÍPIO SANTA CRUZ DO SUL",
+    "CNPJ": "95.440.517/0001-08",
+    "Data de Inclusão no PNCP": "24/02/2023"
+  },
+  {
+    "id": 131,
+    "Nome": "PROCERGS - CENTRO DE TECNOLOGIA DA INFORMACAO E COMUNICACAO DO ESTADO DO RIO GRANDE DO SUL S.A.",
+    "CNPJ": "87.124.582/0001-04",
+    "Data de Inclusão no PNCP": "24/02/2023"
+  },
+  {
+    "id": 132,
+    "Nome": "OPEN TECNOLOGIA DA INFORMAÇÃO EIRELI",
+    "CNPJ": "08.546.928/0001-88",
+    "Data de Inclusão no PNCP": "27/02/2023"
+  },
+  {
+    "id": 133,
+    "Nome": "CONAM CONSULTORIA EM ADMINISTRAÇÃO MUNICIPAL",
+    "CNPJ": "51.235.448/0001-25",
+    "Data de Inclusão no PNCP": "01/03/2023"
+  },
+  {
+    "id": 135,
+    "Nome": "PÚBLICA TECNOLOGIA LTDA.",
+    "CNPJ": "95.836.771/0001-20",
+    "Data de Inclusão no PNCP": "07/03/2023"
+  },
+  {
+    "id": 136,
+    "Nome": "CODERP - COMPANHIA DE DESENVOLVIMENTO ECONÔMICO DE RIBEIRÃO PRETO",
+    "CNPJ": "45.254.950/0001-80",
+    "Data de Inclusão no PNCP": "13/03/2023"
+  },
+  {
+    "id": 138,
+    "Nome": "MUNICÍPIO DE GASPAR",
+    "CNPJ": "83.102.244/0001-02",
+    "Data de Inclusão no PNCP": "13/03/2023"
+  },
+  {
+    "id": 139,
+    "Nome": "EMBRAS - EMPRESA BRASILEIRA DE TECNOLOGIA LTDA",
+    "CNPJ": "04.985.752/0001-00",
+    "Data de Inclusão no PNCP": "17/03/2023"
+  },
+  {
+    "id": 141,
+    "Nome": "SECRETARIA DE ESTADO DA ADMINISTRAÇÃO DE SANTA CATARINA",
+    "CNPJ": "82.951.351/0001-42",
+    "Data de Inclusão no PNCP": "17/03/2023"
+  },
+  {
+    "id": 142,
+    "Nome": "IM PUBLICAÇÕES EIRELI",
+    "CNPJ": "21.904.203/0001-82",
+    "Data de Inclusão no PNCP": "17/03/2023"
+  },
+  {
+    "id": 143,
+    "Nome": "SOFTDATA",
+    "CNPJ": "04.901.772/0001-55",
+    "Data de Inclusão no PNCP": "17/03/2023"
+  },
+  {
+    "id": 144,
+    "Nome": "JL ALVES GESTÃO",
+    "CNPJ": "14.750.885/0001-50",
+    "Data de Inclusão no PNCP": "27/03/2023"
+  },
+  {
+    "id": 145,
+    "Nome": "EMPRO TECNOLOGIA E INFORMACAO",
+    "CNPJ": "01.312.003/0001-23",
+    "Data de Inclusão no PNCP": "27/03/2023"
+  },
+  {
+    "id": 146,
+    "Nome": "INFORMÁTICA DE MUNICÍPIOS ASSOCIADOS S/A – IMA",
+    "CNPJ": "48.197.859/0001-69",
+    "Data de Inclusão no PNCP": "28/03/2023"
+  },
+  {
+    "id": 147,
+    "Nome": "PREFEITURA DA CIDADE DO RECIFE",
+    "CNPJ": "10.565.000/0001-92",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 148,
+    "Nome": "E & L PRODUCOES DE SOFTWARE LTDA",
+    "CNPJ": "39.781.752/0001-72",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 149,
+    "Nome": "PREFEITURA MUNICIPAL DE SANTO ANTÔNIO DA PATRULHA",
+    "CNPJ": "88.814.199/0001-32",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 150,
+    "Nome": "LIBRE SOLUÇÕES EM TECNOLOGIA LTDA",
+    "CNPJ": "05.200.012/0001-83",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 152,
+    "Nome": "AGILI SOFTWARE BRASIL LTDA",
+    "CNPJ": "26.804.377/0001-97",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 153,
+    "Nome": "MINISTÉRIO PÚBLICO DA UNIÃO",
+    "CNPJ": "26.989.715/0048-76",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 154,
+    "Nome": "BAHIA SECRETARIA DA ADMINISTRACAO",
+    "CNPJ": "13.323.274/0001-63",
+    "Data de Inclusão no PNCP": "29/03/2023"
+  },
+  {
+    "id": 155,
+    "Nome": "CONTROLADORIA E OUVIDORIA GERAL DO MUNICÍPIO",
+    "CNPJ": "83.522.863/0001-56",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 156,
+    "Nome": "MGCON SOLUÇÕES INTELIGENTES INFORMÁTICA LTDA. - EPP",
+    "CNPJ": "08.208.680/0001-45",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 157,
+    "Nome": "SERGIPE JUSTIÇA ESTADUAL DE SEGUNDA INSTÂNCIA",
+    "CNPJ": "13.166.970/0001-03",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 158,
+    "Nome": "GCASPP CONSULTORIA CONTABIL E SISTEMAS LTDA",
+    "CNPJ": "10.139.519/0001-09",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 159,
+    "Nome": "NOVOSERV INFORMATICA LTDA EPP",
+    "CNPJ": "68.162.858/0001-96",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 161,
+    "Nome": "AVMB SOLUCOES EM TI LTDA / AVMB - SOLUCOES EM TI",
+    "CNPJ": "03.486.598/0001-69",
+    "Data de Inclusão no PNCP": "30/03/2023"
+  },
+  {
+    "id": 163,
+    "Nome": "GE CONSULTORIA PUBLICA LTDA",
+    "CNPJ": "08.621.541/0001-49",
+    "Data de Inclusão no PNCP": "31/03/2023"
+  },
+  {
+    "id": 164,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO ACRE",
+    "CNPJ": "04.034.872/0001-21",
+    "Data de Inclusão no PNCP": "04/04/2023"
+  },
+  {
+    "id": 165,
+    "Nome": "SYSTEM DESENVOLVIMENTO DE SOFTWARE",
+    "CNPJ": "90.868.787/0001-09",
+    "Data de Inclusão no PNCP": "06/04/2023"
+  },
+  {
+    "id": 166,
+    "Nome": "PREFEITURA MUNICIPAL DE LAJEADO",
+    "CNPJ": "87.297.982/0001-03",
+    "Data de Inclusão no PNCP": "06/04/2023"
+  },
+  {
+    "id": 167,
+    "Nome": "BR TRANSPARENCIA LTDA",
+    "CNPJ": "42.872.659/0001-88",
+    "Data de Inclusão no PNCP": "06/04/2023"
+  },
+  {
+    "id": 168,
+    "Nome": "SISVETOR INFORMÁTICA LTDA",
+    "CNPJ": "10.522.056/0001-60",
+    "Data de Inclusão no PNCP": "06/04/2023"
+  },
+  {
+    "id": 169,
+    "Nome": "TOP DOWN CONSULTORIA LTDA",
+    "CNPJ": "40.998.734/0001-26",
+    "Data de Inclusão no PNCP": "17/04/2023"
+  },
+  {
+    "id": 170,
+    "Nome": "FINTEL SISTEMAS DE INFORMATICA LTDA",
+    "CNPJ": "07.987.863/0001-43",
+    "Data de Inclusão no PNCP": "17/04/2023"
+  },
+  {
+    "id": 171,
+    "Nome": "STARTGOV SOLUCOES EM TECNOLOGIA LTDA",
+    "CNPJ": "37.933.858/0001-19",
+    "Data de Inclusão no PNCP": "19/04/2023"
+  },
+  {
+    "id": 172,
+    "Nome": "DIGIFRED SISTEMAS DE INFORMAÇÃO LTDA",
+    "CNPJ": "88.659.974/0001-22",
+    "Data de Inclusão no PNCP": "19/04/2023"
+  },
+  {
+    "id": 173,
+    "Nome": "IMPLANTA INFORMATICA LTDA",
+    "CNPJ": "37.994.043/0001-40",
+    "Data de Inclusão no PNCP": "26/04/2023"
+  },
+  {
+    "id": 174,
+    "Nome": "EQUIPLANO SISTEMAS LTDA / EQUIPLANO SISTEMAS",
+    "CNPJ": "76.030.717/0001-48",
+    "Data de Inclusão no PNCP": "27/04/2023"
+  },
+  {
+    "id": 175,
+    "Nome": "INOVEA TECNOLOGIA LTDA",
+    "CNPJ": "09.484.316/0001-70",
+    "Data de Inclusão no PNCP": "27/04/2023"
+  },
+  {
+    "id": 176,
+    "Nome": "PROCEDE BAHIA PROCESSAMENTO E CERTIFICAÇÃO DE DOCUMENTOS ELETRÔNICOS",
+    "CNPJ": "18.195.422/0001-25",
+    "Data de Inclusão no PNCP": "27/04/2023"
+  },
+  {
+    "id": 177,
+    "Nome": "CÂMARA MUNICIPAL DE MARTINHO CAMPOS",
+    "CNPJ": "23.896.970/0001-12",
+    "Data de Inclusão no PNCP": "02/05/2023"
+  },
+  {
+    "id": 178,
+    "Nome": "QUALITY SISTEMAS LTDA",
+    "CNPJ": "05.373.364/0001-30",
+    "Data de Inclusão no PNCP": "04/05/2023"
+  },
+  {
+    "id": 179,
+    "Nome": "PREFEITURA MUNICIPAL DE CAXIAS DO SUL",
+    "CNPJ": "88.830.609/0001-39",
+    "Data de Inclusão no PNCP": "04/05/2023"
+  },
+  {
+    "id": 181,
+    "Nome": "CIJUN - CIA. DE INFORMATICA DE JUNDIAI",
+    "CNPJ": "67.237.644/0001-79",
+    "Data de Inclusão no PNCP": "09/05/2023"
+  },
+  {
+    "id": 182,
+    "Nome": "AGÊNCIA REGULADORA INTERMUNICIPAL DE SANEAMENTO",
+    "CNPJ": "11.400.360/0001-05",
+    "Data de Inclusão no PNCP": "11/05/2023"
+  },
+  {
+    "id": 184,
+    "Nome": "JUSTICA FEDERAL DE PRIMEIRO GRAU NO RIO DE JANEIRO",
+    "CNPJ": "05.424.540/0001-16",
+    "Data de Inclusão no PNCP": "12/05/2023"
+  },
+  {
+    "id": 185,
+    "Nome": "ASJB CONSULTORIA S/C LTDA",
+    "CNPJ": "02.144.357/0001-79",
+    "Data de Inclusão no PNCP": "16/05/2023"
+  },
+  {
+    "id": 187,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DE RORAIMA",
+    "CNPJ": "34.812.669/0001-08",
+    "Data de Inclusão no PNCP": "22/05/2023"
+  },
+  {
+    "id": 188,
+    "Nome": "ADPM - ADMINISTRAÇÃO PÚBLICA PARA MUNICÍPIOS LTDA",
+    "CNPJ": "02.678.177/0001-77",
+    "Data de Inclusão no PNCP": "22/05/2023"
+  },
+  {
+    "id": 189,
+    "Nome": "SECRETARIA DE PLANEJAMENTO, ORÇAMENTO E ADMINISTRAÇÃO DO DISTRITO FEDERAL",
+    "CNPJ": "00.394.684/0001-53",
+    "Data de Inclusão no PNCP": "29/05/2023"
+  },
+  {
+    "id": 190,
+    "Nome": "DEFENSORIA PÚBLICA DO ESTADO DE RONDÔNIA",
+    "CNPJ": "01.072.076/0001-95",
+    "Data de Inclusão no PNCP": "29/05/2023"
+  },
+  {
+    "id": 191,
+    "Nome": "GEMMAP SISTEMAS LTDA EPP",
+    "CNPJ": "54.699.434/0001-50",
+    "Data de Inclusão no PNCP": "31/05/2023"
+  },
+  {
+    "id": 192,
+    "Nome": "MUNICIPIO DE TAQUARA",
+    "CNPJ": "97.761.407/0001-73",
+    "Data de Inclusão no PNCP": "06/06/2023"
+  },
+  {
+    "id": 193,
+    "Nome": "AGAPE SISTEMAS E CONSULTORIA",
+    "CNPJ": "04.497.198/0001-11",
+    "Data de Inclusão no PNCP": "21/06/2023"
+  },
+  {
+    "id": 194,
+    "Nome": "SERVIÇO AUTÔNOMO DE ÁGUA E ESGOTO DE PIRAPORA",
+    "CNPJ": "23.535.271/0001-47",
+    "Data de Inclusão no PNCP": "28/06/2023"
+  },
+  {
+    "id": 195,
+    "Nome": "PRESCON INFORMATICA ASSESSORIA LTDA.",
+    "CNPJ": "01.221.551/0001-48",
+    "Data de Inclusão no PNCP": "03/07/2023"
+  },
+  {
+    "id": 196,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO GRANDE DO NORTE",
+    "CNPJ": "08.546.459/0001-05",
+    "Data de Inclusão no PNCP": "03/07/2023"
+  },
+  {
+    "id": 198,
+    "Nome": "MUNICIPIO DE BELO HORIZONTE",
+    "CNPJ": "18.715.383/0001-40",
+    "Data de Inclusão no PNCP": "20/07/2023"
+  },
+  {
+    "id": 199,
+    "Nome": "MUNICÍPIO DE PASSO FUNDO",
+    "CNPJ": "87.612.537/0001-90",
+    "Data de Inclusão no PNCP": "26/07/2023"
+  },
+  {
+    "id": 200,
+    "Nome": "OBARA INFORMÁTICA LTDA",
+    "CNPJ": "27.001.408/0001-34",
+    "Data de Inclusão no PNCP": "26/07/2023"
+  },
+  {
+    "id": 201,
+    "Nome": "CENTRO DE SERVIÇOS COMPARTILHADOS",
+    "CNPJ": "03.930.106/0001-82",
+    "Data de Inclusão no PNCP": "26/07/2023"
+  },
+  {
+    "id": 202,
+    "Nome": "PREFEITURA MUNICIPAL DE BARUERI / PREFEITURA DE BARUERI",
+    "CNPJ": "46.523.015/0001-35",
+    "Data de Inclusão no PNCP": "26/07/2023"
+  },
+  {
+    "id": 203,
+    "Nome": "3TECNOS TECNOLOGIA LTDA",
+    "CNPJ": "09.568.632/0001-20",
+    "Data de Inclusão no PNCP": "31/07/2023"
+  },
+  {
+    "id": 204,
+    "Nome": "SECRETARIA DE ESTADO DA FAZENDA DE SANTA CATARINA",
+    "CNPJ": "82.951.310/0001-56",
+    "Data de Inclusão no PNCP": "02/08/2023"
+  },
+  {
+    "id": 205,
+    "Nome": "CONTASS SISTEMAS PUBLICOS LTDA",
+    "CNPJ": "10.481.030/0001-10",
+    "Data de Inclusão no PNCP": "02/08/2023"
+  },
+  {
+    "id": 206,
+    "Nome": "EDDYDATA SERVICOS DE INFORMATICA LTDA",
+    "CNPJ": "57.714.750/0001-42",
+    "Data de Inclusão no PNCP": "07/08/2023"
+  },
+  {
+    "id": 207,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DO PARANÁ",
+    "CNPJ": "77.996.312/0001-21",
+    "Data de Inclusão no PNCP": "07/08/2023"
+  },
+  {
+    "id": 208,
+    "Nome": "PREFEITURA MUNICIPAL DE PIRACICABA",
+    "CNPJ": "46.341.038/0001-29",
+    "Data de Inclusão no PNCP": "14/08/2023"
+  },
+  {
+    "id": 209,
+    "Nome": "PREFEITURA MUNICIPAL DE SÃO LEOPOLDO",
+    "CNPJ": "89.814.693/0001-60",
+    "Data de Inclusão no PNCP": "23/08/2023"
+  },
+  {
+    "id": 210,
+    "Nome": "MUNICIPIO DE FORTALEZA - PREFEITURA MUNICIPAL DE FORTALEZA",
+    "CNPJ": "07.954.605/0001-60",
+    "Data de Inclusão no PNCP": "23/08/2023"
+  },
+  {
+    "id": 211,
+    "Nome": "PREFEITURA MUNICIPAL DE BLUMENAU",
+    "CNPJ": "83.108.357/0001-15",
+    "Data de Inclusão no PNCP": "06/09/2023"
+  },
+  {
+    "id": 212,
+    "Nome": "SONNER SISTEMAS DE INFORMATICA LTDA",
+    "CNPJ": "06.067.665/0001-07",
+    "Data de Inclusão no PNCP": "06/09/2023"
+  },
+  {
+    "id": 213,
+    "Nome": "IPMBRASIL PUBLICAÇÕES MUNICIPAIS",
+    "CNPJ": "12.398.781/0001-01",
+    "Data de Inclusão no PNCP": "06/09/2023"
+  },
+  {
+    "id": 214,
+    "Nome": "SECRETARIA MUNICIPAL DE ADMINISTRAÇÃO, PLANEJAMENTO E GESTÃO",
+    "CNPJ": "04.312.641/0001-32",
+    "Data de Inclusão no PNCP": "06/09/2023"
+  },
+  {
+    "id": 215,
+    "Nome": "ASSESI BRASIL",
+    "CNPJ": "14.769.245/0001-92",
+    "Data de Inclusão no PNCP": "14/09/2023"
+  },
+  {
+    "id": 216,
+    "Nome": "MUNICIPIO DE SÃO BERNARDO DO CAMPO/MUNICIPIO DE SAO BERNARDO DO CAMPO",
+    "CNPJ": "46.523.239/0001-47",
+    "Data de Inclusão no PNCP": "21/09/2023"
+  },
+  {
+    "id": 217,
+    "Nome": "MUNICIPIO DE NOVA LIMA",
+    "CNPJ": "22.934.889/0001-17",
+    "Data de Inclusão no PNCP": "10/10/2023"
+  },
+  {
+    "id": 218,
+    "Nome": "DEFENSORIA PUBLICA DO ESTADO DE PERNAMBUCO",
+    "CNPJ": "02.899.512/0001-67",
+    "Data de Inclusão no PNCP": "11/10/2023"
+  },
+  {
+    "id": 219,
+    "Nome": "TRIBUNAL REGIONAL ELEITORAL DO PARÁ",
+    "CNPJ": "05.703.755/0001-76",
+    "Data de Inclusão no PNCP": "17/10/2023"
+  },
+  {
+    "id": 220,
+    "Nome": "GOVTEC SISTEMAS DE INFORMATICA LTDA",
+    "CNPJ": "34.263.271/0001-51",
+    "Data de Inclusão no PNCP": "30/10/2023"
+  },
+  {
+    "id": 221,
+    "Nome": "CÂMARA MUNICIPAL DE TAPEROA BA",
+    "CNPJ": "13.070.016/0001-12",
+    "Data de Inclusão no PNCP": "30/10/2023"
+  },
+  {
+    "id": 222,
+    "Nome": "MODERNIZACAO PUBLICA E INFORMATICA LTDA",
+    "CNPJ": "15.064.270/0001-33",
+    "Data de Inclusão no PNCP": "06/11/2023"
+  },
+  {
+    "id": 223,
+    "Nome": "TRIBUNAL REGIONAL ELEITORAL DE SÃO PAULO",
+    "CNPJ": "06.302.492/0001-56",
+    "Data de Inclusão no PNCP": "07/11/2023"
+  },
+  {
+    "id": 224,
+    "Nome": "TRIBUNAL REGIONAL FEDERAL 2A R.",
+    "CNPJ": "32.243.347/0001-51",
+    "Data de Inclusão no PNCP": "16/11/2023"
+  },
+  {
+    "id": 225,
+    "Nome": "MUNICIPIO DE VITORIA DA CONQUISTA",
+    "CNPJ": "14.239.578/0001-00",
+    "Data de Inclusão no PNCP": "23/11/2023"
+  },
+  {
+    "id": 226,
+    "Nome": "W4M AUTOMACAO E CONTROLE LTDA",
+    "CNPJ": "01.921.829/0001-90",
+    "Data de Inclusão no PNCP": "23/11/2023"
+  },
+  {
+    "id": 227,
+    "Nome": "ASP - AUTOMAÇÃO SERVIÇOS E PRODUTOS DE INFORMÁTICA - LTDA",
+    "CNPJ": "02.288.268/0001-04",
+    "Data de Inclusão no PNCP": "23/11/2023"
+  },
+  {
+    "id": 228,
+    "Nome": "J BRASIL SISTEMAS LTDA",
+    "CNPJ": "12.973.722/0001-01",
+    "Data de Inclusão no PNCP": "24/11/2023"
+  },
+  {
+    "id": 229,
+    "Nome": "MUNICÍPIO DE MONTENEGRO",
+    "CNPJ": "90.895.905/0001-60",
+    "Data de Inclusão no PNCP": "27/11/2023"
+  },
+  {
+    "id": 230,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DE PERNAMBUCO",
+    "CNPJ": "11.435.633/0001-49",
+    "Data de Inclusão no PNCP": "27/11/2023"
+  },
+  {
+    "id": 231,
+    "Nome": "TECNOCONTAS INFORMÁTICA E CONTABILIDADE LTDA",
+    "CNPJ": "17.198.116/0001-80",
+    "Data de Inclusão no PNCP": "29/11/2023"
+  },
+  {
+    "id": 232,
+    "Nome": "MINISTÉRIO DA FAZENDA / RECEITA FEDERAL",
+    "CNPJ": "00.394.460/0058-87",
+    "Data de Inclusão no PNCP": "29/11/2023"
+  },
+  {
+    "id": 233,
+    "Nome": "SAAE SERVIÇO AUTÔNOMO DE ÁGUA E ESGOTOS DE INDAIATUBA / SAAE INDAIATUBA",
+    "CNPJ": "46.251.021/0001-80",
+    "Data de Inclusão no PNCP": "29/11/2023"
+  },
+  {
+    "id": 234,
+    "Nome": "DEPARTAMENTO DE ÁGUA E ESGOTOS",
+    "CNPJ": "96.041.330/0001-02",
+    "Data de Inclusão no PNCP": "29/11/2023"
+  },
+  {
+    "id": 235,
+    "Nome": "DOISR SERVICOS DE DESENVOLVIMENTO E CONSULTORIA DE SISTEMA LTDA / DOISR SISTEMAS",
+    "CNPJ": "30.016.264/0001-02",
+    "Data de Inclusão no PNCP": "05/12/2023"
+  },
+  {
+    "id": 236,
+    "Nome": "SUBSECRETARIA DA ADMINISTRAÇÃO CENTRAL DE LICITAÇÕES - CELIC/RS",
+    "CNPJ": "87.958.658/0001-99",
+    "Data de Inclusão no PNCP": "05/12/2023"
+  },
+  {
+    "id": 237,
+    "Nome": "PUBLICENTER INFORMATICA COMERCIO E LOCACAO LTDA",
+    "CNPJ": "04.235.413/0001-06",
+    "Data de Inclusão no PNCP": "12/12/2023"
+  },
+  {
+    "id": 238,
+    "Nome": "GOVPLAY SISTEMAS INTELIGENTES LTDA",
+    "CNPJ": "50.768.912/0001-86",
+    "Data de Inclusão no PNCP": "13/12/2023"
+  },
+  {
+    "id": 239,
+    "Nome": "PLANEJAR CONSULTORES ASSOCIADOS LTDA",
+    "CNPJ": "26.125.096/0001-08",
+    "Data de Inclusão no PNCP": "14/12/2023"
+  },
+  {
+    "id": 240,
+    "Nome": "CITTÀ INFORMÁTICA LTDA",
+    "CNPJ": "09.031.569/0001-99",
+    "Data de Inclusão no PNCP": "14/12/2023"
+  },
+  {
+    "id": 241,
+    "Nome": "MUNICÍPIO DE SÃO JOSÉ DOS CAMPOS",
+    "CNPJ": "46.643.466/0001-06",
+    "Data de Inclusão no PNCP": "15/12/2023"
+  },
+  {
+    "id": 242,
+    "Nome": "JF PIMENTEL FILHO SISTEMAS LTDA",
+    "CNPJ": "33.369.872/0001-80",
+    "Data de Inclusão no PNCP": "18/12/2023"
+  },
+  {
+    "id": 243,
+    "Nome": "TCHÊ INFORMÁTICA LTDA",
+    "CNPJ": "93.288.165/0001-91",
+    "Data de Inclusão no PNCP": "18/12/2023"
+  },
+  {
+    "id": 244,
+    "Nome": "MUNICIPIO DE VENÂNCIO AIRES",
+    "CNPJ": "87.334.918/0001-55",
+    "Data de Inclusão no PNCP": "19/12/2023"
+  },
+  {
+    "id": 245,
+    "Nome": "PREFEITURA MUNICIPAL DE RERIUTABA",
+    "CNPJ": "07.598.667/0001-87",
+    "Data de Inclusão no PNCP": "21/12/2023"
+  },
+  {
+    "id": 246,
+    "Nome": "ETHERIUM TECH",
+    "CNPJ": "34.446.865/0001-06",
+    "Data de Inclusão no PNCP": "02/01/2024"
+  },
+  {
+    "id": 247,
+    "Nome": "HABEAS DATA SOLUÇÕES EM INFORMÁTICA LTDA",
+    "CNPJ": "03.161.658/0001-73",
+    "Data de Inclusão no PNCP": "04/01/2024"
+  },
+  {
+    "id": 248,
+    "Nome": "INTER - TEC SOLUCOES EM SOFTWARE LTDA",
+    "CNPJ": "18.351.823/0001-27",
+    "Data de Inclusão no PNCP": "05/01/2024"
+  },
+  {
+    "id": 249,
+    "Nome": "E. O. DA SILVA SERVICOS DE TECNOLOGIA",
+    "CNPJ": "27.015.292/0001-92",
+    "Data de Inclusão no PNCP": "05/01/2024"
+  },
+  {
+    "id": 250,
+    "Nome": "KP SISTEMAS DE INFORMACAO PARA GESTAO PUBLICA MUNICIPAL LTDA",
+    "CNPJ": "32.965.361/0001-69",
+    "Data de Inclusão no PNCP": "05/01/2024"
+  },
+  {
+    "id": 251,
+    "Nome": "GOVERNO DO ESTADO DO ACRE",
+    "CNPJ": "63.606.479/0001-24",
+    "Data de Inclusão no PNCP": "08/01/2024"
+  },
+  {
+    "id": 252,
+    "Nome": "COMPANHIA BRASILEIRA DE GOVERNANÇA - CBG S/A",
+    "CNPJ": "45.949.947/0001-81",
+    "Data de Inclusão no PNCP": "10/01/2024"
+  },
+  {
+    "id": 253,
+    "Nome": "NORTH TECNOLOGIA SISTEMAS E INFORMATICA LTDA",
+    "CNPJ": "52.864.643/0001-87",
+    "Data de Inclusão no PNCP": "10/01/2024"
+  },
+  {
+    "id": 254,
+    "Nome": "MINISTÉRIO PÚBLICO DO ESTADO DO ACRE",
+    "CNPJ": "04.034.450/0001-56",
+    "Data de Inclusão no PNCP": "10/01/2024"
+  },
+  {
+    "id": 255,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DE SAO PAULO",
+    "CNPJ": "50.290.931/0001-40",
+    "Data de Inclusão no PNCP": "15/01/2024"
+  },
+  {
+    "id": 256,
+    "Nome": "PREFEITURA DE MUNICIPAL DE IMBÉ",
+    "CNPJ": "90.256.652/0001-84",
+    "Data de Inclusão no PNCP": "15/01/2024"
+  },
+  {
+    "id": 257,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO TOCANTINS",
+    "CNPJ": "25.053.190/0001-36",
+    "Data de Inclusão no PNCP": "18/01/2024"
+  },
+  {
+    "id": 258,
+    "Nome": "PAULISTA TECNOLOGIA E SERVICOS LTDA / HORUS SISTEMAS INTEGRADOS",
+    "CNPJ": "00.562.341/0001-50",
+    "Data de Inclusão no PNCP": "18/01/2024"
+  },
+  {
+    "id": 259,
+    "Nome": "SISTEMAS CONFITEC",
+    "CNPJ": "35.824.900/0001-38",
+    "Data de Inclusão no PNCP": "18/01/2024"
+  },
+  {
+    "id": 260,
+    "Nome": "SECRETARIA DE ESTADO DE INFRAESTRUTURA E MOBILIDADE",
+    "CNPJ": "82.951.344/0001-40",
+    "Data de Inclusão no PNCP": "19/01/2024"
+  },
+  {
+    "id": 262,
+    "Nome": "PUBLICOM PUBLICIDADE LEGAL E PRODUÇÃO DE EVENTOS LTDA",
+    "CNPJ": "48.752.929/0001-01",
+    "Data de Inclusão no PNCP": "31/01/2024"
+  },
+  {
+    "id": 263,
+    "Nome": "TRIBUNAL DE JUSTIÇA DO ESTADO DO PARÁ",
+    "CNPJ": "04.567.897/0001-90",
+    "Data de Inclusão no PNCP": "31/01/2024"
+  },
+  {
+    "id": 264,
+    "Nome": "INTERSOL SERVICOS DE INFORMATICA LTDA",
+    "CNPJ": "10.502.804/0001-42",
+    "Data de Inclusão no PNCP": "01/02/2024"
+  },
+  {
+    "id": 265,
+    "Nome": "MHR SERVICOS LTDA",
+    "CNPJ": "21.886.630/0001-85",
+    "Data de Inclusão no PNCP": "02/02/2024"
+  },
+  {
+    "id": 266,
+    "Nome": "MK TECNOLOGIA E SEGURANÇA",
+    "CNPJ": "15.654.082/0001-65",
+    "Data de Inclusão no PNCP": "02/02/2024"
+  },
+  {
+    "id": 267,
+    "Nome": "SUDOESTE INFORMATICA E CONSULTORIA LTDA",
+    "CNPJ": "09.543.618/0001-72",
+    "Data de Inclusão no PNCP": "02/02/2024"
+  },
+  {
+    "id": 268,
+    "Nome": "EAC EMPRESA DE ADM DE CONTRATOS LTDA",
+    "CNPJ": "21.863.150/0001-07",
+    "Data de Inclusão no PNCP": "02/02/2024"
+  },
+  {
+    "id": 269,
+    "Nome": "MINISTÉRIO PÚBLICO DO ESTADO DE RONDÔNIA",
+    "CNPJ": "04.381.083/0001-67",
+    "Data de Inclusão no PNCP": "02/02/2024"
+  },
+  {
+    "id": 270,
+    "Nome": "MUNICÍPIO DE INDAIATUBA",
+    "CNPJ": "44.733.608/0001-09",
+    "Data de Inclusão no PNCP": "08/02/2024"
+  },
+  {
+    "id": 271,
+    "Nome": "PROCURADORIA GERAL DA REPÚBLICA - MPF",
+    "CNPJ": "26.989.715/0050-90",
+    "Data de Inclusão no PNCP": "14/02/2024"
+  },
+  {
+    "id": 272,
+    "Nome": "SMART4 SISTEMAS E TECNOLOGIA LTDA",
+    "CNPJ": "21.599.096/0001-26",
+    "Data de Inclusão no PNCP": "16/02/2024"
+  },
+  {
+    "id": 273,
+    "Nome": "PUBLITECH SOFTWARES LTDA / PUBLITECH",
+    "CNPJ": "07.252.028/0001-65",
+    "Data de Inclusão no PNCP": "19/02/2024"
+  },
+  {
+    "id": 274,
+    "Nome": "BRM SOFTWARE DE GESTÃO PUBLICA LTDA",
+    "CNPJ": "18.286.188/0001-41",
+    "Data de Inclusão no PNCP": "21/02/2024"
+  },
+  {
+    "id": 275,
+    "Nome": "NBS PRODUTOS PARA INFORMÁTICA CONSULTORIA E SISTEMAS LTDA",
+    "CNPJ": "66.921.198/0001-54",
+    "Data de Inclusão no PNCP": "21/02/2024"
+  },
+  {
+    "id": 276,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DE MATO GROSSO",
+    "CNPJ": "15.024.128/0001-62",
+    "Data de Inclusão no PNCP": "26/02/2024"
+  },
+  {
+    "id": 277,
+    "Nome": "MUNICIPIO DE VARZEA GRANDE",
+    "CNPJ": "03.507.548/0001-10",
+    "Data de Inclusão no PNCP": "28/02/2024"
+  },
+  {
+    "id": 278,
+    "Nome": "SUPERIOR TRIBUNAL DE JUSTIÇA",
+    "CNPJ": "00.488.478/0001-02",
+    "Data de Inclusão no PNCP": "28/02/2024"
+  },
+  {
+    "id": 279,
+    "Nome": "PREFEITURA DO MUNICÍPIO DE MAUÁ",
+    "CNPJ": "46.522.959/0001-98",
+    "Data de Inclusão no PNCP": "01/03/2024"
+  },
+  {
+    "id": 280,
+    "Nome": "INSTITUTO DE PREVIDÊNCIA DO MUNICÍPIO DE SÃO BERNARDO DO CAMPO - SBCPREV",
+    "CNPJ": "14.337.579/0001-97",
+    "Data de Inclusão no PNCP": "06/03/2024"
+  },
+  {
+    "id": 281,
+    "Nome": "INSTITUTO OFICIAL DE PUBLICIDADE LEGAL - IOP",
+    "CNPJ": "20.024.219/0001-38",
+    "Data de Inclusão no PNCP": "11/03/2024"
+  },
+  {
+    "id": 282,
+    "Nome": "JAQUEIRA CAMARA MUNICIPAL",
+    "CNPJ": "01.613.990/0001-04",
+    "Data de Inclusão no PNCP": "12/03/2024"
+  },
+  {
+    "id": 284,
+    "Nome": "PREFEITURA MUNICIPAL DE CAMPINAS",
+    "CNPJ": "51.885.242/0001-40",
+    "Data de Inclusão no PNCP": "18/03/2024"
+  },
+  {
+    "id": 285,
+    "Nome": "SILC - TRIBUNAL REGIONAL DO TRABALHO DA 4ª REGIÃO",
+    "CNPJ": "02.520.619/0001-52",
+    "Data de Inclusão no PNCP": "20/03/2024"
+  },
+  {
+    "id": 286,
+    "Nome": "VENDASGOV",
+    "CNPJ": "33.683.111/0001-07",
+    "Data de Inclusão no PNCP": "01/04/2024"
+  },
+  {
+    "id": 287,
+    "Nome": "ASSEMBLEIA LEGISLATIVA DO ESTADO DE SANTA CATARINA",
+    "CNPJ": "83.599.191/0001-87",
+    "Data de Inclusão no PNCP": "04/04/2024"
+  },
+  {
+    "id": 288,
+    "Nome": "FUNDAÇÃO UNIVERSIDADE REGIONAL DE BLUMENAU - FURB",
+    "CNPJ": "82.662.958/0001-02",
+    "Data de Inclusão no PNCP": "05/04/2024"
+  },
+  {
+    "id": 289,
+    "Nome": "COMISSÃO DO EXÉRCITO BRASILEIRO EM WASHINGTON",
+    "CNPJ": "00.394.452/0519-48",
+    "Data de Inclusão no PNCP": "08/04/2024"
+  },
+  {
+    "id": 290,
+    "Nome": "CÂMARA MUNICIPAL DE BRAGANÇA PAULISTA",
+    "CNPJ": "47.015.532/0001-66",
+    "Data de Inclusão no PNCP": "08/04/2024"
+  },
+  {
+    "id": 291,
+    "Nome": "CAIXA ECONOMICA FEDERAL",
+    "CNPJ": "00.360.305/0001-04",
+    "Data de Inclusão no PNCP": "08/04/2024"
+  },
+  {
+    "id": 293,
+    "Nome": "PREFEITURA MUNICIPAL DE GARANHUNS",
+    "CNPJ": "11.303.906/0001-00",
+    "Data de Inclusão no PNCP": "10/04/2024"
+  },
+  {
+    "id": 294,
+    "Nome": "PREFEITURA MUNICIPAL DE BETIM",
+    "CNPJ": "18.715.391/0001-96",
+    "Data de Inclusão no PNCP": "10/04/2024"
+  },
+  {
+    "id": 295,
+    "Nome": "J F REIS / ASSISTECH INFORMATICA",
+    "CNPJ": "08.955.970/0001-52",
+    "Data de Inclusão no PNCP": "17/04/2024"
+  },
+  {
+    "id": 297,
+    "Nome": "SECRETARIA MUNICIPAL DE ADMINISTRACAO, PLANEJAMENTO E GESTAO",
+    "CNPJ": "04.312.641/0001-32",
+    "Data de Inclusão no PNCP": "22/04/2024"
+  },
+  {
+    "id": 298,
+    "Nome": "PREFEITURA MUNICIPAL DE VERA CRUZ",
+    "CNPJ": "72.887.078/0001-80",
+    "Data de Inclusão no PNCP": "24/04/2024"
+  },
+  {
+    "id": 299,
+    "Nome": "CONCEITO TECNOLOGIA E ASSESSORIA LTDA",
+    "CNPJ": "23.547.261/0001-21",
+    "Data de Inclusão no PNCP": "24/04/2024"
+  },
+  {
+    "id": 300,
+    "Nome": "CIMCERO - CONSORCIO INTERMUNICIPAL DA REGIAO CENTR",
+    "CNPJ": "02.049.227/0001-57",
+    "Data de Inclusão no PNCP": "25/04/2024"
+  },
+  {
+    "id": 301,
+    "Nome": "ASES GESTÃO PÚBLICA LTDA",
+    "CNPJ": "12.607.306/0001-90",
+    "Data de Inclusão no PNCP": "26/04/2024"
+  },
+  {
+    "id": 302,
+    "Nome": "MUNICIPIO DE BÁLSAMO",
+    "CNPJ": "45.142.353/0001-64",
+    "Data de Inclusão no PNCP": "29/04/2024"
+  },
+  {
+    "id": 303,
+    "Nome": "FACULDADE DE DIREITO DE SÃO BERNARDO DO CAMPO",
+    "CNPJ": "59.108.100/0001-89",
+    "Data de Inclusão no PNCP": "30/04/2024"
+  },
+  {
+    "id": 304,
+    "Nome": "ASSEMBLEIA LEGISLATIVA DO ESTADO DE RORAIMA",
+    "CNPJ": "34.808.220/0001-68",
+    "Data de Inclusão no PNCP": "02/05/2024"
+  },
+  {
+    "id": 306,
+    "Nome": "PRFEITURA MUNICIPAL DE ESTREITO",
+    "CNPJ": "07.070.873/0001-10",
+    "Data de Inclusão no PNCP": "07/05/2024"
+  },
+  {
+    "id": 307,
+    "Nome": "A & T DEVLOPMENT LTDA",
+    "CNPJ": "26.003.171/0001-68",
+    "Data de Inclusão no PNCP": "08/05/2024"
+  },
+  {
+    "id": 308,
+    "Nome": "MUNICÍPIO DE MIRANDÓPOLIS",
+    "CNPJ": "44.438.968/0001-70",
+    "Data de Inclusão no PNCP": "09/05/2024"
+  },
+  {
+    "id": 309,
+    "Nome": "CDZ TECNOLOGIA DA INFORMAÇÃO LTDA",
+    "CNPJ": "67.389.122/0001-92",
+    "Data de Inclusão no PNCP": "09/05/2024"
+  },
+  {
+    "id": 311,
+    "Nome": "TRIBUNAL REGIONAL ELEITORAL DE PERNAMBUCO",
+    "CNPJ": "05.790.065/0001-00",
+    "Data de Inclusão no PNCP": "13/05/2024"
+  },
+  {
+    "id": 312,
+    "Nome": "MUNICIPIO DE QUATRO PONTES",
+    "CNPJ": "95.719.381/0001-70",
+    "Data de Inclusão no PNCP": "15/05/2024"
+  },
+  {
+    "id": 313,
+    "Nome": "SISTEMA INTEGRADO DE GESTÃO ORÇAMENTÁRIA E FINANCEIRA DA JUSTIÇA DO TRABALHO",
+    "CNPJ": "17.270.702/0001-98",
+    "Data de Inclusão no PNCP": "17/05/2024"
+  },
+  {
+    "id": 314,
+    "Nome": "DIBUTE SOFTWARE",
+    "CNPJ": "12.843.800/0001-53",
+    "Data de Inclusão no PNCP": "20/05/2024"
+  },
+  {
+    "id": 316,
+    "Nome": "CÂMARA MUNICIPAL DE BREJO",
+    "CNPJ": "07.367.121/0001-15",
+    "Data de Inclusão no PNCP": "29/05/2024"
+  },
+  {
+    "id": 317,
+    "Nome": "DATTA SYSTEM TECNOLOGIA LTDA",
+    "CNPJ": "07.727.569/0001-00",
+    "Data de Inclusão no PNCP": "03/06/2024"
+  },
+  {
+    "id": 318,
+    "Nome": "MUNICIPIO DE DIADEMA",
+    "CNPJ": "46.523.247/0001-93",
+    "Data de Inclusão no PNCP": "03/06/2024"
+  },
+  {
+    "id": 319,
+    "Nome": "A & M SOLUCOES PUBLICAS LTDA / A & M SOLUCOES PUBLICAS",
+    "CNPJ": "23.112.368/0001-47",
+    "Data de Inclusão no PNCP": "06/06/2024"
+  },
+  {
+    "id": 321,
+    "Nome": "PREFEITURA MUNICIPAL DE JAGUARIAÍVA",
+    "CNPJ": "76.910.900/0001-38",
+    "Data de Inclusão no PNCP": "14/06/2024"
+  },
+  {
+    "id": 322,
+    "Nome": "EMPRESA MUNICIPAL DE SAÚDE",
+    "CNPJ": "03.183.869/0001-07",
+    "Data de Inclusão no PNCP": "14/06/2024"
+  },
+  {
+    "id": 323,
+    "Nome": "LIMA TECHSERVICES LTDA",
+    "CNPJ": "42.058.542/0001-65",
+    "Data de Inclusão no PNCP": "21/06/2024"
+  },
+  {
+    "id": 324,
+    "Nome": "DÍGITHOBRASIL SOLUÇÕES EM SOFTWARE LTDA",
+    "CNPJ": "04.496.152/0001-88",
+    "Data de Inclusão no PNCP": "03/07/2024"
+  },
+  {
+    "id": 325,
+    "Nome": "MUNICIPIO DE PARINTINS",
+    "CNPJ": "04.329.736/0001-69",
+    "Data de Inclusão no PNCP": "05/07/2024"
+  },
+  {
+    "id": 326,
+    "Nome": "TRIBUNAL DE CONTAS DO ESTADO DO ACRE",
+    "CNPJ": "04.035.135/0001-43",
+    "Data de Inclusão no PNCP": "18/07/2024"
+  },
+  {
+    "id": 327,
+    "Nome": "MODERNA SISTEMA DE INOVAÇÃO LIMITADA",
+    "CNPJ": "39.501.538/0001-15",
+    "Data de Inclusão no PNCP": "07/08/2024"
+  },
+  {
+    "id": 329,
+    "Nome": "LICITACONNECT - LICITACOES ELETRONICAS E ASSESSORIA LTDA / LICITACONNECT",
+    "CNPJ": "54.253.076/0001-58",
+    "Data de Inclusão no PNCP": "12/08/2024"
+  },
+  {
+    "id": 330,
+    "Nome": "TECNOPÚBLICA - TECNOLOGIA EM ADMINISTRAÇÃO PÚBLICA",
+    "CNPJ": "09.088.110/0001-21",
+    "Data de Inclusão no PNCP": "14/08/2024"
+  },
+  {
+    "id": 331,
+    "Nome": "CENTRO DE SERVIÇOS COMPARTILHADOS - CSC",
+    "CNPJ": "03.930.106/0001-82",
+    "Data de Inclusão no PNCP": "14/08/2024"
+  },
+  {
+    "id": 334,
+    "Nome": "EMPRESA DE PESQUISA AGROPECUÁRIA E EXTENSÃO RURAL DE SANTA CATARINA",
+    "CNPJ": "83.052.191/0001-62",
+    "Data de Inclusão no PNCP": "16/09/2024"
+  },
+  {
+    "id": 335,
+    "Nome": "PROSISCO PROJETOS DE SISTEMAS LTDA - EPP",
+    "CNPJ": "16.868.770/0001-90",
+    "Data de Inclusão no PNCP": "18/09/2024"
+  },
+  {
+    "id": 336,
+    "Nome": "GUIMARÃES SISTEMAS GESTÃO E TECNOLOGIA LTDA",
+    "CNPJ": "17.306.092/0001-35",
+    "Data de Inclusão no PNCP": "26/09/2024"
+  },
+  {
+    "id": 337,
+    "Nome": "DURA-LEX SISTEMAS DE GESTAO PUBLICA LTDA-EPP",
+    "CNPJ": "86.952.587/0001-54",
+    "Data de Inclusão no PNCP": "03/10/2024"
+  },
+  {
+    "id": 340,
+    "Nome": "MINISTERIO PUBLICO DO ESTADO DE SANTA CATARINA PROCURADORIA GERAL DE JUSTICA",
+    "CNPJ": "76.276.849/0001-54",
+    "Data de Inclusão no PNCP": "22/10/2024"
+  },
+  {
+    "id": 341,
+    "Nome": "UMUPP",
+    "CNPJ": "42.715.505/0001-82",
+    "Data de Inclusão no PNCP": "31/10/2024"
+  },
+  {
+    "id": 342,
+    "Nome": "PREFEITURA MUNICIPAL DO RIO GRANDE",
+    "CNPJ": "88.566.872/0001-62",
+    "Data de Inclusão no PNCP": "21/11/2024"
+  },
+  {
+    "id": 344,
+    "Nome": "ASSECASP - ASSESSORIA EM CONTABILIDADE APLICADA AO SETOR PÚBLICO LTDA.",
+    "CNPJ": "21.840.933/0001-67",
+    "Data de Inclusão no PNCP": "13/12/2024"
+  },
+  {
+    "id": 345,
+    "Nome": "SECRETARIA DE GESTÃO E GOVERNO DIGITAL",
+    "CNPJ": "39.467.292/0001-02",
+    "Data de Inclusão no PNCP": "18/12/2024"
+  },
+  {
+    "id": 346,
+    "Nome": "SECRETARIA DE ESTADO DE INFRAESTRUTURA",
+    "CNPJ": "05.533.935/0001-57",
+    "Data de Inclusão no PNCP": "06/01/2025"
+  },
+  {
+    "id": 348,
+    "Nome": "TRIBUNAL REGIONAL FEDERAL DA 5º REGIÃO",
+    "CNPJ": "24.130.072/0001-11",
+    "Data de Inclusão no PNCP": "14/01/2025"
+  },
+  {
+    "id": 349,
+    "Nome": "SITCON TECNOLOGIA DA INFORMAÇÃO",
+    "CNPJ": "10.308.170/0001-91",
+    "Data de Inclusão no PNCP": "15/01/2025"
+  },
+  {
+    "id": 350,
+    "Nome": "PORTAL GOV SERVICOS DIGITAIS LTDA / PORTAL GOV",
+    "CNPJ": "25.176.060/0001-90",
+    "Data de Inclusão no PNCP": "20/01/2025"
+  },
+  {
+    "id": 351,
+    "Nome": "CONTRATA+BRASIL",
+    "CNPJ": "11.006.269/0001-00",
+    "Data de Inclusão no PNCP": "06/02/2025"
+  },
+  {
+    "id": 353,
+    "Nome": "TENOSOFT SOFTWARE LTDA",
+    "CNPJ": "03.527.052/0001-09",
+    "Data de Inclusão no PNCP": "06/02/2025"
+  },
+  {
+    "id": 354,
+    "Nome": "FUNCATE- FUNDAÇÃO DE CIÊNCIA, APLICAÇÕES E TECNOLOGIA ESPACIAIS",
+    "CNPJ": "51.619.104/0001-10",
+    "Data de Inclusão no PNCP": "18/02/2025"
+  },
+  {
+    "id": 355,
+    "Nome": "GARANHUNS CAMARA MUNICIPAL",
+    "CNPJ": "11.478.534/0001-44",
+    "Data de Inclusão no PNCP": "20/02/2025"
+  },
+  {
+    "id": 356,
+    "Nome": "GREENCOMPRAS",
+    "CNPJ": "06.553.564/0001-38",
+    "Data de Inclusão no PNCP": "21/02/2025"
+  },
+  {
+    "id": 357,
+    "Nome": "BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL",
+    "CNPJ": "33.657.248/0001-89",
+    "Data de Inclusão no PNCP": "25/02/2025"
+  },
+  {
+    "id": 361,
+    "Nome": "REDE GERAL SERVIÇOS",
+    "CNPJ": "08.241.186/0001-82",
+    "Data de Inclusão no PNCP": "13/03/2025"
+  },
+  {
+    "id": 362,
+    "Nome": "SUPERIOR TRIBUNAL MILITAR",
+    "CNPJ": "00.497.560/0001-01",
+    "Data de Inclusão no PNCP": "19/03/2025"
+  },
+  {
+    "id": 363,
+    "Nome": "SISTEMA CORPORATIVO DE GESTÃO DE CONTRATOS DO DISTRITO FEDERAL (E-CONTRATOSDF)",
+    "CNPJ": "00.394.601/0001-26",
+    "Data de Inclusão no PNCP": "25/03/2025"
+  },
+  {
+    "id": 364,
+    "Nome": "SUPERINTENDÊNCIA DA ZONA FRANCA DE MANAUS",
+    "CNPJ": "04.407.029/0001-43",
+    "Data de Inclusão no PNCP": "03/04/2025"
+  },
+  {
+    "id": 365,
+    "Nome": "CAMARA MUNICIPAL DE CONFRESA-MT",
+    "CNPJ": "37.465.358/0001-08",
+    "Data de Inclusão no PNCP": "08/04/2025"
+  },
+  {
+    "id": 366,
+    "Nome": "B2B - SERVIÇOS E TECNOLOGIA LTDA",
+    "CNPJ": "31.668.209/0001-51",
+    "Data de Inclusão no PNCP": "16/04/2025"
+  },
+  {
+    "id": 367,
+    "Nome": "MUNICIPIO DE IBITIARA",
+    "CNPJ": "13.781.828/0001-76",
+    "Data de Inclusão no PNCP": "30/04/2025"
+  },
+  {
+    "id": 368,
+    "Nome": "I3 SOLUCOES LTDA",
+    "CNPJ": "03.307.395/0001-68",
+    "Data de Inclusão no PNCP": "07/05/2025"
+  },
+  {
+    "id": 369,
+    "Nome": "AUTARQUIA DE ENSINO SUPERIOR DE GARANHUNS AESGA",
+    "CNPJ": "11.224.920/0001-00",
+    "Data de Inclusão no PNCP": "27/05/2025"
+  },
+  {
+    "id": 370,
+    "Nome": "SECRETARIA DA FAZENDA (PROJETO DE APOIO A M. E A T. DA GESTAO FISCAL- PROFISCO)",
+    "CNPJ": "10.572.014/0010-24",
+    "Data de Inclusão no PNCP": "30/05/2025"
+  },
+  {
+    "id": 371,
+    "Nome": "SECRETARIA DA FAZENDA DO ESTADO DE PERNAMBUCO",
+    "CNPJ": "10.572.014/0001-33",
+    "Data de Inclusão no PNCP": "02/06/2025"
+  },
+  {
+    "id": 372,
+    "Nome": "MGI MINAS GERAIS PARTICIPACOES S.A",
+    "CNPJ": "19.296.342/0001-29",
+    "Data de Inclusão no PNCP": "03/06/2025"
+  },
+  {
+    "id": 373,
+    "Nome": "PREFEITURA MUNICIPAL DE CONFRESA",
+    "CNPJ": "37.464.716/0001-50",
+    "Data de Inclusão no PNCP": "04/06/2025"
+  },
+  {
+    "id": 374,
+    "Nome": "TRIBUNAL REGIONAL ELEITORAL DO RIO GRANDE DO SUL",
+    "CNPJ": "05.885.797/0001-75",
+    "Data de Inclusão no PNCP": "06/06/2025"
+  },
+  {
+    "id": 375,
+    "Nome": "PROCURADORIA-GERAL DE JUSTIÇA DO ESTADO DE MINAS GERAIS",
+    "CNPJ": "20.971.057/0001-45",
+    "Data de Inclusão no PNCP": "09/06/2025"
+  },
+  {
+    "id": 376,
+    "Nome": "MUNICIPIO DE AFOGADOS DA INGAZEIRA",
+    "CNPJ": "10.346.096/0001-06",
+    "Data de Inclusão no PNCP": "10/06/2025"
+  },
+  {
+    "id": 377,
+    "Nome": "EAD SISTEMAS DE GESTAO E TREINAMENTO LTDA",
+    "CNPJ": "05.671.209/0001-09",
+    "Data de Inclusão no PNCP": "11/06/2025"
+  },
+  {
+    "id": 378,
+    "Nome": "CATCH TECHNOLOGY AND SERVICES CORPORATION LTDA",
+    "CNPJ": "48.765.533/0001-90",
+    "Data de Inclusão no PNCP": "12/06/2025"
+  },
+  {
+    "id": 379,
+    "Nome": "TRIBUNAL REGIONAL ELEITORAL DO TOCANTINS",
+    "CNPJ": "05.789.902/0001-72",
+    "Data de Inclusão no PNCP": "25/06/2025"
+  },
+  {
+    "id": 380,
+    "Nome": "CÂMARA MUNICIPAL DE MANAUS",
+    "CNPJ": "04.503.504/0001-85",
+    "Data de Inclusão no PNCP": "25/06/2025"
+  },
+  {
+    "id": 383,
+    "Nome": "ATENA PREPARADORA DE LEILÕES E GESTÃO DE PÁTIOS LTDA",
+    "CNPJ": "20.089.941/0001-50",
+    "Data de Inclusão no PNCP": "09/07/2025"
+  },
+  {
+    "id": 385,
+    "Nome": "PLATAFORMA LEILÕES JUDICIAIS",
+    "CNPJ": "05.358.321/0001-86",
+    "Data de Inclusão no PNCP": "04/08/2025"
+  },
+  {
+    "id": 386,
+    "Nome": "TRE-BA",
+    "CNPJ": "05.967.350/0001-45",
+    "Data de Inclusão no PNCP": "12/08/2025"
+  },
+  {
+    "id": 387,
+    "Nome": "CUBE APPS CONSULTORIA E SOLUCOES LTDA",
+    "CNPJ": "28.333.626/0001-39",
+    "Data de Inclusão no PNCP": "20/08/2025"
+  },
+  {
+    "id": 389,
+    "Nome": "TRIBUNAL DE JUSTIÇA DE PERNAMBUCO",
+    "CNPJ": "11.431.327/0001-34",
+    "Data de Inclusão no PNCP": "29/08/2025"
+  },
+  {
+    "id": 390,
+    "Nome": "R A BEZERRIL CONTABILIDADE PUBLICA ME",
+    "CNPJ": "17.347.450/0001-58",
+    "Data de Inclusão no PNCP": "01/09/2025"
+  },
+  {
+    "id": 392,
+    "Nome": "SECRETARIA DE ADMINISTRACAO DO GOVERNO DO ESTADO DE PE",
+    "CNPJ": "10.572.022/0001-80",
+    "Data de Inclusão no PNCP": "16/09/2025"
+  },
+  {
+    "id": 394,
+    "Nome": "PREFEITURA MUNICIPAL DE UBERLÂNDIA",
+    "CNPJ": "18.431.312/0006-20",
+    "Data de Inclusão no PNCP": "17/09/2025"
+  },
+  {
+    "id": 398,
+    "Nome": "PREFEITURA MUNICIPAL DE PRESIDENTE PRUDENTE",
+    "CNPJ": "55.356.653/0001-08",
+    "Data de Inclusão no PNCP": "28/10/2025"
+  },
+  {
+    "id": 400,
+    "Nome": "GLOBAL AUCTION ORGANIZACAO DE LEILOES LIMITADA",
+    "CNPJ": "05.399.791/0001-98",
+    "Data de Inclusão no PNCP": "31/10/2025"
+  },
+  {
+    "id": 402,
+    "Nome": "ASSEMBLEIA LEGISLATIVA DO ESTADO DO AMAZONAS",
+    "CNPJ": "04.530.820/0001-46",
+    "Data de Inclusão no PNCP": "13/11/2025"
+  },
+  {
+    "id": 403,
+    "Nome": "MUNICÍPIO DE CANDELÁRIA",
+    "CNPJ": "87.568.911/0001-06",
+    "Data de Inclusão no PNCP": "13/11/2025"
+  },
+  {
+    "id": 404,
+    "Nome": "SOLAR CONSULTORIA E SERVICOS DE INFORMATICA LTDA",
+    "CNPJ": "03.551.831/0001-40",
+    "Data de Inclusão no PNCP": "13/11/2025"
+  },
+  {
+    "id": 406,
+    "Nome": "APOIOTECH LTDA",
+    "CNPJ": "62.082.219/0001-34",
+    "Data de Inclusão no PNCP": "25/11/2025"
+  },
+  {
+    "id": 407,
+    "Nome": "G A C MOTA - DIGIMAX",
+    "CNPJ": "01.261.303/0001-20",
+    "Data de Inclusão no PNCP": "28/11/2025"
+  },
+  {
+    "id": 408,
+    "Nome": "TRIBUNAL SUPERIOR ELEITORAL",
+    "CNPJ": "00.509.018/0001-13",
+    "Data de Inclusão no PNCP": "28/11/2025"
+  },
+  {
+    "id": 411,
+    "Nome": "AIRDOC PUBLICACOES LTDA",
+    "CNPJ": "08.765.411/0001-80",
+    "Data de Inclusão no PNCP": "10/12/2025"
+  },
+  {
+    "id": 412,
+    "Nome": "STRING",
+    "CNPJ": "05.903.125/0001-45",
+    "Data de Inclusão no PNCP": "12/12/2025"
+  },
+  {
+    "id": 413,
+    "Nome": "MINISTÉRIO PÚBLICO DO ESTADO DO ESPÍRITO SANTO",
+    "CNPJ": "02.304.470/0001-74",
+    "Data de Inclusão no PNCP": "12/12/2025"
+  },
+  {
+    "id": 523,
+    "Nome": "CITYNEX SOLUÇÕES EM TECNOLOGIA LTDA",
+    "CNPJ": "33.626.878/0001-96",
+    "Data de Inclusão no PNCP": "12/01/2026"
+  },
+  {
+    "id": 635,
+    "Nome": "S3 CONSULTORIA E SISTEMAS LTDA",
+    "CNPJ": "37.991.280/0001-57",
+    "Data de Inclusão no PNCP": "19/01/2026"
+  },
+  {
+    "id": 894,
+    "Nome": "E S E S ANDRADE SOLUCOES EM TECNOLOGIA",
+    "CNPJ": "62.920.663/0001-81",
+    "Data de Inclusão no PNCP": "30/01/2026"
+  },
+  {
+    "id": 898,
+    "Nome": "SERVENDAS - PLANEJAMENTO E ORGANIZACAO DE EVENTOS LTDA",
+    "CNPJ": "13.998.559/0001-02",
+    "Data de Inclusão no PNCP": "02/02/2026"
+  },
+  {
+    "id": 1305,
+    "Nome": "CANAL DE COMPRAS BRASIL",
+    "CNPJ": "51.153.042/0001-01",
+    "Data de Inclusão no PNCP": "27/02/2026"
+  },
+  {
+    "id": 1544,
+    "Nome": "PREFEITURA MUNICIPAL DE SALOA",
+    "CNPJ": "11.455.714/0001-00",
+    "Data de Inclusão no PNCP": "19/03/2026"
+  },
+  {
+    "id": 1621,
+    "Nome": "WESLEY BEZERRA FARIAS 08744156324",
+    "CNPJ": "42.148.615/0001-00",
+    "Data de Inclusão no PNCP": "25/03/2026"
+  },
+  {
+    "id": 1785,
+    "Nome": "CEDRIQUE GUEDES PEREIRA / GUEDES SOLUTIONS",
+    "CNPJ": "38.084.631/0001-09",
+    "Data de Inclusão no PNCP": "09/04/2026"
+  },
+  {
+    "id": 2015,
+    "Nome": "FENIX.COM CONTEUDO E TECNOLOGIA LTDA",
+    "CNPJ": "01.141.809/0001-04",
+    "Data de Inclusão no PNCP": "04/05/2026"
+  },
+  {
+    "id": 2164,
+    "Nome": "PAGE CREDENCIA",
+    "CNPJ": "12.904.312/0001-09",
+    "Data de Inclusão no PNCP": "15/05/2026"
+  },
+  {
+    "id": 2462,
+    "Nome": "PUBLIDOCS TECNOLOGIA PUBLICACAO E SISTEMAS LTDA / PUBLIDOCS",
+    "CNPJ": "64.063.520/0001-26",
+    "Data de Inclusão no PNCP": "09/06/2026"
+  },
+  {
+    "id": 2522,
+    "Nome": "MP ASSESSORIA E TECNOLOGIA LTDA",
+    "CNPJ": "64.265.470/0001-60",
+    "Data de Inclusão no PNCP": "15/06/2026"
+  },
+  {
+    "id": 2943,
+    "Nome": "49.711.315 DANILO DA SILVA ALVES / SATOR ASSESSORIA CONTÁBIL",
+    "CNPJ": "49.711.315/0001-36",
+    "Data de Inclusão no PNCP": "13/07/2026"
+  }
+]
+
+[
+  {
+    "Categoria": "Fonte oficial nacional",
+    "Site/Plataforma": "PNCP",
+    "URL": "https://pncp.gov.br/",
+    "Natureza": "Oficial / Governo Federal",
+    "Cobertura declarada/observada": "Nacional — União, Estados, DF e Municípios sob a Lei 14.133",
+    "Monitoramento/alertas": "Publicação centralizada; APIs/dados abertos",
+    "Dados/recursos relevantes": "PCA, editais, anexos, atas, contratos, termos aditivos e demais atos previstos na Lei 14.133",
+    "Integração/Origem": "Base nacional estruturante",
+    "Uso no agente": "FONTE PRIMÁRIA — coleta diária e reconciliação",
+    "Fonte de verificação": "https://www.gov.br/pncp/pt-br/pncp/perguntas-e-respostas",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Fonte primária",
+    "__1": "Site oficial que publica/centraliza a contratação ou ato governamental.",
+    "Stack tecnológico publicamente identificável": "API REST / dados abertos; documentação OpenAPI/Swagger (API Compras.gov.br é separada)",
+    "Nível de evidência do stack": "Confirmado publicamente",
+    "API/Integração técnica observável": "APIs e dados abertos; endpoints para contratações, itens, ARP, contratos, fornecedores",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Fonte oficial PNCP + Manual/API oficial",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial nacional",
+    "Site/Plataforma": "Compras.gov.br",
+    "URL": "https://www.gov.br/compras/",
+    "Natureza": "Oficial / Governo Federal",
+    "Cobertura declarada/observada": "Federal + órgãos/entidades que utilizam o sistema",
+    "Monitoramento/alertas": "Pesquisa e acompanhamento de compras",
+    "Dados/recursos relevantes": "Pregão, dispensa, contratos, fornecedores e dados de compras",
+    "Integração/Origem": "Sistema federal de compras; integrado ao ecossistema de dados públicos",
+    "Uso no agente": "FONTE PRIMÁRIA + validação de origem",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Fonte secundária",
+    "__1": "Plataforma de monitoramento/curadoria usada para descoberta, alerta ou benchmarking.",
+    "Stack tecnológico publicamente identificável": "APIs REST / OpenAPI (Swagger UI), CATMAT/CATSER, módulos de pesquisa de preços e contratações",
+    "Nível de evidência do stack": "Confirmado publicamente",
+    "API/Integração técnica observável": "API pública documentada; catálogo, pesquisa de preços, contratações, ARP, contratos, fornecedores",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Fonte oficial de dados abertos Compras.gov.br",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "Licitações-e (Banco do Brasil)",
+    "URL": "https://www.licitacoes-e.com.br/",
+    "Natureza": "Plataforma eletrônica",
+    "Cobertura declarada/observada": "Nacional; utilizada por diversos órgãos",
+    "Monitoramento/alertas": "Acesso e acompanhamento de licitações na plataforma",
+    "Dados/recursos relevantes": "Editais, sessões, lotes e resultados, conforme o processo",
+    "Integração/Origem": "Listada pelo Governo Federal entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Plataforma de disputa",
+    "__1": "Sistema eletrônico em que o certame pode ocorrer; pode ser origem do edital.",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web de licitação; integração/consulta conforme processos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "BLL Compras",
+    "URL": "https://bll.org.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional; a própria plataforma declara presença em 100% do território nacional",
+    "Monitoramento/alertas": "Busca e acompanhamento de processos; modalidades diversas",
+    "Dados/recursos relevantes": "Pregão, concorrência, leilão, dispensa, inexigibilidade, credenciamento e seleção pública",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://bll.org.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Cobertura declarada",
+    "__1": "Quando a plataforma afirma quantitativo/cobertura, mantivemos como declaração da própria plataforma.",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web; integração com PNCP; disputa e gestão de processos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "BBMNET Licitações",
+    "URL": "https://www.bbmnet.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional; atende órgãos públicos de diversos níveis",
+    "Monitoramento/alertas": "Acompanhamento de licitações; editais acessíveis sem cadastro prévio",
+    "Dados/recursos relevantes": "Editais e sessões; modalidades eletrônicas",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://bbmnet.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Regra do agente",
+    "__1": "Não substituir fonte oficial: usar agregadores para descoberta/cross-check e a fonte oficial para validar.",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web de compras eletrônicas",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "BNC Compras",
+    "URL": "https://bnc.org.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Pregões e outros processos; participação e consulta conforme processo",
+    "Dados/recursos relevantes": "Processos e editais",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/pncp/pt-br/pncp/portais-integrados-ao-pncp-antigo",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Atualização",
+    "__1": "As declarações de cobertura/funcionalidades podem mudar; campo 'Última verificação' registra a checagem.",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Integração com 150+ sistemas de gestão; plataforma web",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Página pública informa integração e recursos, não o framework interno",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "Portal de Compras Públicas",
+    "URL": "https://www.portaldecompraspublicas.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Busca e acompanhamento; processos eletrônicos",
+    "Dados/recursos relevantes": "Pregões, dispensas e outros processos",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "Escopo atual",
+    "__1": "Mapa nacional inicial + principais plataformas e alguns portais estaduais de validação.",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Marketplace/plataforma web; processos, documentos, itens e ranking",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "Licitanet",
+    "URL": "https://licitanet.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional; utilizada por municípios e órgãos estaduais",
+    "Monitoramento/alertas": "Acompanhamento de oportunidades e processos",
+    "Dados/recursos relevantes": "Pregão eletrônico e gestão de contratações",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web de pregão eletrônico e gestão",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "Licitar Digital",
+    "URL": "https://licitardigital.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Processos eletrônicos e acompanhamento",
+    "Dados/recursos relevantes": "Licitações e compras públicas",
+    "Integração/Origem": "Integrada ao PNCP; listada entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/pncp/pt-br/pncp/portais-integrados-ao-pncp-antigo",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Aplicação web; contratos/atas assinados eletronicamente; planos por processo/anual",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Empresa se identifica como Serviços em Tecnologia da Informação Ltda.; stack não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "ComprasBR / SIGA",
+    "URL": "https://comprasbr.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Processos eletrônicos, conforme plataforma",
+    "Dados/recursos relevantes": "Licitações e compras públicas",
+    "Integração/Origem": "Listada pelo Governo Federal como sistema de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web de processos eletrônicos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "Licita Mais Brasil",
+    "URL": "https://licitamaisbrasil.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Processos eletrônicos e acompanhamento",
+    "Dados/recursos relevantes": "Licitações e compras públicas",
+    "Integração/Origem": "Listada pelo Governo Federal entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma web de licitações",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Plataforma de disputa",
+    "Site/Plataforma": "M2A Compras",
+    "URL": "https://m2a.com.br/",
+    "Natureza": "Plataforma privada",
+    "Cobertura declarada/observada": "Nacional / multi-ente",
+    "Monitoramento/alertas": "Processos eletrônicos",
+    "Dados/recursos relevantes": "Licitações e compras públicas",
+    "Integração/Origem": "Listada pelo Governo Federal entre sistemas de compras",
+    "Uso no agente": "FONTE COMPLEMENTAR / origem do certame",
+    "Fonte de verificação": "https://www.gov.br/transferegov/pt-br/sobre/apis-integracao/sistemas-de-compras",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Não divulgado publicamente de forma suficiente para afirmar framework/linguagem",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Plataforma de compras eletrônicas",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Não inferir stack sem evidência técnica pública",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "ConLicitação",
+    "URL": "https://conlicitacao.com.br/",
+    "Natureza": "Privada — monitoramento e inteligência",
+    "Cobertura declarada/observada": "Nacional; declara mais de 6.000 fontes oficiais",
+    "Monitoramento/alertas": "Boletins, banco de dados, monitoramento de chat e alertas",
+    "Dados/recursos relevantes": "Busca por palavra-chave no objeto e edital; resultados; análise de mercado; concorrência",
+    "Integração/Origem": "Declara coleta de sites governamentais, diários oficiais e jornais; 30+ plataformas de chat e mais de 500 portais para monitoramento de chat",
+    "Uso no agente": "FONTE SECUNDÁRIA — útil para cobertura e auditoria cruzada",
+    "Fonte de verificação": "https://conlicitacao.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "WordPress + Elementor/Elementor Pro + JetEngine/JetElements; NitroPack; RD Station; Cloudflare; Google Analytics/GA4; New Relic (detecções públicas BuiltWith para o site)",
+    "Nível de evidência do stack": "Confirmado parcialmente por fingerprint externo",
+    "API/Integração técnica observável": "Monitoramento de >6.000 fontes; IA; robô de lances; banco de dados; boletins",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "BuiltWith + páginas oficiais do produto",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Licitei",
+    "URL": "https://www.licitei.com.br/portais",
+    "Natureza": "Privada — monitoramento/automação",
+    "Cobertura declarada/observada": "Declara monitorar portais estaduais, regionais e do Sistema S; também plataformas nacionais",
+    "Monitoramento/alertas": "Alertas, monitoramento e automação em portais integrados",
+    "Dados/recursos relevantes": "Integrações com ComprasNet, Licitanet, BLL, e-LIC SC, Compras RS, Compras MG, Compras RJ, e-Compras AM, SISLOG e diversos portais do Sistema S",
+    "Integração/Origem": "Lista pública de portais monitorados",
+    "Uso no agente": "FONTE SECUNDÁRIA — mapa de portais e nomes de sistemas",
+    "Fonte de verificação": "https://www.licitei.com.br/portais",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Busca em 45+ portais; IA; robô de lances; monitoramento de chat; gestão de atas/empenhos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Páginas públicas confirmam funcionalidades, não stack",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Radar de Licitação",
+    "URL": "https://radardelicitacao.com.br/",
+    "Natureza": "Privada — monitoramento/curadoria",
+    "Cobertura declarada/observada": "Nacional; página atual declara mais de 4.000 portais e atualização 4x/dia",
+    "Monitoramento/alertas": "Alertas e radar de editais",
+    "Dados/recursos relevantes": "Banco de editais e acompanhamento de oportunidades",
+    "Integração/Origem": "Declara fonte oficial PNCP e múltiplos portais",
+    "Uso no agente": "FONTE SECUNDÁRIA — descoberta e comparação de cobertura",
+    "Fonte de verificação": "https://radardelicitacao.com.br/login",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Python 3.12 + FastAPI + Pydantic; Next.js 15 + React 19 + TypeScript + Tailwind; PostgreSQL + SQLAlchemy; GIN/pg_trgm, BRIN e índices parciais; APScheduler; IA multi-provider; API REST + servidor MCP; Mercado Pago",
+    "Nível de evidência do stack": "Declarado publicamente pelo autor/projeto",
+    "API/Integração técnica observável": "SaaS de coleta/classificação/monitoramento; IA; API; MCP; alertas Telegram/Discord/WhatsApp",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Post público do desenvolvedor descrevendo a arquitetura",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Licita Já",
+    "URL": "https://www.liciteja.com.br/",
+    "Natureza": "Privada — banco de dados/monitoramento",
+    "Cobertura declarada/observada": "Nacional",
+    "Monitoramento/alertas": "Alertas e banco de licitações; possui API para integração",
+    "Dados/recursos relevantes": "Consulta por filtros; API para integração com CRM/BI/automações",
+    "Integração/Origem": "Declara manutenção de banco nacional de licitações",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de API e cobertura",
+    "Fonte de verificação": "https://www.liciteja.com.br/home.php",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Banco nacional; alertas; API para integração com CRM/BI/automações",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "API é confirmada; framework/infra não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "LicitaBrasil",
+    "URL": "https://licita-brasil.com/",
+    "Natureza": "Privada — monitoramento",
+    "Cobertura declarada/observada": "Declara 27 Estados cobertos e 150 mil+ editais monitorados",
+    "Monitoramento/alertas": "Alertas automáticos, favoritos, dashboard e IA",
+    "Dados/recursos relevantes": "Filtros por UF, cidade, órgão, valor e prazo; análise IA",
+    "Integração/Origem": "Declara extração direta de portais oficiais",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de funcionalidades",
+    "Fonte de verificação": "https://licita-brasil.com/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Dashboard; alertas; filtros; IA; WhatsApp; propostas",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma funcionalidades e dados oficiais; stack não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Visão Licita",
+    "URL": "https://www.visaolicita.com.br/",
+    "Natureza": "Privada — agregação e monitoramento",
+    "Cobertura declarada/observada": "Declara monitoramento nacional nos 5.570 municípios",
+    "Monitoramento/alertas": "Alertas, boletins, favoritos e busca avançada",
+    "Dados/recursos relevantes": "Filtro por palavra-chave, estado, município, modalidade, data e valor",
+    "Integração/Origem": "Declara banco de dados nacional e documentos",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de cobertura municipal",
+    "Fonte de verificação": "https://www.visaolicita.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Busca nacional; alertas; boletins; IA; propostas; suporte",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma funcionalidades; stack não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Atlas Público",
+    "URL": "https://licitacoes.atlaspublico.com.br/",
+    "Natureza": "Privada — monitoramento com foco em PNCP",
+    "Cobertura declarada/observada": "Declara cobertura federal, estadual e municipal via PNCP",
+    "Monitoramento/alertas": "Alertas por CNAE/região; e-mail e painel; monitoramento contínuo",
+    "Dados/recursos relevantes": "Filtros por objeto, UF, modalidade e valor; itens e link de origem oficial",
+    "Integração/Origem": "Dados declarados como provenientes do PNCP",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de matching semântico/CNAE",
+    "Fonte de verificação": "https://licitacoes.atlaspublico.com.br/monitoramento/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "PNCP; alertas por CNAE/região; filtros; itens; IA; e-mail",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma produto/fluxo; stack não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "PainelGov",
+    "URL": "https://www.painelgov.com.br/",
+    "Natureza": "Privada — monitoramento com IA",
+    "Cobertura declarada/observada": "Declara monitorar editais diariamente",
+    "Monitoramento/alertas": "Alertas e painel",
+    "Dados/recursos relevantes": "Busca avançada, pipeline e análise de editais com IA",
+    "Integração/Origem": "Declara uso de dados oficiais do PNCP",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de IA",
+    "Fonte de verificação": "https://www.painelgov.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Busca PNCP; alertas; pipeline; checklist com IA; exportação",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma funcionalidades; stack não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Licinexus",
+    "URL": "https://www.licinexus.com.br/monitoramento-de-licitacoes",
+    "Natureza": "Privada — monitoramento com IA",
+    "Cobertura declarada/observada": "Declara ler 33 mil editais/dia do PNCP e monitorar vários portais",
+    "Monitoramento/alertas": "WhatsApp, push, painel e e-mail",
+    "Dados/recursos relevantes": "Matching por CNAE; filtros por objeto, órgão, UF, valor, modalidade e palavra-chave",
+    "Integração/Origem": "Declara integrar PNCP, Comprasnet, Licitações-e e outros",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de matching e múltiplos canais",
+    "Fonte de verificação": "https://www.licinexus.com.br/monitoramento-de-licitacoes",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Modelos próprios de IA; APIs REST com chave X-API-Key; OCR/Reader Full; catálogo CATMAT/CATSER; RAG/LLM conforme produto; stack de backend/frontend não divulgado integralmente",
+    "Nível de evidência do stack": "Confirmado parcialmente; IA/API declaradas publicamente",
+    "API/Integração técnica observável": "33 mil editais/dia declarados; banco de preços; previsor; CNAE matcher; auditor; API; OCR; monitoramento",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Páginas oficiais Licinexus; stack de aplicação não totalmente divulgada",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Edital.net",
+    "URL": "https://edital.net/",
+    "Natureza": "Privada — monitoramento de licitações",
+    "Cobertura declarada/observada": "Declara 5.500+ órgãos no PNCP e monitoramento 24/7",
+    "Monitoramento/alertas": "Alertas e radares por cliente/segmento",
+    "Dados/recursos relevantes": "Filtros e radares independentes; dashboard unificado",
+    "Integração/Origem": "Foco declarado em dados/monitoramento do PNCP",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de radar por perfil",
+    "Fonte de verificação": "https://edital.net/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "PNCP 24/7; radares; alertas e-mail/WhatsApp/Telegram; filtros",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma monitoramento direto do PNCP",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Licitação Alerta",
+    "URL": "https://www.licitacaoalerta.com/",
+    "Natureza": "Privada — alertas",
+    "Cobertura declarada/observada": "Declara cobertura nacional",
+    "Monitoramento/alertas": "Boletins e alertas por WhatsApp; 2 boletins/dia",
+    "Dados/recursos relevantes": "Filtros por palavra-chave, UF e cidade",
+    "Integração/Origem": "Declara varredura do PNCP 2x/dia",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de alertas",
+    "Fonte de verificação": "https://www.licitacaoalerta.com/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Varredura PNCP; boletins; alertas por WhatsApp",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site afirma varredura do PNCP",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "LicitaAI",
+    "URL": "https://www.licita.pro/",
+    "Natureza": "Privada — IA para monitoramento",
+    "Cobertura declarada/observada": "Declara monitorar o PNCP 24h",
+    "Monitoramento/alertas": "Pontuação por perfil e alertas",
+    "Dados/recursos relevantes": "Matching por CNAE e análise de edital com IA",
+    "Integração/Origem": "Declara uso de IA e PNCP como fonte principal",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de scoring/IA",
+    "Fonte de verificação": "https://www.licita.pro/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "IA com Claude declarada; demais framework/infra não divulgados publicamente",
+    "Nível de evidência do stack": "Confirmado parcialmente",
+    "API/Integração técnica observável": "PNCP 24h; score por CNAE; análise de edital; proposta com IA; alertas; API Enterprise",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site declara “IA Claude”; stack web não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Quero Licitação",
+    "URL": "https://querolicitacao.com.br/",
+    "Natureza": "Privada — monitoramento",
+    "Cobertura declarada/observada": "Cobertura nacional via PNCP, conforme página consultada",
+    "Monitoramento/alertas": "E-mail e WhatsApp; alertas em tempo real",
+    "Dados/recursos relevantes": "Filtros por palavras-chave, segmentos, órgãos e regiões; histórico de preços",
+    "Integração/Origem": "Declara alertas quando edital relevante aparece no PNCP",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de alertas e preços",
+    "Fonte de verificação": "https://querolicitacao.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Busca PNCP; histórico de preços; concorrentes; IA; alertas WhatsApp/e-mail; PCA/atas/contratos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Site confirma funcionalidades; stack não",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "Licita Mais (FGE)",
+    "URL": "https://fgelicitamais.com.br/",
+    "Natureza": "Privada — inteligência/assessoria",
+    "Cobertura declarada/observada": "Declara base nacional do PNCP e também outros portais públicos",
+    "Monitoramento/alertas": "Oportunidades em tempo real e consulta por UF/palavra-chave",
+    "Dados/recursos relevantes": "Análise técnica, inteligência de mercado, comparação de preços e concorrência",
+    "Integração/Origem": "Declara uso do PNCP + outros portais públicos",
+    "Uso no agente": "FONTE SECUNDÁRIA — descoberta e análise de mercado",
+    "Fonte de verificação": "https://fgelicitamais.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Monitoramento nacional; análise técnica; preços; concorrência",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Monitoramento/curadoria",
+    "Site/Plataforma": "LiciteGov",
+    "URL": "https://www.licitegov.com.br/",
+    "Natureza": "Privada — monitoramento + preços",
+    "Cobertura declarada/observada": "Declara monitorar PNCP, ComprasGov, BLL, Licitanet e portais estaduais",
+    "Monitoramento/alertas": "Avisos de licitações, monitoramento de chat e robô de lances",
+    "Dados/recursos relevantes": "400M+ preços públicos declarados, 3M+ fornecedores e busca por objeto/UF/período",
+    "Integração/Origem": "Agrega múltiplas fontes públicas e privadas",
+    "Uso no agente": "FONTE SECUNDÁRIA — benchmark de histórico de preços/fornecedores",
+    "Fonte de verificação": "https://www.licitegov.com.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Stack interno não divulgado publicamente em fonte técnica confiável localizada",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Monitoramento de PNCP/ComprasGov/BLL/Licitanet/portais; preços; fornecedores; chat; robô",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Portal de Compras SC",
+    "URL": "https://www.compras.sc.gov.br/",
+    "Natureza": "Oficial / Estado de SC",
+    "Cobertura declarada/observada": "Santa Catarina",
+    "Monitoramento/alertas": "Busca de editais e processos",
+    "Dados/recursos relevantes": "Licitações recentes, fornecedores, legislação e sistemas",
+    "Integração/Origem": "Portal estadual",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de SC",
+    "Fonte de verificação": "https://www.compras.sc.gov.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Licitações, fornecedores, legislação e processos",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Compras RJ / SIGA",
+    "URL": "https://compras.rj.gov.br/",
+    "Natureza": "Oficial / Estado do RJ",
+    "Cobertura declarada/observada": "Rio de Janeiro",
+    "Monitoramento/alertas": "Licitações em andamento, futuras, suspensas e concluídas; PED",
+    "Dados/recursos relevantes": "Dados de compras, fornecedores, preços, contratos e pesquisas",
+    "Integração/Origem": "Portal estadual / SIGA",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de RJ",
+    "Fonte de verificação": "https://compras.rj.gov.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "SIGA; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Licitações, preços, fornecedores, contratos e pesquisas",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "SISLOG Goiás",
+    "URL": "https://sislog.go.gov.br/",
+    "Natureza": "Oficial / Estado de GO",
+    "Cobertura declarada/observada": "Goiás",
+    "Monitoramento/alertas": "Licitações e contratações",
+    "Dados/recursos relevantes": "Licitações, SRP, PCA, contratos e legislação",
+    "Integração/Origem": "Portal estadual",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de GO",
+    "Fonte de verificação": "https://sislog.go.gov.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Licitações, SRP, PCA, contratos, legislação",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Portal de Compras MG",
+    "URL": "https://compras.mg.gov.br/",
+    "Natureza": "Oficial / Estado de MG",
+    "Cobertura declarada/observada": "Minas Gerais",
+    "Monitoramento/alertas": "Consultas de processos e contratações",
+    "Dados/recursos relevantes": "Pregão, concorrência, COTEP, dispensa, inexigibilidade, SRP, PCA",
+    "Integração/Origem": "Portal estadual",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de MG",
+    "Fonte de verificação": "https://compras.mg.gov.br/acesso-a-informacoes/consultas/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Pregão, concorrência, COTEP, dispensa, inexigibilidade, SRP, PCA",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Central de Compras PI",
+    "URL": "https://centraldecompras.sead.pi.gov.br/",
+    "Natureza": "Oficial / Estado do PI",
+    "Cobertura declarada/observada": "Piauí",
+    "Monitoramento/alertas": "Licitações e planejamento",
+    "Dados/recursos relevantes": "PCA, ETP, TR, pesquisa de preços, atas e contratações",
+    "Integração/Origem": "Central de Compras estadual",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de PI",
+    "Fonte de verificação": "https://centraldecompras.sead.pi.gov.br/",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "PCA, ETP, TR, pesquisa de preços, atas e contratações",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Compras PR / PCA-E",
+    "URL": "https://www.planejamento.pr.gov.br/Pagina/PCA-E",
+    "Natureza": "Oficial / Estado do PR",
+    "Cobertura declarada/observada": "Paraná",
+    "Monitoramento/alertas": "Planejamento e compras estaduais",
+    "Dados/recursos relevantes": "PCA-E e informações de compras",
+    "Integração/Origem": "Portal estadual / PCA-E",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de PR",
+    "Fonte de verificação": "https://www.planejamento.pr.gov.br/Pagina/PCA-E",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "PCA-E e informações de compras",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  },
+  {
+    "Categoria": "Fonte oficial estadual",
+    "Site/Plataforma": "Compras Pará",
+    "URL": "https://www.sistemas.pa.gov.br/compraspara/public/licitacao_list.xhtml",
+    "Natureza": "Oficial / Estado do PA",
+    "Cobertura declarada/observada": "Pará",
+    "Monitoramento/alertas": "Busca de processos",
+    "Dados/recursos relevantes": "Processos, órgãos, modalidades, situações, objetos e datas",
+    "Integração/Origem": "Portal estadual",
+    "Uso no agente": "FONTE PRIMÁRIA ESTADUAL — validação de PA",
+    "Fonte de verificação": "https://www.sistemas.pa.gov.br/compraspara/public/licitacao_list.xhtml",
+    "Última verificação": "2026-09-10",
+    "": "",
+    "LEGENDA": "",
+    "__1": "",
+    "Stack tecnológico publicamente identificável": "Sistema estadual; tecnologia interna não divulgada publicamente",
+    "Nível de evidência do stack": "Não confirmado",
+    "API/Integração técnica observável": "Processos, órgãos, modalidades, situações, objetos e datas",
+    "IA/Automação observável": "Declarado/observável nas páginas do produto quando aplicável",
+    "Fonte técnica": "Stack de aplicação não divulgado",
+    "Observação técnica": "Stack interno só é registrado quando há evidência pública; caso contrário, não inferido."
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "justificativa": null,
+    "tipoLogManutencao": 0,
+    "categoriaLogManutencao": 6,
+    "logManutencaoDataInclusao": "2026-09-11T04:08:09",
+    "categoriaLogManutencaoNome": "Documento de Contratação",
+    "usuarioNome": "Compras.gov.br",
+    "itemNumero": null,
+    "documentoTipo": "Mapa de Riscos",
+    "documentoTitulo": "11/2026.pdf",
+    "documentoSequencial": 3,
+    "tipoLogManutencaoNome": "Inclusão"
+  },
+  {
+    "justificativa": null,
+    "tipoLogManutencao": 0,
+    "categoriaLogManutencao": 6,
+    "logManutencaoDataInclusao": "2026-09-11T04:29:11",
+    "categoriaLogManutencaoNome": "Documento de Contratação",
+    "usuarioNome": "Compras.gov.br",
+    "itemNumero": null,
+    "documentoTipo": "Termo de Referência",
+    "documentoTitulo": "95/2026.pdf",
+    "documentoSequencial": 4,
+    "tipoLogManutencaoNome": "Inclusão"
+  },
+  {
+    "justificativa": null,
+    "tipoLogManutencao": 0,
+    "categoriaLogManutencao": 4,
+    "logManutencaoDataInclusao": "2026-09-11T04:01:12",
+    "categoriaLogManutencaoNome": "Item de Contratação",
+    "usuarioNome": "Compras.gov.br",
+    "itemNumero": 4,
+    "documentoTipo": null,
+    "documentoTitulo": null,
+    "documentoSequencial": null,
+    "tipoLogManutencaoNome": "Inclusão"
+  },
+  {
+    "justificativa": null,
+    "tipoLogManutencao": 0,
+    "categoriaLogManutencao": 4,
+    "logManutencaoDataInclusao": "2026-09-11T04:01:18",
+    "categoriaLogManutencaoNome": "Item de Contratação",
+    "usuarioNome": "Compras.gov.br",
+    "itemNumero": 17,
+    "tipoLogManutencaoNome": "Inclusão"
+  },
+  {
+    "justificativa": null,
+    "tipoLogManutencao": 0,
+    "categoriaLogManutencao": 4,
+    "logManutencaoDataInclusao": "2026-09-11T04:01:19",
+    "categoriaLogManutencaoNome": "Item de Contratação",
+    "usuarioNome": "Compras.gov.br",
+    "itemNumero": 16,
+    "tipoLogManutencaoNome": "Inclusão"
+  }
+]

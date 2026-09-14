@@ -1,0 +1,1568 @@
+{
+  "schema_version": 1,
+  "issue": 80,
+  "updated_at": "2026-09-13T20:17:52.779Z",
+  "notes": "Inventário competitivo da issue #80. Stack só com evidência pública citada. Planilha Drive xlsm não foi parseada (MIME não suportado).",
+  "sources": [
+    {
+      "id": "pncp",
+      "source_name": "PNCP",
+      "aliases": [
+        "Portal Nacional de Contratações Públicas"
+      ],
+      "category": "Oficial / Governo Federal",
+      "priority": "P0",
+      "official_url": "https://pncp.gov.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://pncp.gov.br/"
+        },
+        {
+          "role": "docs",
+          "url": "https://pncp.gov.br/api/consulta/swagger-ui/index.html"
+        },
+        {
+          "role": "api",
+          "url": "https://pncp.gov.br/api/consulta/v1/contratacoes/publicacao?dataInicial=20260101&dataFinal=20260107&codigoModalidadeContratacao=6&pagina=1&tamanhoPagina=10"
+        },
+        {
+          "role": "api",
+          "url": "https://pncp.gov.br/api/pncp/v1/modalidades"
+        },
+        {
+          "role": "api",
+          "url": "https://pncp.gov.br/api/pncp/v1/tipos-instrumentos-convocatorios"
+        },
+        {
+          "role": "api",
+          "url": "https://pncp.gov.br/api/pncp/v1/amparos-legais"
+        }
+      ],
+      "features": [
+        "contratações",
+        "itens",
+        "ARP",
+        "contratos",
+        "PCA",
+        "fornecedores"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "CONFIRMADO",
+        "evidence_type": "OFFICIAL_DOCUMENTATION",
+        "evidence_url": "https://pncp.gov.br/api/consulta/swagger-ui/index.html",
+        "evidence_notes": "REST/JSON/OpenAPI. dataInicial=yyyyMMdd; tamanhoPagina>=10. Não afirmar Java/Spring/PostgreSQL/AWS/K8s."
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "API pública confirmada não implica stack interno."
+      },
+      "audit_status": "VERIFIED",
+      "evidence_level": "CONFIRMADO",
+      "http_status": null,
+      "http_final_url": null,
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:11.013Z",
+      "http_error": "fetch failed",
+      "http_classification": "UNKNOWN"
+    },
+    {
+      "id": "compras-gov",
+      "source_name": "Compras.gov.br",
+      "aliases": [
+        "Comprasnet Dados Abertos"
+      ],
+      "category": "Oficial / Governo Federal",
+      "priority": "P0",
+      "official_url": "https://dadosabertos.compras.gov.br/",
+      "historical_urls": [
+        "https://dadosabertos.compras.gov.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://dadosabertos.compras.gov.br/"
+        },
+        {
+          "role": "docs",
+          "url": "https://dadosabertos.compras.gov.br/swagger-ui/index.html"
+        },
+        {
+          "role": "api",
+          "url": "https://dadosabertos.compras.gov.br/modulo-material/4_consultarItemMaterial?codigoItem=261521&pagina=1"
+        }
+      ],
+      "features": [
+        "CATMAT",
+        "CATSER",
+        "contratações",
+        "pesquisa de preços",
+        "ARP",
+        "contratos"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "CONFIRMADO",
+        "evidence_type": "OFFICIAL_DOCUMENTATION",
+        "evidence_url": "https://dadosabertos.compras.gov.br/swagger-ui/index.html",
+        "evidence_notes": "API pública oficial REST/dados abertos. Confirmado o contrato público, não o stack interno do Comprasnet."
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Inventário original misturava 'Confirmado publicamente' com critério PARCIAL. API=CONFIRMADO; stack interno=NAO_CONFIRMADO."
+      },
+      "audit_status": "VERIFIED",
+      "evidence_level": "CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://dadosabertos.compras.gov.br/swagger-ui/index.html",
+      "http_redirect_chain": [
+        {
+          "from": "https://dadosabertos.compras.gov.br/",
+          "status": 302,
+          "to": "https://dadosabertos.compras.gov.br/swagger-ui/index.html"
+        }
+      ],
+      "http_checked_at": "2026-09-13T20:17:12.708Z",
+      "http_error": null,
+      "http_classification": "REDIRECT"
+    },
+    {
+      "id": "licitacoes-e",
+      "source_name": "Licitações-e (Banco do Brasil)",
+      "aliases": [
+        "Licitações-e2"
+      ],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://www.licitacoes-e.com.br/",
+      "historical_urls": [
+        "https://licitacoes-e2.bb.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.licitacoes-e.com.br/"
+        },
+        {
+          "role": "related",
+          "url": "https://licitacoes-e2.bb.com.br/"
+        }
+      ],
+      "features": [
+        "pregão eletrônico",
+        "consulta de processos"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE",
+        "evidence_notes": "Sem OpenAPI público localizado."
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Não inferir stack. WAF pode devolver 403."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.licitacoes-e.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:14.773Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "bll",
+      "source_name": "BLL Compras",
+      "aliases": [
+        "Bolsa de Licitações e Leilões"
+      ],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://bll.org.br/",
+      "historical_urls": [
+        "https://bll.org.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://bll.org.br/"
+        },
+        {
+          "role": "app",
+          "url": "https://bllcompras.com/"
+        }
+      ],
+      "features": [
+        "disputa",
+        "gestão de processos",
+        "integração PNCP declarada em páginas de produto"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Não inferir stack a partir da UI."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://bll.org.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:15.962Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "bbmnet",
+      "source_name": "BBMNET Licitações",
+      "aliases": [
+        "BBM"
+      ],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://bbmnet.com.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://bbmnet.com.br/"
+        }
+      ],
+      "features": [
+        "compras eletrônicas",
+        "acesso sociedade sem cadastro"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "items": [
+          {
+            "name": "WordPress",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_notes": "wp-content no HTML do site institucional — não é o motor de disputa."
+          }
+        ]
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://bbmnet.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:18.102Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "bnc",
+      "source_name": "BNC Compras",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://bnc.org.br/",
+      "historical_urls": [
+        "https://bnc.org.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://bnc.org.br/"
+        }
+      ],
+      "features": [
+        "plataforma web",
+        "integração com sistemas de gestão (claim comercial)"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Página informa integração; não o framework interno."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://bnc.org.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:18.633Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "portal-compras-publicas",
+      "source_name": "Portal de Compras Públicas",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://www.portaldecompraspublicas.com.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.portaldecompraspublicas.com.br/"
+        }
+      ],
+      "features": [
+        "pregão",
+        "documentos",
+        "itens",
+        "ranking"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.portaldecompraspublicas.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:19.055Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitanet",
+      "source_name": "Licitanet",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://licitanet.com.br/",
+      "historical_urls": [
+        "https://www.licitanet.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licitanet.com.br/"
+        }
+      ],
+      "features": [
+        "pregão eletrônico"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "www.* pode devolver 403; apex responde com UA de browser."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 403,
+      "http_final_url": "https://licitanet.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:19.752Z",
+      "http_error": null,
+      "http_classification": "BLOCKED"
+    },
+    {
+      "id": "licitar-digital",
+      "source_name": "Licitar Digital",
+      "aliases": [
+        "AMM Licita"
+      ],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://licitar.digital/fornecedor/",
+      "historical_urls": [
+        "https://licitar.digital/fornecedor/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licitar.digital/fornecedor/"
+        }
+      ],
+      "features": [
+        "pregão",
+        "contratos/atas",
+        "planos"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://licitar.digital/fornecedor/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:20.952Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "comprasbr",
+      "source_name": "ComprasBR",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://comprasbr.com.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://comprasbr.com.br/"
+        }
+      ],
+      "features": [
+        "pregão eletrônico",
+        "dispensa eletrônica"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "identity_notes": "Não é o SIGA-RJ. Produto da AZ Tecnologia.",
+      "audit_status": "CONFLICT",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://comprasbr.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:21.487Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licita-mais-brasil",
+      "source_name": "Licita Mais Brasil",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://licitamaisbrasil.com.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licitamaisbrasil.com.br/"
+        }
+      ],
+      "features": [
+        "disputa eletrônica"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "identity_notes": "Não fundir com Licita Mais (FGE).",
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://licitamaisbrasil.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:22.398Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "m2a",
+      "source_name": "M2A Compras",
+      "aliases": [],
+      "category": "Plataforma de disputa",
+      "priority": "P1",
+      "official_url": "https://compras.m2atecnologia.com.br/",
+      "historical_urls": [
+        "https://www.m2acompras.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://compras.m2atecnologia.com.br/"
+        }
+      ],
+      "features": [
+        "processos",
+        "pesquisa de preços",
+        "contratos"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Página declara sistema web. m2acompras.com.br falhou em GET anterior."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://compras.m2atecnologia.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:23.070Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "conlicitacao",
+      "source_name": "ConLicitação",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P1",
+      "official_url": "https://conlicitacao.com.br/",
+      "historical_urls": [
+        "https://www.conlicitacao.com.br/",
+        "https://builtwith.com/fr/conlicitacao.com.br"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://conlicitacao.com.br/"
+        }
+      ],
+      "features": [
+        "monitoramento",
+        "IA (claim)",
+        "robô de lances (claim)",
+        "boletins"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "evidence_notes": "Fingerprints do site de marketing, não do backend de coleta. Conjunto BuiltWith não aceito como bloco único.",
+        "items": [
+          {
+            "name": "WordPress",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_url": "https://conlicitacao.com.br/",
+            "evidence_notes": "wp-content no HTML 2026-09-13"
+          },
+          {
+            "name": "Elementor",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_url": "https://conlicitacao.com.br/",
+            "evidence_notes": "string elementor no HTML 2026-09-13"
+          },
+          {
+            "name": "NitroPack",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_url": "https://conlicitacao.com.br/",
+            "evidence_notes": "script nitro no HTML 2026-09-13"
+          },
+          {
+            "name": "Cloudflare",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_url": "https://conlicitacao.com.br/",
+            "evidence_notes": "string cloudflare no HTML; CDN ≠ stack de app"
+          },
+          {
+            "name": "gtag/GA",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_url": "https://conlicitacao.com.br/",
+            "evidence_notes": "gtag no HTML; GA4 específico NÃO isolado"
+          },
+          {
+            "name": "JetEngine",
+            "evidence_level": "NAO_CONFIRMADO",
+            "evidence_type": "THIRD_PARTY_SOURCE",
+            "evidence_notes": "Não reproduzido no HTML desta auditoria."
+          },
+          {
+            "name": "RD Station",
+            "evidence_level": "NAO_CONFIRMADO",
+            "evidence_type": "THIRD_PARTY_SOURCE",
+            "evidence_notes": "Não reproduzido no HTML desta auditoria."
+          },
+          {
+            "name": "New Relic",
+            "evidence_level": "NAO_CONFIRMADO",
+            "evidence_type": "THIRD_PARTY_SOURCE",
+            "evidence_notes": "Não reproduzido no HTML desta auditoria."
+          }
+        ]
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://conlicitacao.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:23.556Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitei",
+      "source_name": "Licitei",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P1",
+      "official_url": "https://www.licitei.com.br/",
+      "historical_urls": [
+        "https://www.licitei.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.licitei.com.br/"
+        },
+        {
+          "role": "docs",
+          "url": "https://www.licitei.com.br/portais"
+        }
+      ],
+      "features": [
+        "busca em portais",
+        "IA (claim)",
+        "robô de lances (claim)",
+        "monitoramento de chat"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "items": [
+          {
+            "name": "Next.js (marketing)",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "TECHNICAL_FINGERPRINT",
+            "evidence_notes": "/_next/static no HTML do site. Não prova stack de coleta."
+          }
+        ]
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://www.licitei.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:24.522Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "radar-de-licitacao",
+      "source_name": "Radar de Licitação",
+      "aliases": [
+        "Radar de Licitações"
+      ],
+      "category": "Monitoramento/curadoria",
+      "priority": "P1",
+      "official_url": "[DADO AUSENTE]",
+      "historical_urls": [
+        "https://pt.linkedin.com/posts/paulo-serrano_consultas-lentas-em-grandes-bases-de-dados-activity-7489991175068733441-VdH9"
+      ],
+      "urls": [
+        {
+          "role": "evidence",
+          "url": "https://pt.linkedin.com/posts/paulo-serrano_consultas-lentas-em-grandes-bases-de-dados-activity-7489991175068733441-VdH9"
+        },
+        {
+          "role": "related",
+          "url": "https://pt.linkedin.com/posts/gilbertojrr_python-fastapi-nextjs-activity-7495456270603341825-D7Wy"
+        }
+      ],
+      "features": [
+        "coleta",
+        "classificação",
+        "alertas",
+        "API (declarada em posts)",
+        "MCP (declarado em posts)"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "PARCIAL",
+        "evidence_type": "FIRST_PARTY_DECLARATION",
+        "evidence_notes": "Posts descrevem API REST + MCP. Endpoint público não exercitado nesta auditoria."
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "evidence_notes": "Claims históricas preservadas. Corpo do post Paulo Serrano não extraído. Texto de arquitetura idêntico aparece no post de Gilberto J. (Radar de Licitações). Não fundir entidades. REVALIDATE autor.",
+        "historical_claims": [
+          "Python 3.12",
+          "FastAPI",
+          "Pydantic",
+          "Next.js 15",
+          "React 19",
+          "TypeScript",
+          "Tailwind",
+          "PostgreSQL",
+          "SQLAlchemy",
+          "GIN/pg_trgm",
+          "BRIN",
+          "APScheduler",
+          "MCP"
+        ],
+        "items": []
+      },
+      "identity_notes": "Radar de Licitação (inventário) vs Radar de Licitações (Gilberto J.). Não fundir.",
+      "audit_status": "REVALIDATE",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://pt.linkedin.com/posts/paulo-serrano_consultas-lentas-em-grandes-bases-de-dados-activity-7489991175068733441-VdH9",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:25.410Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licita-ja",
+      "source_name": "Licita Já",
+      "aliases": [
+        "LiciteJá"
+      ],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://www.liciteja.com.br/home.php",
+      "historical_urls": [
+        "https://www.liciteja.com.br/home.php"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.liciteja.com.br/home.php"
+        }
+      ],
+      "features": [
+        "banco nacional",
+        "alertas",
+        "API para CRM (claim)"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "PARCIAL",
+        "evidence_type": "FIRST_PARTY_DECLARATION",
+        "evidence_notes": "API mencionada em página; contrato/OpenAPI não localizado."
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.liciteja.com.br/home.php",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:27.577Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitabrasil",
+      "source_name": "LicitaBrasil",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://licita-brasil.com/",
+      "historical_urls": [
+        "https://licita-brasil.com/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licita-brasil.com/"
+        }
+      ],
+      "features": [
+        "dashboard",
+        "alertas",
+        "IA (claim)",
+        "WhatsApp",
+        "propostas"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://licita-brasil.com/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:28.495Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "visao-licita",
+      "source_name": "Visão Licita",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://www.visaolicita.com.br/",
+      "historical_urls": [
+        "https://www.visaolicita.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.visaolicita.com.br/"
+        }
+      ],
+      "features": [
+        "busca nacional",
+        "alertas",
+        "IA (claim)",
+        "propostas"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.visaolicita.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:30.086Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "atlas-publico",
+      "source_name": "Atlas Público",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://licitacoes.atlaspublico.com.br/monitoramento/",
+      "historical_urls": [
+        "https://licitacoes.atlaspublico.com.br/monitoramento/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licitacoes.atlaspublico.com.br/monitoramento/"
+        }
+      ],
+      "features": [
+        "PNCP",
+        "alertas CNAE/região",
+        "IA (claim)"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://licitacoes.atlaspublico.com.br/monitoramento/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:30.615Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "painelgov",
+      "source_name": "PainelGov",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://www.painelgov.com.br/",
+      "historical_urls": [
+        "https://www.painelgov.com.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.painelgov.com.br/"
+        }
+      ],
+      "features": [
+        "busca PNCP",
+        "alertas",
+        "checklist IA (claim)"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.painelgov.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:31.236Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licinexus",
+      "source_name": "Licinexus",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P1",
+      "official_url": "https://www.licinexus.com.br/",
+      "historical_urls": [
+        "https://www.licinexus.com.br/api/explorar"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.licinexus.com.br/"
+        },
+        {
+          "role": "docs",
+          "url": "https://www.licinexus.com.br/api/explorar"
+        },
+        {
+          "role": "legal",
+          "url": "https://www.licinexus.com.br/termos-uso"
+        }
+      ],
+      "features": [
+        "monitoramento",
+        "modelos de IA próprios",
+        "OCR/Reader Full (claim)",
+        "CATMAT/CATSER",
+        "API de modelos"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "PARCIAL",
+        "evidence_type": "FIRST_PARTY_DECLARATION",
+        "evidence_url": "https://www.licinexus.com.br/termos-uso",
+        "evidence_notes": "Termos declaram APIs próprias dos modelos. /api/explorar existe (200) mas o HTML obtido foi landing, não spec OpenAPI. X-API-Key NÃO reproduzido nesta auditoria."
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "evidence_url": "https://www.licinexus.com.br/termos-uso",
+        "evidence_notes": "Declaração first-party nos Termos v2026-08-23. Não extrapolar além do texto.",
+        "items": [
+          {
+            "name": "PostgreSQL (AWS RDS sa-east-1)",
+            "evidence_level": "CONFIRMADO",
+            "evidence_type": "FIRST_PARTY_DECLARATION",
+            "evidence_url": "https://www.licinexus.com.br/termos-uso"
+          },
+          {
+            "name": "AWS EC2 + VPC",
+            "evidence_level": "CONFIRMADO",
+            "evidence_type": "FIRST_PARTY_DECLARATION",
+            "evidence_url": "https://www.licinexus.com.br/termos-uso"
+          },
+          {
+            "name": "AWS Cognito / S3 / SES",
+            "evidence_level": "CONFIRMADO",
+            "evidence_type": "FIRST_PARTY_DECLARATION",
+            "evidence_url": "https://www.licinexus.com.br/termos-uso"
+          },
+          {
+            "name": "bcrypt (hash de senha)",
+            "evidence_level": "CONFIRMADO",
+            "evidence_type": "FIRST_PARTY_DECLARATION",
+            "evidence_url": "https://www.licinexus.com.br/termos-uso"
+          },
+          {
+            "name": "X-API-Key",
+            "evidence_level": "NAO_CONFIRMADO",
+            "evidence_type": "INFERENCE",
+            "evidence_notes": "Citado no inventário original; não encontrado no HTML de /api/explorar."
+          }
+        ]
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://www.licinexus.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:32.857Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "edital-net",
+      "source_name": "Edital.net",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://edital.net/precos",
+      "historical_urls": [
+        "https://edital.net/precos"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://edital.net/precos"
+        }
+      ],
+      "features": [
+        "PNCP 24/7 (claim)",
+        "alertas e-mail/WhatsApp/Telegram"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://edital.net/precos",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:34.071Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitacao-alerta",
+      "source_name": "Licitação Alerta",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://www.licitacaoalerta.com/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.licitacaoalerta.com/"
+        }
+      ],
+      "features": [
+        "varredura PNCP (claim)",
+        "boletins WhatsApp"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.licitacaoalerta.com/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:35.039Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitaai",
+      "source_name": "LicitaAI",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P1",
+      "official_url": "https://www.licita.pro/",
+      "historical_urls": [
+        "https://www.licita.pro/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.licita.pro/"
+        }
+      ],
+      "features": [
+        "PNCP 24h (claim)",
+        "score CNAE",
+        "análise de edital",
+        "proposta com IA",
+        "API Enterprise (claim)"
+      ],
+      "api": {
+        "present": true,
+        "evidence_level": "PARCIAL",
+        "evidence_type": "FIRST_PARTY_DECLARATION",
+        "evidence_notes": "API Enterprise mencionada; spec não exercitada."
+      },
+      "stack": {
+        "evidence_level": "PARCIAL",
+        "items": [
+          {
+            "name": "IA Claude (declarada)",
+            "evidence_level": "PARCIAL",
+            "evidence_type": "FIRST_PARTY_DECLARATION",
+            "evidence_url": "https://www.licita.pro/",
+            "evidence_notes": "string 'claude' no HTML. Não é stack web/backend."
+          }
+        ],
+        "evidence_notes": "Separar uso de IA declarado de framework/banco/cloud — estes NÃO_CONFIRMADO."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "PARCIAL",
+      "http_status": 200,
+      "http_final_url": "https://www.licita.pro/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:36.455Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "quero-licitacao",
+      "source_name": "Quero Licitação",
+      "aliases": [],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://querolicitacao.com.br/planos",
+      "historical_urls": [
+        "https://querolicitacao.com.br/planos"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://querolicitacao.com.br/planos"
+        }
+      ],
+      "features": [
+        "busca PNCP",
+        "histórico de preços",
+        "IA (claim)",
+        "alertas"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://querolicitacao.com.br/planos",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:41.043Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licita-mais-fge",
+      "source_name": "Licita Mais (FGE)",
+      "aliases": [
+        "FGE Licitações"
+      ],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://fgelicitamais.com.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://fgelicitamais.com.br/"
+        }
+      ],
+      "features": [
+        "consultoria",
+        "análise técnica"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "identity_notes": "Consultoria. Não é Licita Mais Brasil.",
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://fgelicitamais.com.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:41.979Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "licitagov",
+      "source_name": "LicitaGov",
+      "aliases": [
+        "LiciteGov"
+      ],
+      "category": "Monitoramento/curadoria",
+      "priority": "P2",
+      "official_url": "https://licitagov.org/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://licitagov.org/"
+        }
+      ],
+      "features": [
+        "alertas",
+        "monitoramento PNCP/Compras.gov (claim)"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "identity_notes": "Inventário dizia LiciteGov. Site público é LicitaGov (Codecortex). Nome não bate 1:1.",
+      "audit_status": "CONFLICT",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://licitagov.org/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:43.336Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-sc",
+      "source_name": "Portal de Compras SC",
+      "aliases": [],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://compras.sc.gov.br/",
+      "historical_urls": [
+        "https://www.portaldecompras.sc.gov.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://compras.sc.gov.br/"
+        }
+      ],
+      "features": [
+        "licitações estaduais"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://compras.sc.gov.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:43.784Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-rj-siga",
+      "source_name": "Compras RJ / SIGA",
+      "aliases": [
+        "SIGA"
+      ],
+      "category": "Fonte oficial estadual",
+      "priority": "P1",
+      "official_url": "https://compras.rj.gov.br/",
+      "historical_urls": [
+        "https://www.compras.rj.gov.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://compras.rj.gov.br/"
+        },
+        {
+          "role": "docs",
+          "url": "https://compras.rj.gov.br/Principal/sobreOSiga.action"
+        }
+      ],
+      "features": [
+        "licitações",
+        "preços",
+        "fornecedores",
+        "contratos"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Nome SIGA confirmado na página oficial. Stack de aplicação não divulgado."
+      },
+      "identity_notes": "Não é ComprasBR.",
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://compras.rj.gov.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:44.227Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "sislog-go",
+      "source_name": "SISLOG Goiás",
+      "aliases": [],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://sislog.go.gov.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://sislog.go.gov.br/"
+        }
+      ],
+      "features": [
+        "licitações",
+        "SRP",
+        "PCA",
+        "contratos"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://sislog.go.gov.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:45.084Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-mg",
+      "source_name": "Portal de Compras MG",
+      "aliases": [
+        "Compras MG"
+      ],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://compras.mg.gov.br/",
+      "historical_urls": [
+        "https://www.compras.mg.gov.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://compras.mg.gov.br/"
+        }
+      ],
+      "features": [
+        "pregão",
+        "dispensa",
+        "SRP",
+        "PCA"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://compras.mg.gov.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:45.754Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-pi",
+      "source_name": "Central de Compras PI",
+      "aliases": [],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://centraldecompras.sead.pi.gov.br/licitacoes/",
+      "historical_urls": [
+        "https://www.centraldecompras.pi.gov.br/"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://centraldecompras.sead.pi.gov.br/licitacoes/"
+        }
+      ],
+      "features": [
+        "PCA",
+        "ETP",
+        "pesquisa de preços",
+        "atas"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://centraldecompras.sead.pi.gov.br/licitacoes/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:47.213Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-pr-pca-e",
+      "source_name": "Compras PR / PCA-E",
+      "aliases": [
+        "PCA-E"
+      ],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://www.planejamento.pr.gov.br/Pagina/PCA-E",
+      "historical_urls": [
+        "https://www.comprasparana.pr.gov.br/",
+        "https://www.administracao.pr.gov.br/Compras"
+      ],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.planejamento.pr.gov.br/Pagina/PCA-E"
+        },
+        {
+          "role": "related",
+          "url": "https://www.administracao.pr.gov.br/Compras"
+        }
+      ],
+      "features": [
+        "PCA-E",
+        "contratações estaduais"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": [],
+        "evidence_notes": "Página do PCA-E menciona consolidado em BI. comprasparana.pr.gov.br falhou em GET anterior."
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.planejamento.pr.gov.br/Pagina/PCA-E",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:48.228Z",
+      "http_error": null,
+      "http_classification": "OK"
+    },
+    {
+      "id": "compras-pa",
+      "source_name": "Compras Pará",
+      "aliases": [],
+      "category": "Fonte oficial estadual",
+      "priority": "P2",
+      "official_url": "https://www.compraspara.pa.gov.br/",
+      "historical_urls": [],
+      "urls": [
+        {
+          "role": "official",
+          "url": "https://www.compraspara.pa.gov.br/"
+        }
+      ],
+      "features": [
+        "processos",
+        "órgãos",
+        "modalidades"
+      ],
+      "api": {
+        "present": false,
+        "evidence_level": "NAO_CONFIRMADO",
+        "evidence_type": "INFERENCE"
+      },
+      "stack": {
+        "evidence_level": "NAO_CONFIRMADO",
+        "items": []
+      },
+      "audit_status": "PARTIAL",
+      "evidence_level": "NAO_CONFIRMADO",
+      "http_status": 200,
+      "http_final_url": "https://www.compraspara.pa.gov.br/",
+      "http_redirect_chain": [],
+      "http_checked_at": "2026-09-13T20:17:50.672Z",
+      "http_error": null,
+      "http_classification": "OK"
+    }
+  ]
+}

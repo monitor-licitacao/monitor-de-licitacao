@@ -1,0 +1,29 @@
+[
+  {
+    "id": 6,
+    "nome": "Pregão - Eletrônico",
+    "descricao": "Modalidade obrigatória para aquisição de bens e serviços comuns",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-01-15T10:00:00",
+    "statusAtivo": true,
+    "irp": true
+  },
+  {
+    "id": 8,
+    "nome": "Dispensa de Licitação",
+    "descricao": "Contratação direta por dispensa",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-01-15T10:00:00",
+    "statusAtivo": true,
+    "irp": false
+  },
+  {
+    "id": 14,
+    "nome": "Credenciamento",
+    "descricao": "Procedimento auxiliar de credenciamento",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2025-06-01T12:00:00",
+    "statusAtivo": false,
+    "irp": false
+  }
+]

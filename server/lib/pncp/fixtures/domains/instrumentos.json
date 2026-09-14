@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nome": "Edital",
+    "descricao": "Instrumento convocatório edital",
+    "obrigatoriedadeDataAberturaPropostaNome": "Obrigatória",
+    "obrigatoriedadeDataEncerramentoPropostaNome": "Obrigatória",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-01-15T10:00:00",
+    "statusAtivo": true
+  },
+  {
+    "id": 2,
+    "nome": "Aviso de Contratação Direta",
+    "descricao": "Aviso para contratação direta",
+    "obrigatoriedadeDataAberturaPropostaNome": "Facultativa",
+    "obrigatoriedadeDataEncerramentoPropostaNome": "Obrigatória",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2024-01-15T10:00:00",
+    "statusAtivo": true
+  },
+  {
+    "id": 5,
+    "nome": "Não se Aplica",
+    "descricao": "Instrumento não aplicável",
+    "obrigatoriedadeDataAberturaPropostaNome": "Não se aplica",
+    "obrigatoriedadeDataEncerramentoPropostaNome": "Não se aplica",
+    "dataInclusao": "2021-04-01T00:00:00",
+    "dataAtualizacao": "2023-12-01T08:00:00",
+    "statusAtivo": false
+  }
+]

@@ -7,7 +7,7 @@
         "@modelcontextprotocol/server-linear"
       ],
       "env": {
-        "LINEAR_API_KEY": "lin_api_Xzr25X4w7Vq0nxFubzRNyvqg34dbeCYaoWF38F2A"
+        "LINEAR_API_KEY": ""
       }
     }
   }

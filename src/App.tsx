@@ -183,27 +183,8 @@ export default function App() {
       setScheduler(data.scheduler);
       if (data.editais) setEditais(data.editais);
       showToast('Varredura horária executada com sucesso em todas as 28 prefeituras e portais!');
-    } catch (error) {
-      setScheduler(prev => ({
-        ...prev,
-        lastRunAt: new Date().toISOString(),
-        totalRunsCompleted: prev.totalRunsCompleted + 1,
-        logs: [
-          {
-            id: `log-${Date.now()}`,
-            timestamp: new Date().toISOString(),
-            sourceId: 'src-manual-sync',
-            sourceName: 'Todas as Fontes (Varredura Manual)',
-            sourceType: 'API',
-            status: 'SUCCESS',
-            message: 'Varredura concluída. 36 fontes sincronizadas com sucesso.',
-            itemsFound: 0,
-            latencyMs: 142
-          },
-          ...prev.logs
-        ]
-      }));
-      showToast('Coleta sincronizada.', 'info');
+    } catch (error: any) {
+      showToast(error.message || 'Falha ao executar varredura do agendador', 'error');
     } finally {
       setIsTriggering(false);
     }
@@ -212,111 +193,67 @@ export default function App() {
   // Add Source Handler
   const handleAddSource = async (sourceData: Partial<Source>) => {
     try {
-      const res = await fetch('/api/sources', {
+      const res = await apiClient('/api/sources', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sourceData)
       });
-      if (res.ok) {
-        const newSource = await res.json();
-        setSources(prev => [newSource, ...prev]);
-        showToast(`Fonte ${newSource.name} cadastrada com sucesso!`);
-      } else {
-        const localSource: Source = {
-          id: `src-${Date.now()}`,
-          name: sourceData.name || 'Nova Fonte',
-          category: sourceData.category || 'Prefeitura',
-          type: sourceData.type || 'SCRAPER',
-          uf: sourceData.uf || 'RS',
-          city: sourceData.city,
-          endpointOrUrl: sourceData.endpointOrUrl || '',
-          selectorOrParams: sourceData.selectorOrParams,
-          authType: sourceData.authType || 'NONE',
-          status: 'ACTIVE',
-          lastCheckedAt: new Date().toISOString(),
-          latencyMs: 210,
-          successRate: 100,
-          totalCollected: 0,
-          format: sourceData.format || (sourceData.type === 'API' ? 'JSON' : 'HTML'),
-          notes: sourceData.notes
-        };
-        setSources(prev => [localSource, ...prev]);
-        showToast(`Fonte ${localSource.name} adicionada!`);
-      }
-    } catch (error) {
-      showToast('Erro ao cadastrar conector', 'error');
+      await assertOk(res);
+      const newSource = await res.json();
+      setSources(prev => [newSource, ...prev]);
+      showToast(`Fonte ${newSource.name} cadastrada com sucesso!`);
+    } catch (error: any) {
+      showToast(error.message || 'Erro ao cadastrar conector', 'error');
     }
   };
 
   // Test Source Handler
   const handleTestSource = async (source: Source) => {
     try {
-      const res = await fetch(`/api/sources/${source.id}/test`, { method: 'POST' });
-      if (res.ok) {
-        return await res.json();
-      }
-    } catch (e) {
+      const res = await apiClient(`/api/sources/${source.id}/test`, { method: 'POST' });
+      await assertOk(res);
+      return await res.json();
+    } catch (e: any) {
+      showToast(e.message || 'Falha ao testar conector de fonte', 'error');
+      return {
+        success: false,
+        sourceId: source.id,
+        urlTested: source.endpointOrUrl,
+        type: source.type,
+        statusText: e.message || 'Erro de conexão ao testar conector.'
+      };
     }
-    return {
-      success: true,
-      urlTested: source.endpointOrUrl,
-      type: source.type,
-      latencyMs: source.latencyMs,
-      payloadPreview: {
-        httpStatus: 200,
-        detectedItems: 3,
-        sampleTitle: `Licitação ${source.name} - Aquisição de Aparelhos de Ginástica`,
-        ncmCandidate: '9506.91.00',
-        antiBotDetected: false
-      }
-    };
   };
 
   // Save OCR Manual Text Override
   const handleSaveOcrOverride = async (editalId: string, pageNumber: number, text: string) => {
     try {
-      const res = await fetch(`/api/editais/${editalId}/ocr-override`, {
+      const res = await apiClient(`/api/editais/${editalId}/ocr-override`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pageNumber, text })
       });
-      if (res.ok) {
-        const updated = await res.json();
-        setEditais(prev => replaceById(prev, editalId, updated));
-        if (selectedEdital?.id === editalId) setSelectedEdital(updated);
-        showToast(`Correção manual do OCR salva na página ${pageNumber}!`);
-        return;
-      }
-    } catch (e) {
-      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => {
-        const newOcrPages = [...(current.ocrPages || [])];
-        const pageIndex = newOcrPages.findIndex(p => p.pageNumber === pageNumber);
-        if (pageIndex >= 0) {
-          newOcrPages[pageIndex] = { ...newOcrPages[pageIndex], hasManualOverride: true, manualText: text, text };
-        } else {
-          newOcrPages.push({ pageNumber, text, confidenceScore: 100, hasManualOverride: true, manualText: text });
-        }
-        const updated = { ...current, ocrPages: newOcrPages, ocrStatus: 'MANUAL_OVERRIDE' as const };
-        if (selectedEdital?.id === editalId) setSelectedEdital(updated);
-        return updated;
-      }));
-      showToast(`Correção manual do OCR salva localmente na página ${pageNumber}!`);
+      await assertOk(res);
+      const updated = await res.json();
+      setEditais(prev => replaceById(prev, editalId, updated));
+      if (selectedEdital?.id === editalId) setSelectedEdital(updated);
+      showToast(`Correção manual do OCR salva na página ${pageNumber}!`);
+    } catch (e: any) {
+      showToast(e.message || `Erro ao salvar correção manual do OCR na página ${pageNumber}`, 'error');
     }
   };
 
   // Analyze Edital with AI (Golden Rule Context)
   const handleAnalyzeWithAI = async (editalId: string) => {
     try {
-      const res = await fetch(`/api/editais/${editalId}/analyze`, { method: 'POST' });
-      if (res.ok) {
-        const updated = await res.json();
-        setEditais(prev => replaceById(prev, editalId, updated));
-        if (selectedEdital?.id === editalId) setSelectedEdital(updated);
-        showToast('Análise de IA concluída com sucesso!');
-        return;
-      }
-    } catch (e) {
-      showToast('Análise de IA concluída! (Modo Simulado)', 'info');
+      const res = await apiClient(`/api/editais/${editalId}/analyze`, { method: 'POST' });
+      await assertOk(res);
+      const updated = await res.json();
+      setEditais(prev => replaceById(prev, editalId, updated));
+      if (selectedEdital?.id === editalId) setSelectedEdital(updated);
+      showToast('Análise de IA concluída com sucesso!');
+    } catch (e: any) {
+      showToast(e.message || 'Falha na análise com IA do edital.', 'error');
     }
   };
 
@@ -332,29 +269,19 @@ export default function App() {
     }
   ) => {
     try {
-      const res = await fetch(`/api/editais/${editalId}/review`, {
+      const res = await apiClient(`/api/editais/${editalId}/review`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-
-      if (res.ok) {
-        const updated = await res.json();
-        setEditais(prev => replaceById(prev, editalId, updated));
-        showToast('Revisão concluída e Deal encaminhado para o CRM!');
-        setSelectedEditalForReview(null);
-        setActiveTab('editais');
-        return;
-      }
-    } catch (e) {
-      showToast('Revisão registrada localmente.', 'info');
-      setEditais(prev => replaceById<Edital>(prev, editalId, (current) => ({
-        ...current,
-        humanReviewStatus: 'APPROVED',
-        reviewNotes: payload.reviewNotes
-      })));
+      await assertOk(res);
+      const updated = await res.json();
+      setEditais(prev => replaceById(prev, editalId, updated));
+      showToast('Revisão concluída e Deal encaminhado para o CRM!');
       setSelectedEditalForReview(null);
       setActiveTab('editais');
+    } catch (e: any) {
+      showToast(e.message || 'Erro ao persistir revisão humana do edital.', 'error');
     }
   };
 
@@ -562,13 +489,6 @@ export default function App() {
               <EditaisView
                 selectedProcessCodigo={selectedProcessCodigo}
                 onSelectProcessCodigo={handleSelectProcessCodigo}
-                editais={editais}
-                selectedEdital={selectedEdital}
-                onSelectEdital={handleSelectEdital}
-                onSaveOcrOverride={handleSaveOcrOverride}
-                onAnalyzeWithAI={handleAnalyzeWithAI}
-                onNavigateToReview={handleNavigateToReview}
-                onNavigateToTechSpecAI={handleNavigateToTechSpecAI}
               />
             )}
 

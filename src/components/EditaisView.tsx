@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { MuralCardsView } from './mural/MuralCardsView';
 import { ProcessDetailView } from './mural/ProcessDetailView';
-import { Edital } from '../types';
 
 interface EditaisViewProps {
   selectedProcessCodigo?: string | null;
   onSelectProcessCodigo?: (codigo: string | null) => void;
-  // Backward compatibility props
-  editais?: Edital[];
-  selectedEdital?: Edital | null;
-  onSelectEdital?: (edital: Edital | null) => void;
-  onSaveOcrOverride?: (editalId: string, pageNumber: number, text: string) => Promise<void>;
-  onAnalyzeWithAI?: (editalId: string) => Promise<any>;
-  onNavigateToReview?: (edital: Edital) => void;
-  onNavigateToTechSpecAI?: (clauseText: string, edital?: Edital) => void;
 }
 
 /**

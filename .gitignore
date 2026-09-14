@@ -11,3 +11,4 @@ scratch/
 
 .wrangler/
 .claude/
+.agents/mcp_config.json

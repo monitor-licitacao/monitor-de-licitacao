@@ -158,6 +158,7 @@ export function grupoFilterLabel(
 type FacetChip = { key: string; label: string; count: number };
 
 interface ItemCardProps {
+  key?: any;
   item: ContratacaoItemRico;
   expanded: boolean;
   onToggle: () => void;
@@ -329,6 +330,7 @@ function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
 }
 
 interface GrupoSelectCardProps {
+  key?: any;
   grupo: ContratacaoGrupo;
   selected: boolean;
   onSelect: () => void;

@@ -59,7 +59,7 @@ Este documento define os princípios inegociáveis arquiteturais, de segurança 
 ## 8. Higiene de Git e Fluxo de Encerramento (Zero Debt)
 * **A Regra**: É proibido encerrar uma sessão de trabalho ou abrir um PR com "Worktree Suja" (arquivos modificados não commitados) ou mensagens de commit genéricas.
 * **Por quê?**: Para evitar a perda de progresso em caso de falhas locais e garantir que a IA (e outros desenvolvedores) entenda o histórico real do que foi implementado.
-* **Guia operacional completo**: Consulte [docs/GIT_WORKFLOW.md](./docs/GIT_WORKFLOW.md) para o passo a passo detalhado de branches, commits e PRs, incluindo o checklist obrigatório antes de cada commit.
+* **Guia operacional completo**: Consulte [docs/git-workflow-commits-e-branches.md](./docs/git-workflow-commits-e-branches.md) para o passo a passo detalhado de branches, commits e PRs, incluindo o checklist obrigatório antes de cada commit.
 
 ### 8.0. Estratégia Anti-Incidente (nunca commitar em `main` por acidente)
 > Origem: incidente real em que `npm run auto-ship` commitou 78 arquivos misturados (refactor + worker Cloudflare + lixo de build/IDE) diretamente em `main`, via `git add .` sem revisão.
@@ -89,7 +89,7 @@ Ao terminar uma tarefa ou o dia de trabalho:
 
 ### 8.4. Deploy Seguro
 - **Estado da Main**: A branch `main` é sagrada e sempre "pronta para deploy".
-- **Migrações e Neon Database**: O banco de dados SaaS (PostgreSQL via Neon) deve usar a técnica de **Database Branching**. Alterações de banco (`drizzle-kit generate`) acompanham a feature branch. Consulte [NEON_RULES.md](./docs/NEON_RULES.md) para políticas de RLS e deploys seguros de esquema.
+- **Migrações e Neon Database**: O banco de dados SaaS (PostgreSQL via Neon) deve usar a técnica de **Database Branching**. Alterações de banco (`drizzle-kit generate`) acompanham a feature branch. Consulte [README.md](./docs/README.md) para políticas de RLS e deploys seguros de esquema.
 
 ## 9. Abstração de Infraestrutura de IA (Managed AI)
 * **A Regra**: A inteligência deve ser nativa e o gerenciamento de tokens centralizado.

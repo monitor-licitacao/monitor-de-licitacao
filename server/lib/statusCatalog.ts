@@ -11,9 +11,62 @@
  * Total: 91 entries
  */
 
+import postgres from 'postgres';
 import { db, isDatabaseConfigured } from '../db/index.js';
 import * as schema from '../db/schema.js';
 import { eq, sql } from 'drizzle-orm';
+
+let statusCatalogSeedPromise: Promise<void> | null = null;
+
+/** Idempotente: garante 91 status (5 famílias) quando DATABASE_URL está setada. */
+export async function ensureStatusCatalogSeeded(): Promise<void> {
+  if (!isDatabaseConfigured) return;
+  if (!statusCatalogSeedPromise) {
+    statusCatalogSeedPromise = runStatusCatalogSeed().catch((err) => {
+      statusCatalogSeedPromise = null;
+      throw err;
+    });
+  }
+  await statusCatalogSeedPromise;
+}
+
+async function runStatusCatalogSeed(): Promise<void> {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) return;
+
+  const sqlClient = postgres(connectionString, { max: 1 });
+  try {
+    await sqlClient`
+      CREATE UNIQUE INDEX IF NOT EXISTS status_catalog_family_code_unique
+      ON status_catalog (family, code)
+    `;
+
+    await sqlClient`
+      DELETE FROM status_catalog
+      WHERE code = 'TEST_CUSTOM_STATUS'
+    `;
+
+    for (const item of INITIAL_STATUS_CATALOG_SEED) {
+      await sqlClient`
+        INSERT INTO status_catalog (family, code, label, description, active)
+        VALUES (
+          ${item.family},
+          ${item.code},
+          ${item.label},
+          ${item.description ?? ''},
+          ${item.active ?? true}
+        )
+        ON CONFLICT (family, code) DO UPDATE SET
+          label = EXCLUDED.label,
+          description = EXCLUDED.description,
+          active = EXCLUDED.active,
+          updated_at = now()
+      `;
+    }
+  } finally {
+    await sqlClient.end();
+  }
+}
 
 export const STATUS_FAMILIES = [
   'ProcessoDeContratacao',
@@ -712,6 +765,7 @@ class StatusCatalogRepository {
   async getAll(filter?: { family?: string; active?: boolean; search?: string }): Promise<StatusCatalogItem[]> {
     if (isDatabaseConfigured) {
       try {
+        await ensureStatusCatalogSeeded();
         let query = db.select().from(schema.statusCatalog);
         const rows = await query;
         if (rows && rows.length > 0) {
@@ -797,6 +851,7 @@ class StatusCatalogRepository {
     const normCode = code.trim().toUpperCase();
     if (isDatabaseConfigured) {
       try {
+        await ensureStatusCatalogSeeded();
         const rows = await db
           .select()
           .from(schema.statusCatalog)

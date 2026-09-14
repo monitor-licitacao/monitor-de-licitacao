@@ -1,0 +1,1080 @@
+Acompanhar Contratação
+
+https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=16036005002242026
+
+URL da Solicitação
+https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-fase-externa/public/v1/compras/16036005002242026/itens?captcha=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.3gAHp3Bhc3NrZXnFA_LcRWNm5ZY6ZeqItzi1zkUKNSctZWsmRJ6ahzRXVvtOiskv34SX8XsgcEgbrfGiMWNzEnY27wqmZ8Gxo5DMWn_VGZcCKzam755MnYTid5H6YdVPRWHoG_OQHEc8afnbKtGDQLQmdVhywIX8CKlvtc8fVsfDXswHD5QK8RanhKk7Tncn_sRP2WJG1K9E7XL5ICuW3Jvb06fdziXoMEcO0zfEeeHXrzqgvd-e23e8g23ISnegHr7Omn5RoAmGePJDlSoRNOL7ioUBfdzTqwqgI_x57UQnpyFYrQabtRSJ6V0ZqBIFDHXTfXltxMcMPYXdY0x9GjJp7S_AndKzgeh64-uUT5QOD9hKEr6G8hU9DUJbsb1-_j1QucukKLtwzsSwHEv8E3SKmeqfh4q5pAoBZfgHbiSpdBBpmAkFanCI3UMTC5OGEgt0L0zFI8kvyVBWdShj6tQZfuNbav1Xe1A9g9Pu7hzNNA4qWvDboGQr3cmnHgLkbQFUkeI05KLNUBgtj7HX-H7c-ROh0wrAlDoiSM-zM90tj-Eg8jrNi2eBX3Hrj5h9PBs7GhqmNvWsGIIXUTg-Ke7DAEdr2vJQV_r9xhHlrumgYO5uYrwoZJeNVUygWpavpPvEDJA0fRYW_HDCBTMF4u8CvOTuT4skEayVAcCurmhmVxzOn_-0JIcGb9-cKZPR2BcMVlOHB64a5N63b-X1qKdhhhH6Dc45ywBKlGYsA3_UZMl4ClH7p8TcmRqYRvFwh_-wfI5Z79pnGzHmqcaIxBgY21eEBkxmJCKV2vHfRINWYN58r-SfGrE1vxK4AnWONrmbyM5DdUo7GOLd58Mess_kdOwdcLX6sTE-i7rdPbQ6qYMaW4qYFaC1D6M6CjQF0xIm9-lXIpOgh42k0I56KSZHelzfqwkbUP-QNcDeDQw6O4IdATiTAvkWM9uh8xM2Y4enI_zI77QOHddQdsLB0I3re1x03_aGtU4E-WlhhdjaOwChL996KzbiVzWmBn3i2oGpuehtOWOW_rF5u1GnGbpaMRImm2k5faFk7X7vkdhXRKiHt2_zNdd8u_F06yu6IkJgMgej-5Q16jOwoPflKxRIfc-CmxOViKn3-cCF02_Oto2zM2twhlVhLP-_mfzte1Zm5kMR3eDZG16D_8Bc1D3KQCWPtFueKoNyUTCJCmb3xtZVl-IhHgR9Tl9ngR9uSAQfAfJ7Dv-wqpLczTCNhYtgsn9Oxu7WzXV_q3gbqjIbG9N4YPHjIP_QJhYbxAAAijkMdJMZyNF3o5O68DVeS2AJBfMc-0lp-sHiMsC__x31Qk1cft6Y44Cbtv12EtFz-b5QrVlByfDBDiBbDNNPGqdzaXRla2V52SRiOGJiZGVkMS05ZDA0LTRhY2UtOTk1Mi1iNjdjZGUwODFhN2KjZXhwzmqm8ZOicGQApWNkYXRh1AAApmNkYXRhMtQAAKJrcqgyODhkZTJlZQ.Rlp86FZiKClA7zDNOLqeqIsVaZu2ZBCTU1GAX6tJ7DU&tamanhoPagina=10&pagina=0
+Método de Solicitação
+GET
+Código de Status
+206 Partial Content
+Endereço Remoto
+189.9.113.48:443
+Política de referenciador
+strict-origin-when-cross-origin
+access-control-allow-headers
+Origin, X-Requested-With, Content-Type, Accept
+access-control-allow-methods
+POST, GET, PUT, OPTIONS, DELETE, PATCH
+access-control-allow-origin
+*
+access-control-expose-headers
+Message-Severity, Message-Summary, Message-Detail, Message-Sticky, Content-Disposition, Pages-Count, Register-Count, Register-Count-Unfiltered, Search-Term, Page, Page-Size
+access-control-max-age
+3600
+cache-control
+no-cache, no-store, max-age=0, must-revalidate
+content-encoding
+gzip
+content-type
+application/json
+date
+Sun, 13 Sep 2026 18:53:14 GMT
+expires
+0
+page
+0
+page-size
+10
+pages-count
+2
+pragma
+no-cache
+register-count
+17
+strict-transport-security
+max-age=15768000
+vary
+origin,access-control-request-method,access-control-request-headers,accept-encoding
+x-content-type-options
+nosniff
+x-frame-options
+DENY
+x-xss-protection
+0
+:authority
+cnetmobile.estaleiro.serpro.gov.br
+:method
+GET
+:path
+/comprasnet-fase-externa/public/v1/compras/16036005002242026/itens?captcha=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.3gAHp3Bhc3NrZXnFA_LcRWNm5ZY6ZeqItzi1zkUKNSctZWsmRJ6ahzRXVvtOiskv34SX8XsgcEgbrfGiMWNzEnY27wqmZ8Gxo5DMWn_VGZcCKzam755MnYTid5H6YdVPRWHoG_OQHEc8afnbKtGDQLQmdVhywIX8CKlvtc8fVsfDXswHD5QK8RanhKk7Tncn_sRP2WJG1K9E7XL5ICuW3Jvb06fdziXoMEcO0zfEeeHXrzqgvd-e23e8g23ISnegHr7Omn5RoAmGePJDlSoRNOL7ioUBfdzTqwqgI_x57UQnpyFYrQabtRSJ6V0ZqBIFDHXTfXltxMcMPYXdY0x9GjJp7S_AndKzgeh64-uUT5QOD9hKEr6G8hU9DUJbsb1-_j1QucukKLtwzsSwHEv8E3SKmeqfh4q5pAoBZfgHbiSpdBBpmAkFanCI3UMTC5OGEgt0L0zFI8kvyVBWdShj6tQZfuNbav1Xe1A9g9Pu7hzNNA4qWvDboGQr3cmnHgLkbQFUkeI05KLNUBgtj7HX-H7c-ROh0wrAlDoiSM-zM90tj-Eg8jrNi2eBX3Hrj5h9PBs7GhqmNvWsGIIXUTg-Ke7DAEdr2vJQV_r9xhHlrumgYO5uYrwoZJeNVUygWpavpPvEDJA0fRYW_HDCBTMF4u8CvOTuT4skEayVAcCurmhmVxzOn_-0JIcGb9-cKZPR2BcMVlOHB64a5N63b-X1qKdhhhH6Dc45ywBKlGYsA3_UZMl4ClH7p8TcmRqYRvFwh_-wfI5Z79pnGzHmqcaIxBgY21eEBkxmJCKV2vHfRINWYN58r-SfGrE1vxK4AnWONrmbyM5DdUo7GOLd58Mess_kdOwdcLX6sTE-i7rdPbQ6qYMaW4qYFaC1D6M6CjQF0xIm9-lXIpOgh42k0I56KSZHelzfqwkbUP-QNcDeDQw6O4IdATiTAvkWM9uh8xM2Y4enI_zI77QOHddQdsLB0I3re1x03_aGtU4E-WlhhdjaOwChL996KzbiVzWmBn3i2oGpuehtOWOW_rF5u1GnGbpaMRImm2k5faFk7X7vkdhXRKiHt2_zNdd8u_F06yu6IkJgMgej-5Q16jOwoPflKxRIfc-CmxOViKn3-cCF02_Oto2zM2twhlVhLP-_mfzte1Zm5kMR3eDZG16D_8Bc1D3KQCWPtFueKoNyUTCJCmb3xtZVl-IhHgR9Tl9ngR9uSAQfAfJ7Dv-wqpLczTCNhYtgsn9Oxu7WzXV_q3gbqjIbG9N4YPHjIP_QJhYbxAAAijkMdJMZyNF3o5O68DVeS2AJBfMc-0lp-sHiMsC__x31Qk1cft6Y44Cbtv12EtFz-b5QrVlByfDBDiBbDNNPGqdzaXRla2V52SRiOGJiZGVkMS05ZDA0LTRhY2UtOTk1Mi1iNjdjZGUwODFhN2KjZXhwzmqm8ZOicGQApWNkYXRh1AAApmNkYXRhMtQAAKJrcqgyODhkZTJlZQ.Rlp86FZiKClA7zDNOLqeqIsVaZu2ZBCTU1GAX6tJ7DU&tamanhoPagina=10&pagina=0
+:scheme
+https
+accept
+application/json, text/plain, */*
+accept-encoding
+gzip, deflate, br, zstd
+accept-language
+pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+cache-control
+no-cache, no-store, max-age=0, must-revalidate
+cookie
+_ga=GA1.1.1686828682.1789321503; _ga_623FPXHZ7K=GS2.1.s1789325554$o2$g1$t1789325582$j32$l0$h0
+expires
+0
+pragma
+no-cache
+priority
+u=1, i
+referer
+https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=16036005002242026
+sec-ch-ua
+"Microsoft Edge";v="153", "Not_A Brand";v="8", "Chromium";v="153"
+sec-ch-ua-mobile
+?0
+sec-ch-ua-platform
+"Windows"
+sec-fetch-dest
+empty
+sec-fetch-mode
+cors
+sec-fetch-site
+same-origin
+user-agent
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0
+x-device-platform
+web
+x-version-number
+6.4.0
+
+captcha
+P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.3gAHp3Bhc3NrZXnFA_LcRWNm5ZY6ZeqItzi1zkUKNSctZWsmRJ6ahzRXVvtOiskv34SX8XsgcEgbrfGiMWNzEnY27wqmZ8Gxo5DMWn_VGZcCKzam755MnYTid5H6YdVPRWHoG_OQHEc8afnbKtGDQLQmdVhywIX8CKlvtc8fVsfDXswHD5QK8RanhKk7Tncn_sRP2WJG1K9E7XL5ICuW3Jvb06fdziXoMEcO0zfEeeHXrzqgvd-e23e8g23ISnegHr7Omn5RoAmGePJDlSoRNOL7ioUBfdzTqwqgI_x57UQnpyFYrQabtRSJ6V0ZqBIFDHXTfXltxMcMPYXdY0x9GjJp7S_AndKzgeh64-uUT5QOD9hKEr6G8hU9DUJbsb1-_j1QucukKLtwzsSwHEv8E3SKmeqfh4q5pAoBZfgHbiSpdBBpmAkFanCI3UMTC5OGEgt0L0zFI8kvyVBWdShj6tQZfuNbav1Xe1A9g9Pu7hzNNA4qWvDboGQr3cmnHgLkbQFUkeI05KLNUBgtj7HX-H7c-ROh0wrAlDoiSM-zM90tj-Eg8jrNi2eBX3Hrj5h9PBs7GhqmNvWsGIIXUTg-Ke7DAEdr2vJQV_r9xhHlrumgYO5uYrwoZJeNVUygWpavpPvEDJA0fRYW_HDCBTMF4u8CvOTuT4skEayVAcCurmhmVxzOn_-0JIcGb9-cKZPR2BcMVlOHB64a5N63b-X1qKdhhhH6Dc45ywBKlGYsA3_UZMl4ClH7p8TcmRqYRvFwh_-wfI5Z79pnGzHmqcaIxBgY21eEBkxmJCKV2vHfRINWYN58r-SfGrE1vxK4AnWONrmbyM5DdUo7GOLd58Mess_kdOwdcLX6sTE-i7rdPbQ6qYMaW4qYFaC1D6M6CjQF0xIm9-lXIpOgh42k0I56KSZHelzfqwkbUP-QNcDeDQw6O4IdATiTAvkWM9uh8xM2Y4enI_zI77QOHddQdsLB0I3re1x03_aGtU4E-WlhhdjaOwChL996KzbiVzWmBn3i2oGpuehtOWOW_rF5u1GnGbpaMRImm2k5faFk7X7vkdhXRKiHt2_zNdd8u_F06yu6IkJgMgej-5Q16jOwoPflKxRIfc-CmxOViKn3-cCF02_Oto2zM2twhlVhLP-_mfzte1Zm5kMR3eDZG16D_8Bc1D3KQCWPtFueKoNyUTCJCmb3xtZVl-IhHgR9Tl9ngR9uSAQfAfJ7Dv-wqpLczTCNhYtgsn9Oxu7WzXV_q3gbqjIbG9N4YPHjIP_QJhYbxAAAijkMdJMZyNF3o5O68DVeS2AJBfMc-0lp-sHiMsC__x31Qk1cft6Y44Cbtv12EtFz-b5QrVlByfDBDiBbDNNPGqdzaXRla2V52SRiOGJiZGVkMS05ZDA0LTRhY2UtOTk1Mi1iNjdjZGUwODFhN2KjZXhwzmqm8ZOicGQApWNkYXRh1AAApmNkYXRhMtQAAKJrcqgyODhkZTJlZQ.Rlp86FZiKClA7zDNOLqeqIsVaZu2ZBCTU1GAX6tJ7DU
+tamanhoPagina
+10
+pagina
+0
+
+[{numero: 1, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…},…]
+0
+: 
+{numero: 1, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Monitor Multiparâmetro"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"1"
+julgHabEncerrada
+: 
+false
+numero
+: 
+1
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+19127.6
+valorEstimadoTotal
+: 
+38255.2
+valorEstimadoUnitario
+: 
+19127.6
+1
+: 
+{numero: 2, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"CUBA USO HOSPITALAR"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"2"
+julgHabEncerrada
+: 
+false
+numero
+: 
+2
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+10
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+59.16
+valorEstimadoTotal
+: 
+591.6
+valorEstimadoUnitario
+: 
+59.16
+2
+: 
+{numero: 3, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Oxímetro Uso Médico"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"3"
+julgHabEncerrada
+: 
+false
+numero
+: 
+3
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+1680
+valorEstimadoTotal
+: 
+3360
+valorEstimadoUnitario
+: 
+1680
+3
+: 
+{numero: 4, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Câmera Vídeo De Segurança"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"4"
+julgHabEncerrada
+: 
+false
+numero
+: 
+4
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+414
+valorEstimadoTotal
+: 
+828
+valorEstimadoUnitario
+: 
+414
+4
+: 
+{numero: 5, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Conjunto Acadêmico Uso Odontológico"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"5"
+julgHabEncerrada
+: 
+false
+numero
+: 
+5
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+2099.9
+valorEstimadoTotal
+: 
+4199.8
+valorEstimadoUnitario
+: 
+2099.9
+5
+: 
+{numero: 6, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Pistola Uso Em Saúde"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"6"
+julgHabEncerrada
+: 
+false
+numero
+: 
+6
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+1266.17
+valorEstimadoTotal
+: 
+2532.34
+valorEstimadoUnitario
+: 
+1266.17
+6
+: 
+{numero: 7, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Maca De Resgate"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"7"
+julgHabEncerrada
+: 
+false
+numero
+: 
+7
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+1899.8
+valorEstimadoTotal
+: 
+3799.6
+valorEstimadoUnitario
+: 
+1899.8
+7
+: 
+{numero: 8, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Chancelador Marca D'Água"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"8"
+julgHabEncerrada
+: 
+false
+numero
+: 
+8
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+305.29
+valorEstimadoTotal
+: 
+610.58
+valorEstimadoUnitario
+: 
+305.29
+8
+: 
+{numero: 9, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Esteira Elétrica"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"9"
+julgHabEncerrada
+: 
+false
+numero
+: 
+9
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+11600
+valorEstimadoTotal
+: 
+23200
+valorEstimadoUnitario
+: 
+11600
+9
+: 
+{numero: 10, tipo: "I", criterioValor: "E", possuiOrcamentoSigiloso: false,…}
+criterioJulgamento
+: 
+"1"
+criterioValor
+: 
+"E"
+descricao
+: 
+"Bicicleta Ergométrica"
+disputaPorValorUnitario
+: 
+true
+exigenciaConteudoNacional
+: 
+false
+fase
+: 
+"AS"
+homologado
+: 
+false
+identificador
+: 
+"10"
+julgHabEncerrada
+: 
+false
+numero
+: 
+10
+numeroSessaoJulgHab
+: 
+1
+participacaoExclusivaMeEppOuEquiparadas
+: 
+true
+possuiOrcamentoSigiloso
+: 
+false
+priorizarAbertura
+: 
+false
+quantidadeSolicitada
+: 
+2
+situacao
+: 
+"1"
+tipo
+: 
+"I"
+tipoItemCatalogo
+: 
+"M"
+tipoTratamentoDiferenciadoMeEpp
+: 
+"1"
+utilizaMargemPreferencia
+: 
+false
+valorEstimado
+: 
+9990
+valorEstimadoTotal
+: 
+19980
+valorEstimadoUnitario
+: 
+9990
+
+[
+    {
+        "numero": 1,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "1",
+        "tipoItemCatalogo": "M",
+        "descricao": "Monitor Multiparâmetro",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 19127.6000,
+        "valorEstimadoUnitario": 19127.6000,
+        "valorEstimadoTotal": 38255.2000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 2,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "2",
+        "tipoItemCatalogo": "M",
+        "descricao": "CUBA USO HOSPITALAR",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 10,
+        "valorEstimado": 59.1600,
+        "valorEstimadoUnitario": 59.1600,
+        "valorEstimadoTotal": 591.6000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 3,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "3",
+        "tipoItemCatalogo": "M",
+        "descricao": "Oxímetro Uso Médico",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 1680.0000,
+        "valorEstimadoUnitario": 1680.0000,
+        "valorEstimadoTotal": 3360.0000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 4,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "4",
+        "tipoItemCatalogo": "M",
+        "descricao": "Câmera Vídeo De Segurança",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 414.0000,
+        "valorEstimadoUnitario": 414.0000,
+        "valorEstimadoTotal": 828.0000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 5,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "5",
+        "tipoItemCatalogo": "M",
+        "descricao": "Conjunto Acadêmico Uso Odontológico",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 2099.9000,
+        "valorEstimadoUnitario": 2099.9000,
+        "valorEstimadoTotal": 4199.8000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 6,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "6",
+        "tipoItemCatalogo": "M",
+        "descricao": "Pistola Uso Em Saúde",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 1266.1700,
+        "valorEstimadoUnitario": 1266.1700,
+        "valorEstimadoTotal": 2532.3400,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 7,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "7",
+        "tipoItemCatalogo": "M",
+        "descricao": "Maca De Resgate",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 1899.8000,
+        "valorEstimadoUnitario": 1899.8000,
+        "valorEstimadoTotal": 3799.6000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 8,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "8",
+        "tipoItemCatalogo": "M",
+        "descricao": "Chancelador Marca D'Água",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 305.2900,
+        "valorEstimadoUnitario": 305.2900,
+        "valorEstimadoTotal": 610.5800,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 9,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "9",
+        "tipoItemCatalogo": "M",
+        "descricao": "Esteira Elétrica",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 11600.0000,
+        "valorEstimadoUnitario": 11600.0000,
+        "valorEstimadoTotal": 23200.0000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    },
+    {
+        "numero": 10,
+        "tipo": "I",
+        "criterioValor": "E",
+        "possuiOrcamentoSigiloso": false,
+        "exigenciaConteudoNacional": false,
+        "identificador": "10",
+        "tipoItemCatalogo": "M",
+        "descricao": "Bicicleta Ergométrica",
+        "criterioJulgamento": "1",
+        "homologado": false,
+        "numeroSessaoJulgHab": 1,
+        "tipoTratamentoDiferenciadoMeEpp": "1",
+        "participacaoExclusivaMeEppOuEquiparadas": true,
+        "utilizaMargemPreferencia": false,
+        "situacao": "1",
+        "fase": "AS",
+        "quantidadeSolicitada": 2,
+        "valorEstimado": 9990.0000,
+        "valorEstimadoUnitario": 9990.0000,
+        "valorEstimadoTotal": 19980.0000,
+        "priorizarAbertura": false,
+        "julgHabEncerrada": false,
+        "disputaPorValorUnitario": true
+    }
+]

@@ -9,6 +9,13 @@ coverage/
 .neon
 scratch/
 
+# Capturas de browser (tokens, cookies). Nunca versionar. Ver #91.
+*.har
+doc/**/*.har
+
 .wrangler/
 .claude/
-.agents/mcp_config.json
+
+# npm é o gerenciador único (Issue #78). Lockfiles do Bun não entram no git.
+bun.lock
+bun.lockb

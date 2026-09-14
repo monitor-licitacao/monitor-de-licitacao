@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, jsonb, boolean, integer, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, timestamp, jsonb, boolean, integer, numeric, uuid, date } from 'drizzle-orm/pg-core';
 
 // Tenants (Empresas Clientes)
 export const tenants = pgTable('tenants', {
@@ -149,6 +149,96 @@ export const statusCatalog = pgTable('status_catalog', {
   label: text('label').notNull(), // Editable label
   description: text('description'), // Editable description
   active: boolean('active').default(true).notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// Tenant portfolio — contratos e atas (Painel Licinexus)
+export const tenantParty = pgTable('tenant_party', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  cnpj: text('cnpj').notNull(),
+  razaoSocial: text('razao_social'),
+  isPrimary: boolean('is_primary').default(false).notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+export const tenantContract = pgTable('tenant_contract', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  tipo: text('tipo').notNull(),
+  origem: text('origem').notNull(),
+  numeroControlePncp: text('numero_controle_pncp'),
+  numeroContratoEmpenho: text('numero_contrato_empenho'),
+  contratacaoId: uuid('contratacao_id'),
+  orgaoCnpj: text('orgao_cnpj').notNull(),
+  orgaoRazaoSocial: text('orgao_razao_social'),
+  ufSigla: text('uf_sigla'),
+  municipioNome: text('municipio_nome'),
+  fornecedorCnpj: text('fornecedor_cnpj').notNull(),
+  fornecedorRazaoSocial: text('fornecedor_razao_social'),
+  objeto: text('objeto'),
+  valorGlobal: numeric('valor_global'),
+  dataVigenciaInicio: date('data_vigencia_inicio'),
+  dataVigenciaFim: date('data_vigencia_fim'),
+  indiceReajuste: text('indice_reajuste'),
+  valorReajustado: numeric('valor_reajustado'),
+  reajustadoEm: timestamp('reajustado_em'),
+  sourceRecordId: uuid('source_record_id'),
+  rawJson: jsonb('raw_json'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+export const tenantContractItem = pgTable('tenant_contract_item', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  tenantContractId: uuid('tenant_contract_id').references(() => tenantContract.id).notNull(),
+  descricao: text('descricao'),
+  quantidade: numeric('quantidade'),
+  unidadeMedida: text('unidade_medida'),
+  unidadeCanonica: text('unidade_canonica'),
+  valorUnitario: numeric('valor_unitario'),
+  valorTotal: numeric('valor_total'),
+  catalogType: text('catalog_type'),
+  catalogoCodigoItem: integer('catalogo_codigo_item'),
+  ordem: integer('ordem').default(0).notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+export const tenantContractOficio = pgTable('tenant_contract_oficio', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  tenantContractId: uuid('tenant_contract_id').references(() => tenantContract.id).notNull(),
+  tipo: text('tipo').notNull(),
+  assunto: text('assunto').notNull(),
+  corpo: text('corpo').notNull(),
+  status: text('status').default('rascunho').notNull(),
+  emailOrgao: text('email_orgao'),
+  emailCliente: text('email_cliente'),
+  enviadoEm: timestamp('enviado_em'),
+  pdfStorageKey: text('pdf_storage_key'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+export const tenantPipelineItem = pgTable('tenant_pipeline_item', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  tenantId: integer('tenant_id').references(() => tenants.id).notNull(),
+  contratacaoId: uuid('contratacao_id'),
+  numeroControlePncp: text('numero_controle_pncp').notNull(),
+  portal: text('portal').default('PNCP').notNull(),
+  orgaoCnpj: text('orgao_cnpj').notNull(),
+  orgaoRazaoSocial: text('orgao_razao_social'),
+  objetoCompra: text('objeto_compra'),
+  modalidadeNome: text('modalidade_nome'),
+  valorTotalEstimado: numeric('valor_total_estimado'),
+  dataAberturaProposta: timestamp('data_abertura_proposta'),
+  dataEncerramentoProposta: timestamp('data_encerramento_proposta'),
+  ufSigla: text('uf_sigla'),
+  status: text('status').default('SELECIONADA').notNull(),
+  vencedor: boolean('vencedor').default(false).notNull(),
+  arquivada: boolean('arquivada').default(false).notNull(),
+  sourceRecordId: uuid('source_record_id'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });

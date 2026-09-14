@@ -140,3 +140,37 @@ export type DiscoverQueryResult = {
   skipped: string[];
   errors: string[];
 };
+
+/** PNCP — documento anexo da compra (/arquivos) */
+export type PncpArquivoDto = {
+  sequencialDocumento: number;
+  titulo: string;
+  tipoDocumentoId?: number;
+  tipoDocumentoNome?: string;
+  tipoDocumentoDescricao?: string;
+  url?: string;
+  uri?: string;
+  statusAtivo?: boolean;
+  dataPublicacaoPncp?: string;
+};
+
+/** PNCP — log de manutenção (/historico) */
+export type PncpHistoricoLogDto = {
+  tipoLogManutencaoNome?: string;
+  tipoLogManutencaoId?: number;
+  categoriaLogManutencaoNome?: string;
+  documentoTipo?: string;
+  documentoTitulo?: string | null;
+  documentoSequencial?: number | null;
+  itemNumero?: number | null;
+  justificativa?: string | null;
+  usuarioNome?: string | null;
+  logManutencaoDataInclusao?: string;
+};
+
+export type SyncPncpDocumentosResult = {
+  ok: boolean;
+  arquivoCount: number;
+  historicoCount: number;
+  error?: string;
+};

@@ -1,0 +1,25 @@
+{
+  "url": "https://pncp.gov.br/api/pncp/v1/orgaos/26963645000113/compras/2025/1/itens/1/resultados",
+  "body": [
+    {
+      "indicadorSubcontratacao": false,
+      "dataInclusao": "2025-03-14T16:49:17",
+      "numeroItem": 1,
+      "niFornecedor": "12500834000145",
+      "dataCancelamento": null,
+      "dataAtualizacao": "2025-03-14T16:49:17",
+      "tipoPessoa": "PJ",
+      "nomeRazaoSocialFornecedor": "JR COMERCIOS E VIDROS LTDA",
+      "valorTotalHomologado": 12400.0,
+      "quantidadeHomologada": 4.0,
+      "valorUnitarioHomologado": 3100.0,
+      "percentualDesconto": 0.0,
+      "dataResultado": "2025-03-14",
+      "numeroControlePNCPCompra": "26963645000113-1-000001/2025",
+      "situacaoCompraItemResultadoId": "1",
+      "situacaoCompraItemResultadoNome": "Informado",
+      "sequencialResultado": 1,
+      "porteFornecedorNome": "ME"
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 import React, { useMemo, useState } from 'react';
-import { ChevronDown, ChevronRight, ChevronUp, Filter, Lock, Tag, TrendingUp } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp,
+  Filter,
+  Layers,
+  Lock,
+  Tag,
+  TrendingUp,
+} from 'lucide-react';
 import type {
   ContratacaoGrupo,
   ContratacaoItemRico,
@@ -113,13 +121,23 @@ function SituacaoBadge({ label }: { label: string | null }) {
   );
 }
 
+/** Nome curto do item para chips de facet e badges — sem descrição PNCP completa. */
+export function getItemDisplayName(item: ContratacaoItemRico): string {
+  const raw =
+    item.nome_comercial?.split('\n')[0]?.trim() ??
+    item.parsed_facets?.nome_comercial?.split('\n')[0]?.trim() ??
+    item.parsed_facets?.tipo?.split('\n')[0]?.trim() ??
+    item.descricao_resumida.split(' tipo:')[0]?.trim() ??
+    item.descricao_resumida;
+  return raw.replace(/:\s*$/, '').trim();
+}
+
 function itemMatchesFacet(item: ContratacaoItemRico, facetKey: string | null): boolean {
   if (!facetKey) return true;
-  const f = item.parsed_facets;
-  if (!f) return false;
-  if (facetKey.startsWith('tipo:')) return f.tipo === facetKey.slice(5);
-  if (facetKey.startsWith('material:')) return f.material === facetKey.slice(9);
-  if (facetKey.startsWith('base:')) return f.base_class === facetKey.slice(5);
+  if (facetKey.startsWith('item:')) {
+    const numero = Number.parseInt(facetKey.slice(5), 10);
+    return item.numero_item === numero;
+  }
   return true;
 }
 
@@ -146,6 +164,18 @@ export function resolveFilteredItens(
   return grupos.find((g) => g.identificador === filter)?.itens ?? [];
 }
 
+export function getAllContratacaoItens(
+  grupos: ContratacaoGrupo[],
+  itensAvulsos: ContratacaoItemRico[],
+): ContratacaoItemRico[] {
+  if (hasStructuredGrupos(grupos)) {
+    return [...grupos.flatMap((g) => g.itens), ...itensAvulsos];
+  }
+  return grupos.flatMap((g) => g.itens).length > 0
+    ? grupos.flatMap((g) => g.itens)
+    : itensAvulsos;
+}
+
 export function grupoFilterLabel(
   filter: GrupoFilter,
   grupos: ContratacaoGrupo[],
@@ -155,21 +185,54 @@ export function grupoFilterLabel(
   return grupos.find((g) => g.identificador === filter)?.descricao ?? filter;
 }
 
+export function parseItemFacetKey(key: string | null | undefined): number | null {
+  if (!key?.startsWith('item:')) return null;
+  const numero = Number.parseInt(key.slice(5), 10);
+  return Number.isFinite(numero) ? numero : null;
+}
+
+export function resolveRegisterPrefillItens(
+  grupos: ContratacaoGrupo[],
+  itensAvulsos: ContratacaoItemRico[],
+  grupoFilter: GrupoFilter = 'ALL',
+  itemFacetKey: string | null = null,
+): ContratacaoItemRico[] {
+  let itens =
+    grupoFilter === 'ALL'
+      ? getAllContratacaoItens(grupos, itensAvulsos)
+      : resolveFilteredItens(grupos, itensAvulsos, grupoFilter);
+  const itemNumero = parseItemFacetKey(itemFacetKey);
+  if (itemNumero != null) {
+    itens = itens.filter((item) => item.numero_item === itemNumero);
+  }
+  return itens;
+}
+
+export type RegisterContratoPrefill = {
+  contratacaoId: string;
+  grupoFilter?: GrupoFilter;
+  itemFacetKey?: string | null;
+};
+
 type FacetChip = { key: string; label: string; count: number };
 
 interface ItemCardProps {
-  key?: any;
   item: ContratacaoItemRico;
   expanded: boolean;
   onToggle: () => void;
   nested?: boolean;
+  motivoAnulacao?: string | null;
 }
 
-function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
-  const titulo =
-    item.nome_comercial ??
-    item.descricao_resumida.split(' tipo:')[0]?.trim() ??
-    item.descricao_resumida;
+function ItemCard({
+  item,
+  expanded,
+  onToggle,
+  nested = false,
+  motivoAnulacao = null,
+}: ItemCardProps) {
+  const displayName = getItemDisplayName(item);
+  const titulo = displayName || item.descricao_resumida;
 
   return (
     <li
@@ -200,10 +263,10 @@ function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
             <div className="flex flex-wrap gap-1.5 mt-2">
               <MeEppBadge label={item.beneficio_me_epp} />
               {item.situacao && <SituacaoBadge label={item.situacao} />}
-              {item.tipo_catalogo && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
-                  <Tag className="w-3 h-3" />
-                  {item.tipo_catalogo}
+              {displayName && (
+                <span className="inline-flex items-center gap-1 max-w-56 px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200 truncate">
+                  <Tag className="w-3 h-3 shrink-0" />
+                  <span className="truncate">{displayName}</span>
                 </span>
               )}
               {item.catalog_match_method === 'PNCP_FACET_ONLY' && (
@@ -249,6 +312,12 @@ function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
             nested ? 'bg-slate-50/40' : ''
           }`}
         >
+          {motivoAnulacao && (
+            <p className="text-xs text-slate-600">
+              <span className="font-semibold text-slate-700">Motivo da anulação:</span>{' '}
+              {motivoAnulacao}
+            </p>
+          )}
           <div>
             <p className="text-[11px] font-semibold text-slate-500 mb-1">Descrição detalhada</p>
             <p className="text-xs text-slate-700 leading-relaxed whitespace-pre-wrap bg-slate-50 rounded-lg p-3 border border-slate-100">
@@ -306,6 +375,9 @@ function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
                     <div>Classe: {item.parsed_facets.base_class}</div>
                   )}
                   {item.parsed_facets.tipo && <div>Tipo: {item.parsed_facets.tipo}</div>}
+                  {item.parsed_facets.variante && (
+                    <div>Variante PNCP: {item.parsed_facets.variante}</div>
+                  )}
                   {item.parsed_facets.material && (
                     <div>Material: {item.parsed_facets.material}</div>
                   )}
@@ -329,216 +401,143 @@ function ItemCard({ item, expanded, onToggle, nested = false }: ItemCardProps) {
   );
 }
 
-interface GrupoSelectCardProps {
-  key?: any;
+interface GrupoAccordionCardProps {
   grupo: ContratacaoGrupo;
-  selected: boolean;
-  onSelect: () => void;
+  expanded: boolean;
+  expandedItems: Set<number>;
+  onToggleGrupo: () => void;
+  onToggleItem: (numero: number) => void;
 }
 
-function GrupoSelectCard({ grupo, selected, onSelect }: GrupoSelectCardProps) {
+function GrupoAccordionCard({
+  grupo,
+  expanded,
+  expandedItems,
+  onToggleGrupo,
+  onToggleItem,
+}: GrupoAccordionCardProps) {
+  const tituloGrupo = grupo.descricao.toUpperCase();
+
   return (
-    <li>
+    <li className="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-xs">
       <button
         type="button"
-        onClick={onSelect}
-        aria-pressed={selected}
-        className={`w-full flex flex-wrap items-start justify-between gap-3 p-4 text-left rounded-xl border transition shadow-xs ${
-          selected
-            ? 'border-slate-900 bg-slate-900 text-white ring-2 ring-slate-900 ring-offset-2'
-            : 'border-slate-200 bg-white hover:bg-slate-50/60 hover:border-slate-300'
-        }`}
+        onClick={onToggleGrupo}
+        aria-expanded={expanded}
+        className="w-full flex flex-wrap items-start justify-between gap-3 p-4 text-left hover:bg-slate-50/50 transition"
       >
         <div className="space-y-2 min-w-0 flex-1">
-          <h3
-            className={`text-sm font-bold uppercase tracking-wide ${
-              selected ? 'text-white' : 'text-slate-900'
-            }`}
-          >
-            {grupo.descricao}
-            <span
-              className={`font-semibold normal-case tracking-normal ${
-                selected ? 'text-slate-300' : 'text-slate-500'
-              }`}
-            >
-              {' '}
-              | {grupo.itens.length} {grupo.itens.length === 1 ? 'item' : 'itens'}
-            </span>
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex items-start gap-2">
+            <Layers className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" aria-hidden="true" />
+            <h3 className="text-sm font-bold uppercase tracking-wide text-slate-900">
+              {tituloGrupo}
+              <span className="font-semibold text-slate-500">
+                {' '}
+                | {grupo.itens.length} {grupo.itens.length === 1 ? 'item' : 'itens'}
+              </span>
+            </h3>
+          </div>
+          <div className="flex flex-wrap gap-1.5 pl-6">
             <MeEppBadge label={grupo.tratamento_me_epp} />
             <SituacaoBadge label={grupo.situacao_label} />
           </div>
-          {grupo.motivo_anulacao && (
-            <p className={`text-xs ${selected ? 'text-slate-300' : 'text-slate-600'}`}>
-              {grupo.motivo_anulacao}
-            </p>
-          )}
         </div>
         <div className="text-right shrink-0 flex items-start gap-2">
           <div>
-            <p className={`text-[11px] ${selected ? 'text-slate-400' : 'text-slate-500'}`}>
-              Valor estimado (total)
-            </p>
-            <p
-              className={`text-sm font-bold tabular-nums ${
-                selected ? 'text-white' : 'text-slate-900'
-              }`}
-            >
+            <p className="text-[11px] text-slate-500">Valor estimado (total)</p>
+            <p className="text-sm font-bold tabular-nums text-slate-900">
               {formatValorOuSigiloso(grupo.valor_estimado_total, grupo.orcamento_sigiloso)}
             </p>
           </div>
-          <ChevronRight
-            className={`w-4 h-4 mt-1 shrink-0 ${selected ? 'text-slate-300' : 'text-slate-400'}`}
-          />
+          {expanded ? (
+            <ChevronUp className="w-4 h-4 text-blue-600 mt-1 shrink-0" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-blue-600 mt-1 shrink-0" />
+          )}
         </div>
       </button>
+
+      {expanded && (
+        <div className="border-t border-slate-100 bg-slate-50/30">
+          {grupo.motivo_anulacao && (
+            <p className="px-4 pt-3 text-xs text-slate-600">
+              <span className="font-semibold text-slate-700">Motivo da anulação:</span>{' '}
+              {grupo.motivo_anulacao}
+            </p>
+          )}
+          <ul className="divide-y divide-slate-100">
+            {grupo.itens.map((item) => (
+              <ItemCard
+                key={item.numero_item}
+                item={item}
+                expanded={expandedItems.has(item.numero_item)}
+                onToggle={() => onToggleItem(item.numero_item)}
+                nested
+              />
+            ))}
+          </ul>
+        </div>
+      )}
     </li>
   );
 }
-
-interface ContratacaoGruposPanelProps {
-  grupos: ContratacaoGrupo[];
-  itensAvulsos?: ContratacaoItemRico[];
-  selectedFilter: GrupoFilter;
-  onSelectFilter: (filter: GrupoFilter) => void;
-  onVerItens: () => void;
-}
-
-export const ContratacaoGruposPanel: React.FC<ContratacaoGruposPanelProps> = ({
-  grupos,
-  itensAvulsos = [],
-  selectedFilter,
-  onSelectFilter,
-  onVerItens,
-}) => {
-  const structured = hasStructuredGrupos(grupos);
-
-  if (!structured) {
-    return (
-      <p className="text-sm text-slate-500 py-8 text-center border border-dashed border-slate-200 rounded-lg">
-        Esta contratação não possui agrupamento de itens — consulte a aba Itens.
-      </p>
-    );
-  }
-
-  const handleSelect = (filter: GrupoFilter) => {
-    onSelectFilter(filter);
-    onVerItens();
-  };
-
-  return (
-    <div className="space-y-4">
-      <p className="text-xs text-slate-600">
-        Selecione um grupo para filtrar os itens na aba seguinte — como no PNCP.
-      </p>
-
-      <ul className="space-y-2">
-        <li>
-          <button
-            type="button"
-            onClick={() => handleSelect('ALL')}
-            aria-pressed={selectedFilter === 'ALL'}
-            className={`w-full flex items-center justify-between gap-3 p-4 text-left rounded-xl border transition shadow-xs ${
-              selectedFilter === 'ALL'
-                ? 'border-slate-900 bg-slate-50 ring-2 ring-slate-900 ring-offset-2'
-                : 'border-slate-200 bg-white hover:bg-slate-50/60'
-            }`}
-          >
-            <div>
-              <p className="text-sm font-bold text-slate-900">Todos os grupos</p>
-              <p className="text-xs text-slate-500 mt-0.5">
-                {grupos.reduce((n, g) => n + g.itens.length, 0) + itensAvulsos.length} itens no total
-              </p>
-            </div>
-            <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
-          </button>
-        </li>
-
-        {grupos.map((grupo) => (
-          <GrupoSelectCard
-            key={grupo.identificador}
-            grupo={grupo}
-            selected={selectedFilter === grupo.identificador}
-            onSelect={() => handleSelect(grupo.identificador)}
-          />
-        ))}
-
-        {itensAvulsos.length > 0 && (
-          <li>
-            <button
-              type="button"
-              onClick={() => handleSelect('AVULSOS')}
-              aria-pressed={selectedFilter === 'AVULSOS'}
-              className={`w-full flex items-center justify-between gap-3 p-4 text-left rounded-xl border transition shadow-xs ${
-                selectedFilter === 'AVULSOS'
-                  ? 'border-slate-900 bg-slate-50 ring-2 ring-slate-900 ring-offset-2'
-                  : 'border-slate-200 bg-white hover:bg-slate-50/60'
-              }`}
-            >
-              <div>
-                <p className="text-sm font-bold text-slate-900">Itens avulsos</p>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  {itensAvulsos.length}{' '}
-                  {itensAvulsos.length === 1 ? 'item fora de grupo' : 'itens fora de grupo'}
-                </p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
-            </button>
-          </li>
-        )}
-      </ul>
-    </div>
-  );
-};
 
 interface ContratacaoItensPanelProps {
   grupos: ContratacaoGrupo[];
   itensAvulsos?: ContratacaoItemRico[];
   grupoFilter?: GrupoFilter;
-  onClearGrupoFilter?: () => void;
+  onGrupoFilterChange?: (filter: GrupoFilter) => void;
+  itemFacetKey?: string | null;
+  onItemFacetChange?: (key: string | null) => void;
 }
 
 export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
   grupos,
   itensAvulsos = [],
-  grupoFilter = 'ALL',
-  onClearGrupoFilter,
+  grupoFilter: grupoFilterProp,
+  onGrupoFilterChange,
+  itemFacetKey: itemFacetKeyProp,
+  onItemFacetChange,
 }) => {
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  const [activeFacetKey, setActiveFacetKey] = useState<string | null>(null);
+  const [expandedGrupos, setExpandedGrupos] = useState<Set<string>>(new Set());
+  const [internalGrupoFilter, setInternalGrupoFilter] = useState<GrupoFilter>('ALL');
+  const [internalItemFacetKey, setInternalItemFacetKey] = useState<string | null>(null);
+
+  const grupoFilter = grupoFilterProp ?? internalGrupoFilter;
+  const setGrupoFilter = onGrupoFilterChange ?? setInternalGrupoFilter;
+  const activeFacetKey = itemFacetKeyProp ?? internalItemFacetKey;
+  const setActiveFacetKey = onItemFacetChange ?? setInternalItemFacetKey;
+
+  const structuredGrupos = hasStructuredGrupos(grupos);
+  const usePncpLayout = structuredGrupos && !activeFacetKey && grupoFilter !== 'AVULSOS';
+  const motivoAnulacaoAvulso = grupos.find((g) => g.motivo_anulacao)?.motivo_anulacao ?? null;
 
   const scopedItens = useMemo(
-    () => resolveFilteredItens(grupos, itensAvulsos, grupoFilter),
+    () =>
+      grupoFilter === 'ALL'
+        ? getAllContratacaoItens(grupos, itensAvulsos)
+        : resolveFilteredItens(grupos, itensAvulsos, grupoFilter),
     [grupos, itensAvulsos, grupoFilter],
   );
 
+  const gruposVisiveis = useMemo(() => {
+    if (!structuredGrupos || grupoFilter === 'ALL') return grupos;
+    if (grupoFilter === 'AVULSOS') return [];
+    return grupos.filter((g) => g.identificador === grupoFilter);
+  }, [grupos, grupoFilter, structuredGrupos]);
+
+  const avulsosVisiveis = useMemo(() => {
+    if (grupoFilter === 'ALL' || grupoFilter === 'AVULSOS') return itensAvulsos;
+    return [];
+  }, [grupoFilter, itensAvulsos]);
+
   const facetChips = useMemo((): FacetChip[] => {
-    const counts = new Map<string, { label: string; count: number }>();
-    for (const item of scopedItens) {
-      const facets = item.parsed_facets;
-      if (facets?.tipo) {
-        const key = `tipo:${facets.tipo}`;
-        const prev = counts.get(key);
-        counts.set(key, { label: `tipo: ${facets.tipo}`, count: (prev?.count ?? 0) + 1 });
-      }
-      if (facets?.material) {
-        const key = `material:${facets.material}`;
-        const prev = counts.get(key);
-        counts.set(key, { label: `material: ${facets.material}`, count: (prev?.count ?? 0) + 1 });
-      }
-      if (facets?.base_class) {
-        const short = facets.base_class.length > 48
-          ? `${facets.base_class.slice(0, 45)}…`
-          : facets.base_class;
-        const key = `base:${facets.base_class}`;
-        const prev = counts.get(key);
-        counts.set(key, { label: short, count: (prev?.count ?? 0) + 1 });
-      }
-    }
-    return [...counts.entries()]
-      .map(([key, v]) => ({ key, label: v.label, count: v.count }))
-      .sort((a, b) => b.count - a.count);
+    return scopedItens.map((item) => ({
+      key: `item:${item.numero_item}`,
+      label: getItemDisplayName(item) || `Item ${item.numero_item}`,
+      count: 1,
+    }));
   }, [scopedItens]);
 
   const visibleItens = useMemo(
@@ -563,27 +562,66 @@ export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
     });
   };
 
-  const showGrupoBanner =
-    hasStructuredGrupos(grupos) && grupoFilter !== 'ALL';
+  const toggleGrupo = (identificador: string) => {
+    setExpandedGrupos((prev) => {
+      const next = new Set(prev);
+      if (next.has(identificador)) next.delete(identificador);
+      else next.add(identificador);
+      return next;
+    });
+  };
 
   return (
     <div className="space-y-4">
-      {showGrupoBanner && (
-        <div className="flex flex-wrap items-center justify-between gap-2 p-3 rounded-lg bg-amber-50 border border-amber-200">
-          <p className="text-xs text-amber-900">
-            <span className="font-semibold">Filtro de grupo:</span>{' '}
-            {grupoFilterLabel(grupoFilter, grupos)}
-            <span className="text-amber-700"> · {visibleItens.length} itens</span>
-          </p>
-          {onClearGrupoFilter && (
-            <button
-              type="button"
-              onClick={onClearGrupoFilter}
-              className="text-xs font-semibold text-amber-800 hover:text-amber-950 underline"
-            >
-              Limpar filtro
-            </button>
-          )}
+      {structuredGrupos && (
+        <div className="flex flex-wrap items-start gap-2 p-3 rounded-lg bg-violet-50/70 border border-violet-100">
+          <Layers className="w-4 h-4 text-violet-600 mt-0.5 shrink-0" aria-hidden="true" />
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-semibold text-violet-900">Filtros por grupo</p>
+            <p className="text-[11px] text-violet-700 mt-0.5">
+              Selecione um grupo ou avulsos antes de registrar como contrato.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              <button
+                type="button"
+                onClick={() => setGrupoFilter('ALL')}
+                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[11px] font-medium transition ${
+                  grupoFilter === 'ALL'
+                    ? 'bg-violet-900 text-white border-violet-900'
+                    : 'bg-white text-violet-900 border-violet-200 hover:border-violet-400'
+                }`}
+              >
+                Todos ({getAllContratacaoItens(grupos, itensAvulsos).length})
+              </button>
+              {grupos.map((grupo) => (
+                <button
+                  key={grupo.identificador}
+                  type="button"
+                  onClick={() => setGrupoFilter(grupo.identificador)}
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[11px] font-medium transition ${
+                    grupoFilter === grupo.identificador
+                      ? 'bg-violet-900 text-white border-violet-900'
+                      : 'bg-white text-violet-900 border-violet-200 hover:border-violet-400'
+                  }`}
+                >
+                  {grupo.descricao} ({grupo.itens.length})
+                </button>
+              ))}
+              {itensAvulsos.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setGrupoFilter('AVULSOS')}
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[11px] font-medium transition ${
+                    grupoFilter === 'AVULSOS'
+                      ? 'bg-violet-900 text-white border-violet-900'
+                      : 'bg-white text-violet-900 border-violet-200 hover:border-violet-400'
+                  }`}
+                >
+                  Avulsos ({itensAvulsos.length})
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
@@ -591,9 +629,9 @@ export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
         <div className="flex flex-wrap items-start gap-2 p-3 rounded-lg bg-sky-50/70 border border-sky-100">
           <Filter className="w-4 h-4 text-sky-600 mt-0.5 shrink-0" aria-hidden="true" />
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-semibold text-sky-900">Filtros por facet PNCP</p>
+            <p className="text-xs font-semibold text-sky-900">Filtros por item</p>
             <p className="text-[11px] text-sky-700 mt-0.5">
-              Vocabulário extraído na ingest — filtre itens por tipo, material ou classe base.
+              Selecione um item pelo nome para isolar na listagem.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-2">
               <button
@@ -607,7 +645,9 @@ export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
               >
                 Todos ({scopedItens.length})
               </button>
-              {facetChips.map((chip) => {
+              {facetChips
+                .filter((chip) => scopedItens.some((item) => `item:${item.numero_item}` === chip.key))
+                .map((chip) => {
                 const active = activeFacetKey === chip.key;
                 return (
                   <button
@@ -620,9 +660,10 @@ export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
                         : 'bg-white text-sky-900 border-sky-200 hover:border-sky-400'
                     }`}
                   >
-                    <Tag className="w-3 h-3" aria-hidden="true" />
-                    {chip.label}
-                    <span className={active ? 'text-sky-200' : 'text-sky-600'}>({chip.count})</span>
+                    <Tag className="w-3 h-3 shrink-0" aria-hidden="true" />
+                    <span className="truncate max-w-48" title={chip.label}>
+                      {chip.label}
+                    </span>
                   </button>
                 );
               })}
@@ -636,6 +677,28 @@ export const ContratacaoItensPanel: React.FC<ContratacaoItensPanelProps> = ({
           <li className="text-sm text-slate-500 py-8 text-center border border-dashed border-slate-200 rounded-lg">
             Nenhum item corresponde ao filtro selecionado.
           </li>
+        ) : usePncpLayout ? (
+          <>
+            {gruposVisiveis.map((grupo) => (
+              <GrupoAccordionCard
+                key={grupo.identificador}
+                grupo={grupo}
+                expanded={expandedGrupos.has(grupo.identificador)}
+                expandedItems={expandedItems}
+                onToggleGrupo={() => toggleGrupo(grupo.identificador)}
+                onToggleItem={toggleItem}
+              />
+            ))}
+            {avulsosVisiveis.map((item) => (
+              <ItemCard
+                key={item.numero_item}
+                item={item}
+                expanded={expandedItems.has(item.numero_item)}
+                onToggle={() => toggleItem(item.numero_item)}
+                motivoAnulacao={motivoAnulacaoAvulso}
+              />
+            ))}
+          </>
         ) : (
           visibleItens.map((item) => (
             <ItemCard

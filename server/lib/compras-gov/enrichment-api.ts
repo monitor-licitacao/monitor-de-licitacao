@@ -8,6 +8,10 @@ import {
   type ContratacaoDetailResponse,
 } from './normalize-contratacao-detail.js';
 import { getComprasGovSql, getContratacaoEnrichmentContext } from './persist.js';
+import { mapArquivosToAnexos, mapHistoricoPncpToUi } from '../pncp/map-documentos-ui.js';
+import { countArquivos, listArquivos } from '../pncp/persist-arquivos.js';
+import { countHistoricoPncp, listHistoricoPncp } from '../pncp/persist-historico-pncp.js';
+import { syncPncpDocumentos } from '../pncp/sync-documentos.js';
 
 export type { ContratacaoDetailResponse } from './normalize-contratacao-detail.js';
 
@@ -388,6 +392,39 @@ export async function getContratacaoDetail(
     })),
     enrichment,
   });
+
+  try {
+    let arquivoCount = await countArquivos(row.id);
+    let historicoPncpCount = await countHistoricoPncp(row.id);
+
+    if (arquivoCount === 0 || historicoPncpCount === 0) {
+      await syncPncpDocumentos({
+        contratacaoId: row.id,
+        cnpj: row.cnpj_orgao,
+        ano: row.ano,
+        sequencial: row.sequencial_compra,
+        source: 'pncp_sync',
+      }).catch(() => undefined);
+      arquivoCount = await countArquivos(row.id);
+      historicoPncpCount = await countHistoricoPncp(row.id);
+    }
+
+    if (arquivoCount > 0) {
+      detail.anexos = mapArquivosToAnexos(await listArquivos(row.id));
+    }
+
+    if (historicoPncpCount > 0) {
+      const pncpLogs = mapHistoricoPncpToUi(await listHistoricoPncp(row.id));
+      detail.historico = pncpLogs.map((h) => ({
+        data_hora: h.data_hora,
+        evento: h.evento,
+        descricao: h.descricao,
+        responsavel: h.responsavel,
+      }));
+    }
+  } catch {
+    // lazy sync best-effort — UI mantém fallback derivado do raw_json
+  }
 
   return detail;
 }

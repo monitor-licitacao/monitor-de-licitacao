@@ -80,6 +80,8 @@ export interface MuralProcessHistorico {
   evento: string;
   descricao?: string;
   responsavel?: string;
+  event_code?: string;
+  implica_vigencia?: 'contrato' | 'ata' | 'nenhuma';
 }
 
 export interface MuralProcessDetailResumo {

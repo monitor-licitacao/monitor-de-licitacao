@@ -6,3 +6,4 @@
 * [📄 PRD: Módulo de Agentes Autônomos - Monitor de Licitações](prd-grok-bot.md)
 * [📄 PRD: Integração Monitor de Licitações ↔ Ploomes CRM (MVP)](prd-ploomes-crm.md)
 * [Fase 3 security - smoke validation](security-fase3-smoke.md)
+* [Git Workflow: Commits e Branches](git-workflow-commits-e-branches.md)

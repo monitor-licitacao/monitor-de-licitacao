@@ -16,7 +16,9 @@ assignees: []
 ## Rastreabilidade
 - **Notion (task/PRD)**: 
 - **Área**: `area:ingestao` | `area:ui` | `area:api` | `area:telemetry`
-- **Prioridade**: `P0` | `P1` | `P2`
+- **Prioridade**: `P0` | `P1` | `P2`  *(também como label — fonte da verdade)*
+- **Executor**: `exec:cursor` | `exec:claude` | `exec:github`
+- **Modelo**: herdar o padrão do executor, ou slug explícito (`claude-opus`, `composer-2.5`, `copilot`)
 
 ## Escopo
 ### In

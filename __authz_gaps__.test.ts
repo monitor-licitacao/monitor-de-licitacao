@@ -179,7 +179,6 @@ test('Authz Gap 1.8: Dev mock login accepts Marcelo credentials and issues token
   const jwt = await import('jsonwebtoken');
   const secret = 'test-mock-secret-key-for-authz';
   const email = 'marcelo.rosas@getgymsite.com.br';
-  const password = '123456';
 
   const mockUser = {
     id: 'usr-marcelo-rosas',

@@ -4,11 +4,9 @@ import {
   normalizeConnectorConfig,
   buildApiUrl,
   executeConnector,
-  isValidSourceUrl,
   ApiConnectorConfig,
   ScraperConnectorConfig,
 } from './server/lib/connectorExecutor.js';
-import { isRejectedSistemaSUrl } from './server/lib/sistemaSUrls.js';
 
 test('1) Pipeline de Configuração - Normalização e Validação Estrita (Fail-Closed)', () => {
   // 1.1 API com Query String clássica

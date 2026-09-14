@@ -63,11 +63,7 @@ import {
   handlePutPncpConfig
 } from './server/lib/pncpConfig.js';
 import {
-  executeConnector,
-  isValidSourceUrl,
-  normalizeConnectorConfig,
-  buildApiUrl,
-  type ConnectorExecutionResult
+  executeConnector
 } from './server/lib/connectorExecutor.js';
 import { INITIAL_EDITAIS, INITIAL_SOURCES } from './server/data.js';
 

@@ -62,7 +62,12 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
+  try {
+    await closeComprasGovPersistPool();
+  } catch {
+    // ignore teardown error on fatal
+  }
   process.exit(1);
 });

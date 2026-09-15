@@ -71,14 +71,21 @@ async function main() {
     }
   }
 
-  const result = await runDiscoverQuery(parsed, searchAdapter, ingestAdapter);
-  console.log(JSON.stringify(result, null, 2));
-  await closeComprasGovPersistPool();
-  process.exit(result.ok ? 0 : 1);
+  try {
+    const result = await runDiscoverQuery(parsed, searchAdapter, ingestAdapter);
+    console.log(JSON.stringify(result, null, 2));
+    process.exitCode = result.ok ? 0 : 1;
+  } finally {
+    await closeComprasGovPersistPool();
+  }
 }
 
 main().catch(async (err) => {
   console.error(err);
-  await closeComprasGovPersistPool();
+  try {
+    await closeComprasGovPersistPool();
+  } catch {
+    // ignore teardown error on fatal
+  }
   process.exit(1);
 });

@@ -37,10 +37,11 @@ async function runSescPuppeteerScraper() {
   }
 
   const client = postgres(connectionString);
-  const db = drizzle(client, { schema });
+  try {
+    const db = drizzle(client, { schema });
 
-  // 1. Carrega todos os tenants e suas respectivas regras
-  const tenants = await db.select().from(schema.tenants);
+    // 1. Carrega todos os tenants e suas respectivas regras
+    const tenants = await db.select().from(schema.tenants);
   if (tenants.length === 0) {
     console.error('❌ Nenhum tenant encontrado no banco.');
     process.exit(1);
@@ -182,6 +183,9 @@ async function runSescPuppeteerScraper() {
 
   console.log('\n════════════════════════════════════════════════');
   console.log(`🎉 Scraper Puppeteer Dinâmico finalizado! ${newInsertions} novos editais validados.`);
+  } finally {
+    await client.end();
+  }
 }
 
 import cron from 'node-cron';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { setAuthToken } from '../apiClient';
+import { setAuthToken, apiClient } from '../apiClient';
 
 interface LoginViewProps {
   onLoginSuccess: () => void;
@@ -17,7 +17,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await apiClient('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -101,10 +101,6 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
             {isLoading ? 'Conectando...' : 'Conectar'}
           </button>
         </form>
-
-        <p className="text-center text-xs text-slate-500 mt-6">
-          Fase 0: Autenticação JWT com localStorage
-        </p>
       </div>
     </div>
   );

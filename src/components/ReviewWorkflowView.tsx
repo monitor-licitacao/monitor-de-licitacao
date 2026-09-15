@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Edital, HumanDecision, ReviewStatus } from '../types';
 import { generateEditalPDFReport } from '../utils/pdfGenerator';
+import { apiClient } from '../apiClient';
 
 interface ReviewWorkflowViewProps {
   editais: Edital[];
@@ -26,7 +27,6 @@ interface ReviewWorkflowViewProps {
       publishedInternally: boolean;
     }
   ) => Promise<void>;
-  onSendWhatsApp: (editalId: string, phone?: string) => Promise<any>;
 }
 
 export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
@@ -64,7 +64,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
         });
       }
 
-      const res = await fetch('/api/crm/sync', {
+      const res = await apiClient('/api/crm/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ editalId: currentEdital.id, tenantId: '1' })

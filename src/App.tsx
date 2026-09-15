@@ -615,11 +615,8 @@ export default function App() {
         
         <div className="flex-1 flex flex-col overflow-hidden relative">
           <Header
-            activeTab={activeTab}
-            setActiveTab={handleNavigateTab}
             scheduler={scheduler}
             onTriggerScheduler={handleTriggerScheduler}
-            pendingReviewCount={pendingReviewCount}
             isTriggering={isTriggering}
           />
 
@@ -699,13 +696,6 @@ export default function App() {
               <EditaisView
                 selectedProcessCodigo={selectedProcessCodigo}
                 onSelectProcessCodigo={handleSelectProcessCodigo}
-                editais={editais}
-                selectedEdital={selectedEdital}
-                onSelectEdital={handleSelectEdital}
-                onSaveOcrOverride={handleSaveOcrOverride}
-                onAnalyzeWithAI={handleAnalyzeWithAI}
-                onNavigateToReview={handleNavigateToReview}
-                onNavigateToTechSpecAI={handleNavigateToTechSpecAI}
               />
             )}
 
@@ -722,7 +712,6 @@ export default function App() {
               <TechnicalSpecAIView
                 editais={editais}
                 initialClause={activeSpecClause}
-                onSelectEdital={handleSelectEdital}
               />
             )}
 
@@ -732,7 +721,6 @@ export default function App() {
                 selectedEditalForReview={selectedEditalForReview}
                 onSelectEditalForReview={setSelectedEditalForReview}
                 onSubmitReview={handleSubmitReview}
-                onSendWhatsApp={handleSendNotification}
               />
             )}
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart3, TrendingUp, AlertTriangle, CheckCircle, XCircle, RefreshCw, Sparkles, Clock } from 'lucide-react';
+import { apiClient } from '../apiClient';
 
 interface CRMViewProps {
   tenantId?: string;
@@ -15,7 +16,7 @@ export const CRMView: React.FC<CRMViewProps> = ({ tenantId = '1' }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/crm/revops/insights?tenantId=${tenantId}`);
+      const res = await apiClient(`/api/crm/revops/insights?tenantId=${tenantId}`);
       if (!res.ok) throw new Error('Falha ao carregar insights de RevOps');
       const json = await res.json();
       setData(json);

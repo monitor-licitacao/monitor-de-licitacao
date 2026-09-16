@@ -24,6 +24,7 @@ import { LexicalTerm, NCMConfig, NCMClassificationResult } from '../types';
 import { StatusCatalogView } from './mural/StatusCatalogView';
 import { MuralTestRunner } from './mural/MuralTestRunner';
 import { replaceById } from '../utils/collectionUtils';
+import { apiClient } from '../apiClient';
 
 interface SettingsViewProps {
   initialTab?: 'status-catalog' | 'ncm' | 'pncp' | 'mural-test';
@@ -65,7 +66,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
 
   const fetchPncpConfig = async () => {
     try {
-      const res = await fetch('/api/config/tenant/pncp');
+      const res = await apiClient('/api/config/tenant/pncp');
       if (res.ok) {
         const data = await res.json();
         setPncpCertificatePath(data.certificatePath || '');
@@ -80,7 +81,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
   const handleSavePncp = async () => {
     try {
       setIsSavingPncp(true);
-      const res = await fetch('/api/config/tenant/pncp', {
+      const res = await apiClient('/api/config/tenant/pncp', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -106,7 +107,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
   const fetchConfig = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch('/api/config/ncm');
+      const res = await apiClient('/api/config/ncm');
       if (res.ok) {
         const data: NCMConfig = await res.json();
         setConfig(data);
@@ -123,7 +124,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
 
   const handleSaveBaseConfig = async () => {
     try {
-      const res = await fetch('/api/config/ncm', {
+      const res = await apiClient('/api/config/ncm', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ncmCode, ncmDescription })
@@ -142,7 +143,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
   const handleAddTerm = async (term: string, type: 'INCLUSIVE' | 'EXCLUSIVE') => {
     if (!term.trim()) return;
     try {
-      const res = await fetch('/api/config/ncm/terms', {
+      const res = await apiClient('/api/config/ncm/terms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ term: term.trim(), type })
@@ -160,7 +161,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
 
   const handleDeleteTerm = async (id: string) => {
     try {
-      const res = await fetch(`/api/config/ncm/terms/${id}`, { method: 'DELETE' });
+      const res = await apiClient(`/api/config/ncm/terms/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setTerms(prev => prev.filter(t => t.id !== id));
       }
@@ -171,7 +172,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
 
   const handleToggleTerm = async (id: string) => {
     try {
-      const res = await fetch(`/api/config/ncm/terms/${id}/toggle`, { method: 'PATCH' });
+      const res = await apiClient(`/api/config/ncm/terms/${id}/toggle`, { method: 'PATCH' });
       if (res.ok) {
         const updatedTerm: LexicalTerm = await res.json();
         setTerms(prev => replaceById(prev, id, updatedTerm));
@@ -186,7 +187,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ initialTab = 'status
     if (!testText.trim()) return;
     try {
       setIsTesting(true);
-      const res = await fetch('/api/config/ncm/test', {
+      const res = await apiClient('/api/config/ncm/test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: testText })

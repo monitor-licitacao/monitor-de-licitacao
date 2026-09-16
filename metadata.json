@@ -1,6 +1,0 @@
-{
-  "name": "Monitor de Editais Municipais & Sistema S",
-  "description": "Monitoramento automatizado de licitações municipais e Sistema S (SESC/SENAT/SESI/ComprasNet) com foco em NCM de cultura física e atletismo, pipeline de OCR, achados jurídicos vinculados e workflow de revisão humana.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

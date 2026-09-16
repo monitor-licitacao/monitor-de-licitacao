@@ -7,6 +7,7 @@
  */
 import 'dotenv/config';
 import { syncPncpContractsForTenant } from '../lib/contratos/pncp-sync.js';
+import { closeComprasGovPersistPool } from '../lib/sourceLayer.js';
 
 async function main() {
   const tenantIdx = process.argv.indexOf('--tenant');
@@ -21,12 +22,23 @@ async function main() {
   }
 
   console.log(`Sync contratos PNCP — tenant ${tenantId}`);
-  const result = await syncPncpContractsForTenant({ tenantId });
-  console.log(JSON.stringify(result, null, 2));
-  process.exit(result.errors.length > 0 && result.persisted === 0 ? 1 : 0);
+  try {
+    const result = await syncPncpContractsForTenant({ tenantId });
+    console.log(JSON.stringify(result, null, 2));
+    if (result.errors.length > 0 && result.persisted === 0) {
+      process.exitCode = 1;
+    }
+  } finally {
+    await closeComprasGovPersistPool();
+  }
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
+  try {
+    await closeComprasGovPersistPool();
+  } catch {
+    // ignore teardown error on fatal
+  }
   process.exit(1);
 });

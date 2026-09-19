@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play, AlertCircle, CheckCircle2, Loader } from 'lucide-react';
+import { apiClient } from '../../apiClient';
 
 interface TestResult {
   passed: number;
@@ -25,7 +26,7 @@ export function MuralTestRunner() {
     setResult(null);
 
     try {
-      const response = await fetch(`/api/mural/processes/${identifier}`);
+      const response = await apiClient(`/api/mural/processes/${identifier}`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Processo não encontrado`);
       }

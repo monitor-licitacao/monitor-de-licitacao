@@ -23,11 +23,11 @@ import {
   Award
 } from 'lucide-react';
 import { Edital, RestrictiveSpecAnalysis, ProductSupplierMatch } from '../types';
+import { apiClient } from '../apiClient';
 
 interface TechnicalSpecAIViewProps {
   editais: Edital[];
   initialClause?: string;
-  onSelectEdital?: (edital: Edital) => void;
 }
 
 const PRESET_EXAMPLES = [
@@ -57,8 +57,7 @@ Os equipamentos deverão possuir sistema exclusivo de absorção de impacto pate
 
 export const TechnicalSpecAIView: React.FC<TechnicalSpecAIViewProps> = ({
   editais,
-  initialClause,
-  onSelectEdital
+  initialClause
 }) => {
   const [clauseInput, setClauseInput] = useState<string>(
     initialClause || PRESET_EXAMPLES[0].text
@@ -80,7 +79,7 @@ export const TechnicalSpecAIView: React.FC<TechnicalSpecAIViewProps> = ({
     setHumanReviewed(false); // Reset review on new analysis
     try {
       const selectedEdital = editais.find(e => e.id === selectedEditalId);
-      const res = await fetch('/api/gemini/analyze-technical-specification', {
+      const res = await apiClient('/api/gemini/analyze-technical-specification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

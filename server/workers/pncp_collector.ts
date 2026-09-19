@@ -39,10 +39,11 @@ async function runCollector() {
   }
 
   const client = postgres(connectionString);
-  const db = drizzle(client, { schema });
+  try {
+    const db = drizzle(client, { schema });
 
-  // 1. Carrega todos os tenants e suas respectivas configurações e NCMs
-  const tenants = await db.select().from(schema.tenants);
+    // 1. Carrega todos os tenants e suas respectivas configurações e NCMs
+    const tenants = await db.select().from(schema.tenants);
   if (tenants.length === 0) {
     console.error('❌ Nenhum tenant encontrado no banco.');
     process.exit(1);
@@ -211,6 +212,9 @@ async function runCollector() {
 
   console.log('\n════════════════════════════════════════════════');
   console.log(`🎉 Worker dinâmico finalizado! ${newInsertions} novos editais salvos.`);
+  } finally {
+    await client.end();
+  }
 }
 
 import cron from 'node-cron';

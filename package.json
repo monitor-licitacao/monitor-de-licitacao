@@ -41,7 +41,7 @@
     "@ai-sdk/google": "^4.0.63",
     "@ai-sdk/openai": "^4.0.66",
     "@ai-sdk/xai": "^4.0.54",
-    "@amplitude/ai": "^0.16.0",
+    "@amplitude/ai": "^0.22.0",
     "@amplitude/unified": "^1.1.32",
     "@google/genai": "^2.4.0",
     "@neon/env": "^1.2.0",
